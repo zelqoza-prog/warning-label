@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>WARNING LABEL — 60-Second Self-Awareness Test</title>
+<title>WARNING LABEL — 30-Second Self-Awareness Test</title>
 
 <style>
 :root{
@@ -12,7 +12,7 @@
   --text:#f5f5f2;
   --muted:#aaaab2;
   --line:#2a2a30;
-  --accent:#ff5a4f
+  --accent:#ff5a4f;
 }
 
 *{box-sizing:border-box}
@@ -21,19 +21,19 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:Inter,Arial,sans-serif
+  font-family:Inter,Arial,sans-serif;
 }
 
 .wrap{
   max-width:680px;
   margin:0 auto;
-  padding:28px 18px 60px
+  padding:28px 18px 60px;
 }
 
 .brand{
   font-weight:900;
   letter-spacing:.08em;
-  font-size:14px
+  font-size:14px;
 }
 
 .brand span{color:var(--accent)}
@@ -44,20 +44,20 @@ body{
   color:var(--muted);
   text-transform:uppercase;
   letter-spacing:.12em;
-  font-size:12px
+  font-size:12px;
 }
 
 h1{
   font-size:54px;
   line-height:.96;
   margin:12px 0 18px;
-  letter-spacing:-.04em
+  letter-spacing:-.04em;
 }
 
 p{
   color:var(--muted);
   font-size:18px;
-  line-height:1.5
+  line-height:1.5;
 }
 
 button{
@@ -67,17 +67,17 @@ button{
   padding:17px 18px;
   font-weight:800;
   font-size:17px;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .primary{
   background:var(--accent);
-  color:#fff
+  color:#fff;
 }
 
 .secondary{
   background:#242429;
-  color:#fff
+  color:#fff;
 }
 
 .card{
@@ -85,20 +85,36 @@ button{
   border:1px solid var(--line);
   border-radius:24px;
   padding:24px;
-  margin-top:20px
+  margin-top:20px;
 }
 
 .hidden{display:none}
 
+.backbar{
+  display:flex;
+  justify-content:flex-start;
+  margin:6px 0 14px;
+}
+
+.backbtn{
+  width:auto;
+  padding:10px 14px;
+  border-radius:12px;
+  background:#1d1d22;
+  color:#fff;
+  border:1px solid #303037;
+  font-size:14px;
+}
+
 .qnum{
   color:var(--muted);
-  font-size:13px
+  font-size:13px;
 }
 
 .question{
   font-size:25px;
   font-weight:800;
-  margin:8px 0 18px
+  margin:8px 0 18px;
 }
 
 .option{
@@ -111,7 +127,7 @@ button{
   border-radius:14px;
   color:#fff;
   text-align:left;
-  font-size:16px
+  font-size:16px;
 }
 
 .option:hover{border-color:#666}
@@ -121,13 +137,13 @@ button{
   background:#222;
   border-radius:9px;
   overflow:hidden;
-  margin:22px 0
+  margin:22px 0;
 }
 
 .bar{
   height:100%;
   background:var(--accent);
-  width:0
+  width:0;
 }
 
 .result{text-align:center}
@@ -141,7 +157,7 @@ button{
   border-radius:9px;
   letter-spacing:.08em;
   position:relative;
-  overflow:hidden
+  overflow:hidden;
 }
 
 .warning:after{
@@ -156,56 +172,32 @@ button{
     rgba(255,255,255,.35),
     transparent
   );
-  animation:warningSweep 2.8s ease-in-out infinite 1s
+  animation:sweep 2.8s ease-in-out infinite 1s;
 }
 
 .score{
   font-size:74px;
   font-weight:950;
   letter-spacing:-.06em;
-  margin:18px 0 0
-}
-
-.score.animate-score{
-  animation:scorePop .75s cubic-bezier(.2,.9,.2,1) both
+  margin:18px 0 0;
 }
 
 .label{
   font-size:31px;
   font-weight:900;
-  margin:4px 0 15px
+  margin:4px 0 15px;
 }
 
 .tag{
   font-size:19px;
   color:#ddd;
-  line-height:1.45
+  line-height:1.45;
 }
 
 .mini{
   font-size:13px;
   color:var(--muted);
-  margin-top:20px
-}
-
-.paywall{
-  text-align:left;
-  margin-top:22px;
-  padding-top:20px;
-  border-top:1px solid var(--line);
-  animation:cardRise .7s .30s cubic-bezier(.2,.8,.2,1) both
-}
-
-.payrow{
-  display:flex;
-  justify-content:space-between;
-  padding:10px 0;
-  color:#ddd
-}
-
-.blur{
-  filter:blur(5px);
-  user-select:none
+  margin-top:20px;
 }
 
 .sharecard{
@@ -215,22 +207,19 @@ button{
   border-radius:22px;
   padding:26px;
   text-align:left;
-  animation:cardRise .7s .18s cubic-bezier(.2,.8,.2,1) both
 }
 
 .sharecard .warning{
   color:#111;
-  border-color:#111
+  border-color:#111;
 }
 
-.sharecard .score{
-  font-size:58px
-}
+.sharecard .score{font-size:58px}
 
 .sharecard .small{
   font-size:13px;
   color:#555;
-  margin-top:20px
+  margin-top:20px;
 }
 
 .sharemenu{
@@ -240,7 +229,6 @@ button{
   border:1px solid var(--line);
   border-radius:18px;
   padding:12px;
-  text-align:left
 }
 
 .sharemenu.show{display:block}
@@ -248,7 +236,7 @@ button{
 .sharegrid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px
+  gap:10px;
 }
 
 .sharebtn{
@@ -256,87 +244,78 @@ button{
   color:#fff;
   border:1px solid #33343a;
   border-radius:12px;
-  padding:13px 14px;
+  padding:13px;
   font-size:14px;
-  font-weight:800
 }
 
-.sharebtn:hover{border-color:#666}
+.paywall{
+  text-align:left;
+  margin-top:22px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+}
 
-.sharestatus{
-  font-size:13px;
-  color:var(--muted);
-  margin-top:10px;
-  min-height:18px;
-  text-align:center
+.payrow{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  color:#ddd;
+}
+
+.blur{
+  filter:blur(5px);
+  user-select:none;
 }
 
 .report-wrap{
   margin-top:22px;
-  text-align:left
+  text-align:left;
 }
 
 .report-hero{
-  position:relative;
-  overflow:hidden;
   border-radius:24px;
   padding:28px;
-  background:linear-gradient(135deg,#17171b 0%,#23232a 100%);
+  background:linear-gradient(135deg,#17171b,#23232a);
   border:1px solid var(--line);
-  animation:heroReveal .8s cubic-bezier(.2,.9,.2,1) both
-}
-
-.report-hero:before{
-  content:"";
-  position:absolute;
-  width:220px;
-  height:220px;
-  border-radius:50%;
-  right:-80px;
-  top:-80px;
-  background:rgba(255,90,79,.12);
-  filter:blur(6px)
 }
 
 .report-kicker{
   font-size:12px;
   letter-spacing:.14em;
   text-transform:uppercase;
-  color:var(--muted)
+  color:var(--muted);
 }
 
 .report-title{
   font-size:36px;
-  line-height:1.02;
   font-weight:950;
-  letter-spacing:-.04em;
-  margin:8px 0 10px
+  margin:8px 0 10px;
 }
 
 .report-sub{
   font-size:16px;
   color:#cfcfd5;
-  line-height:1.5
+  line-height:1.5;
 }
 
 .metric-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
-  margin-top:16px
+  margin-top:16px;
 }
 
 .metric{
   background:#1d1d22;
   border:1px solid #303038;
   border-radius:16px;
-  padding:16px
+  padding:16px;
 }
 
 .metric b{
   display:block;
   font-size:24px;
-  margin-top:4px
+  margin-top:4px;
 }
 
 .section-card{
@@ -345,29 +324,22 @@ button{
   border-radius:20px;
   padding:20px;
   margin-top:14px;
-  opacity:0;
-  transform:translateY(18px)
-}
-
-.section-card.in-view{
-  animation:sectionIn .55s cubic-bezier(.2,.8,.2,1) forwards
 }
 
 .section-card h3{
   margin:0 0 8px;
-  font-size:20px
+  font-size:20px;
 }
 
 .section-card p{
   font-size:15px;
-  margin:0
+  margin:0;
 }
 
 .action{
   display:flex;
   gap:12px;
-  align-items:flex-start;
-  margin-top:14px
+  margin-top:14px;
 }
 
 .action-num{
@@ -377,7 +349,7 @@ button{
   display:grid;
   place-items:center;
   background:var(--accent);
-  font-weight:900
+  font-weight:900;
 }
 
 .story-card{
@@ -388,42 +360,17 @@ button{
   background:linear-gradient(160deg,#f5efe4,#e7ddcf);
   color:#111;
   position:relative;
-  overflow:hidden;
-  transition:transform .25s ease,box-shadow .25s ease
-}
-
-.story-card:hover{
-  transform:translateY(-4px) rotate(-.3deg);
-  box-shadow:0 18px 50px rgba(0,0,0,.28)
-}
-
-.story-card:after{
-  content:"ZELQOZA";
-  position:absolute;
-  right:18px;
-  bottom:14px;
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.16em;
-  color:#444
-}
-
-.story-card .warning{
-  color:#111;
-  border-color:#111
 }
 
 .story-big{
   font-size:54px;
   font-weight:950;
-  letter-spacing:-.05em;
-  margin:18px 0 4px
+  margin:18px 0 4px;
 }
 
 .story-label{
   font-size:28px;
   font-weight:900;
-  max-width:85%
 }
 
 .story-copy{
@@ -431,7 +378,6 @@ button{
   line-height:1.45;
   margin-top:18px;
   color:#333;
-  max-width:88%
 }
 
 .story-cta{
@@ -439,207 +385,73 @@ button{
   left:26px;
   bottom:32px;
   font-weight:800;
-  font-size:14px
-}
-
-.demo-badge{
-  display:inline-block;
-  background:#25252b;
-  color:#ddd;
-  border:1px solid #383840;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:12px;
-  margin-bottom:10px
 }
 
 .challenge-banner{
   display:none;
-  margin:18px 0 0;
-  padding:16px 18px;
+  margin:18px 0;
+  padding:16px;
   border-radius:16px;
   background:#1d1d22;
   border:1px solid #34343b;
-  color:#f5f5f2
 }
 
-.challenge-banner.show{
-  display:block;
-  animation:cardRise .55s ease both
-}
-
-.challenge-banner b{
-  color:var(--accent)
-}
+.challenge-banner.show{display:block}
 
 .compare-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
-  margin-top:14px
+  margin-top:14px;
 }
 
 .compare-person{
   background:#1c1c21;
   border:1px solid #303038;
   border-radius:16px;
-  padding:16px
-}
-
-.compare-person .who{
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  color:var(--muted)
-}
-
-.compare-person .big{
-  font-size:28px;
-  font-weight:950;
-  margin:6px 0 2px
-}
-
-.compare-person .small{
-  font-size:13px;
-  color:#c8c8ce
+  padding:16px;
 }
 
 .compat-score{
   font-size:64px;
   font-weight:950;
-  letter-spacing:-.05em;
   text-align:center;
-  margin:12px 0 2px
+  margin-top:15px;
 }
 
 .compat-label{
-  text-align:center;
   font-size:22px;
-  font-weight:900
+  font-weight:900;
+  text-align:center;
 }
 
 .compat-copy{
   text-align:center;
   color:var(--muted);
-  font-size:15px;
   line-height:1.5;
-  margin:8px auto 0;
-  max-width:520px
+  margin-top:8px;
 }
 
 .inline-actions{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:12px
+  margin-top:12px;
 }
 
-.result .card{
-  animation:resultPop .65s cubic-bezier(.2,.9,.2,1) both
-}
-
-.primary.pulse{
-  box-shadow:0 0 0 0 rgba(255,90,79,.35);
-  animation:ctaPulse 2.2s ease-out infinite
-}
-
-@keyframes resultPop{
-  0%{
-    opacity:0;
-    transform:translateY(18px) scale(.975)
-  }
-  100%{
-    opacity:1;
-    transform:none
-  }
-}
-
-@keyframes scorePop{
-  0%{
-    opacity:0;
-    transform:scale(.65)
-  }
-  70%{
-    transform:scale(1.08)
-  }
-  100%{
-    opacity:1;
-    transform:scale(1)
-  }
-}
-
-@keyframes cardRise{
-  0%{
-    opacity:0;
-    transform:translateY(20px)
-  }
-  100%{
-    opacity:1;
-    transform:none
-  }
-}
-
-@keyframes heroReveal{
-  0%{
-    opacity:0;
-    transform:translateY(22px) scale(.98)
-  }
-  100%{
-    opacity:1;
-    transform:none
-  }
-}
-
-@keyframes sectionIn{
-  to{
-    opacity:1;
-    transform:none
-  }
-}
-
-@keyframes warningSweep{
-  0%,55%{
-    left:-45%
-  }
-  80%,100%{
-    left:125%
-  }
-}
-
-@keyframes ctaPulse{
-  0%{
-    box-shadow:0 0 0 0 rgba(255,90,79,.35)
-  }
-  70%{
-    box-shadow:0 0 0 14px rgba(255,90,79,0)
-  }
-  100%{
-    box-shadow:0 0 0 0 rgba(255,90,79,0)
-  }
+@keyframes sweep{
+  0%,55%{left:-45%}
+  80%,100%{left:125%}
 }
 
 @media(max-width:600px){
   h1{font-size:43px}
 
-  .sharegrid,
   .metric-grid,
   .compare-grid,
-  .inline-actions{
-    grid-template-columns:1fr
-  }
-
-  .story-card{
-    min-height:460px
-  }
-}
-
-@media(prefers-reduced-motion:reduce){
-  *,
-  *:before,
-  *:after{
-    animation:none!important;
-    transition:none!important;
-    scroll-behavior:auto!important
+  .inline-actions,
+  .sharegrid{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -649,796 +461,359 @@ button{
 
 <div class="wrap">
 
-  <div class="brand">
-    WARNING<span>LABEL</span>
-  </div>
+<div class="brand">
+WARNING<span>LABEL</span>
+</div>
 
+<section id="start" class="hero">
 
-  <section id="start" class="hero">
+<div id="challengeBanner" class="challenge-banner">
+<b>You’ve been challenged.</b>
+<div id="challengeText"></div>
+</div>
 
-    <div id="challengeBanner" class="challenge-banner">
+<div class="eyebrow">
+THE 30-SECOND SELF-AWARENESS TEST
+</div>
 
-      <b>
-        You’ve been challenged.
-      </b>
+<h1>
+How do people actually experience you?
+</h1>
 
-      <div
-        id="challengeText"
-        style="margin-top:6px;color:#d6d6dc;font-size:15px;line-height:1.45">
-      </div>
+<p>
+Six questions. One uncomfortable read.
+Find out what people may notice about you before you do.
+</p>
 
-    </div>
+<button class="primary" onclick="begin()">
+Read me
+</button>
 
+<p style="font-size:13px;text-align:center">
+For self-reflection and entertainment — not a clinical assessment.
+</p>
 
-    <div class="eyebrow">
-      The 60-second self-awareness test
-    </div>
+</section>
 
 
-    <h1>
-      How do people actually experience you?
-    </h1>
+<section id="quiz" class="hidden">
 
+<div class="backbar">
+<button class="backbtn" onclick="goBack()">
+← Back
+</button>
+</div>
 
-    <p>
-      Take the 60-second test.
-      Get your Warning Label —
-      then see what to do about it.
-    </p>
+<div class="progress">
+<div id="bar" class="bar"></div>
+</div>
 
+<div class="card">
 
-    <button
-      class="primary"
-      onclick="begin()">
+<div id="qnum" class="qnum"></div>
 
-      Read me
+<div id="question" class="question"></div>
 
-    </button>
+<div id="options"></div>
 
+</div>
 
-    <p style="font-size:13px;text-align:center">
+</section>
 
-      For self-reflection and entertainment —
-      not a clinical assessment.
 
-    </p>
+<section id="result" class="hidden result">
 
-  </section>
+<div class="backbar">
+<button class="backbtn" onclick="goBack()">
+← Back
+</button>
+</div>
 
+<div class="card">
 
-  <section
-    id="quiz"
-    class="hidden">
+<div class="warning">
+⚠ WARNING LABEL
+</div>
 
-    <div class="progress">
+<div id="score" class="score"></div>
 
-      <div
-        id="bar"
-        class="bar">
-      </div>
+<div id="label" class="label"></div>
 
-    </div>
+<div id="tag" class="tag"></div>
 
 
-    <div class="card">
+<div class="sharecard">
 
-      <div
-        id="qnum"
-        class="qnum">
-      </div>
+<div class="warning">
+⚠ WARNING LABEL
+</div>
 
-      <div
-        id="question"
-        class="question">
-      </div>
+<div id="shareScore" class="score"></div>
 
-      <div id="options">
-      </div>
+<div id="shareLabel" class="label"></div>
 
-    </div>
+<div id="shareTag" class="tag"></div>
 
-  </section>
+<div class="small">
+ZELQOZA · What's yours?
+</div>
 
+</div>
 
-  <section
-    id="result"
-    class="hidden result">
 
-    <div class="card">
+<button class="secondary" onclick="nativeShare()">
+Share my result
+</button>
 
 
-      <div class="warning">
-        ⚠ WARNING LABEL
-      </div>
+<div class="paywall">
 
+<div style="font-size:23px;font-weight:900">
+Your Deep Read
+</div>
 
-      <div
-        id="score"
-        class="score">
+<p style="font-size:15px">
+See what people may misunderstand about you,
+what tends to get in your way,
+and what you can actually do differently.
+</p>
 
-        78%
+<div class="payrow">
+<span>What people may misread</span>
+<span class="blur">Your signal</span>
+</div>
 
-      </div>
+<div class="payrow">
+<span>Your strongest pattern</span>
+<span class="blur">Your pattern</span>
+</div>
 
+<div class="payrow">
+<span>Your next move</span>
+<span class="blur">Your action</span>
+</div>
 
-      <div
-        id="label"
-        class="label">
-      </div>
+<button class="primary" onclick="unlockDemo()">
+Unlock my Deep Read — $1
+</button>
 
+<div class="mini" style="text-align:center">
+Preview mode — no charge yet.
+</div>
 
-      <div
-        id="tag"
-        class="tag">
-      </div>
 
+<div id="fullReport" class="report-wrap hidden">
 
-      <div
-        class="sharecard"
-        id="sharecard">
+<div class="report-hero">
 
-        <div class="warning">
-          ⚠ WARNING LABEL
-        </div>
+<div class="report-kicker">
+YOUR DEEP READ
+</div>
 
-        <div
-          class="score"
-          id="shareScore">
-        </div>
+<div id="reportTitle" class="report-title"></div>
 
-        <div
-          class="label"
-          id="shareLabel">
-        </div>
+<div class="report-sub"></div>
 
-        <div
-          class="tag"
-          id="shareTag">
-        </div>
+<div class="metric-grid">
 
-        <div class="small">
+<div class="metric">
+<span>People may read you as</span>
+<b></b>
+</div>
 
-          zelqoza.com · What’s yours?
+<div class="metric">
+<span>Your real strength</span>
+<b></b>
+</div>
 
-        </div>
+<div class="metric">
+<span>Your growth edge</span>
+<b></b>
+</div>
 
-      </div>
+<div class="metric">
+<span>Social risk</span>
+<b></b>
+</div>
 
+</div>
 
-      <button
-        class="secondary"
-        onclick="toggleShareMenu()">
+</div>
 
-        Share my warning label
 
-      </button>
+<div class="section-card">
 
+<h3>
+What people may misunderstand
+</h3>
 
-      <div
-        id="shareMenu"
-        class="sharemenu">
+<p></p>
 
-        <div class="sharegrid">
+</div>
 
-          <button
-            class="sharebtn"
-            onclick="copyShareLink()">
 
-            🔗 Copy link
+<div class="section-card">
 
-          </button>
+<h3>
+What gets in your way
+</h3>
 
+<p></p>
 
-          <button
-            class="sharebtn"
-            onclick="shareWhatsApp()">
+</div>
 
-            💬 WhatsApp
 
-          </button>
+<div class="section-card">
 
+<h3>
+Your 3 next moves
+</h3>
 
-          <button
-            class="sharebtn"
-            onclick="shareX()">
+<div class="action">
+<div class="action-num">1</div>
+<div>
+<b></b>
+<br>
+<span style="color:var(--muted)"></span>
+</div>
+</div>
 
-            𝕏 X / Twitter
+<div class="action">
+<div class="action-num">2</div>
+<div>
+<b></b>
+<br>
+<span style="color:var(--muted)"></span>
+</div>
+</div>
 
-          </button>
+<div class="action">
+<div class="action-num">3</div>
+<div>
+<b></b>
+<br>
+<span style="color:var(--muted)"></span>
+</div>
+</div>
 
+</div>
 
-          <button
-            class="sharebtn"
-            onclick="shareFacebook()">
 
-            f Facebook
+<div class="section-card">
 
-          </button>
+<h3>Your shareable card</h3>
 
-        </div>
+<p>
+Made to screenshot or share.
+</p>
 
+<div class="story-card">
 
-        <button
-          class="sharebtn"
-          style="width:100%;margin-top:10px"
-          onclick="nativeShare()">
+<div class="warning">
+⚠ WARNING LABEL
+</div>
 
-          ↗ More sharing options
+<div id="storyScore" class="story-big"></div>
 
-        </button>
+<div id="storyLabel" class="story-label"></div>
 
+<div id="storyCopy" class="story-copy"></div>
 
-        <div
-          id="shareStatus"
-          class="sharestatus">
-        </div>
+<div class="story-cta">
+Take yours at zelqoza.com
+</div>
 
-      </div>
+</div>
 
+<div class="inline-actions">
 
-      <div class="paywall">
+<button class="secondary" onclick="sharePaidCard()">
+Share my result
+</button>
 
+<button class="secondary" onclick="saveStoryCard()">
+Save story image
+</button>
 
-        <div
-          style="font-size:22px;font-weight:900">
+</div>
 
-          Your personal playbook
+</div>
 
-        </div>
 
+<div class="section-card">
 
-        <p style="font-size:15px">
+<h3>
+Challenge a friend
+</h3>
 
-          See what people may misunderstand about you,
-          what gets in your way,
-          and 3 practical moves you can try next.
+<p>
+Send your result to someone and see how your two profiles compare.
+</p>
 
-        </p>
+<button
+class="primary"
+style="margin-top:12px"
+onclick="shareChallenge()">
+Challenge a friend
+</button>
 
+</div>
 
-        <div class="payrow">
 
-          <span>
-            What people may misread
-          </span>
+<div id="comparisonSection" class="section-card hidden">
 
-          <span class="blur">
-            Your signals
-          </span>
+<h3>
+You vs. your challenger
+</h3>
 
-        </div>
+<p id="comparisonIntro"></p>
 
+<div class="compare-grid">
 
-        <div class="payrow">
+<div class="compare-person">
+<div>CHALLENGER</div>
+<div id="challengerScore" style="font-size:28px;font-weight:900"></div>
+<div id="challengerLabel"></div>
+</div>
 
-          <span>
-            What gets in your way
-          </span>
+<div class="compare-person">
+<div>YOU</div>
+<div id="friendScore" style="font-size:28px;font-weight:900"></div>
+<div id="friendLabel"></div>
+</div>
 
-          <span class="blur">
-            Your pattern
-          </span>
+</div>
 
-        </div>
+<div id="compatScore" class="compat-score"></div>
 
+<div id="compatLabel" class="compat-label"></div>
 
-        <div class="payrow">
+<div id="compatCopy" class="compat-copy"></div>
 
-          <span>
-            Your next best move
-          </span>
+<button
+class="secondary"
+style="margin-top:14px"
+onclick="shareComparison()">
+Share our comparison
+</button>
 
-          <span class="blur">
-            Your action
-          </span>
+</div>
 
-        </div>
+</div>
 
+</div>
 
-        <button
-          class="primary pulse"
-          onclick="unlockDemo()">
 
-          Get my personal playbook — $1
+<button
+class="secondary"
+style="margin-top:18px"
+onclick="restartTest()">
+↻ Take the test again
+</button>
 
-        </button>
+</div>
 
-
-        <div
-          class="mini"
-          style="text-align:center;margin-top:8px">
-
-          Demo mode: no charge yet —
-          payment connection comes next.
-
-        </div>
-
-
-        <div
-          id="fullReport"
-          class="report-wrap hidden">
-
-
-          <div class="demo-badge">
-
-            PAID EXPERIENCE PREVIEW
-
-          </div>
-
-
-          <div class="report-hero">
-
-
-            <div class="report-kicker">
-
-              Your personal playbook
-
-            </div>
-
-
-            <div
-              class="report-title"
-              id="reportTitle">
-
-              Professionally Unbothered
-
-            </div>
-
-
-            <div class="report-sub">
-
-              You feel more than you show.
-              That calm exterior protects you —
-              but it can also make people underestimate
-              how much you care.
-
-            </div>
-
-
-            <div class="metric-grid">
-
-
-              <div class="metric">
-
-                <span>
-                  People may read you as
-                </span>
-
-                <b>
-                  Detached
-                </b>
-
-              </div>
-
-
-              <div class="metric">
-
-                <span>
-                  Your real strength
-                </span>
-
-                <b>
-                  Composure
-                </b>
-
-              </div>
-
-
-              <div class="metric">
-
-                <span>
-                  Growth edge
-                </span>
-
-                <b>
-                  Signal more
-                </b>
-
-              </div>
-
-
-              <div class="metric">
-
-                <span>
-                  Social risk
-                </span>
-
-                <b>
-                  Mixed signals
-                </b>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="section-card">
-
-            <h3>
-              What people may misunderstand
-            </h3>
-
-            <p>
-
-              You often look calm even when something matters to you.
-              People can mistake emotional control
-              for emotional distance.
-
-            </p>
-
-          </div>
-
-
-          <div class="section-card">
-
-            <h3>
-              What gets in your way
-            </h3>
-
-            <p>
-
-              You sometimes expect people to infer what you feel
-              instead of saying it clearly.
-              That creates unnecessary ambiguity
-              in dating, friendships and work.
-
-            </p>
-
-          </div>
-
-
-          <div class="section-card">
-
-            <h3>
-              Your 3 next moves
-            </h3>
-
-
-            <div class="action">
-
-              <div class="action-num">
-                1
-              </div>
-
-              <div>
-
-                <b>
-                  Say one extra sentence.
-                </b>
-
-                <br>
-
-                <span style="color:var(--muted)">
-
-                  When something matters,
-                  add one sentence that makes
-                  your intent obvious.
-
-                </span>
-
-              </div>
-
-            </div>
-
-
-            <div class="action">
-
-              <div class="action-num">
-                2
-              </div>
-
-              <div>
-
-                <b>
-                  Replace silence with a signal.
-                </b>
-
-                <br>
-
-                <span style="color:var(--muted)">
-
-                  Instead of disappearing,
-                  use a short message:
-                  “I need a little time,
-                  but I’m not ignoring you.”
-
-                </span>
-
-              </div>
-
-            </div>
-
-
-            <div class="action">
-
-              <div class="action-num">
-                3
-              </div>
-
-              <div>
-
-                <b>
-                  Use your calm as leadership.
-                </b>
-
-                <br>
-
-                <span style="color:var(--muted)">
-
-                  In tense moments,
-                  name what’s happening
-                  instead of only staying composed.
-
-                </span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="section-card">
-
-            <h3>
-              Your shareable card
-            </h3>
-
-
-            <p>
-
-              Built for Instagram Stories,
-              WhatsApp and screenshots.
-
-            </p>
-
-
-            <div
-              class="story-card"
-              id="storyCard">
-
-
-              <div class="warning">
-                ⚠ WARNING LABEL
-              </div>
-
-
-              <div
-                class="story-big"
-                id="storyScore">
-
-                77%
-
-              </div>
-
-
-              <div
-                class="story-label"
-                id="storyLabel">
-
-                Professionally Unbothered
-
-              </div>
-
-
-              <div
-                class="story-copy"
-                id="storyCopy">
-
-                I feel everything.
-                My face has simply signed an NDA.
-
-              </div>
-
-
-              <div class="story-cta">
-
-                Take yours at zelqoza.com
-
-              </div>
-
-            </div>
-
-
-            <div class="inline-actions">
-
-
-              <button
-                class="secondary"
-                onclick="sharePaidCard()">
-
-                Share my result
-
-              </button>
-
-
-              <button
-                class="secondary"
-                onclick="saveStoryCard()">
-
-                Save story image
-
-              </button>
-
-
-            </div>
-
-          </div>
-
-
-          <div class="section-card">
-
-            <h3>
-              Challenge a friend
-            </h3>
-
-
-            <p>
-
-              Your friend opens a personalized challenge,
-              takes the test,
-              unlocks their playbook,
-              and instantly gets a comparison with you.
-
-            </p>
-
-
-            <button
-              class="primary"
-              style="margin-top:12px"
-              onclick="shareChallenge()">
-
-              Challenge a friend
-
-            </button>
-
-
-            <div
-              class="mini"
-              style="text-align:center;margin-top:8px">
-
-              No account needed in this MVP.
-
-            </div>
-
-          </div>
-
-
-          <div
-            id="comparisonSection"
-            class="section-card hidden">
-
-
-            <h3>
-              You vs. your challenger
-            </h3>
-
-
-            <p id="comparisonIntro">
-
-              Your comparison is ready.
-
-            </p>
-
-
-            <div class="compare-grid">
-
-
-              <div class="compare-person">
-
-                <div class="who">
-
-                  Challenger
-
-                </div>
-
-                <div
-                  class="big"
-                  id="challengerScore">
-
-                  77%
-
-                </div>
-
-                <div
-                  class="small"
-                  id="challengerLabel">
-
-                  Professionally Unbothered
-
-                </div>
-
-              </div>
-
-
-              <div class="compare-person">
-
-                <div class="who">
-
-                  You
-
-                </div>
-
-                <div
-                  class="big"
-                  id="friendScore">
-
-                  82%
-
-                </div>
-
-                <div
-                  class="small"
-                  id="friendLabel">
-
-                  Receipts Department
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <div
-              class="compat-score"
-              id="compatScore">
-
-              84%
-
-            </div>
-
-
-            <div
-              class="compat-label"
-              id="compatLabel">
-
-              Dangerously compatible
-
-            </div>
-
-
-            <div
-              class="compat-copy"
-              id="compatCopy">
-
-              You balance each other well —
-              but when neither of you says what you mean,
-              the silence can get loud.
-
-            </div>
-
-
-            <button
-              class="secondary"
-              style="margin-top:14px"
-              onclick="shareComparison()">
-
-              Share our comparison
-
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <button
-        class="secondary"
-        style="margin-top:18px"
-        onclick="restartTest()">
-
-        ↻ Take the test again
-
-      </button>
-
-    </div>
-
-  </section>
+</section>
 
 </div>
 
@@ -1447,1753 +822,1244 @@ button{
 
 const qs=[
 
-[
-  "Someone takes hours to reply. You…",
-  [
-    "Forget they exist",
-    "Reply instantly anyway",
-    "Match their energy",
-    "Overthink it but act normal"
-  ]
-],
+{
+q:"Someone you care about suddenly feels distant. What do you do first?",
+a:[
+["Give them space and wait for them to come back",
+{attachment:-2,directness:-1,regulation:1}],
 
-[
-  "A friend cancels last minute.",
-  [
-    "No problem",
-    "I remember forever",
-    "I ask what happened",
-    "I make other plans immediately"
-  ]
-],
+["Ask directly if something changed",
+{attachment:1,directness:2,regulation:1}],
 
-[
-  "In an argument you usually…",
-  [
-    "Go quiet",
-    "Need to win",
-    "Make a joke",
-    "Say everything at once"
-  ]
-],
+["Act normal, but quietly analyze every detail",
+{attachment:2,directness:-1,regulation:-1}],
 
-[
-  "Someone compliments you.",
-  [
-    "Believe them",
-    "Deflect",
-    "Assume they want something",
-    "Make it a bit"
-  ]
-],
-
-[
-  "Your biggest social crime?",
-  [
-    "Ghosting",
-    "Oversharing",
-    "Being too blunt",
-    "Never asking for help"
-  ]
-],
-
-[
-  "When bored with someone…",
-  [
-    "I disappear",
-    "I create drama",
-    "I stay too long",
-    "I become distant"
-  ]
-],
-
-[
-  "People often call you…",
-  [
-    "Intense",
-    "Independent",
-    "Chaotic",
-    "Hard to read"
-  ]
-],
-
-[
-  "Pick the sentence that hurts most.",
-  [
-    "You don't need anyone",
-    "You care more than you admit",
-    "You get bored too fast",
-    "You turn everything into a joke"
-  ]
+["Match their distance so I don’t look more invested",
+{attachment:1,directness:-2,regulation:-1}]
 ]
+},
+
+{
+q:"You disagree with someone in a group. Your instinct is to…",
+a:[
+["Say exactly what I think, even if it changes the mood",
+{directness:2,social:1}],
+
+["Ask questions first and understand their logic",
+{openness:2,directness:1,regulation:1}],
+
+["Keep it to myself unless it really matters",
+{directness:-2,social:-1,regulation:1}],
+
+["Make a joke that gets my point across",
+{social:2,directness:0}]
+]
+},
+
+{
+q:"When you’re overwhelmed, people are most likely to see you…",
+a:[
+["Disappear for a while",
+{social:-2,directness:-1}],
+
+["Become unusually blunt",
+{directness:2,regulation:-2}],
+
+["Keep functioning like nothing is wrong",
+{regulation:2,attachment:-1}],
+
+["Talk it out with someone immediately",
+{social:2,attachment:2}]
+]
+},
+
+{
+q:"What usually creates the most friction in your relationships?",
+a:[
+["I need more space than people expect",
+{attachment:-2,social:-1}],
+
+["I care a lot, but I don’t always say it clearly",
+{attachment:2,directness:-2}],
+
+["I say things too directly when I’m frustrated",
+{directness:2,regulation:-1}],
+
+["I avoid difficult conversations until they become bigger",
+{directness:-2,regulation:-2}]
+]
+},
+
+{
+q:"You walk into a room where you know almost nobody. What happens?",
+a:[
+["I can talk to almost anyone",
+{social:2,openness:1}],
+
+["I find one person I click with and stay there",
+{social:0,attachment:1}],
+
+["I observe first and warm up slowly",
+{social:-1,openness:1,regulation:1}],
+
+["I immediately want to leave",
+{social:-2}]
+]
+},
+
+{
+q:"Pick the line that feels uncomfortably accurate.",
+a:[
+["I can be hard to read even when I care a lot",
+{attachment:1,directness:-2,regulation:1}],
+
+["I would rather be respected than fully understood",
+{attachment:-2,directness:2}],
+
+["I sometimes confuse self-protection with independence",
+{attachment:-2}],
+
+["I turn discomfort into humor before anyone notices",
+{social:2,regulation:-1,directness:-1}]
+]
+}
 
 ];
 
 
-const results=[
+const profiles=[
 
-[
-  "Emotionally Self-Checkout",
-  "You’re charming, capable and already halfway out the door before anyone realizes something changed."
-],
+{
+name:"Professionally Unbothered",
+tag:"You feel more than you show. Your calm is real — but people can mistake composure for distance.",
+strength:"Composure",
+misread:"Detached",
+edge:"Signal more",
+risk:"Mixed signals"
+},
 
-[
-  "Receipts Department",
-  "You forgive. You do not forget. Somewhere in your brain is a searchable archive of every weird thing anyone has ever done."
-],
+{
+name:"Receipts Department",
+tag:"You forgive more easily than you forget. Your brain quietly keeps the timestamps.",
+strength:"Pattern recognition",
+misread:"Guarded",
+edge:"Release faster",
+risk:"Silent scorekeeping"
+},
 
-[
-  "Chaos With Good Intentions",
-  "You rarely mean to create drama. Unfortunately, drama has your location enabled."
-],
+{
+name:"Chaos With Good Intentions",
+tag:"You bring energy and instinct. The upside is magnetism. The downside is occasionally creating weather.",
+strength:"Energy",
+misread:"Unpredictable",
+edge:"Pause first",
+risk:"Emotional whiplash"
+},
 
-[
-  "Professionally Unbothered",
-  "You feel everything. Your face has simply signed an NDA."
-]
+{
+name:"Emotionally Self-Checkout",
+tag:"You protect yourself by becoming less available before you become more vulnerable.",
+strength:"Independence",
+misread:"Uninvested",
+edge:"Stay present",
+risk:"Early exits"
+},
+
+{
+name:"Truth With No Bubble Wrap",
+tag:"You value clarity over comfort. People know where they stand with you — sometimes sooner than they wanted.",
+strength:"Clarity",
+misread:"Harsh",
+edge:"Add context",
+risk:"Unnecessary friction"
+},
+
+{
+name:"Quietly Overclocked",
+tag:"You look composed while your brain runs twelve tabs in the background.",
+strength:"Awareness",
+misread:"Fine",
+edge:"Externalize",
+risk:"Invisible stress"
+},
+
+{
+name:"Social Shape-Shifter",
+tag:"You read the room quickly and adapt well. The risk is adapting so much that your own preference disappears.",
+strength:"Adaptability",
+misread:"Effortless",
+edge:"Hold your center",
+risk:"Over-adapting"
+},
+
+{
+name:"Selective Access",
+tag:"You are not closed off. You are curated. Trust is earned, not assumed.",
+strength:"Discernment",
+misread:"Reserved",
+edge:"Open sooner",
+risk:"Missed connection"
+}
 
 ];
 
 
 let i=0;
 
-let scores=[
-  0,
-  0,
-  0,
-  0
-];
+let traits={
+openness:0,
+directness:0,
+attachment:0,
+regulation:0,
+social:0
+};
+
+let historyAnswers=[];
 
 let currentResult={
-  pct:null,
-  idx:null,
-  lab:"",
-  tag:""
+pct:0,
+idx:0,
+lab:"",
+tag:"",
+traits:null
 };
 
 
 function begin(){
 
-  document
-    .getElementById("start")
-    .classList.add("hidden");
+document.getElementById("start").classList.add("hidden");
 
-  document
-    .getElementById("quiz")
-    .classList.remove("hidden");
+document.getElementById("quiz").classList.remove("hidden");
 
-  render();
+render();
 
 }
 
 
 function render(){
 
-  document
-    .getElementById("bar")
-    .style.width=
-    (i/qs.length*100)+"%";
+document.getElementById("bar").style.width=
+(i/qs.length*100)+"%";
 
+document.getElementById("qnum").innerText=
+`QUESTION ${i+1} OF ${qs.length}`;
 
-  document
-    .getElementById("qnum")
-    .innerText=
-    `QUESTION ${i+1} OF ${qs.length}`;
+document.getElementById("question").innerText=
+qs[i].q;
 
+const box=document.getElementById("options");
 
-  document
-    .getElementById("question")
-    .innerText=
-    qs[i][0];
+box.innerHTML="";
 
+qs[i].a.forEach(([text,weights])=>{
 
-  const box=
-    document.getElementById("options");
+const b=document.createElement("button");
 
+b.className="option";
 
-  box.innerHTML="";
+b.innerText=text;
 
+b.onclick=()=>choose(weights);
 
-  qs[i][1].forEach((x,j)=>{
+box.appendChild(b);
 
-    let b=
-      document.createElement("button");
-
-
-    b.className=
-      "option";
-
-
-    b.innerText=
-      x;
-
-
-    b.onclick=
-      ()=>choose(j);
-
-
-    box.appendChild(b);
-
-  });
+});
 
 }
 
 
-function choose(j){
+function applyWeights(weights,multiplier=1){
 
-  scores[j]+=1;
+Object.keys(weights).forEach(k=>{
 
-  i++;
+traits[k]+=
+weights[k]*multiplier;
 
-  if(i<qs.length){
-
-    render();
-
-  }else{
-
-    finish();
-
-  }
+});
 
 }
 
 
-function animatePercent(
-  el,
-  target
-){
+function choose(weights){
 
-  target=
-    Math.max(
-      0,
-      Math.min(
-        99,
-        Number(target)||0
-      )
-    );
+historyAnswers.push({...weights});
 
+applyWeights(weights);
 
-  el.classList.remove(
-    "animate-score"
-  );
+i++;
 
+if(i<qs.length){
 
-  void el.offsetWidth;
+render();
 
+}else{
 
-  el.classList.add(
-    "animate-score"
-  );
+finish();
 
-
-  const start=
-    performance.now();
-
-
-  const duration=
-    750;
-
-
-  function tick(now){
-
-    const p=
-      Math.min(
-        1,
-        (now-start)/duration
-      );
-
-
-    const eased=
-      1-Math.pow(1-p,3);
-
-
-    el.innerText=
-      Math.round(
-        target*eased
-      )+"%";
-
-
-    if(p<1){
-
-      requestAnimationFrame(
-        tick
-      );
-
-    }
-
-  }
-
-
-  requestAnimationFrame(
-    tick
-  );
+}
 
 }
 
 
-function applyResult(
-  idx,
-  pct
-){
+function selectProfile(){
 
-  pct=
-    Math.max(
-      0,
-      Math.min(
-        99,
-        Number(pct)||0
-      )
-    );
+if(
+traits.regulation>=3 &&
+traits.directness<=0
+) return 0;
 
+if(
+traits.attachment>=2 &&
+traits.directness<=0
+) return 1;
 
-  let [lab,tag]=
-    results[idx];
+if(
+traits.social>=3 &&
+traits.regulation<=1
+) return 2;
 
+if(
+traits.attachment<=-3
+) return 3;
 
-  currentResult={
-    pct,
-    idx,
-    lab,
-    tag
-  };
+if(
+traits.directness>=4
+) return 4;
 
+if(
+traits.regulation<=-2 &&
+traits.social<=1
+) return 5;
 
-  animatePercent(
-    document.getElementById(
-      "score"
-    ),
-    pct
-  );
+if(
+traits.social>=2 &&
+traits.openness>=1
+) return 6;
 
-
-  animatePercent(
-    document.getElementById(
-      "shareScore"
-    ),
-    pct
-  );
-
-
-  [
-    "label",
-    "shareLabel"
-  ].forEach(id=>
-
-    document
-      .getElementById(id)
-      .innerText=
-      lab
-
-  );
-
-
-  [
-    "tag",
-    "shareTag"
-  ].forEach(id=>
-
-    document
-      .getElementById(id)
-      .innerText=
-      tag
-
-  );
+return 7;
 
 }
 
 
 function finish(){
 
-  document
-    .getElementById("quiz")
-    .classList.add("hidden");
+document.getElementById("quiz").classList.add("hidden");
+
+document.getElementById("result").classList.remove("hidden");
+
+const idx=selectProfile();
+
+const strongest=Math.max(
+Math.abs(traits.openness),
+Math.abs(traits.directness),
+Math.abs(traits.attachment),
+Math.abs(traits.regulation),
+Math.abs(traits.social)
+);
+
+const pct=Math.min(
+99,
+68+Math.round(strongest*4)
+);
+
+applyResult(idx,pct);
+
+history.replaceState(
+null,
+"",
+getShareUrl()
+);
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
 
 
-  document
-    .getElementById("result")
-    .classList.remove("hidden");
+function applyResult(idx,pct){
+
+const profile=profiles[idx];
+
+pct=Math.min(
+99,
+Math.max(0,pct)
+);
+
+currentResult={
+pct,
+idx,
+lab:profile.name,
+tag:profile.tag,
+traits:{...traits}
+};
+
+document.getElementById("score").innerText=
+pct+"%";
+
+document.getElementById("shareScore").innerText=
+pct+"%";
+
+document.getElementById("label").innerText=
+profile.name;
+
+document.getElementById("shareLabel").innerText=
+profile.name;
+
+document.getElementById("tag").innerText=
+profile.tag;
+
+document.getElementById("shareTag").innerText=
+profile.tag;
+
+}
 
 
-  let max=
-    scores.indexOf(
-      Math.max(...scores)
-    );
+function goBack(){
+
+const resultVisible=
+!document.getElementById("result").classList.contains("hidden");
+
+if(resultVisible){
+
+document.getElementById("result").classList.add("hidden");
+
+document.getElementById("fullReport").classList.add("hidden");
+
+if(historyAnswers.length){
+
+const last=historyAnswers.pop();
+
+applyWeights(last,-1);
+
+}
+
+i=qs.length-1;
+
+document.getElementById("quiz").classList.remove("hidden");
+
+render();
+
+window.scrollTo({top:0,behavior:"smooth"});
+
+return;
+
+}
 
 
-  let pct=
-    Math.min(
-      99,
-      62+
-      Math.max(...scores)*5
-    );
+if(i===0){
+
+document.getElementById("quiz").classList.add("hidden");
+
+document.getElementById("start").classList.remove("hidden");
+
+window.scrollTo({top:0,behavior:"smooth"});
+
+return;
+
+}
 
 
-  applyResult(
-    max,
-    pct
-  );
+const last=historyAnswers.pop();
 
+if(last){
 
-  history.replaceState(
-    null,
-    "",
-    getShareUrl()
-  );
+applyWeights(last,-1);
+
+}
+
+i--;
+
+render();
 
 }
 
 
 function getShareUrl(){
 
-  const u=
-    new URL(
-      window.location.origin+
-      window.location.pathname
-    );
+const u=new URL(
+window.location.origin+
+window.location.pathname
+);
 
+u.searchParams.set(
+"r",
+currentResult.idx
+);
 
-  u.searchParams.set(
-    "r",
-    currentResult.idx
-  );
+u.searchParams.set(
+"s",
+currentResult.pct
+);
 
-
-  u.searchParams.set(
-    "s",
-    Math.min(
-      99,
-      currentResult.pct
-    )
-  );
-
-
-  return u.toString();
-
-}
-
-
-function getShareText(){
-
-  return `My WARNING LABEL: ${currentResult.lab} — ${currentResult.pct}%. What's yours?`;
-
-}
-
-
-function toggleShareMenu(){
-
-  const menu=
-    document.getElementById(
-      "shareMenu"
-    );
-
-
-  menu.classList.toggle(
-    "show"
-  );
-
-
-  document
-    .getElementById(
-      "shareStatus"
-    )
-    .innerText="";
-
-}
-
-
-async function copyShareLink(){
-
-  const url=
-    getShareUrl();
-
-
-  try{
-
-    await navigator
-      .clipboard
-      .writeText(url);
-
-
-    document
-      .getElementById(
-        "shareStatus"
-      )
-      .innerText=
-      "Link copied ✓";
-
-  }catch(e){
-
-    document
-      .getElementById(
-        "shareStatus"
-      )
-      .innerText=
-      "Could not copy automatically. Copy the URL from your browser.";
-
-  }
-
-}
-
-
-function shareWhatsApp(){
-
-  const text=
-    encodeURIComponent(
-      getShareText()+
-      " "+
-      getShareUrl()
-    );
-
-
-  window.open(
-    "https://wa.me/?text="+text,
-    "_blank",
-    "noopener"
-  );
-
-}
-
-
-function shareX(){
-
-  const text=
-    encodeURIComponent(
-      getShareText()
-    );
-
-
-  const url=
-    encodeURIComponent(
-      getShareUrl()
-    );
-
-
-  window.open(
-    `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
-    "_blank",
-    "noopener"
-  );
-
-}
-
-
-function shareFacebook(){
-
-  const url=
-    encodeURIComponent(
-      getShareUrl()
-    );
-
-
-  window.open(
-    `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-    "_blank",
-    "noopener"
-  );
+return u.toString();
 
 }
 
 
 async function nativeShare(){
 
-  const text=
-    getShareText();
+const text=
+`My WARNING LABEL: ${currentResult.lab} — ${currentResult.pct}%. What's yours?`;
+
+const url=getShareUrl();
+
+if(navigator.share){
+
+try{
+
+await navigator.share({
+title:"My Warning Label",
+text,
+url
+});
+
+return;
+
+}catch(e){}
+
+}
+
+try{
+
+await navigator.clipboard.writeText(
+text+" "+url
+);
+
+alert("Result + link copied.");
+
+}catch(e){
+
+alert(url);
+
+}
+
+}
 
 
-  const url=
-    getShareUrl();
+function updateDeepRead(){
+
+const p=profiles[currentResult.idx];
+
+document.getElementById("reportTitle").innerText=
+p.name;
+
+document.querySelector(".report-sub").innerText=
+p.tag;
+
+const metrics=
+document.querySelectorAll(".metric b");
+
+metrics[0].innerText=p.misread;
+metrics[1].innerText=p.strength;
+metrics[2].innerText=p.edge;
+metrics[3].innerText=p.risk;
 
 
-  if(navigator.share){
+const cards=
+document.querySelectorAll(
+"#fullReport .section-card"
+);
 
-    try{
 
-      await navigator.share({
-        title:"My Warning Label",
-        text,
-        url
-      });
+cards[0].querySelector("p").innerText=
+`People may read you as ${p.misread.toLowerCase()} even when that is not what you mean. Your strongest qualities can become harder to read when you are stressed, protecting yourself or assuming other people already understand your intentions.`;
 
-    }catch(e){}
 
-  }else{
+cards[1].querySelector("p").innerText=
+`Your likely friction point is ${p.risk.toLowerCase()}. The pattern is not necessarily the problem — the problem is when it runs automatically and other people have to guess what is happening.`;
 
-    await copyShareLink();
 
-  }
+const moves=[
+
+[
+`Use ${p.edge.toLowerCase()} on purpose.`,
+`Catch one moment this week when you would normally default to your usual pattern and choose a slightly more explicit response.`
+],
+
+[
+"Name the signal, not the story.",
+"Instead of deciding what another person meant, describe what you noticed and ask one clean question."
+],
+
+[
+"Keep the strength. Lose the side effect.",
+`You do not need to become less ${p.strength.toLowerCase()}. Make that strength easier for other people to understand correctly.`
+]
+
+];
+
+
+document.querySelectorAll(".action").forEach(
+(el,index)=>{
+
+el.querySelector("b").innerText=
+moves[index][0];
+
+el.querySelector("span").innerText=
+moves[index][1];
+
+});
 
 }
 
 
 function unlockDemo(){
 
-  const report=
-    document.getElementById(
-      "fullReport"
-    );
+updateDeepRead();
 
+document.getElementById("fullReport").classList.remove("hidden");
 
-  report.classList.remove(
-    "hidden"
-  );
+document.getElementById("storyScore").innerText=
+currentResult.pct+"%";
 
+document.getElementById("storyLabel").innerText=
+currentResult.lab;
 
-  const lab=
-    currentResult.lab||
-    "Professionally Unbothered";
+document.getElementById("storyCopy").innerText=
+currentResult.tag;
 
+const incoming=getIncomingChallenge();
 
-  const pct=
-    Math.min(
-      99,
-      currentResult.pct||77
-    );
+if(incoming){
 
-
-  document
-    .getElementById(
-      "reportTitle"
-    )
-    .innerText=
-    lab;
-
-
-  document
-    .getElementById(
-      "storyLabel"
-    )
-    .innerText=
-    lab;
-
-
-  document
-    .getElementById(
-      "storyScore"
-    )
-    .innerText=
-    pct+"%";
-
-
-  const copyMap={
-
-    "Emotionally Self-Checkout":
-      "I care. I just sometimes leave emotionally before anyone gets the memo.",
-
-    "Receipts Department":
-      "I forgive. My internal archive does not.",
-
-    "Chaos With Good Intentions":
-      "I rarely mean to create drama. Drama simply has my location enabled.",
-
-    "Professionally Unbothered":
-      "I feel everything. My face has simply signed an NDA."
-
-  };
-
-
-  document
-    .getElementById(
-      "storyCopy"
-    )
-    .innerText=
-    copyMap[lab]||
-    currentResult.tag||
-    "";
-
-
-  const incoming=
-    getIncomingChallenge();
-
-
-  if(incoming){
-
-    renderComparison(
-      incoming
-    );
-
-  }
-
-
-  animateReportSections();
-
-
-  report.scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
+renderComparison(incoming);
 
 }
 
-
-function animateReportSections(){
-
-  const sections=[
-    ...document.querySelectorAll(
-      "#fullReport .section-card"
-    )
-  ];
-
-
-  sections.forEach(
-    (el,i)=>{
-
-      el.classList.remove(
-        "in-view"
-      );
-
-
-      setTimeout(
-        ()=>{
-
-          el.classList.add(
-            "in-view"
-          );
-
-        },
-        140+i*120
-      );
-
-    }
-  );
-
-}
-
-
-function makeChallengeUrl(){
-
-  const u=
-    new URL(
-      window.location.origin+
-      window.location.pathname
-    );
-
-
-  u.searchParams.set(
-    "c",
-    "1"
-  );
-
-
-  u.searchParams.set(
-    "cr",
-    currentResult.idx
-  );
-
-
-  u.searchParams.set(
-    "cs",
-    Math.min(
-      99,
-      currentResult.pct
-    )
-  );
-
-
-  return u.toString();
-
-}
-
-
-function getIncomingChallenge(){
-
-  const p=
-    new URLSearchParams(
-      location.search
-    );
-
-
-  if(
-    p.get("c")!=="1"
-  ){
-
-    return null;
-
-  }
-
-
-  const idx=
-    parseInt(
-      p.get("cr"),
-      10
-    );
-
-
-  const pct=
-    parseInt(
-      p.get("cs"),
-      10
-    );
-
-
-  if(
-    !Number.isInteger(idx)||
-    idx<0||
-    idx>=results.length||
-    !Number.isInteger(pct)
-  ){
-
-    return null;
-
-  }
-
-
-  return{
-    idx,
-    pct:
-      Math.min(
-        99,
-        Math.max(
-          0,
-          pct
-        )
-      ),
-    lab:
-      results[idx][0],
-    tag:
-      results[idx][1]
-  };
-
-}
-
-
-function initChallengeBanner(){
-
-  const c=
-    getIncomingChallenge();
-
-
-  if(!c){
-
-    return;
-
-  }
-
-
-  const banner=
-    document.getElementById(
-      "challengeBanner"
-    );
-
-
-  const text=
-    document.getElementById(
-      "challengeText"
-    );
-
-
-  banner.classList.add(
-    "show"
-  );
-
-
-  text.innerText=
-    `Someone got “${c.lab}” at ${c.pct}% and challenged you to find out yours.`;
-
-}
-
-
-function calculateCompatibility(
-  a,
-  b
-){
-
-  const scoreGap=
-    Math.abs(
-      a.pct-b.pct
-    );
-
-
-  const typeBonus=
-    a.idx===b.idx
-      ?8
-      :0;
-
-
-  const crossBonus=
-    (
-      (a.idx+b.idx)%2===1
-    )
-      ?5
-      :0;
-
-
-  let score=
-    Math.round(
-      82-
-      scoreGap*.45+
-      typeBonus+
-      crossBonus
-    );
-
-
-  score=
-    Math.max(
-      58,
-      Math.min(
-        97,
-        score
-      )
-    );
-
-
-  let label;
-  let copy;
-
-
-  if(score>=90){
-
-    label=
-      "Dangerously compatible";
-
-
-    copy=
-      "You naturally read each other well. The upside is chemistry; the risk is reinforcing the same blind spots.";
-
-  }else if(score>=80){
-
-    label=
-      "Strong chemistry";
-
-
-    copy=
-      "You balance each other more than you clash. Clear communication turns this from “interesting” into genuinely strong.";
-
-  }else if(score>=70){
-
-    label=
-      "Chaotic potential";
-
-
-    copy=
-      "There is enough overlap to click and enough difference to create friction. That can be fun — or exhausting.";
-
-  }else{
-
-    label=
-      "Proceed with curiosity";
-
-
-    copy=
-      "You may interpret the same situation very differently. That is not bad, but guessing each other’s intentions will backfire.";
-
-  }
-
-
-  return{
-    score,
-    label,
-    copy
-  };
-
-}
-
-
-function renderComparison(
-  challenger
-){
-
-  const section=
-    document.getElementById(
-      "comparisonSection"
-    );
-
-
-  const comp=
-    calculateCompatibility(
-      challenger,
-      currentResult
-    );
-
-
-  document
-    .getElementById(
-      "challengerScore"
-    )
-    .innerText=
-    challenger.pct+"%";
-
-
-  document
-    .getElementById(
-      "challengerLabel"
-    )
-    .innerText=
-    challenger.lab;
-
-
-  document
-    .getElementById(
-      "friendScore"
-    )
-    .innerText=
-    currentResult.pct+"%";
-
-
-  document
-    .getElementById(
-      "friendLabel"
-    )
-    .innerText=
-    currentResult.lab;
-
-
-  document
-    .getElementById(
-      "compatScore"
-    )
-    .innerText=
-    comp.score+"%";
-
-
-  document
-    .getElementById(
-      "compatLabel"
-    )
-    .innerText=
-    comp.label;
-
-
-  document
-    .getElementById(
-      "compatCopy"
-    )
-    .innerText=
-    comp.copy;
-
-
-  document
-    .getElementById(
-      "comparisonIntro"
-    )
-    .innerText=
-    `${challenger.lab} vs. ${currentResult.lab}`;
-
-
-  section.classList.remove(
-    "hidden"
-  );
+document.getElementById("fullReport").scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
 
 }
 
 
 async function sharePaidCard(){
 
-  const text=
-    `My WARNING LABEL: ${currentResult.lab} — ${currentResult.pct}%. Take yours for $1:`;
+return nativeShare();
+
+}
 
 
-  const url=
-    getShareUrl();
+function makeChallengeUrl(){
+
+const u=new URL(
+window.location.origin+
+window.location.pathname
+);
+
+u.searchParams.set("c","1");
+
+u.searchParams.set(
+"cr",
+currentResult.idx
+);
+
+u.searchParams.set(
+"cs",
+currentResult.pct
+);
+
+return u.toString();
+
+}
 
 
-  if(navigator.share){
+function getIncomingChallenge(){
 
-    try{
+const p=
+new URLSearchParams(location.search);
 
-      await navigator.share({
-        title:"My Warning Label",
-        text,
-        url
-      });
+if(p.get("c")!=="1") return null;
+
+const idx=
+parseInt(p.get("cr"),10);
+
+const pct=
+parseInt(p.get("cs"),10);
+
+if(
+!Number.isInteger(idx) ||
+idx<0 ||
+idx>=profiles.length ||
+!Number.isInteger(pct)
+){
+
+return null;
+
+}
+
+return{
+idx,
+pct:Math.min(99,pct),
+lab:profiles[idx].name
+};
+
+}
 
 
-      return;
+function initChallengeBanner(){
 
-    }catch(e){}
+const c=getIncomingChallenge();
 
-  }
+if(!c) return;
+
+document.getElementById(
+"challengeBanner"
+).classList.add("show");
+
+document.getElementById(
+"challengeText"
+).innerText=
+`Someone got “${c.lab}” at ${c.pct}% and challenged you to find out yours.`;
+
+}
 
 
-  try{
+function compatibility(a,b){
 
-    await navigator
-      .clipboard
-      .writeText(
-        text+" "+url
-      );
+const gap=
+Math.abs(a.pct-b.pct);
+
+let score=
+Math.round(
+84-gap*.4+
+(a.idx===b.idx?7:0)
+);
+
+score=
+Math.max(
+58,
+Math.min(97,score)
+);
+
+let label;
+let copy;
+
+if(score>=90){
+
+label="Dangerously compatible";
+
+copy=
+"You naturally read each other well. Great chemistry — just be careful not to reinforce the same blind spots.";
+
+}else if(score>=80){
+
+label="Strong chemistry";
+
+copy=
+"You balance each other more than you clash. Clear communication makes this combination much stronger.";
+
+}else if(score>=70){
+
+label="Chaotic potential";
+
+copy=
+"There is enough overlap to click and enough difference to create friction. Interesting, but definitely not boring.";
+
+}else{
+
+label="Proceed with curiosity";
+
+copy=
+"You may read the same situation very differently. Asking instead of assuming will matter here.";
+
+}
+
+return{
+score,
+label,
+copy
+};
+
+}
 
 
-    alert(
-      "Result + link copied."
-    );
+function renderComparison(c){
 
-  }catch(e){
+const comp=
+compatibility(
+c,
+currentResult
+);
 
-    alert(
-      "Copy this link: "+url
-    );
+document.getElementById(
+"comparisonSection"
+).classList.remove("hidden");
 
-  }
+document.getElementById(
+"challengerScore"
+).innerText=
+c.pct+"%";
+
+document.getElementById(
+"challengerLabel"
+).innerText=
+c.lab;
+
+document.getElementById(
+"friendScore"
+).innerText=
+currentResult.pct+"%";
+
+document.getElementById(
+"friendLabel"
+).innerText=
+currentResult.lab;
+
+document.getElementById(
+"compatScore"
+).innerText=
+comp.score+"%";
+
+document.getElementById(
+"compatLabel"
+).innerText=
+comp.label;
+
+document.getElementById(
+"compatCopy"
+).innerText=
+comp.copy;
+
+document.getElementById(
+"comparisonIntro"
+).innerText=
+`${c.lab} vs. ${currentResult.lab}`;
 
 }
 
 
 async function shareChallenge(){
 
-  const url=
-    makeChallengeUrl();
+const text=
+`I got "${currentResult.lab}" (${currentResult.pct}%). Take Warning Label and let's compare.`;
 
+const url=
+makeChallengeUrl();
 
-  const text=
-    `I got "${currentResult.lab}" (${currentResult.pct}%). I challenge you to take Warning Label, unlock yours for $1, and compare with me.`;
+if(navigator.share){
 
+try{
 
-  if(navigator.share){
+await navigator.share({
+title:"Warning Label Challenge",
+text,
+url
+});
 
-    try{
+return;
 
-      await navigator.share({
-        title:"Warning Label challenge",
-        text,
-        url
-      });
+}catch(e){}
 
+}
 
-      return;
+try{
 
-    }catch(e){}
+await navigator.clipboard.writeText(
+text+" "+url
+);
 
-  }
+alert("Challenge link copied.");
 
+}catch(e){
 
-  try{
+alert(url);
 
-    await navigator
-      .clipboard
-      .writeText(
-        text+" "+url
-      );
-
-
-    alert(
-      "Challenge link copied."
-    );
-
-  }catch(e){
-
-    alert(url);
-
-  }
+}
 
 }
 
 
 async function shareComparison(){
 
-  const c=
-    getIncomingChallenge();
+const c=getIncomingChallenge();
 
+if(!c) return;
 
-  if(!c){
+const comp=
+compatibility(
+c,
+currentResult
+);
 
-    return;
+const text=
+`We got ${comp.score}% compatibility on WARNING LABEL — ${c.lab} vs. ${currentResult.lab}.`;
 
-  }
+if(navigator.share){
 
+try{
 
-  const comp=
-    calculateCompatibility(
-      c,
-      currentResult
-    );
+await navigator.share({
+title:"Our Warning Label",
+text,
+url:window.location.origin
+});
 
+return;
 
-  const text=
-    `We got ${comp.score}% compatibility on WARNING LABEL — ${c.lab} vs. ${currentResult.lab}. What would you get?`;
+}catch(e){}
 
+}
 
-  const url=
-    window.location.origin+
-    window.location.pathname;
+await navigator.clipboard.writeText(
+text+" "+window.location.origin
+);
 
-
-  if(navigator.share){
-
-    try{
-
-      await navigator.share({
-        title:"Our Warning Label comparison",
-        text,
-        url
-      });
-
-
-      return;
-
-    }catch(e){}
-
-  }
-
-
-  await navigator
-    .clipboard
-    .writeText(
-      text+" "+url
-    );
-
-
-  alert(
-    "Comparison copied."
-  );
+alert("Comparison copied.");
 
 }
 
 
 function drawWrappedText(
-  ctx,
-  text,
-  x,
-  y,
-  maxWidth,
-  lineHeight,
-  maxLines
+ctx,
+text,
+x,
+y,
+maxWidth,
+lineHeight
 ){
 
-  const words=
-    text.split(" ");
+const words=text.split(" ");
 
+let line="";
 
-  let line="";
+let lineNumber=0;
 
+words.forEach(word=>{
 
-  let lines=[];
+const test=
+line+word+" ";
 
+if(
+ctx.measureText(test).width>
+maxWidth
+){
 
-  for(
-    const word of words
-  ){
+ctx.fillText(
+line,
+x,
+y+(lineNumber*lineHeight)
+);
 
-    const test=
-      line
-        ?line+" "+word
-        :word;
+line=word+" ";
 
+lineNumber++;
 
-    if(
-      ctx.measureText(test).width>
-      maxWidth &&
-      line
-    ){
+}else{
 
-      lines.push(
-        line
-      );
+line=test;
 
+}
 
-      line=
-        word;
+});
 
-
-      if(
-        lines.length===
-        maxLines-1
-      ){
-
-        break;
-
-      }
-
-    }else{
-
-      line=
-        test;
-
-    }
-
-  }
-
-
-  if(
-    lines.length<
-    maxLines
-  ){
-
-    lines.push(
-      line
-    );
-
-  }
-
-
-  lines
-    .slice(
-      0,
-      maxLines
-    )
-    .forEach(
-      (l,i)=>{
-
-        ctx.fillText(
-          l,
-          x,
-          y+i*lineHeight
-        );
-
-      }
-    );
+ctx.fillText(
+line,
+x,
+y+(lineNumber*lineHeight)
+);
 
 }
 
 
 async function saveStoryCard(){
 
-  const canvas=
-    document.createElement(
-      "canvas"
-    );
+const canvas=
+document.createElement("canvas");
 
+canvas.width=1080;
+canvas.height=1920;
 
-  canvas.width=
-    1080;
+const ctx=
+canvas.getContext("2d");
 
 
-  canvas.height=
-    1920;
+const gradient=
+ctx.createLinearGradient(
+0,0,1080,1920
+);
 
+gradient.addColorStop(
+0,
+"#f5efe4"
+);
 
-  const ctx=
-    canvas.getContext(
-      "2d"
-    );
+gradient.addColorStop(
+1,
+"#e4d8c9"
+);
 
+ctx.fillStyle=gradient;
 
-  const grad=
-    ctx.createLinearGradient(
-      0,
-      0,
-      1080,
-      1920
-    );
+ctx.fillRect(
+0,
+0,
+1080,
+1920
+);
 
 
-  grad.addColorStop(
-    0,
-    "#f5efe4"
-  );
+ctx.fillStyle="#111";
 
+ctx.font="900 44px Arial";
 
-  grad.addColorStop(
-    1,
-    "#e4d8c9"
-  );
+ctx.fillText(
+"⚠ WARNING LABEL",
+72,
+150
+);
 
 
-  ctx.fillStyle=
-    grad;
+ctx.font=
+"900 180px Arial";
 
+ctx.fillText(
+currentResult.pct+"%",
+72,
+430
+);
 
-  ctx.fillRect(
-    0,
-    0,
-    1080,
-    1920
-  );
 
+ctx.font=
+"900 76px Arial";
 
-  ctx.strokeStyle=
-    "#111";
+drawWrappedText(
+ctx,
+currentResult.lab,
+72,
+570,
+900,
+90
+);
 
 
-  ctx.lineWidth=
-    6;
+ctx.fillStyle="#333";
 
+ctx.font=
+"500 46px Arial";
 
-  ctx.strokeRect(
-    72,
-    90,
-    520,
-    94
-  );
+drawWrappedText(
+ctx,
+currentResult.tag,
+72,
+900,
+900,
+65
+);
 
 
-  ctx.fillStyle=
-    "#111";
+ctx.fillStyle="#111";
 
+ctx.font=
+"800 38px Arial";
 
-  ctx.font=
-    "900 44px Arial";
+ctx.fillText(
+"Take yours at zelqoza.com",
+72,
+1710
+);
 
 
-  ctx.fillText(
-    "⚠ WARNING LABEL",
-    105,
-    153
-  );
+ctx.font=
+"900 30px Arial";
 
+ctx.fillText(
+"ZELQOZA",
+830,
+1815
+);
 
-  ctx.font=
-    "950 180px Arial";
 
+const blob=
+await new Promise(
+resolve=>
+canvas.toBlob(
+resolve,
+"image/png"
+)
+);
 
-  ctx.fillText(
-    currentResult.pct+"%",
-    72,
-    430
-  );
 
+const file=
+new File(
+[blob],
+"warning-label.png",
+{type:"image/png"}
+);
 
-  ctx.font=
-    "900 78px Arial";
 
+if(
+navigator.canShare &&
+navigator.canShare({
+files:[file]
+}) &&
+navigator.share
+){
 
-  drawWrappedText(
-    ctx,
-    currentResult.lab,
-    72,
-    560,
-    900,
-    92,
-    3
-  );
+try{
 
+await navigator.share({
+files:[file],
+title:"My Warning Label"
+});
 
-  const copyMap={
+return;
 
-    "Emotionally Self-Checkout":
-      "I care. I just sometimes leave emotionally before anyone gets the memo.",
+}catch(e){}
 
-    "Receipts Department":
-      "I forgive. My internal archive does not.",
+}
 
-    "Chaos With Good Intentions":
-      "I rarely mean to create drama. Drama simply has my location enabled.",
 
-    "Professionally Unbothered":
-      "I feel everything. My face has simply signed an NDA."
+const a=
+document.createElement("a");
 
-  };
+a.href=
+URL.createObjectURL(blob);
 
+a.download=
+"warning-label.png";
 
-  ctx.fillStyle=
-    "#333";
-
-
-  ctx.font=
-    "500 48px Arial";
-
-
-  drawWrappedText(
-    ctx,
-    copyMap[
-      currentResult.lab
-    ]||
-    currentResult.tag,
-    72,
-    900,
-    900,
-    68,
-    5
-  );
-
-
-  ctx.fillStyle=
-    "#111";
-
-
-  ctx.font=
-    "800 40px Arial";
-
-
-  ctx.fillText(
-    "Take yours at zelqoza.com",
-    72,
-    1710
-  );
-
-
-  ctx.font=
-    "900 30px Arial";
-
-
-  ctx.fillText(
-    "ZELQOZA",
-    830,
-    1815
-  );
-
-
-  const blob=
-    await new Promise(
-      resolve=>
-        canvas.toBlob(
-          resolve,
-          "image/png"
-        )
-    );
-
-
-  const file=
-    new File(
-      [blob],
-      "warning-label-story.png",
-      {
-        type:"image/png"
-      }
-    );
-
-
-  if(
-    navigator.canShare &&
-    navigator.canShare({
-      files:[file]
-    }) &&
-    navigator.share
-  ){
-
-    try{
-
-      await navigator.share({
-        title:"My Warning Label",
-        text:"My Warning Label result",
-        files:[file]
-      });
-
-
-      return;
-
-    }catch(e){}
-
-  }
-
-
-  const a=
-    document.createElement(
-      "a"
-    );
-
-
-  a.href=
-    URL.createObjectURL(
-      blob
-    );
-
-
-  a.download=
-    "warning-label-story.png";
-
-
-  a.click();
-
-
-  setTimeout(
-    ()=>{
-
-      URL.revokeObjectURL(
-        a.href
-      );
-
-    },
-    1000
-  );
+a.click();
 
 }
 
 
 function restartTest(){
 
-  i=0;
+i=0;
 
+traits={
+openness:0,
+directness:0,
+attachment:0,
+regulation:0,
+social:0
+};
 
-  scores=[
-    0,
-    0,
-    0,
-    0
-  ];
+historyAnswers=[];
 
+currentResult={
+pct:0,
+idx:0,
+lab:"",
+tag:"",
+traits:null
+};
 
-  currentResult={
-    pct:null,
-    idx:null,
-    lab:"",
-    tag:""
-  };
+document.getElementById(
+"result"
+).classList.add("hidden");
 
+document.getElementById(
+"quiz"
+).classList.add("hidden");
 
-  document
-    .getElementById(
-      "result"
-    )
-    .classList.add(
-      "hidden"
-    );
+document.getElementById(
+"fullReport"
+).classList.add("hidden");
 
+document.getElementById(
+"comparisonSection"
+).classList.add("hidden");
 
-  document
-    .getElementById(
-      "quiz"
-    )
-    .classList.add(
-      "hidden"
-    );
+const incoming=
+getIncomingChallenge();
 
+const u=
+new URL(
+window.location.origin+
+window.location.pathname
+);
 
-  document
-    .getElementById(
-      "fullReport"
-    )
-    .classList.add(
-      "hidden"
-    );
+if(incoming){
 
+u.searchParams.set(
+"c",
+"1"
+);
 
-  document
-    .getElementById(
-      "comparisonSection"
-    )
-    .classList.add(
-      "hidden"
-    );
+u.searchParams.set(
+"cr",
+incoming.idx
+);
 
+u.searchParams.set(
+"cs",
+incoming.pct
+);
 
-  document
-    .getElementById(
-      "shareMenu"
-    )
-    .classList.remove(
-      "show"
-    );
+}
 
+history.replaceState(
+null,
+"",
+u.toString()
+);
 
-  document
-    .getElementById(
-      "bar"
-    )
-    .style.width=
-    "0%";
+document.getElementById(
+"start"
+).classList.remove("hidden");
 
-
-  const incoming=
-    getIncomingChallenge();
-
-
-  const u=
-    new URL(
-      window.location.origin+
-      window.location.pathname
-    );
-
-
-  if(incoming){
-
-    u.searchParams.set(
-      "c",
-      "1"
-    );
-
-
-    u.searchParams.set(
-      "cr",
-      incoming.idx
-    );
-
-
-    u.searchParams.set(
-      "cs",
-      incoming.pct
-    );
-
-  }
-
-
-  history.replaceState(
-    null,
-    "",
-    u.toString()
-  );
-
-
-  document
-    .getElementById(
-      "start"
-    )
-    .classList.remove(
-      "hidden"
-    );
-
-
-  initChallengeBanner();
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
 
 (function loadSharedResult(){
 
-  const p=
-    new URLSearchParams(
-      location.search
-    );
+const params=
+new URLSearchParams(
+location.search
+);
 
+const idx=
+parseInt(
+params.get("r"),
+10
+);
 
-  const idx=
-    parseInt(
-      p.get("r"),
-      10
-    );
+const pct=
+parseInt(
+params.get("s"),
+10
+);
 
+if(
+Number.isInteger(idx) &&
+idx>=0 &&
+idx<profiles.length &&
+Number.isInteger(pct) &&
+pct>=0 &&
+pct<=99
+){
 
-  const pct=
-    parseInt(
-      p.get("s"),
-      10
-    );
+document.getElementById(
+"start"
+).classList.add("hidden");
 
+document.getElementById(
+"result"
+).classList.remove("hidden");
 
-  if(
-    Number.isInteger(idx) &&
-    idx>=0 &&
-    idx<results.length &&
-    Number.isInteger(pct) &&
-    pct>=0 &&
-    pct<=99
-  ){
+applyResult(
+idx,
+pct
+);
 
-    document
-      .getElementById(
-        "start"
-      )
-      .classList.add(
-        "hidden"
-      );
-
-
-    document
-      .getElementById(
-        "quiz"
-      )
-      .classList.add(
-        "hidden"
-      );
-
-
-    document
-      .getElementById(
-        "result"
-      )
-      .classList.remove(
-        "hidden"
-      );
-
-
-    applyResult(
-      idx,
-      pct
-    );
-
-  }
+}
 
 })();
 
 
 document.addEventListener(
-  "DOMContentLoaded",
-  initChallengeBanner
+"DOMContentLoaded",
+initChallengeBanner
 );
 
 </script>
