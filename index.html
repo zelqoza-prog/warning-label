@@ -418,6 +418,74 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
   .compare-summary{grid-template-columns:1fr}
 }
 
+
+.connection-preview{
+  margin-top:12px;
+  padding:16px;
+  border-radius:16px;
+  background:linear-gradient(145deg,#18181d,#202027);
+  border:1px solid #303038;
+}
+.connection-preview .eyeline{
+  color:#aeb0b9;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.connection-preview h4{
+  margin:6px 0 8px;
+  font-size:18px;
+}
+.connection-preview p{
+  margin:0;
+  font-size:14px;
+  color:#d4d4da;
+}
+.positive-read{
+  margin-top:16px;
+  padding:18px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#1b211e,#1a1d1b);
+  border:1px solid #33453a;
+}
+.positive-read h4{
+  margin:0 0 8px;
+  font-size:18px;
+}
+.positive-read p{
+  margin:0;
+  color:#d8e6dc;
+  font-size:15px;
+  line-height:1.5;
+}
+.connection-highlight{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+.connection-highlight .item{
+  padding:13px;
+  border-radius:14px;
+  background:#1c1c21;
+  border:1px solid #303038;
+}
+.connection-highlight .item span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.connection-highlight .item b{
+  display:block;
+  margin-top:5px;
+  font-size:15px;
+}
+@media(max-width:600px){
+  .connection-highlight{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -613,6 +681,14 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
     </div>
   </div>
 
+  <div id="connectionPreview" class="connection-preview">
+    <div class="eyeline">Friend Connection Read</div>
+    <h4 id="connectionPreviewTitle">See what makes this friendship work</h4>
+    <p id="connectionPreviewText">
+      When your friend takes the test, we’ll compare both profiles and show your strongest shared trait, how you balance each other, one likely friction point, and the best way to support each other.
+    </p>
+  </div>
+
   <button
     class="primary"
     style="margin-top:12px"
@@ -624,7 +700,7 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
 
   <div class="circle-note">
     You can send this to as many people as you want.
-    Each person gets a private one-to-one Connection Read with you.
+    Each person gets a private one-to-one Connection Read with you. Their result is compared against YOUR profile — not against a generic score.
   </div>
 </div>
 
@@ -637,6 +713,22 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
     <div id="compatScore" class="connection-score">84%</div>
     <div id="compatLabel" class="connection-label">Strong chemistry</div>
     <div id="compatCopy" class="connection-copy"></div>
+
+    <div class="positive-read">
+      <h4 id="positiveConnectionTitle">What’s good between you</h4>
+      <p id="positiveConnectionCopy"></p>
+
+      <div class="connection-highlight">
+        <div class="item">
+          <span>Your strongest shared trait</span>
+          <b id="sharedStrength">—</b>
+        </div>
+        <div class="item">
+          <span>How you balance each other</span>
+          <b id="balanceStrength">—</b>
+        </div>
+      </div>
+    </div>
 
     <div class="compare-grid">
       <div class="compare-person">
@@ -808,6 +900,8 @@ let relationshipMode="friend";
 let sharedRelationshipMode="friend";
 let sharedPerson=null;
 
+setTimeout(()=>updateConnectionPreview("friend"),0);
+
 
 function setSharedRelationship(mode,btn){
   sharedRelationshipMode=mode;
@@ -821,16 +915,54 @@ function setSharedRelationship(mode,btn){
   }
 }
 
+
+function updateConnectionPreview(mode){
+  const data={
+    friend:{
+      line:"Friend Connection Read",
+      title:"See what makes this friendship work",
+      text:"When your friend takes the test, we’ll compare both profiles and show your strongest shared trait, how you balance each other, one likely friction point, and the best way to support each other."
+    },
+    dating:{
+      line:"Dating Connection Read",
+      title:"See the chemistry — and the confusion",
+      text:"When they take the test, we’ll show what creates attraction, where mixed signals could happen, how your communication styles interact, and what each of you can do to make dating easier."
+    },
+    partner:{
+      line:"Partner Connection Read",
+      title:"See how your relationship actually works",
+      text:"We’ll compare both profiles to show your strongest relationship advantage, where you naturally complement each other, the pattern most likely to create conflict, and how to repair it faster."
+    },
+    work:{
+      line:"Work Connection Read",
+      title:"See how to work better together",
+      text:"We’ll compare your profiles to show where you collaborate naturally, where your work styles differ, what can create friction, and how to communicate more effectively."
+    }
+  };
+
+  const d=data[mode]||data.friend;
+  const box=document.getElementById("connectionPreview");
+  if(!box) return;
+
+  box.querySelector(".eyeline").innerText=d.line;
+  document.getElementById("connectionPreviewTitle").innerText=d.title;
+  document.getElementById("connectionPreviewText").innerText=d.text;
+}
+
 function setRelationship(mode,btn){
   relationshipMode=mode;
 
   document.querySelectorAll(".relbtn").forEach(el=>{
-    el.classList.remove("active");
+    if(!el.classList.contains("shared-relbtn")){
+      el.classList.remove("active");
+    }
   });
 
   if(btn){
     btn.classList.add("active");
   }
+
+  updateConnectionPreview(mode);
 }
 
 
@@ -1556,6 +1688,79 @@ function traitDisplayValue(v){
   return Math.round(((Math.max(-10,Math.min(10,v))+10)/20)*100);
 }
 
+
+function traitNameMap(){
+  return{
+    openness:"Openness",
+    directness:"Directness",
+    attachment:"Closeness",
+    regulation:"Composure",
+    social:"Social energy"
+  };
+}
+
+function traitPairSummary(them,you){
+  if(!them||!you){
+    return{
+      shared:"Shared perspective",
+      balance:"Different strengths",
+      sharedKey:null,
+      diffKey:null
+    };
+  }
+
+  const labels=traitNameMap();
+  const keys=Object.keys(labels);
+
+  let closest={key:null,gap:Infinity};
+  let farthest={key:null,gap:-1};
+
+  keys.forEach(key=>{
+    const gap=Math.abs((them[key]||0)-(you[key]||0));
+
+    if(gap<closest.gap){
+      closest={key,gap};
+    }
+
+    if(gap>farthest.gap){
+      farthest={key,gap};
+    }
+  });
+
+  return{
+    shared:labels[closest.key],
+    balance:labels[farthest.key],
+    sharedKey:closest.key,
+    diffKey:farthest.key
+  };
+}
+
+function positiveConnectionLanguage(rel,pair,them,you){
+  const shared=pair.shared;
+  const balance=pair.balance;
+
+  const base={
+    friend:{
+      title:"What’s strong about this friendship",
+      copy:`You already have useful common ground in ${shared.toLowerCase()}. Your biggest difference is ${balance.toLowerCase()}, which can actually help the friendship: one of you tends to bring something the other person naturally has less of.`
+    },
+    dating:{
+      title:"Where the chemistry can come from",
+      copy:`Your overlap in ${shared.toLowerCase()} creates familiarity, while the difference in ${balance.toLowerCase()} gives you contrast. That combination can feel interesting and complementary when neither person turns the difference into a guessing game.`
+    },
+    partner:{
+      title:"Your relationship advantage",
+      copy:`Your strongest shared area is ${shared.toLowerCase()}, which gives you a natural base. The difference in ${balance.toLowerCase()} can become a strength when you use it as division of labor instead of proof that one person is “wrong.”`
+    },
+    work:{
+      title:"Why this can be a strong working pair",
+      copy:`You align most naturally in ${shared.toLowerCase()}. Your biggest difference is ${balance.toLowerCase()}, which can be useful at work because you may notice different risks, communicate differently, or approach decisions from different angles.`
+    }
+  };
+
+  return base[rel]||base.friend;
+}
+
 function renderTraitComparison(themTraits,youTraits){
   const container=document.getElementById("traitCompareRows");
   if(!container) return;
@@ -1754,6 +1959,13 @@ function renderComparison(challenger){
   const themProfile=resultProfiles[challenger.idx];
   const youProfile=resultProfiles[currentResult.idx];
   const language=relationshipLanguage(relationshipMode);
+  const pair=traitPairSummary(challenger.traits,currentResult.traits);
+  const positive=positiveConnectionLanguage(
+    relationshipMode,
+    pair,
+    challenger.traits,
+    currentResult.traits
+  );
 
   document.getElementById("challengerScore").innerText=challenger.pct+"%";
   document.getElementById("challengerLabel").innerText=challenger.lab;
@@ -1771,10 +1983,22 @@ function renderComparison(challenger){
 
   document.getElementById("compatCopy").innerText=
     traitSentence+
-    `This is a ${language.noun} read, not a prediction. The useful part is seeing exactly where your two styles line up and where they differ.`;
+    `This is a ${language.noun} read, not a prediction. The useful part is seeing how your styles work together.`;
 
   document.getElementById("comparisonIntro").innerText=
     `${challenger.lab} + ${currentResult.lab}`;
+
+  document.getElementById("positiveConnectionTitle").innerText=
+    positive.title;
+
+  document.getElementById("positiveConnectionCopy").innerText=
+    positive.copy;
+
+  document.getElementById("sharedStrength").innerText=
+    pair.shared;
+
+  document.getElementById("balanceStrength").innerText=
+    pair.balance;
 
   document.getElementById("whyYouClick").innerText=
     language.click;
