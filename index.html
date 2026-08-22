@@ -4,120 +4,576 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>WARNING LABEL — Personality Test</title>
+
 <style>
 :root{--bg:#0b0b0c;--card:#151518;--text:#f5f5f2;--muted:#aaaab2;--line:#2a2a30;--accent:#ff4d3d}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
 .wrap{max-width:680px;margin:0 auto;padding:28px 18px 60px}
-.brand{font-weight:900;letter-spacing:.08em;font-size:14px}.brand span{color:var(--accent)}
-.hero{padding:70px 0 35px}.eyebrow{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:12px}
+.brand{font-weight:900;letter-spacing:.08em;font-size:14px}
+.brand span{color:var(--accent)}
+.hero{padding:70px 0 35px}
+.eyebrow{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:12px}
 h1{font-size:54px;line-height:.96;margin:12px 0 18px;letter-spacing:-.04em}
 p{color:var(--muted);font-size:18px;line-height:1.5}
 button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;font-size:17px;cursor:pointer}
-.primary{background:var(--accent);color:#fff}.secondary{background:#242429;color:#fff}
+.primary{background:var(--accent);color:#fff}
+.secondary{background:#242429;color:#fff}
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;margin-top:20px}
-.hidden{display:none}.qnum{color:var(--muted);font-size:13px}.question{font-size:25px;font-weight:800;margin:8px 0 18px}
+.hidden{display:none}
+.qnum{color:var(--muted);font-size:13px}
+.question{font-size:25px;font-weight:800;margin:8px 0 18px}
 .option{display:block;width:100%;padding:15px 16px;margin:10px 0;background:#1e1e22;border:1px solid #303037;border-radius:14px;color:#fff;text-align:left;font-size:16px}
-.option:hover{border-color:#666}.progress{height:5px;background:#222;border-radius:9px;overflow:hidden;margin:22px 0}.bar{height:100%;background:var(--accent);width:0}
-.result{text-align:center}.warning{display:inline-block;border:2px solid var(--accent);color:var(--accent);font-weight:900;padding:7px 12px;border-radius:9px;letter-spacing:.08em}
-.score{font-size:74px;font-weight:950;letter-spacing:-.06em;margin:18px 0 0}.label{font-size:31px;font-weight:900;margin:4px 0 15px}
-.tag{font-size:19px;color:#ddd;line-height:1.45}.mini{font-size:13px;color:var(--muted);margin-top:20px}
+.option:hover{border-color:#666}
+.progress{height:5px;background:#222;border-radius:9px;overflow:hidden;margin:22px 0}
+.bar{height:100%;background:var(--accent);width:0}
+.result{text-align:center}
+.warning{display:inline-block;border:2px solid var(--accent);color:var(--accent);font-weight:900;padding:7px 12px;border-radius:9px;letter-spacing:.08em}
+.score{font-size:74px;font-weight:950;letter-spacing:-.06em;margin:18px 0 0}
+.label{font-size:31px;font-weight:900;margin:4px 0 15px}
+.tag{font-size:19px;color:#ddd;line-height:1.45}
 .paywall{text-align:left;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
-.payrow{display:flex;justify-content:space-between;padding:10px 0;color:#ddd}.blur{filter:blur(5px);user-select:none}
+.payrow{display:flex;justify-content:space-between;padding:10px 0;color:#ddd}
+.blur{filter:blur(5px);user-select:none}
 .sharecard{margin:24px 0;background:#f3eddf;color:#111;border-radius:22px;padding:26px;text-align:left}
-.sharecard .warning{color:#111;border-color:#111}.sharecard .score{font-size:58px}.sharecard .small{font-size:13px;color:#555;margin-top:20px}
+.sharecard .warning{color:#111;border-color:#111}
+.sharecard .score{font-size:58px}
+.sharecard .small{font-size:13px;color:#555;margin-top:20px}
+
+.sharemenu{
+display:none;
+margin-top:12px;
+background:#1b1b1f;
+border:1px solid var(--line);
+border-radius:18px;
+padding:12px;
+text-align:left
+}
+
+.sharemenu.show{display:block}
+
+.sharegrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+.sharebtn{
+background:#242429;
+color:#fff;
+border:1px solid #33343a;
+border-radius:12px;
+padding:13px 14px;
+font-size:14px;
+font-weight:800
+}
+
+.sharebtn:hover{border-color:#666}
+
+.sharestatus{
+font-size:13px;
+color:var(--muted);
+margin-top:10px;
+min-height:18px;
+text-align:center
+}
+
+@media(max-width:600px){
+ h1{font-size:43px}
+ .sharegrid{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body>
+
 <div class="wrap">
-  <div class="brand">WARNING<span>LABEL</span></div>
 
-  <section id="start" class="hero">
-    <div class="eyebrow">The 60-second social hazard test</div>
-    <h1>What should people be warned about before meeting you?</h1>
-    <p>8 uncomfortable questions. One brutally shareable result. No signup.</p>
-    <button class="primary" onclick="begin()">Expose me</button>
-    <p style="font-size:13px;text-align:center">For entertainment. We don't pretend this is psychology.</p>
-  </section>
+<div class="brand">WARNING<span>LABEL</span></div>
 
-  <section id="quiz" class="hidden">
-    <div class="progress"><div id="bar" class="bar"></div></div>
-    <div class="card">
-      <div id="qnum" class="qnum"></div>
-      <div id="question" class="question"></div>
-      <div id="options"></div>
-    </div>
-  </section>
+<section id="start" class="hero">
 
-  <section id="result" class="hidden result">
-    <div class="card">
-      <div class="warning">⚠ WARNING LABEL</div>
-      <div id="score" class="score">78%</div>
-      <div id="label" class="label"></div>
-      <div id="tag" class="tag"></div>
+<div class="eyebrow">The 60-second social hazard test</div>
 
-      <div class="sharecard" id="sharecard">
-        <div class="warning">⚠ WARNING LABEL</div>
-        <div class="score" id="shareScore"></div>
-        <div class="label" id="shareLabel"></div>
-        <div class="tag" id="shareTag"></div>
-        <div class="small">warninglabel.test · What’s yours?</div>
-      </div>
+<h1>What should people be warned about before meeting you?</h1>
 
-      <button class="secondary" onclick="shareResult()">Share my warning label</button>
+<p>8 uncomfortable questions. One brutally shareable result. No signup.</p>
 
-      <div class="paywall">
-        <div style="font-size:22px;font-weight:900">Your full damage report</div>
-        <p style="font-size:15px">See what triggers you, how people misread you, your dating/work/friendship risk, and what type is most dangerous for you.</p>
-        <div class="payrow"><span>Your hidden pattern</span><span class="blur">Control</span></div>
-        <div class="payrow"><span>Your worst match</span><span class="blur">The Fixer</span></div>
-        <div class="payrow"><span>Your redeeming trait</span><span class="blur">Loyalty</span></div>
-        <button class="primary" onclick="alert('Prototype only — checkout would go here.')">Unlock full report — $2.99</button>
-      </div>
-    </div>
-  </section>
+<button class="primary" onclick="begin()">Expose me</button>
+
+<p style="font-size:13px;text-align:center">
+For entertainment. We don't pretend this is psychology.
+</p>
+
+</section>
+
+
+<section id="quiz" class="hidden">
+
+<div class="progress">
+<div id="bar" class="bar"></div>
 </div>
 
+<div class="card">
+
+<div id="qnum" class="qnum"></div>
+
+<div id="question" class="question"></div>
+
+<div id="options"></div>
+
+</div>
+
+</section>
+
+
+<section id="result" class="hidden result">
+
+<div class="card">
+
+<div class="warning">⚠ WARNING LABEL</div>
+
+<div id="score" class="score">78%</div>
+
+<div id="label" class="label"></div>
+
+<div id="tag" class="tag"></div>
+
+
+<div class="sharecard">
+
+<div class="warning">⚠ WARNING LABEL</div>
+
+<div class="score" id="shareScore"></div>
+
+<div class="label" id="shareLabel"></div>
+
+<div class="tag" id="shareTag"></div>
+
+<div class="small">zelqoza.com · What’s yours?</div>
+
+</div>
+
+
+<button class="secondary" onclick="toggleShareMenu()">
+Share my warning label
+</button>
+
+
+<div id="shareMenu" class="sharemenu">
+
+<div class="sharegrid">
+
+<button class="sharebtn" onclick="copyShareLink()">
+🔗 Copy link
+</button>
+
+<button class="sharebtn" onclick="shareWhatsApp()">
+💬 WhatsApp
+</button>
+
+<button class="sharebtn" onclick="shareX()">
+𝕏 X / Twitter
+</button>
+
+<button class="sharebtn" onclick="shareFacebook()">
+f Facebook
+</button>
+
+</div>
+
+<button
+class="sharebtn"
+style="width:100%;margin-top:10px"
+onclick="nativeShare()">
+↗ More sharing options
+</button>
+
+<div id="shareStatus" class="sharestatus"></div>
+
+</div>
+
+
+<div class="paywall">
+
+<div style="font-size:22px;font-weight:900">
+Your full damage report
+</div>
+
+<p style="font-size:15px">
+See what triggers you, how people misread you,
+your dating/work/friendship risk,
+and what type is most dangerous for you.
+</p>
+
+<div class="payrow">
+<span>Your hidden pattern</span>
+<span class="blur">Control</span>
+</div>
+
+<div class="payrow">
+<span>Your worst match</span>
+<span class="blur">The Fixer</span>
+</div>
+
+<div class="payrow">
+<span>Your redeeming trait</span>
+<span class="blur">Loyalty</span>
+</div>
+
+<button
+class="primary"
+onclick="alert('Prototype only — checkout would go here.')">
+Unlock full report — $2.99
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
 <script>
+
 const qs=[
-["Someone takes hours to reply. You…",["Forget they exist","Reply instantly anyway","Match their energy","Overthink it but act normal"]],
-["A friend cancels last minute.",["No problem","I remember forever","I ask what happened","I make other plans immediately"]],
-["In an argument you usually…",["Go quiet","Need to win","Make a joke","Say everything at once"]],
-["Someone compliments you.",["Believe them","Deflect","Assume they want something","Make it a bit"]],
-["Your biggest social crime?",["Ghosting","Oversharing","Being too blunt","Never asking for help"]],
-["When bored with someone…",["I disappear","I create drama","I stay too long","I become distant"]],
-["People often call you…",["Intense","Independent","Chaotic","Hard to read"]],
-["Pick the sentence that hurts most.",["You don't need anyone","You care more than you admit","You get bored too fast","You turn everything into a joke"]]
+
+["Someone takes hours to reply. You…",
+["Forget they exist","Reply instantly anyway","Match their energy","Overthink it but act normal"]],
+
+["A friend cancels last minute.",
+["No problem","I remember forever","I ask what happened","I make other plans immediately"]],
+
+["In an argument you usually…",
+["Go quiet","Need to win","Make a joke","Say everything at once"]],
+
+["Someone compliments you.",
+["Believe them","Deflect","Assume they want something","Make it a bit"]],
+
+["Your biggest social crime?",
+["Ghosting","Oversharing","Being too blunt","Never asking for help"]],
+
+["When bored with someone…",
+["I disappear","I create drama","I stay too long","I become distant"]],
+
+["People often call you…",
+["Intense","Independent","Chaotic","Hard to read"]],
+
+["Pick the sentence that hurts most.",
+["You don't need anyone","You care more than you admit","You get bored too fast","You turn everything into a joke"]]
+
 ];
-let i=0,scores=[0,0,0,0];
-function begin(){document.getElementById('start').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');render()}
+
+let i=0;
+let scores=[0,0,0,0];
+
+
+function begin(){
+
+document.getElementById('start').classList.add('hidden');
+
+document.getElementById('quiz').classList.remove('hidden');
+
+render();
+
+}
+
+
 function render(){
- document.getElementById('bar').style.width=(i/qs.length*100)+'%';
- document.getElementById('qnum').innerText=`QUESTION ${i+1} OF ${qs.length}`;
- document.getElementById('question').innerText=qs[i][0];
- const box=document.getElementById('options'); box.innerHTML='';
- qs[i][1].forEach((x,j)=>{let b=document.createElement('button');b.className='option';b.innerText=x;b.onclick=()=>choose(j);box.appendChild(b)})
+
+document.getElementById('bar').style.width=
+(i/qs.length*100)+'%';
+
+document.getElementById('qnum').innerText=
+`QUESTION ${i+1} OF ${qs.length}`;
+
+document.getElementById('question').innerText=
+qs[i][0];
+
+const box=document.getElementById('options');
+
+box.innerHTML='';
+
+qs[i][1].forEach((x,j)=>{
+
+let b=document.createElement('button');
+
+b.className='option';
+
+b.innerText=x;
+
+b.onclick=()=>choose(j);
+
+box.appendChild(b);
+
+});
+
 }
-function choose(j){scores[j]+=1;i++; if(i<qs.length)render();else finish()}
+
+
+function choose(j){
+
+scores[j]+=1;
+
+i++;
+
+if(i<qs.length){
+
+render();
+
+}else{
+
+finish();
+
+}
+
+}
+
+
+const results=[
+
+[
+"Emotionally Self-Checkout",
+"You’re charming, capable and already halfway out the door before anyone realizes something changed."
+],
+
+[
+"Receipts Department",
+"You forgive. You do not forget. Somewhere in your brain is a searchable archive of every weird thing anyone has ever done."
+],
+
+[
+"Chaos With Good Intentions",
+"You rarely mean to create drama. Unfortunately, drama has your location enabled."
+],
+
+[
+"Professionally Unbothered",
+"You feel everything. Your face has simply signed an NDA."
+]
+
+];
+
+
+let currentResult={
+pct:null,
+idx:null,
+lab:"",
+tag:""
+};
+
+
+function applyResult(idx,pct){
+
+let [lab,tag]=results[idx];
+
+currentResult={
+pct,
+idx,
+lab,
+tag
+};
+
+['score','shareScore'].forEach(id=>
+document.getElementById(id).innerText=pct+'%'
+);
+
+['label','shareLabel'].forEach(id=>
+document.getElementById(id).innerText=lab
+);
+
+['tag','shareTag'].forEach(id=>
+document.getElementById(id).innerText=tag
+);
+
+}
+
+
 function finish(){
- document.getElementById('quiz').classList.add('hidden');document.getElementById('result').classList.remove('hidden');
- let max=scores.indexOf(Math.max(...scores));
- const results=[
- ["Emotionally Self-Checkout","You’re charming, capable and already halfway out the door before anyone realizes something changed."],
- ["Receipts Department","You forgive. You do not forget. Somewhere in your brain is a searchable archive of every weird thing anyone has ever done."],
- ["Chaos With Good Intentions","You rarely mean to create drama. Unfortunately, drama has your location enabled."],
- ["Professionally Unbothered","You feel everything. Your face has simply signed an NDA."]
- ];
- let pct=62+Math.max(...scores)*5;
- let [lab,tag]=results[max];
- ['score','shareScore'].forEach(id=>document.getElementById(id).innerText=pct+'%');
- ['label','shareLabel'].forEach(id=>document.getElementById(id).innerText=lab);
- ['tag','shareTag'].forEach(id=>document.getElementById(id).innerText=tag);
+
+document.getElementById('quiz').classList.add('hidden');
+
+document.getElementById('result').classList.remove('hidden');
+
+let max=scores.indexOf(Math.max(...scores));
+
+let pct=62+Math.max(...scores)*5;
+
+applyResult(max,pct);
+
+/* Put the result into the URL so it can be shared */
+history.replaceState(null,'',getShareUrl());
+
 }
-async function shareResult(){
- const text=`My WARNING LABEL: ${document.getElementById('label').innerText} — ${document.getElementById('score').innerText}. What's yours?`;
- if(navigator.share){try{await navigator.share({title:'My Warning Label',text})}catch(e){}}
- else{await navigator.clipboard.writeText(text);alert('Result copied.');}
+
+
+function getShareUrl(){
+
+const u=new URL(
+window.location.origin + window.location.pathname
+);
+
+u.searchParams.set('r',currentResult.idx);
+
+u.searchParams.set('s',currentResult.pct);
+
+return u.toString();
+
 }
+
+
+function getShareText(){
+
+return `My WARNING LABEL: ${currentResult.lab} — ${currentResult.pct}%. What's yours?`;
+
+}
+
+
+function toggleShareMenu(){
+
+const menu=
+document.getElementById('shareMenu');
+
+menu.classList.toggle('show');
+
+document.getElementById('shareStatus').innerText='';
+
+}
+
+
+async function copyShareLink(){
+
+const url=getShareUrl();
+
+try{
+
+await navigator.clipboard.writeText(url);
+
+document.getElementById('shareStatus').innerText=
+'Link copied ✓';
+
+}catch(e){
+
+document.getElementById('shareStatus').innerText=
+'Could not copy automatically. Copy the URL from your browser.';
+
+}
+
+}
+
+
+function shareWhatsApp(){
+
+const text=
+encodeURIComponent(
+getShareText()+' '+getShareUrl()
+);
+
+window.open(
+'https://wa.me/?text='+text,
+'_blank',
+'noopener'
+);
+
+}
+
+
+function shareX(){
+
+const text=
+encodeURIComponent(getShareText());
+
+const url=
+encodeURIComponent(getShareUrl());
+
+window.open(
+`https://twitter.com/intent/tweet?text=${text}&url=${url}`,
+'_blank',
+'noopener'
+);
+
+}
+
+
+function shareFacebook(){
+
+const url=
+encodeURIComponent(getShareUrl());
+
+window.open(
+`https://www.facebook.com/sharer/sharer.php?u=${url}`,
+'_blank',
+'noopener'
+);
+
+}
+
+
+async function nativeShare(){
+
+const text=getShareText();
+
+const url=getShareUrl();
+
+if(navigator.share){
+
+try{
+
+await navigator.share({
+title:'My Warning Label',
+text,
+url
+});
+
+}catch(e){}
+
+}else{
+
+await copyShareLink();
+
+}
+
+}
+
+
+/* If someone opens a shared result link,
+   show that result immediately */
+
+(function loadSharedResult(){
+
+const p=
+new URLSearchParams(location.search);
+
+const idx=
+parseInt(p.get('r'),10);
+
+const pct=
+parseInt(p.get('s'),10);
+
+if(
+Number.isInteger(idx) &&
+idx>=0 &&
+idx<results.length &&
+Number.isInteger(pct) &&
+pct>=50 &&
+pct<=100
+){
+
+document.getElementById('start').classList.add('hidden');
+
+document.getElementById('quiz').classList.add('hidden');
+
+document.getElementById('result').classList.remove('hidden');
+
+applyResult(idx,pct);
+
+}
+
+})();
+
 </script>
+
 </body>
 </html>
