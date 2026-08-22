@@ -152,6 +152,117 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
   font-weight:800
 }
 .backbtn:hover{border-color:#666}
+
+.relationship-picker{
+  margin-top:14px;
+  padding:16px;
+  border-radius:16px;
+  background:#1c1c21;
+  border:1px solid #303038;
+}
+.relationship-picker .title{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+.relationship-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+.relbtn{
+  padding:11px 8px;
+  border-radius:12px;
+  background:#242429;
+  color:#fff;
+  border:1px solid #35353c;
+  font-size:13px;
+  font-weight:800;
+}
+.relbtn.active{
+  border-color:var(--accent);
+  box-shadow:0 0 0 1px var(--accent) inset;
+}
+.connection-card{
+  margin-top:16px;
+  padding:22px;
+  border-radius:22px;
+  background:linear-gradient(145deg,#19191e,#23232a);
+  border:1px solid var(--line);
+}
+.connection-kicker{
+  color:var(--muted);
+  font-size:12px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.connection-title{
+  font-size:30px;
+  font-weight:950;
+  letter-spacing:-.03em;
+  margin:8px 0 4px;
+}
+.connection-score{
+  font-size:68px;
+  font-weight:950;
+  letter-spacing:-.06em;
+  margin-top:14px;
+}
+.connection-label{
+  font-size:22px;
+  font-weight:900;
+}
+.connection-copy{
+  color:#d1d1d8;
+  line-height:1.5;
+  margin-top:8px;
+}
+.connection-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:14px;
+}
+.connection-box{
+  background:#1b1b20;
+  border:1px solid #303038;
+  border-radius:16px;
+  padding:16px;
+}
+.connection-box h4{
+  margin:0 0 8px;
+  font-size:16px;
+}
+.connection-box p{
+  font-size:14px;
+  margin:0;
+}
+.connection-action{
+  margin-top:12px;
+  padding:14px 16px;
+  border-radius:14px;
+  background:#1d1d22;
+  border:1px solid #303038;
+}
+.connection-action b{
+  display:block;
+  margin-bottom:4px;
+}
+.circle-note{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:#17171b;
+  border:1px dashed #3a3a42;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+}
+@media(max-width:600px){
+  .relationship-grid{grid-template-columns:1fr 1fr}
+  .connection-grid{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -273,37 +384,106 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
   </div>
 </div>
 
-<div class="section-card reveal">
-  <h3>Challenge a friend</h3>
-  <p>Your friend opens a personalized challenge, takes the test, unlocks their Deep Read, and instantly gets a comparison with you.</p>
-  <button class="primary" style="margin-top:12px" onclick="shareChallenge()">Challenge a friend</button>
-  <div class="mini" style="text-align:center;margin-top:8px">No account needed in this MVP.</div>
+
+<div class="section-card">
+  <h3>Get a Connection Read</h3>
+
+  <p>
+    Send this to someone you actually know.
+    When they take the test, both of you can see how to communicate better,
+    where you naturally click, and what usually creates friction.
+  </p>
+
+  <div class="relationship-picker">
+    <div class="title">What is this person to you?</div>
+
+    <div class="relationship-grid">
+      <button class="relbtn active" data-rel="friend" onclick="setRelationship('friend',this)">Friend</button>
+      <button class="relbtn" data-rel="dating" onclick="setRelationship('dating',this)">Dating</button>
+      <button class="relbtn" data-rel="partner" onclick="setRelationship('partner',this)">Partner</button>
+      <button class="relbtn" data-rel="work" onclick="setRelationship('work',this)">Work</button>
+    </div>
+  </div>
+
+  <button
+    class="primary"
+    style="margin-top:12px"
+    onclick="shareChallenge()">
+    Send my Connection Challenge
+  </button>
+
+  <div class="circle-note">
+    You can send this to as many people as you want.
+    Each person gets a private one-to-one Connection Read with you.
+  </div>
 </div>
 
-<div id="comparisonSection" class="section-card reveal hidden">
-  <h3>You vs. your challenger</h3>
-  <p id="comparisonIntro">Your comparison is ready.</p>
+<div id="comparisonSection" class="section-card hidden">
 
-  <div class="compare-grid">
-    <div class="compare-person">
-      <div class="who">Challenger</div>
-      <div class="big" id="challengerScore">77%</div>
-      <div class="small" id="challengerLabel">Professionally Unbothered</div>
+  <div class="connection-kicker">Your Connection Read</div>
+  <div id="comparisonIntro" class="connection-title">You + this person</div>
+
+  <div class="connection-card">
+    <div id="compatScore" class="connection-score">84%</div>
+    <div id="compatLabel" class="connection-label">Strong chemistry</div>
+    <div id="compatCopy" class="connection-copy"></div>
+
+    <div class="compare-grid">
+      <div class="compare-person">
+        <div class="who">THEM</div>
+        <div class="big" id="challengerScore">77%</div>
+        <div class="small" id="challengerLabel">Professionally Unbothered</div>
+      </div>
+
+      <div class="compare-person">
+        <div class="who">YOU</div>
+        <div class="big" id="friendScore">82%</div>
+        <div class="small" id="friendLabel">Receipts Department</div>
+      </div>
     </div>
-    <div class="compare-person">
-      <div class="who">You</div>
-      <div class="big" id="friendScore">82%</div>
-      <div class="small" id="friendLabel">Receipts Department</div>
+
+    <div class="connection-grid">
+      <div class="connection-box">
+        <h4>Why you click</h4>
+        <p id="whyYouClick"></p>
+      </div>
+
+      <div class="connection-box">
+        <h4>Where you misread each other</h4>
+        <p id="whereYouClash"></p>
+      </div>
     </div>
+
+    <div class="connection-action">
+      <b>What YOU should do with this person</b>
+      <span id="yourMove"></span>
+    </div>
+
+    <div class="connection-action">
+      <b>What THEY should do with you</b>
+      <span id="theirMove"></span>
+    </div>
+
+    <div class="connection-action">
+      <b>Your best communication rule</b>
+      <span id="communicationRule"></span>
+    </div>
+
+    <button
+      class="secondary"
+      style="margin-top:14px"
+      onclick="shareComparison()">
+      Share our Connection Read
+    </button>
+
+    <button
+      class="secondary"
+      style="margin-top:10px"
+      onclick="shareChallenge()">
+      Compare with someone else
+    </button>
   </div>
 
-  <div class="compat-score" id="compatScore">84%</div>
-  <div class="compat-label" id="compatLabel">Dangerously compatible</div>
-  <div class="compat-copy" id="compatCopy">
-    You balance each other well — but when neither of you says what you mean, the silence can get loud.
-  </div>
-
-  <button class="secondary" style="margin-top:14px" onclick="shareComparison()">Share our comparison</button>
 </div>
 
 </div>
@@ -396,6 +576,22 @@ let currentResult={
   tag:"",
   traits:null
 };
+
+let relationshipMode="friend";
+
+function setRelationship(mode,btn){
+  relationshipMode=mode;
+
+  document.querySelectorAll(".relbtn").forEach(el=>{
+    el.classList.remove("active");
+  });
+
+  if(btn){
+    btn.classList.add("active");
+  }
+}
+
+
 
 const resultProfiles=[
 {
@@ -855,68 +1051,220 @@ function animateReportSections(){
 
 
 function makeChallengeUrl(){
-  const u=new URL(window.location.origin + window.location.pathname);
-  u.searchParams.set('c','1');
-  u.searchParams.set('cr',currentResult.idx);
-  u.searchParams.set('cs',Math.min(99,currentResult.pct));
+  const u=new URL(
+    window.location.origin+
+    window.location.pathname
+  );
+
+  u.searchParams.set("c","1");
+  u.searchParams.set("cr",currentResult.idx);
+  u.searchParams.set("cs",Math.min(99,currentResult.pct));
+  u.searchParams.set("rel",relationshipMode);
+
   return u.toString();
 }
 
 function getIncomingChallenge(){
   const p=new URLSearchParams(location.search);
-  if(p.get('c')!=='1') return null;
-  const idx=parseInt(p.get('cr'),10);
-  const pct=parseInt(p.get('cs'),10);
-  if(!Number.isInteger(idx)||idx<0||idx>=resultProfiles.length||!Number.isInteger(pct)) return null;
-  return {idx,pct:Math.min(99,Math.max(0,pct)),lab:resultProfiles[idx].name,tag:resultProfiles[idx].tag};
+
+  if(p.get("c")!=="1"){
+    return null;
+  }
+
+  const idx=parseInt(p.get("cr"),10);
+  const pct=parseInt(p.get("cs"),10);
+  const rel=p.get("rel")||"friend";
+
+  if(
+    !Number.isInteger(idx)||
+    idx<0||
+    idx>=resultProfiles.length||
+    !Number.isInteger(pct)
+  ){
+    return null;
+  }
+
+  return{
+    idx,
+    pct:Math.min(99,Math.max(0,pct)),
+    lab:resultProfiles[idx].name,
+    tag:resultProfiles[idx].tag,
+    rel
+  };
 }
 
 function initChallengeBanner(){
   const c=getIncomingChallenge();
   if(!c) return;
-  const banner=document.getElementById('challengeBanner');
-  const text=document.getElementById('challengeText');
-  banner.classList.add('show');
-  text.innerText=`Someone got “${c.lab}” at ${c.pct}% and challenged you to find out yours.`;
+
+  const banner=document.getElementById("challengeBanner");
+  const text=document.getElementById("challengeText");
+
+  banner.classList.add("show");
+
+  const modeNames={
+    friend:"friendship",
+    dating:"dating",
+    partner:"relationship",
+    work:"work"
+  };
+
+  const mode=modeNames[c.rel]||"connection";
+
+  text.innerText=
+    `Someone got “${c.lab}” at ${c.pct}% and invited you to unlock a ${mode} Connection Read: why you click, where you misread each other, and what each of you should do differently.`;
 }
 
 function calculateCompatibility(a,b){
-  const scoreGap=Math.abs(a.pct-b.pct);
-  const typeBonus=a.idx===b.idx ? 8 : 0;
-  const crossBonus=((a.idx+b.idx)%2===1) ? 5 : 0;
-  let score=Math.round(82 - scoreGap*0.45 + typeBonus + crossBonus);
+  const gap=Math.abs(a.pct-b.pct);
+  const sameType=a.idx===b.idx;
+  const complement=Math.abs(a.idx-b.idx);
+
+  let score=Math.round(
+    84
+    - gap*0.35
+    + (sameType?6:0)
+    + (complement>=3?4:0)
+  );
+
   score=Math.max(58,Math.min(97,score));
 
-  let label,copy;
-  if(score>=90){
-    label='Dangerously compatible';
-    copy='You naturally read each other well. The upside is chemistry; the risk is reinforcing the same blind spots.';
-  }else if(score>=80){
-    label='Strong chemistry';
-    copy='You balance each other more than you clash. Clear communication turns this from “interesting” into genuinely strong.';
-  }else if(score>=70){
-    label='Chaotic potential';
-    copy='There is enough overlap to click and enough difference to create friction. That can be fun — or exhausting.';
-  }else{
-    label='Proceed with curiosity';
-    copy='You may interpret the same situation very differently. That is not bad, but guessing each other’s intentions will backfire.';
-  }
-  return {score,label,copy};
+  let label;
+  if(score>=90) label="Very strong fit";
+  else if(score>=82) label="Strong connection";
+  else if(score>=72) label="Good with some friction";
+  else label="Different operating systems";
+
+  return{score,label};
+}
+
+
+function relationshipLanguage(rel){
+  const modes={
+    friend:{
+      noun:"friendship",
+      click:"You tend to work well when there is freedom, humor and low pressure.",
+      friction:"The biggest risk is assuming the other person already knows what you mean.",
+      yourMove:"Be a little more explicit than feels necessary. Say what you appreciate instead of assuming it is obvious.",
+      theirMove:"Give you room without disappearing. Consistency matters more than constant contact.",
+      rule:"Don’t make each other guess. One clear sentence prevents ten wrong stories."
+    },
+    dating:{
+      noun:"dating dynamic",
+      click:"There is enough difference to create curiosity and enough overlap to feel familiar.",
+      friction:"Attraction can turn into confusion if either person starts matching distance instead of asking what changed.",
+      yourMove:"Show interest directly. Do not use silence, delayed replies or emotional distance as a test.",
+      theirMove:"Be clear about intent. Ambiguity will create more overthinking than chemistry.",
+      rule:"If you like each other, behave like it. Clarity is hotter than guessing."
+    },
+    partner:{
+      noun:"relationship",
+      click:"You can complement each other well when both people feel safe enough to be direct.",
+      friction:"The recurring danger is turning different coping styles into evidence that the other person does not care.",
+      yourMove:"Name your need before your frustration. Ask for the behavior you want instead of criticizing the behavior you dislike.",
+      theirMove:"Respond to the need underneath the reaction, but do not become responsible for regulating everything.",
+      rule:"Talk about the pattern as the enemy — not each other."
+    },
+    work:{
+      noun:"working relationship",
+      click:"Your styles can be productive when roles, ownership and expectations are explicit.",
+      friction:"Different communication speeds can look like disengagement, control or lack of urgency.",
+      yourMove:"State deadlines, ownership and desired outcomes clearly. Do not rely on implied expectations.",
+      theirMove:"Give context with requests and confirm priorities instead of assuming alignment.",
+      rule:"Make expectations visible. Clarity beats personality management."
+    }
+  };
+
+  return modes[rel]||modes.friend;
+}
+
+function profileAdvice(profile,side){
+  const name=profile.name;
+
+  const map={
+    "Professionally Unbothered":{
+      you:"Say what matters before your calm gets mistaken for indifference.",
+      them:"Do not assume silence means lack of care. Ask directly."
+    },
+    "Receipts Department":{
+      you:"Bring up small issues early instead of silently collecting evidence.",
+      them:"Consistency matters. Broken promises will be remembered longer than dramatic apologies."
+    },
+    "Chaos With Good Intentions":{
+      you:"Slow the moment down before reacting. Your energy is useful when it has direction.",
+      them:"Be clear and steady. Do not answer chaos with more chaos."
+    },
+    "Emotionally Self-Checkout":{
+      you:"Stay in the conversation five minutes longer than your instinct tells you to.",
+      them:"Give space without turning it into abandonment or punishment."
+    },
+    "Truth With No Bubble Wrap":{
+      you:"Keep the honesty. Add context and warmth before the conclusion.",
+      them:"Do not confuse directness with hostility. Ask what outcome they want."
+    },
+    "Quietly Overclocked":{
+      you:"Externalize what is happening before people assume you are fine.",
+      them:"Check in without interrogating. Quiet stress still counts as stress."
+    },
+    "Social Shape-Shifter":{
+      you:"Say what you actually prefer before adapting to everyone else.",
+      them:"Ask for their real opinion instead of accepting the easiest version."
+    },
+    "Selective Access":{
+      you:"Let trust build through small openings instead of waiting for certainty.",
+      them:"Respect the pace. Reliability opens this person faster than pressure."
+    }
+  };
+
+  const fallback={
+    you:"Be slightly more explicit about what you need.",
+    them:"Ask instead of assuming."
+  };
+
+  return (map[name]||fallback)[side];
 }
 
 function renderComparison(challenger){
-  const section=document.getElementById('comparisonSection');
+  relationshipMode=challenger.rel||"friend";
+
+  const section=document.getElementById("comparisonSection");
   const comp=calculateCompatibility(challenger,currentResult);
 
-  document.getElementById('challengerScore').innerText=challenger.pct+'%';
-  document.getElementById('challengerLabel').innerText=challenger.lab;
-  document.getElementById('friendScore').innerText=currentResult.pct+'%';
-  document.getElementById('friendLabel').innerText=currentResult.lab;
-  document.getElementById('compatScore').innerText=comp.score+'%';
-  document.getElementById('compatLabel').innerText=comp.label;
-  document.getElementById('compatCopy').innerText=comp.copy;
-  document.getElementById('comparisonIntro').innerText=`${challenger.lab} vs. ${currentResult.lab}`;
-  section.classList.remove('hidden');
+  const themProfile=resultProfiles[challenger.idx];
+  const youProfile=resultProfiles[currentResult.idx];
+  const language=relationshipLanguage(relationshipMode);
+
+  document.getElementById("challengerScore").innerText=challenger.pct+"%";
+  document.getElementById("challengerLabel").innerText=challenger.lab;
+
+  document.getElementById("friendScore").innerText=currentResult.pct+"%";
+  document.getElementById("friendLabel").innerText=currentResult.lab;
+
+  document.getElementById("compatScore").innerText=comp.score+"%";
+  document.getElementById("compatLabel").innerText=comp.label;
+
+  document.getElementById("compatCopy").innerText=
+    `This is a ${language.noun} read — not a prediction. The useful part is understanding how your two styles interact.`;
+
+  document.getElementById("comparisonIntro").innerText=
+    `${challenger.lab} + ${currentResult.lab}`;
+
+  document.getElementById("whyYouClick").innerText=
+    language.click;
+
+  document.getElementById("whereYouClash").innerText=
+    language.friction;
+
+  document.getElementById("yourMove").innerText=
+    profileAdvice(youProfile,"you")+" "+language.yourMove;
+
+  document.getElementById("theirMove").innerText=
+    profileAdvice(themProfile,"them")+" "+language.theirMove;
+
+  document.getElementById("communicationRule").innerText=
+    language.rule;
+
+  section.classList.remove("hidden");
 }
 
 async function sharePaidCard(){
@@ -935,13 +1283,33 @@ async function sharePaidCard(){
 
 async function shareChallenge(){
   const url=makeChallengeUrl();
-  const text=`I got "${currentResult.lab}" (${currentResult.pct}%). I challenge you to take Warning Label, unlock yours for $1, and compare with me.`;
+
+  const modeNames={
+    friend:"friendship",
+    dating:"dating",
+    partner:"relationship",
+    work:"work"
+  };
+
+  const mode=modeNames[relationshipMode]||"connection";
+
+  const text=
+    `I got "${currentResult.lab}" (${currentResult.pct}%). Take Warning Label and let’s see our ${mode} Connection Read — what works between us, where we clash, and what we should each do differently.`;
+
   if(navigator.share){
-    try{await navigator.share({title:'Warning Label challenge',text,url});return;}catch(e){}
+    try{
+      await navigator.share({
+        title:"Warning Label Connection Challenge",
+        text,
+        url
+      });
+      return;
+    }catch(e){}
   }
+
   try{
-    await navigator.clipboard.writeText(text+' '+url);
-    alert('Challenge link copied.');
+    await navigator.clipboard.writeText(text+" "+url);
+    alert("Connection Challenge copied.");
   }catch(e){
     alert(url);
   }
@@ -950,14 +1318,27 @@ async function shareChallenge(){
 async function shareComparison(){
   const c=getIncomingChallenge();
   if(!c) return;
+
   const comp=calculateCompatibility(c,currentResult);
-  const text=`We got ${comp.score}% compatibility on WARNING LABEL — ${c.lab} vs. ${currentResult.lab}. What would you get?`;
-  const url=window.location.origin + window.location.pathname;
+
+  const text=
+    `Our WARNING LABEL Connection Read: ${comp.score}% — ${c.lab} + ${currentResult.lab}. We also got a custom read on what works between us and what we should each do differently.`;
+
+  const url=window.location.origin+window.location.pathname;
+
   if(navigator.share){
-    try{await navigator.share({title:'Our Warning Label comparison',text,url});return;}catch(e){}
+    try{
+      await navigator.share({
+        title:"Our Warning Label Connection Read",
+        text,
+        url
+      });
+      return;
+    }catch(e){}
   }
-  await navigator.clipboard.writeText(text+' '+url);
-  alert('Comparison copied.');
+
+  await navigator.clipboard.writeText(text+" "+url);
+  alert("Connection Read copied.");
 }
 
 function drawWrappedText(ctx,text,x,y,maxWidth,lineHeight,maxLines){
@@ -1056,6 +1437,7 @@ function restartTest(){
     u.searchParams.set('c','1');
     u.searchParams.set('cr',incoming.idx);
     u.searchParams.set('cs',incoming.pct);
+    u.searchParams.set('rel',incoming.rel||'friend');
   }
 
   history.replaceState(null,'',u.toString());
@@ -1066,6 +1448,15 @@ function restartTest(){
 
 document.addEventListener('DOMContentLoaded',initChallengeBanner);
 
+
+/*
+MULTI-SHARE MVP LOGIC:
+- One person can send the same challenge to unlimited people.
+- Every recipient gets a one-to-one Connection Read with the sender.
+- This static MVP does not store a permanent "My Circle" list.
+- When backend/database is added, each challenge URL can receive a unique share_id,
+  allowing the sender to see multiple pairwise reads in one private dashboard.
+*/
 </script>
 </body>
 </html>
