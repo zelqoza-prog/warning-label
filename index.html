@@ -263,6 +263,161 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
   .connection-grid{grid-template-columns:1fr}
 }
 
+
+.shared-shell{
+  text-align:center;
+  padding-top:18px;
+}
+.shared-kicker{
+  color:var(--muted);
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.shared-title{
+  font-size:38px;
+  line-height:1.02;
+  font-weight:950;
+  letter-spacing:-.04em;
+  margin:10px 0 8px;
+}
+.shared-copy{
+  color:#d2d2d8;
+  font-size:16px;
+  line-height:1.5;
+}
+.shared-result-card{
+  margin:20px 0;
+  background:linear-gradient(160deg,#f5efe4,#e7ddcf);
+  color:#111;
+  border-radius:24px;
+  padding:28px;
+  text-align:left;
+}
+.shared-result-card .warning{
+  color:#111;
+  border-color:#111;
+}
+.shared-result-card .score{
+  font-size:66px;
+}
+.shared-actions{
+  display:grid;
+  gap:10px;
+  margin-top:16px;
+}
+.shared-rel{
+  margin-top:18px;
+  padding:16px;
+  background:#18181d;
+  border:1px solid var(--line);
+  border-radius:18px;
+  text-align:left;
+}
+.shared-rel-title{
+  color:#ddd;
+  font-size:14px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+
+.challenge-status{
+  margin-top:10px;
+  min-height:20px;
+  text-align:center;
+  color:#bfc0c8;
+  font-size:13px;
+}
+.challenge-status.success{color:#9be7b0}
+.challenge-status.error{color:#ff9c96}
+
+.trait-compare{
+  margin-top:18px;
+  padding:18px;
+  border-radius:18px;
+  background:#18181d;
+  border:1px solid var(--line);
+}
+.trait-compare h4{
+  margin:0 0 14px;
+  font-size:17px;
+}
+.trait-row{
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:12px;
+  align-items:center;
+  margin:13px 0;
+}
+.trait-name{
+  color:#d6d6dc;
+  font-size:13px;
+  font-weight:800;
+}
+.trait-bars{
+  display:grid;
+  gap:6px;
+}
+.trait-line{
+  display:grid;
+  grid-template-columns:54px 1fr 40px;
+  gap:8px;
+  align-items:center;
+}
+.trait-who{
+  font-size:11px;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.trait-track{
+  height:8px;
+  background:#2a2a31;
+  border-radius:999px;
+  overflow:hidden;
+}
+.trait-fill{
+  height:100%;
+  border-radius:999px;
+  background:var(--accent);
+}
+.trait-fill.them{
+  opacity:.55;
+}
+.trait-number{
+  font-size:11px;
+  color:#c9c9d0;
+  text-align:right;
+}
+.compare-summary{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.compare-summary .pill{
+  background:#1c1c21;
+  border:1px solid #303038;
+  border-radius:14px;
+  padding:13px;
+}
+.compare-summary .pill span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.compare-summary .pill b{
+  display:block;
+  margin-top:5px;
+  font-size:16px;
+}
+@media(max-width:600px){
+  .trait-row{grid-template-columns:1fr}
+  .compare-summary{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -281,7 +436,60 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
     <p style="font-size:13px;text-align:center">For self-reflection and entertainment — not a clinical assessment.</p>
   </section>
 
-  <section id="quiz" class="hidden">
+  
+<section id="sharedResult" class="hidden shared-shell">
+
+  <div class="backbar">
+    <button class="backbtn" onclick="exitSharedView()">← Back</button>
+  </div>
+
+  <div class="shared-kicker">Someone shared their Warning Label</div>
+
+  <div class="shared-title">
+    Here’s how they came out.
+  </div>
+
+  <div class="shared-copy">
+    You can just take your own test — or turn this into a private Connection Read between the two of you.
+  </div>
+
+  <div class="shared-result-card">
+    <div class="warning">⚠ WARNING LABEL</div>
+    <div id="sharedScore" class="score"></div>
+    <div id="sharedLabel" class="label"></div>
+    <div id="sharedTag" class="tag"></div>
+    <div class="small" style="margin-top:20px">ZELQOZA · Shared result</div>
+  </div>
+
+  <div class="shared-actions">
+    <button class="secondary" onclick="startOwnTestFromShare()">
+      Take my own test
+    </button>
+  </div>
+
+  <div class="shared-rel">
+    <div class="shared-rel-title">
+      Or: how do you know this person?
+    </div>
+
+    <div class="relationship-grid">
+      <button class="relbtn active shared-relbtn" onclick="setSharedRelationship('friend',this)">Friend</button>
+      <button class="relbtn shared-relbtn" onclick="setSharedRelationship('dating',this)">Dating</button>
+      <button class="relbtn shared-relbtn" onclick="setSharedRelationship('partner',this)">Partner</button>
+      <button class="relbtn shared-relbtn" onclick="setSharedRelationship('work',this)">Work</button>
+    </div>
+
+    <button
+      class="primary"
+      style="margin-top:12px"
+      onclick="startConnectionFromSharedResult()">
+      Take test + see our Connection Read
+    </button>
+  </div>
+
+</section>
+
+<section id="quiz" class="hidden">
     <div class="backbar"><button class="backbtn" onclick="goBack()">← Back</button></div>
     <div class="progress"><div id="bar" class="bar"></div></div>
     <div class="card">
@@ -304,7 +512,7 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
         <div class="score" id="shareScore"></div>
         <div class="label" id="shareLabel"></div>
         <div class="tag" id="shareTag"></div>
-        <div class="small">zelqoza.com · What’s yours?</div>
+        <div class="small">zelqoza.com · See mine. Take yours. Compare.</div>
       </div>
 
       
@@ -314,12 +522,12 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
 
 <div id="shareMenu" class="sharemenu">
   <div class="sharegrid">
-    <button class="sharebtn" onclick="copyShareLink()">🔗 Copy link</button>
-    <button class="sharebtn" onclick="shareWhatsApp()">💬 WhatsApp</button>
+    <button class="sharebtn" onclick="copyShareLink()">🔗 Copy result link</button>
+    <button class="sharebtn" onclick="shareWhatsApp()">💬 Send on WhatsApp</button>
     <button class="sharebtn" onclick="saveStoryCard()">📸 Instagram Story</button>
-    <button class="sharebtn" onclick="shareX()">𝕏 X / Twitter</button>
-    <button class="sharebtn" onclick="shareFacebook()">f Facebook</button>
-    <button class="sharebtn" onclick="nativeShare()">↗ More options</button>
+    <button class="sharebtn" onclick="shareX()">𝕏 Post on X</button>
+    <button class="sharebtn" onclick="shareFacebook()">f Share on Facebook</button>
+    <button class="sharebtn" onclick="nativeShare()">↗ More share options</button>
   </div>
   <div id="shareStatus" class="sharestatus"></div>
 </div>
@@ -411,6 +619,8 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
     onclick="shareChallenge()">
     Send my Connection Challenge
   </button>
+  <div id="challengeStatus" class="challenge-status"></div>
+
 
   <div class="circle-note">
     You can send this to as many people as you want.
@@ -467,6 +677,23 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
     <div class="connection-action">
       <b>Your best communication rule</b>
       <span id="communicationRule"></span>
+    </div>
+
+
+    <div class="trait-compare">
+      <h4>Your profiles side by side</h4>
+      <div id="traitCompareRows"></div>
+
+      <div class="compare-summary">
+        <div class="pill">
+          <span>Biggest similarity</span>
+          <b id="biggestSimilarity">—</b>
+        </div>
+        <div class="pill">
+          <span>Biggest difference</span>
+          <b id="biggestDifference">—</b>
+        </div>
+      </div>
     </div>
 
     <button
@@ -578,6 +805,21 @@ let currentResult={
 };
 
 let relationshipMode="friend";
+let sharedRelationshipMode="friend";
+let sharedPerson=null;
+
+
+function setSharedRelationship(mode,btn){
+  sharedRelationshipMode=mode;
+
+  document.querySelectorAll(".shared-relbtn").forEach(el=>{
+    el.classList.remove("active");
+  });
+
+  if(btn){
+    btn.classList.add("active");
+  }
+}
 
 function setRelationship(mode,btn){
   relationshipMode=mode;
@@ -837,14 +1079,24 @@ function finish(){
 }
 
 function getShareUrl(){
- const u=new URL(window.location.origin + window.location.pathname);
- u.searchParams.set('r',currentResult.idx);
- u.searchParams.set('s',Math.min(99,currentResult.pct));
- return u.toString();
+  const u=new URL(
+    window.location.origin+
+    window.location.pathname
+  );
+
+  u.searchParams.set("share","1");
+  u.searchParams.set("r",currentResult.idx);
+  u.searchParams.set("s",Math.min(99,currentResult.pct));
+
+  if(currentResult.traits){
+    u.searchParams.set("t",compactTraits(currentResult.traits));
+  }
+
+  return u.toString();
 }
 
 function getShareText(){
- return `My WARNING LABEL: ${currentResult.lab} — ${currentResult.pct}%. What's yours?`;
+ return `I got “${currentResult.lab}” at ${currentResult.pct}% on WARNING LABEL. See mine, take yours, or compare with me.`;
 }
 
 
@@ -859,15 +1111,21 @@ async
 
 async 
 
-(function loadSharedResult(){
- const p=new URLSearchParams(location.search);
- const idx=parseInt(p.get('r'),10), pct=parseInt(p.get('s'),10);
- if(Number.isInteger(idx) && idx>=0 && idx<resultProfiles.length && Number.isInteger(pct) && pct>=50 && pct<=99){
-   document.getElementById('start').classList.add('hidden');
-   document.getElementById('quiz').classList.add('hidden');
-   document.getElementById('result').classList.remove('hidden');
-   applyResult(idx,Math.min(99,pct));
- }
+(function routeIncomingLink(){
+
+  const shared=getSharedPerson();
+
+  if(shared){
+    showSharedResult(shared);
+    return;
+  }
+
+  const challenge=getIncomingChallenge();
+
+  if(challenge){
+    initChallengeBanner();
+  }
+
 })();
 
 
@@ -958,14 +1216,14 @@ async function copyShareLink(){
 
 function shareWhatsApp(){
   const text=encodeURIComponent(
-    `My WARNING LABEL: ${currentResult.lab} — ${currentResult.pct}%. What's yours? ${getShareUrl()}`
+    `I got “${currentResult.lab}” at ${currentResult.pct}% on WARNING LABEL. See my result, take yours, or compare with me: ${getShareUrl()}`
   );
   window.open(`https://wa.me/?text=${text}`,'_blank','noopener');
 }
 
 function shareX(){
   const text=encodeURIComponent(
-    `My WARNING LABEL: ${currentResult.lab} — ${currentResult.pct}%. What's yours?`
+    `I got “${currentResult.lab}” at ${currentResult.pct}% on WARNING LABEL. See mine, take yours, or compare with me.`
   );
   const url=encodeURIComponent(getShareUrl());
   window.open(
@@ -985,7 +1243,7 @@ function shareFacebook(){
 }
 
 async function nativeShare(){
-  const text=`My WARNING LABEL: ${currentResult.lab} — ${currentResult.pct}%. What's yours?`;
+  const text=`I got “${currentResult.lab}” at ${currentResult.pct}% on WARNING LABEL. See mine, take yours, or compare with me.`;
   const url=getShareUrl();
 
   if(navigator.share){
@@ -1050,30 +1308,47 @@ function animateReportSections(){
 }
 
 
-function makeChallengeUrl(){
-  const u=new URL(
-    window.location.origin+
-    window.location.pathname
-  );
 
-  u.searchParams.set("c","1");
-  u.searchParams.set("cr",currentResult.idx);
-  u.searchParams.set("cs",Math.min(99,currentResult.pct));
-  u.searchParams.set("rel",relationshipMode);
 
-  return u.toString();
+function compactTraits(t){
+  const safe=t||{};
+  return [
+    Math.round(safe.openness||0),
+    Math.round(safe.directness||0),
+    Math.round(safe.attachment||0),
+    Math.round(safe.regulation||0),
+    Math.round(safe.social||0)
+  ].join(",");
 }
 
-function getIncomingChallenge(){
-  const p=new URLSearchParams(location.search);
+function parseTraits(value){
+  if(!value) return null;
 
-  if(p.get("c")!=="1"){
+  const parts=value.split(",").map(v=>parseInt(v,10));
+
+  if(parts.length!==5 || parts.some(v=>!Number.isInteger(v))){
     return null;
   }
 
-  const idx=parseInt(p.get("cr"),10);
-  const pct=parseInt(p.get("cs"),10);
-  const rel=p.get("rel")||"friend";
+  return{
+    openness:Math.max(-10,Math.min(10,parts[0])),
+    directness:Math.max(-10,Math.min(10,parts[1])),
+    attachment:Math.max(-10,Math.min(10,parts[2])),
+    regulation:Math.max(-10,Math.min(10,parts[3])),
+    social:Math.max(-10,Math.min(10,parts[4]))
+  };
+}
+
+function getSharedPerson(){
+  const p=new URLSearchParams(location.search);
+
+  if(p.get("share")!=="1"){
+    return null;
+  }
+
+  const idx=parseInt(p.get("r"),10);
+  const pct=parseInt(p.get("s"),10);
+  const traits=parseTraits(p.get("t"));
 
   if(
     !Number.isInteger(idx)||
@@ -1089,7 +1364,140 @@ function getIncomingChallenge(){
     pct:Math.min(99,Math.max(0,pct)),
     lab:resultProfiles[idx].name,
     tag:resultProfiles[idx].tag,
-    rel
+    traits
+  };
+}
+
+function showSharedResult(person){
+  sharedPerson=person;
+
+  document.getElementById("start").classList.add("hidden");
+  document.getElementById("quiz").classList.add("hidden");
+  document.getElementById("result").classList.add("hidden");
+  document.getElementById("sharedResult").classList.remove("hidden");
+
+  document.getElementById("sharedScore").innerText=person.pct+"%";
+  document.getElementById("sharedLabel").innerText=person.lab;
+  document.getElementById("sharedTag").innerText=person.tag;
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function clearCurrentTestState(){
+  i=0;
+  traitScores={
+    openness:0,
+    directness:0,
+    attachment:0,
+    regulation:0,
+    social:0
+  };
+  answerHistory=[];
+  currentResult={pct:null,idx:null,lab:"",tag:"",traits:null};
+}
+
+function startOwnTestFromShare(){
+  clearCurrentTestState();
+
+  const u=new URL(
+    window.location.origin+
+    window.location.pathname
+  );
+
+  history.replaceState(null,"",u.toString());
+
+  document.getElementById("sharedResult").classList.add("hidden");
+  document.getElementById("start").classList.remove("hidden");
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function startConnectionFromSharedResult(){
+  if(!sharedPerson) return;
+
+  clearCurrentTestState();
+
+  const u=new URL(
+    window.location.origin+
+    window.location.pathname
+  );
+
+  u.searchParams.set("c","1");
+  u.searchParams.set("cr",sharedPerson.idx);
+  u.searchParams.set("cs",sharedPerson.pct);
+  u.searchParams.set("rel",sharedRelationshipMode);
+
+  if(sharedPerson.traits){
+    u.searchParams.set("ct",compactTraits(sharedPerson.traits));
+  }
+
+  history.replaceState(null,"",u.toString());
+
+  document.getElementById("sharedResult").classList.add("hidden");
+  document.getElementById("start").classList.remove("hidden");
+
+  initChallengeBanner();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function exitSharedView(){
+  const u=new URL(
+    window.location.origin+
+    window.location.pathname
+  );
+
+  history.replaceState(null,"",u.toString());
+  document.getElementById("sharedResult").classList.add("hidden");
+  document.getElementById("start").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function makeChallengeUrl(){
+  const u=new URL(
+    window.location.origin+
+    window.location.pathname
+  );
+
+  u.searchParams.set("c","1");
+  u.searchParams.set("cr",currentResult.idx);
+  u.searchParams.set("cs",Math.min(99,currentResult.pct));
+  u.searchParams.set("rel",relationshipMode);
+
+  if(currentResult.traits){
+    u.searchParams.set("ct",compactTraits(currentResult.traits));
+  }
+
+  return u.toString();
+}
+
+function getIncomingChallenge(){
+  const p=new URLSearchParams(location.search);
+
+  if(p.get("c")!=="1"){
+    return null;
+  }
+
+  const idx=parseInt(p.get("cr"),10);
+  const pct=parseInt(p.get("cs"),10);
+  const rel=p.get("rel")||"friend";
+  const traits=parseTraits(p.get("ct"));
+
+  if(
+    !Number.isInteger(idx)||
+    idx<0||
+    idx>=resultProfiles.length||
+    !Number.isInteger(pct)
+  ){
+    return null;
+  }
+
+  return{
+    idx,
+    pct:Math.min(99,Math.max(0,pct)),
+    lab:resultProfiles[idx].name,
+    tag:resultProfiles[idx].tag,
+    rel,
+    traits
   };
 }
 
@@ -1112,32 +1520,145 @@ function initChallengeBanner(){
   const mode=modeNames[c.rel]||"connection";
 
   text.innerText=
-    `Someone got “${c.lab}” at ${c.pct}% and invited you to unlock a ${mode} Connection Read: why you click, where you misread each other, and what each of you should do differently.`;
+    `They sent you THEIR results: “${c.lab}” at ${c.pct}%. `+
+    `Take your 6-question test to unlock a side-by-side ${mode} Connection Read — your two profiles, biggest similarities, biggest differences, and what each of you should do differently.`;
 }
 
 function calculateCompatibility(a,b){
-  const gap=Math.abs(a.pct-b.pct);
+  const scoreGap=Math.abs(a.pct-b.pct);
   const sameType=a.idx===b.idx;
   const complement=Math.abs(a.idx-b.idx);
+  const traitFit=calculateTraitFit(a.traits,b.traits);
 
   let score=Math.round(
-    84
-    - gap*0.35
-    + (sameType?6:0)
-    + (complement>=3?4:0)
+    78
+    - scoreGap*0.25
+    + (sameType?5:0)
+    + (complement>=3?3:0)
+    + (traitFit!==null ? (traitFit-50)*0.18 : 0)
   );
 
-  score=Math.max(58,Math.min(97,score));
+  score=Math.max(55,Math.min(97,score));
 
   let label;
   if(score>=90) label="Very strong fit";
   else if(score>=82) label="Strong connection";
   else if(score>=72) label="Good with some friction";
+  else if(score>=62) label="Different but workable";
   else label="Different operating systems";
 
-  return{score,label};
+  return{score,label,traitFit};
 }
 
+
+
+function traitDisplayValue(v){
+  return Math.round(((Math.max(-10,Math.min(10,v))+10)/20)*100);
+}
+
+function renderTraitComparison(themTraits,youTraits){
+  const container=document.getElementById("traitCompareRows");
+  if(!container) return;
+
+  const labels={
+    openness:"Openness",
+    directness:"Directness",
+    attachment:"Closeness",
+    regulation:"Composure",
+    social:"Social energy"
+  };
+
+  const keys=["openness","directness","attachment","regulation","social"];
+
+  const them=themTraits||{
+    openness:0,
+    directness:0,
+    attachment:0,
+    regulation:0,
+    social:0
+  };
+
+  const you=youTraits||{
+    openness:0,
+    directness:0,
+    attachment:0,
+    regulation:0,
+    social:0
+  };
+
+  container.innerHTML="";
+
+  let smallest={key:null,gap:Infinity};
+  let biggest={key:null,gap:-1};
+
+  keys.forEach(key=>{
+    const themVal=traitDisplayValue(them[key]||0);
+    const youVal=traitDisplayValue(you[key]||0);
+    const gap=Math.abs(themVal-youVal);
+
+    if(gap<smallest.gap){
+      smallest={key,gap};
+    }
+
+    if(gap>biggest.gap){
+      biggest={key,gap};
+    }
+
+    const row=document.createElement("div");
+    row.className="trait-row";
+
+    row.innerHTML=`
+      <div class="trait-name">${labels[key]}</div>
+
+      <div class="trait-bars">
+        <div class="trait-line">
+          <div class="trait-who">Them</div>
+          <div class="trait-track">
+            <div class="trait-fill them" style="width:${themVal}%"></div>
+          </div>
+          <div class="trait-number">${themVal}</div>
+        </div>
+
+        <div class="trait-line">
+          <div class="trait-who">You</div>
+          <div class="trait-track">
+            <div class="trait-fill" style="width:${youVal}%"></div>
+          </div>
+          <div class="trait-number">${youVal}</div>
+        </div>
+      </div>
+    `;
+
+    container.appendChild(row);
+  });
+
+  document.getElementById("biggestSimilarity").innerText=
+    labels[smallest.key]+` (${smallest.gap} pt gap)`;
+
+  document.getElementById("biggestDifference").innerText=
+    labels[biggest.key]+` (${biggest.gap} pt gap)`;
+}
+
+function calculateTraitFit(aTraits,bTraits){
+  if(!aTraits||!bTraits){
+    return null;
+  }
+
+  const keys=["openness","directness","attachment","regulation","social"];
+
+  const avgGap=
+    keys.reduce((sum,key)=>{
+      return sum+Math.abs((aTraits[key]||0)-(bTraits[key]||0));
+    },0)/keys.length;
+
+  return Math.max(
+    0,
+    Math.min(
+      100,
+      Math.round(100-(avgGap*5))
+    )
+  );
+}
 
 function relationshipLanguage(rel){
   const modes={
@@ -1243,8 +1764,14 @@ function renderComparison(challenger){
   document.getElementById("compatScore").innerText=comp.score+"%";
   document.getElementById("compatLabel").innerText=comp.label;
 
+  const traitSentence=
+    comp.traitFit!==null
+      ? `Your underlying trait patterns are ${comp.traitFit}% aligned. `
+      : "";
+
   document.getElementById("compatCopy").innerText=
-    `This is a ${language.noun} read — not a prediction. The useful part is understanding how your two styles interact.`;
+    traitSentence+
+    `This is a ${language.noun} read, not a prediction. The useful part is seeing exactly where your two styles line up and where they differ.`;
 
   document.getElementById("comparisonIntro").innerText=
     `${challenger.lab} + ${currentResult.lab}`;
@@ -1263,6 +1790,11 @@ function renderComparison(challenger){
 
   document.getElementById("communicationRule").innerText=
     language.rule;
+
+  renderTraitComparison(
+    challenger.traits,
+    currentResult.traits
+  );
 
   section.classList.remove("hidden");
 }
@@ -1294,24 +1826,53 @@ async function shareChallenge(){
   const mode=modeNames[relationshipMode]||"connection";
 
   const text=
-    `I got "${currentResult.lab}" (${currentResult.pct}%). Take Warning Label and let’s see our ${mode} Connection Read — what works between us, where we clash, and what we should each do differently.`;
+    `These are MY Warning Label results: “${currentResult.lab}” (${currentResult.pct}%). `+
+    `Take yours and let’s unlock our ${mode} Connection Read — side-by-side results, what works between us, where we clash, and what each of us should do differently.`;
+
+  const status=document.getElementById("challengeStatus");
+
+  if(status){
+    status.className="challenge-status";
+    status.innerText="";
+  }
 
   if(navigator.share){
     try{
       await navigator.share({
-        title:"Warning Label Connection Challenge",
+        title:"Compare your results with mine",
         text,
         url
       });
+
+      if(status){
+        status.className="challenge-status success";
+        status.innerText="Share completed ✓";
+      }
+
       return;
-    }catch(e){}
+    }catch(e){
+      // User may have cancelled; fall through to copy.
+    }
   }
 
   try{
     await navigator.clipboard.writeText(text+" "+url);
-    alert("Connection Challenge copied.");
+
+    if(status){
+      status.className="challenge-status success";
+      status.innerText="Challenge link copied ✓ — send it to the other person.";
+    }else{
+      alert("Challenge link copied.");
+    }
+
   }catch(e){
-    alert(url);
+
+    if(status){
+      status.className="challenge-status error";
+      status.innerText="Couldn’t copy automatically. Copy the URL from your browser.";
+    }else{
+      alert(url);
+    }
   }
 }
 
@@ -1438,6 +1999,9 @@ function restartTest(){
     u.searchParams.set('cr',incoming.idx);
     u.searchParams.set('cs',incoming.pct);
     u.searchParams.set('rel',incoming.rel||'friend');
+    if(incoming.traits){
+      u.searchParams.set('ct',compactTraits(incoming.traits));
+    }
   }
 
   history.replaceState(null,'',u.toString());
@@ -1446,7 +2010,7 @@ function restartTest(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-document.addEventListener('DOMContentLoaded',initChallengeBanner);
+
 
 
 /*
