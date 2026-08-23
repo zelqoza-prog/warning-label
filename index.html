@@ -173,6 +173,15 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
 .connectionDivider{margin:28px 0 8px;padding:22px 12px 4px;text-align:center;border-top:1px solid #333}
 .connectionDivider span{display:block;color:#aaaab2;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
 .connectionDivider b{font-size:24px;line-height:1.05}
+
+.incomingConnectionCTA{
+  margin-top:26px;padding:22px;border:1px solid #3a3434;border-radius:20px;
+  background:radial-gradient(circle at 90% 0%,rgba(255,90,79,.12),transparent 38%),#151518;
+  text-align:left;
+}
+.incomingConnectionCTA h3{margin:8px 0;font-size:25px;line-height:1.08}
+.incomingConnectionCTA p{margin:0 0 16px;color:#d7d7dc;font-size:15px;line-height:1.5}
+
 </style>
 </head>
 <body>
@@ -221,6 +230,13 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
           <div class="perceptionBox"><span id="peopleMisreadLabel"></span><b id="peopleMisread"></b></div>
           <div class="perceptionBox"><span id="peopleLearnLabel"></span><b id="peopleLearn"></b></div>
         </div>
+      </div>
+
+      <div id="incomingConnectionCTA" class="incomingConnectionCTA hidden">
+        <div id="incomingConnectionKicker" class="eyebrow"></div>
+        <h3 id="incomingConnectionTitle"></h3>
+        <p id="incomingConnectionText"></p>
+        <button id="incomingConnectionBtn" class="primary" onclick="revealIncomingConnection()"></button>
       </div>
 
       <div id="connectionDivider" class="connectionDivider hidden">
@@ -498,7 +514,7 @@ const PROFILES=[
 
 let lang=((localStorage.getItem("zelqoza_lang")||navigator.language||"en").toLowerCase().startsWith("es"))?"es":"en";
 let i=0,traits={openness:0,directness:0,attachment:0,regulation:0,social:0},historyAnswers=[];
-let currentResult={pct:0,idx:0,traits:null},relationshipMode="friend",activeChallenge=null;
+let currentResult={pct:0,idx:0,traits:null},relationshipMode="friend",activeChallenge=null,connectionRevealed=false;
 const $=id=>document.getElementById(id), tx=k=>TXT[lang][k]||TXT.en[k]||k, profile=idx=>PROFILES[idx][lang]||PROFILES[idx].en;
 
 function setLanguage(l){lang=l;localStorage.setItem("zelqoza_lang",l);applyLanguage();refreshDynamic()}
@@ -513,7 +529,45 @@ $("enBtn").classList.toggle("active",lang==="en");$("esBtn").classList.toggle("a
   Object.entries(map).forEach(([id,k])=>$(id).innerText=tx(k));
   document.querySelectorAll("[data-rel]").forEach(b=>b.innerText=tx(b.dataset.rel));
 }
-function refreshDynamic(){if(!$("quiz").classList.contains("hidden")&&i<QUIZ[lang].length)render();if(!$("result").classList.contains("hidden")&&currentResult.traits){applyResult(currentResult.idx,currentResult.pct,currentResult.traits);if(activeChallenge)renderConnection(activeChallenge)}updatePreview(relationshipMode);if($("connectionDetailsToggle")){$("connectionDetailsToggle").innerText=$("connectionDetails").classList.contains("show")?tx("hideDetails"):tx("showDetails")}initChallengeBanner()}
+function refreshDynamic(){
+  if(!$("quiz").classList.contains("hidden")&&i<QUIZ[lang].length)render();
+  if(!$("result").classList.contains("hidden")&&currentResult.traits){
+    applyResult(currentResult.idx,currentResult.pct,currentResult.traits);
+    if(connectionRevealed&&activeChallenge)renderConnection(activeChallenge);
+    else showIncomingConnectionCTA();
+  }
+  updatePreview(relationshipMode);
+  if($("connectionDetailsToggle")){
+    $("connectionDetailsToggle").innerText=$("connectionDetails").classList.contains("show")?tx("hideDetails"):tx("showDetails");
+  }
+  initChallengeBanner();
+}
+
+function showIncomingConnectionCTA(){
+  const box=$("incomingConnectionCTA");
+  if(!box)return;
+  if(!activeChallenge||!currentResult.traits||connectionRevealed){
+    box.classList.add("hidden");
+    return;
+  }
+  box.classList.remove("hidden");
+  $("incomingConnectionKicker").innerText=lang==="es"?"TIENES UNA COMPARACIÓN PENDIENTE":"YOU HAVE A CONNECTION WAITING";
+  $("incomingConnectionTitle").innerText=lang==="es"?"Ahora comparen sus resultados":"Now compare the two of you";
+  $("incomingConnectionText").innerText=lang==="es"
+    ?"Ya viste tu resultado. Ahora descubre qué pasa cuando tu perfil se combina con el de la persona que te envió esto."
+    :"You’ve seen your result. Now see what happens when your profile meets the person who sent you this.";
+  $("incomingConnectionBtn").innerText=lang==="es"?"Ver nuestra conexión →":"See our Connection Read →";
+}
+
+function revealIncomingConnection(){
+  if(!activeChallenge)return;
+  connectionRevealed=true;
+  $("incomingConnectionCTA").classList.add("hidden");
+  renderConnection(activeChallenge);
+  history.replaceState(null,"",buildChallengeResultUrl());
+  setTimeout(()=>$("connectionDivider").scrollIntoView({behavior:"smooth",block:"start"}),80);
+}
+
 function begin(){$("start").classList.add("hidden");$("quiz").classList.remove("hidden");render()}
 function render(){const q=QUIZ[lang][i];$("bar").style.width=(i/QUIZ[lang].length*100)+"%";$("qnum").innerText=tx("q")(i+1,QUIZ[lang].length);$("question").innerText=q[0];$("options").innerHTML="";q[1].forEach(([text,w])=>{const b=document.createElement("button");b.className="option";b.innerText=text;b.onclick=()=>choose(w);$("options").appendChild(b)})}
 function applyWeights(w,m=1){Object.keys(w).forEach(k=>traits[k]+=w[k]*m)}
@@ -523,11 +577,18 @@ function finish(){
   $("quiz").classList.add("hidden");$("result").classList.remove("hidden");
   const idx=selectProfile(),strongest=Math.max(...Object.values(traits).map(Math.abs)),pct=Math.min(99,68+Math.round(strongest*4));
   applyResult(idx,pct,{...traits});
-  if(activeChallenge){renderConnection(activeChallenge);history.replaceState(null,"",buildChallengeResultUrl())}else{history.replaceState(null,"",getShareUrl())}
+  if(activeChallenge){
+    connectionRevealed=false;
+    $("connectionDivider").classList.add("hidden");
+    $("connectionAuto").classList.add("hidden");
+    showIncomingConnectionCTA();
+  }else{
+    history.replaceState(null,"",getShareUrl());
+  }
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function applyResult(idx,pct,tdata){currentResult={idx,pct:Math.min(99,pct),traits:tdata||currentResult.traits};const p=profile(idx);$("score").innerText=$("shareScore").innerText=currentResult.pct+"%";renderPerception(currentResult.idx);ensureScoreCaptions();$("label").innerText=$("shareLabel").innerText=p[0];$("tag").innerText=$("shareTag").innerText=p[1]}
-function goBack(){if(!$("result").classList.contains("hidden")){$("result").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i=QUIZ[lang].length-1;$("quiz").classList.remove("hidden");render();return}if(i===0){$("quiz").classList.add("hidden");$("start").classList.remove("hidden");return}if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i--;render()}
+function goBack(){if(!$("result").classList.contains("hidden")){$("result").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");$("connectionDivider").classList.add("hidden");if($("incomingConnectionCTA"))$("incomingConnectionCTA").classList.add("hidden");connectionRevealed=false;if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i=QUIZ[lang].length-1;$("quiz").classList.remove("hidden");render();return}if(i===0){$("quiz").classList.add("hidden");$("start").classList.remove("hidden");return}if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i--;render()}
 function base(){return "https://zelqoza.com/"}
 function compact(t){return["openness","directness","attachment","regulation","social"].map(k=>Math.round((t||{})[k]||0)).join(",")}
 function parseTraits(v){if(!v)return null;const a=v.split(",").map(Number);if(a.length!==5||a.some(Number.isNaN))return null;return{openness:a[0],directness:a[1],attachment:a[2],regulation:a[3],social:a[4]}}
@@ -1022,6 +1083,8 @@ function ensureScoreCaptions(){
 }
 function renderConnection(c){
   if(!c)return;
+  connectionRevealed=true;
+  if($("incomingConnectionCTA"))$("incomingConnectionCTA").classList.add("hidden");
   ensureScoreCaptions();
   $("connectionDivider").classList.remove("hidden");
   $("connectionDividerTop").innerText=lang==="es"?"AHORA, SOBRE USTEDES DOS…":"NOW, ABOUT THE TWO OF YOU…";
@@ -1067,7 +1130,7 @@ function renderConnection(c){
   scoreEl.classList.add("score-pop");
 }
 
-function restartTest(){i=0;traits={openness:0,directness:0,attachment:0,regulation:0,social:0};historyAnswers=[];currentResult={pct:0,idx:0,traits:null};clearActiveChallenge();$("result").classList.add("hidden");$("quiz").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");history.replaceState(null,"",base());$("start").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
+function restartTest(){i=0;traits={openness:0,directness:0,attachment:0,regulation:0,social:0};historyAnswers=[];currentResult={pct:0,idx:0,traits:null};connectionRevealed=false;clearActiveChallenge();$("result").classList.add("hidden");$("quiz").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");history.replaceState(null,"",base());$("start").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
 
 (function init(){
   const fromUrl=readChallengeFromUrl();
