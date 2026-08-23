@@ -210,6 +210,16 @@ body{background:var(--bg);color:var(--text)}
 @media(max-width:600px){.wrap{padding-left:15px;padding-right:15px}.hero{padding-top:52px}h1{font-size:42px}.card{padding:20px}.score{font-size:68px}.label{font-size:29px}}
 
 </style>
+
+<!-- Google Analytics 4 — WARNING LABEL -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-47NGTFCD17"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-47NGTFCD17');
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -541,7 +551,23 @@ let i=0,traits={openness:0,directness:0,attachment:0,regulation:0,social:0},hist
 let currentResult={pct:0,idx:0,traits:null},relationshipMode="friend",activeChallenge=null,sharedProfile=null,connectionRevealed=false;
 const $=id=>document.getElementById(id), tx=k=>TXT[lang][k]||TXT.en[k]||k, profile=idx=>PROFILES[idx][lang]||PROFILES[idx].en;
 
-function setLanguage(l){lang=l;localStorage.setItem("zelqoza_lang",l);applyLanguage();refreshDynamic()}
+// --- WARNING LABEL analytics funnel ---
+const GA_MEASUREMENT_ID="G-47NGTFCD17";
+function analyticsEntryType(){
+  if(activeChallenge)return "connection";
+  if(sharedProfile)return "shared_result";
+  return "direct";
+}
+function gaEvent(name,params={}){
+  try{
+    if(typeof window.gtag==="function"){
+      window.gtag("event",name,Object.assign({language:lang},params));
+    }
+  }catch(e){}
+}
+
+
+function setLanguage(l){lang=l;localStorage.setItem("zelqoza_lang",l);gaEvent("language_change",{selected_language:l});applyLanguage();refreshDynamic()}
 function applyLanguage(){
   document.documentElement.lang=lang;
 
@@ -589,20 +615,31 @@ function revealIncomingConnection(){
   connectionRevealed=true;
   $("incomingConnectionCTA").classList.add("hidden");
   renderConnection(activeChallenge);
+  const comp=compatibility(activeChallenge,currentResult);
+  gaEvent("connection_read_view",{
+    relation:activeChallenge.rel,
+    connection_score:comp.score,
+    sender_profile_key:PROFILE_KEYS[activeChallenge.idx],
+    receiver_profile_key:PROFILE_KEYS[currentResult.idx]
+  });
   history.replaceState(null,"",buildChallengeResultUrl());
   setTimeout(()=>$("connectionDivider").scrollIntoView({behavior:"smooth",block:"start"}),80);
 }
 
-function begin(){$("start").classList.add("hidden");$("quiz").classList.remove("hidden");render()}
+function begin(){gaEvent("quiz_start",{entry_type:analyticsEntryType()});$("start").classList.add("hidden");$("quiz").classList.remove("hidden");render()}
 function render(){const q=QUIZ[lang][i];$("bar").style.width=(i/QUIZ[lang].length*100)+"%";$("qnum").innerText=tx("q")(i+1,QUIZ[lang].length);$("question").innerText=q[0];$("options").innerHTML="";q[1].forEach(([text,w])=>{const b=document.createElement("button");b.className="option";b.innerText=text;b.onclick=()=>choose(w);$("options").appendChild(b)})}
 function applyWeights(w,m=1){Object.keys(w).forEach(k=>traits[k]+=w[k]*m)}
-function choose(w){historyAnswers.push({...w});applyWeights(w);i++;i<QUIZ[lang].length?render():finish()}
+function choose(w){gaEvent("quiz_question_answer",{question_number:i+1,entry_type:analyticsEntryType()});historyAnswers.push({...w});applyWeights(w);i++;i<QUIZ[lang].length?render():finish()}
 function selectProfile(){if(traits.regulation>=3&&traits.directness<=0)return 0;if(traits.attachment>=2&&traits.directness<=0)return 1;if(traits.social>=3&&traits.regulation<=1)return 2;if(traits.attachment<=-3)return 3;if(traits.directness>=4)return 4;if(traits.regulation<=-2&&traits.social<=1)return 5;if(traits.social>=2&&traits.openness>=1)return 6;return 7}
 function finish(){
   $("quiz").classList.add("hidden");$("result").classList.remove("hidden");
   const idx=selectProfile();
   applyResult(idx,0,{...traits});
+  const entryType=analyticsEntryType();
+  gaEvent("quiz_complete",{entry_type:entryType,profile_key:PROFILE_KEYS[idx]});
+  gaEvent("result_view",{entry_type:entryType,profile_key:PROFILE_KEYS[idx]});
   if(activeChallenge){
+    gaEvent("connection_test_complete",{relation:activeChallenge.rel,profile_key:PROFILE_KEYS[idx]});
     connectionRevealed=false;
     $("connectionDivider").classList.add("hidden");
     $("connectionAuto").classList.add("hidden");
@@ -619,14 +656,15 @@ function compact(t){return["openness","directness","attachment","regulation","so
 function parseTraits(v){if(!v)return null;const a=v.split(",").map(Number);if(a.length!==5||a.some(Number.isNaN))return null;return{openness:a[0],directness:a[1],attachment:a[2],regulation:a[3],social:a[4]}}
 async function copyText(text){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return true}}catch(e){}try{const ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();return ok}catch(e){return false}}
 function getShareUrl(){const u=new URL(base());u.searchParams.set("share","1");u.searchParams.set("r",currentResult.idx);if(currentResult.traits)u.searchParams.set("t",compact(currentResult.traits));return u.toString()}
-function toggleShare(){$("shareMenu").classList.toggle("show")}
-async function copyResultLink(){$("shareStatus").innerText=(await copyText(getShareUrl()))?tx("resultCopied"):""}
+function toggleShare(){const opened=$("shareMenu").classList.toggle("show");if(opened)gaEvent("result_share_open",{profile_key:PROFILE_KEYS[currentResult.idx]})}
+async function copyResultLink(){const ok=await copyText(getShareUrl());$("shareStatus").innerText=ok?tx("resultCopied"):"";if(ok)gaEvent("result_share",{method:"copy_link",profile_key:PROFILE_KEYS[currentResult.idx]})}
 function shareMessage(){const p=profile(currentResult.idx);return lang==="es"?`Mi resultado: ${p[0]}. Ve el mío, haz el tuyo o compáralo conmigo.`:`My result: ${p[0]}. See mine, take yours, or compare with me.`}
-function shareWhatsApp(){window.open("https://wa.me/?text="+encodeURIComponent(shareMessage()+" "+getShareUrl()),"_blank")}
-function shareFacebook(){window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(getShareUrl()),"_blank")}
-async function nativeShare(){const text=shareMessage(),url=getShareUrl();if(navigator.share){try{await navigator.share({title:"Warning Label",text,url});$("shareStatus").innerText=tx("shareDone");return}catch(e){}}$("shareStatus").innerText=(await copyText(text+" "+url))?tx("resultCopied"):""}
+function shareWhatsApp(){gaEvent("result_share",{method:"whatsapp",profile_key:PROFILE_KEYS[currentResult.idx]});window.open("https://wa.me/?text="+encodeURIComponent(shareMessage()+" "+getShareUrl()),"_blank")}
+function shareFacebook(){gaEvent("result_share",{method:"facebook",profile_key:PROFILE_KEYS[currentResult.idx]});window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(getShareUrl()),"_blank")}
+async function nativeShare(){const text=shareMessage(),url=getShareUrl();if(navigator.share){try{await navigator.share({title:"Warning Label",text,url});gaEvent("result_share",{method:"native",profile_key:PROFILE_KEYS[currentResult.idx]});$("shareStatus").innerText=tx("shareDone");return}catch(e){}}const ok=await copyText(text+" "+url);$("shareStatus").innerText=ok?tx("resultCopied"):"";if(ok)gaEvent("result_share",{method:"copy_fallback",profile_key:PROFILE_KEYS[currentResult.idx]})}
 
 function unlockDeepRead(){
+  gaEvent("deep_read_click",{profile_key:PROFILE_KEYS[currentResult.idx]});
   const p=profile(currentResult.idx);$("report").classList.remove("hidden");$("reportTitle").innerText=p[0];$("reportTag").innerText=p[1];
   $("mv1").innerText=p[3];$("mv2").innerText=p[2];$("mv3").innerText=p[4];$("mv4").innerText=p[5];
   $("underText").innerText=lang==="es"?`A veces los demás pueden verte como ${p[3].toLowerCase()}, especialmente bajo presión. Tu intención puede ser distinta a la señal que estás dando.`:`People may read you as ${p[3].toLowerCase()}, especially under pressure. Your intent can be different from the signal you are sending.`;
@@ -636,13 +674,13 @@ function unlockDeepRead(){
   $("report").scrollIntoView({behavior:"smooth"});
 }
 
-function setRel(mode,btn){relationshipMode=mode;document.querySelectorAll(".mainRel").forEach(x=>x.classList.remove("active"));btn.classList.add("active");updatePreview(mode)}
+function setRel(mode,btn){relationshipMode=mode;gaEvent("connection_relation_select",{relation:mode});document.querySelectorAll(".mainRel").forEach(x=>x.classList.remove("active"));btn.classList.add("active");updatePreview(mode)}
 function previewData(mode){const en={friend:["Friend Connection Read","See what makes this friendship work","Compare what you share, where you differ, and how to support each other better."],family:["Family Connection Read","See what strengthens — and strains — this family bond","Compare old patterns, current needs, and how to make the relationship easier."],partner:["Partner Connection Read","See how your relationship actually works","Compare what helps you connect, what creates friction, and how to repair faster."],work:["Work Connection Read","See how to work better together","Compare communication styles, strengths and friction points."]};const es={friend:["Lectura de amistad","Descubre qué hace funcionar esta amistad","Compara lo que comparten, dónde difieren y cómo apoyarse mejor."],family:["Lectura familiar","Descubre qué fortalece — y qué tensiona — este vínculo","Compara patrones antiguos, necesidades actuales y cómo mejorar la relación."],partner:["Lectura de pareja","Descubre cómo funciona realmente su relación","Compara qué los conecta, qué genera fricción y cómo reparar más rápido."],work:["Lectura de trabajo","Descubre cómo trabajar mejor juntos","Compara estilos de comunicación, fortalezas y puntos de fricción."]};return (lang==="es"?es:en)[mode]}
 function updatePreview(mode){const d=previewData(mode);if(!d)return;$("previewLine").innerText=d[0];$("previewTitle").innerText=d[1];$("previewText").innerText=d[2]}
-function openConnectionSetup(){$("connectionSetup").classList.add("show");updatePreview(relationshipMode);$("connectionSetup").scrollIntoView({behavior:"smooth"})}
+function openConnectionSetup(){gaEvent("connection_setup_open",{profile_key:PROFILE_KEYS[currentResult.idx]});$("connectionSetup").classList.add("show");updatePreview(relationshipMode);$("connectionSetup").scrollIntoView({behavior:"smooth"})}
 function makeChallengeUrl(){const u=new URL(base());u.searchParams.set("c","1");u.searchParams.set("cr",currentResult.idx);u.searchParams.set("rel",relationshipMode);if(currentResult.traits)u.searchParams.set("ct",compact(currentResult.traits));return u.toString()}
-function createConnectionLink(){const url=makeChallengeUrl();$("connectionInput").value=url;$("linkbox").classList.add("show");$("connectionStatus").innerText=tx("linkCreated")}
-async function copyConnectionLink(){const url=$("connectionInput").value||makeChallengeUrl();const text=challengeInviteText(relationshipMode,url);$("connectionStatus").innerText=(await copyText(text))?tx("linkCopied"):""}
+function createConnectionLink(){const url=makeChallengeUrl();$("connectionInput").value=url;$("linkbox").classList.add("show");$("connectionStatus").innerText=tx("linkCreated");gaEvent("connection_link_created",{relation:relationshipMode,profile_key:PROFILE_KEYS[currentResult.idx]})}
+async function copyConnectionLink(){const url=$("connectionInput").value||makeChallengeUrl();const text=challengeInviteText(relationshipMode,url);const ok=await copyText(text);$("connectionStatus").innerText=ok?tx("linkCopied"):"";if(ok)gaEvent("connection_share",{method:"copy_link",relation:relationshipMode,profile_key:PROFILE_KEYS[currentResult.idx]})}
 function challengeInviteText(rel,url){
   const es={
     friend:`A ver si de verdad me conoces 😏\nYa hice mi Warning Label. Haz tus 6 preguntas y veamos qué dice de nuestra amistad.\n\n${url}`,
@@ -663,10 +701,12 @@ async function shareChallenge(){
   if(navigator.share){
     try{
       await navigator.share({title:"Warning Label Connection",text});
+      gaEvent("connection_share",{method:"native",relation:relationshipMode,profile_key:PROFILE_KEYS[currentResult.idx]});
       $("connectionStatus").innerText=tx("shareDone");
       return
     }catch(e){}
   }
+  gaEvent("connection_share",{method:"whatsapp",relation:relationshipMode,profile_key:PROFILE_KEYS[currentResult.idx]});
   window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank")
 }
 
@@ -1147,6 +1187,7 @@ function toggleConnectionDetails(){
   const details=$("connectionDetails");
   const btn=$("connectionDetailsToggle");
   const open=details.classList.toggle("show");
+  if(open)gaEvent("connection_details_open",{relation:activeChallenge?activeChallenge.rel:"unknown"});
   btn.innerText=open?tx("hideDetails"):tx("showDetails");
 }
 
@@ -1202,7 +1243,7 @@ function renderConnection(c){
   scoreEl.classList.add("score-pop");
 }
 
-function restartTest(){i=0;traits={openness:0,directness:0,attachment:0,regulation:0,social:0};historyAnswers=[];currentResult={pct:0,idx:0,traits:null};connectionRevealed=false;clearActiveChallenge();$("result").classList.add("hidden");$("quiz").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");history.replaceState(null,"",base());$("start").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
+function restartTest(){gaEvent("test_restart",{from_profile_key:currentResult&&PROFILE_KEYS[currentResult.idx]?PROFILE_KEYS[currentResult.idx]:"unknown"});i=0;traits={openness:0,directness:0,attachment:0,regulation:0,social:0};historyAnswers=[];currentResult={pct:0,idx:0,traits:null};connectionRevealed=false;clearActiveChallenge();$("result").classList.add("hidden");$("quiz").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");history.replaceState(null,"",base());$("start").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
 
 (function init(){
   const fromUrl=readChallengeFromUrl();
@@ -1219,6 +1260,13 @@ function restartTest(){i=0;traits={openness:0,directness:0,attachment:0,regulati
   initChallengeBanner();
   initSharedResultBanner();
   updatePreview("friend");
+
+  gaEvent("landing_view",{entry_type:analyticsEntryType()});
+  if(fromUrl){
+    gaEvent("connection_open",{relation:fromUrl.rel,sender_profile_key:PROFILE_KEYS[fromUrl.idx]});
+  }else if(sharedProfile){
+    gaEvent("shared_result_open",{shared_profile_key:PROFILE_KEYS[sharedProfile.idx]});
+  }
 })();
 </script>
 </body>
