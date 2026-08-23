@@ -357,7 +357,7 @@ them:"THEM",you:"YOU",why:"Why this works",where:"Your dangerous loop",
 youDo:"What YOU should do next",theyDo:"What THEY need to do",rule:"Your rule for this relationship",
 again:"↻ Take the test again",linkCreated:"Private Connection link created ✓",
 linkCopied:"Connection link copied ✓ — send it to the other person.",resultCopied:"Result link copied ✓",shareDone:"Share completed ✓",
-connectionKicker:"YOUR CONNECTION READ",quickGoodLabel:"BEST PART",quickWatchLabel:"WATCH THIS",showDetails:"See full connection breakdown",hideDetails:"Hide full breakdown",q:(n,t)=>`QUESTION ${n} OF ${t}`
+connectionKicker:"YOUR CONNECTION READ",quickGoodLabel:"BEST PART",quickWatchLabel:"YOUR LOOP",showDetails:"See full connection breakdown",hideDetails:"Hide full breakdown",q:(n,t)=>`QUESTION ${n} OF ${t}`
 },
 es:{
 eyebrow:"EL TEST DE AUTOCONOCIMIENTO DE 30 SEGUNDOS",headline:"¿Qué piensan de ti cuando no estás ahí?",
@@ -377,7 +377,7 @@ them:"LA OTRA PERSONA",you:"TÚ",why:"Por qué esto funciona",where:"Su loop pel
 youDo:"Lo que TÚ deberías hacer ahora",theyDo:"Lo que ESA PERSONA necesita hacer",rule:"Su regla para esta relación",
 again:"↻ Volver a hacer el test",linkCreated:"Enlace privado creado ✓",
 linkCopied:"Enlace copiado ✓ — envíaselo a la otra persona.",resultCopied:"Enlace del resultado copiado ✓",shareDone:"Compartido ✓",
-connectionKicker:"SU LECTURA DE CONEXIÓN",quickGoodLabel:"LO MEJOR",quickWatchLabel:"OJO CON ESTO",showDetails:"Ver análisis completo",hideDetails:"Ocultar análisis",q:(n,t)=>`PREGUNTA ${n} DE ${t}`
+connectionKicker:"SU LECTURA DE CONEXIÓN",quickGoodLabel:"LO MEJOR",quickWatchLabel:"EL LOOP ENTRE USTEDES",showDetails:"Ver análisis completo",hideDetails:"Ocultar análisis",q:(n,t)=>`PREGUNTA ${n} DE ${t}`
 }};
 
 const QUIZ={
@@ -566,6 +566,7 @@ function buildChallengeResultUrl(){const u=new URL(base());u.searchParams.set("d
 
 function traitFit(a,b){if(!a||!b)return null;const k=["openness","directness","attachment","regulation","social"];const avg=k.reduce((s,x)=>s+Math.abs((a[x]||0)-(b[x]||0)),0)/k.length;return Math.max(0,Math.min(100,Math.round(100-avg*5)))}
 
+
 const PROFILE_KEYS=[
   "professionally_unbothered",
   "receipts_department",
@@ -577,228 +578,340 @@ const PROFILE_KEYS=[
   "selective_access"
 ];
 
+const PROFILE_DYNAMICS={
+  en:[
+    {
+      short:"Unbothered",
+      core:"keeps the emotional temperature low and rarely shows the full intensity of what they feel",
+      gift:"brings steadiness when everyone else is reacting",
+      shadow:"can look distant exactly when they care most",
+      need:"clear, low-pressure communication"
+    },
+    {
+      short:"Receipts",
+      core:"notices patterns, remembers details and quietly updates trust",
+      gift:"spots inconsistency before most people do",
+      shadow:"can keep a private scorecard long after the moment has passed",
+      need:"consistency and direct explanations"
+    },
+    {
+      short:"Good Chaos",
+      core:"moves fast, feels fast and brings energy into the room",
+      gift:"creates momentum, fun and emotional honesty",
+      shadow:"can turn urgency into pressure before realizing it",
+      need:"room to be expressive without making every moment an emergency"
+    },
+    {
+      short:"Self-Checkout",
+      core:"protects independence by stepping back before feeling exposed",
+      gift:"does not cling and can regulate alone",
+      shadow:"can leave emotionally before the other person knows there was a problem",
+      need:"space that still includes a clear return"
+    },
+    {
+      short:"No Bubble Wrap",
+      core:"values clarity over comfort and says what others may only think",
+      gift:"cuts through confusion quickly",
+      shadow:"can make a useful truth feel like an attack",
+      need:"directness with context"
+    },
+    {
+      short:"Overclocked",
+      core:"looks composed while processing far more than they show",
+      gift:"notices complexity and thinks several moves ahead",
+      shadow:"can hide stress until it is already too much",
+      need:"permission to externalize before overload"
+    },
+    {
+      short:"Shape-Shifter",
+      core:"reads the room fast and adapts naturally to people",
+      gift:"makes social situations easier for everyone",
+      shadow:"can adapt so much that their real preference disappears",
+      need:"space to state what they actually want"
+    },
+    {
+      short:"Selective Access",
+      core:"opens slowly and treats trust as something earned",
+      gift:"builds deep loyalty once someone is inside",
+      shadow:"can keep people outside long enough that they stop trying",
+      need:"proof of safety plus one person willing to go first"
+    }
+  ],
+  es:[
+    {
+      short:"Imperturbable",
+      core:"mantiene baja la temperatura emocional y rara vez muestra toda la intensidad de lo que siente",
+      gift:"aporta estabilidad cuando los demás están reaccionando",
+      shadow:"puede parecer distante justo cuando más le importa algo",
+      need:"comunicación clara y sin presión"
+    },
+    {
+      short:"Recibos",
+      core:"detecta patrones, recuerda detalles y actualiza su confianza en silencio",
+      gift:"nota inconsistencias antes que casi cualquiera",
+      shadow:"puede llevar una cuenta privada mucho después de que pasó el momento",
+      need:"consistencia y explicaciones directas"
+    },
+    {
+      short:"Buen Caos",
+      core:"se mueve rápido, siente rápido y trae energía al ambiente",
+      gift:"crea impulso, diversión y honestidad emocional",
+      shadow:"puede convertir urgencia en presión sin darse cuenta",
+      need:"espacio para expresarse sin convertir cada momento en emergencia"
+    },
+    {
+      short:"Salida Emocional",
+      core:"protege su independencia alejándose antes de sentirse demasiado expuesto/a",
+      gift:"no se aferra y sabe regularse por su cuenta",
+      shadow:"puede irse emocionalmente antes de que la otra persona sepa que había un problema",
+      need:"espacio que incluya una señal clara de regreso"
+    },
+    {
+      short:"Sin Envoltura",
+      core:"valora la claridad más que la comodidad y dice lo que otros solo piensan",
+      gift:"corta la confusión rápido",
+      shadow:"puede hacer que una verdad útil se sienta como ataque",
+      need:"directitud con contexto"
+    },
+    {
+      short:"Sobreprocesando",
+      core:"se ve tranquilo/a mientras procesa mucho más de lo que muestra",
+      gift:"nota complejidad y piensa varios pasos adelante",
+      shadow:"puede esconder estrés hasta que ya es demasiado",
+      need:"permiso para exteriorizar antes de saturarse"
+    },
+    {
+      short:"Camaleón",
+      core:"lee el ambiente rápido y se adapta naturalmente a las personas",
+      gift:"hace más fáciles las situaciones sociales",
+      shadow:"puede adaptarse tanto que desaparece lo que realmente quiere",
+      need:"espacio para decir lo que de verdad prefiere"
+    },
+    {
+      short:"Acceso Selectivo",
+      core:"se abre despacio y trata la confianza como algo que se gana",
+      gift:"construye lealtad profunda una vez que alguien entra",
+      shadow:"puede mantener a la gente afuera tanto tiempo que dejan de intentarlo",
+      need:"pruebas de seguridad y alguien dispuesto a ir primero"
+    }
+  ]
+};
+
+const SAME_PROFILE_TITLES={
+  en:[
+    "DOUBLE PROFESSIONALLY UNBOTHERED",
+    "DOUBLE RECEIPTS DEPARTMENT",
+    "DOUBLE CHAOS, GOOD INTENTIONS",
+    "DOUBLE EMOTIONAL SELF-CHECKOUT",
+    "DOUBLE TRUTH, NO BUBBLE WRAP",
+    "DOUBLE QUIETLY OVERCLOCKED",
+    "DOUBLE SOCIAL SHAPE-SHIFTER",
+    "DOUBLE SELECTIVE ACCESS"
+  ],
+  es:[
+    "DOBLE PROFESIONALMENTE IMPERTURBABLE",
+    "DOBLE DEPARTAMENTO DE RECIBOS",
+    "DOBLE CAOS CON BUENAS INTENCIONES",
+    "DOBLE SALIDA EMOCIONAL ANTICIPADA",
+    "DOBLE VERDAD SIN ENVOLTURA",
+    "DOBLE SOBREPROCESANDO EN SILENCIO",
+    "DOBLE CAMALEÓN SOCIAL",
+    "DOBLE ACCESO SELECTIVO"
+  ]
+};
+
 function pairKey(a,b){
   const x=Math.min(a,b), y=Math.max(a,b);
   return `${x}-${y}`;
 }
 
-const PAIR_READS={
-  "0-0":{
-    en:{
-      good:"You both value calm and low-drama energy. Neither person needs constant reassurance to feel connected.",
-      loop:"Because both of you can look fine while keeping a lot inside, silence can last longer than the actual problem.",
-      a:"Say what changed before the other person has to infer it from your distance.",
-      b:"Do not treat quiet as proof that everything is fine. Check in once, clearly.",
-      rule:"Calm is useful; invisible is not. Name the issue before it becomes atmosphere."
-    },
-    es:{
-      good:"Los dos valoran la calma y una energía sin drama. Ninguno necesita reafirmación constante para sentirse conectado.",
-      loop:"Como ambos pueden verse bien mientras guardan mucho por dentro, el silencio puede durar más que el problema real.",
-      a:"Di qué cambió antes de que la otra persona tenga que deducirlo por tu distancia.",
-      b:"No tomes el silencio como prueba de que todo está bien. Pregunta una vez, con claridad.",
-      rule:"La calma ayuda; ser invisible no. Nombren el problema antes de que se convierta en ambiente."
-    }
-  },
-  "0-1":{
-    en:{
-      good:"One of you keeps the temperature low; the other notices patterns and remembers details. That can create a surprisingly stable bond when trust is clear.",
-      loop:"The calmer person says less → the pattern-reader notices the change → starts collecting evidence → the calmer person feels watched and becomes even harder to read.",
-      a:"Give one sentence of context before pulling back. It prevents the other person from building a whole theory around your silence.",
-      b:"Ask about the change before turning it into a pattern. Curiosity will serve you better than silent scorekeeping.",
-      rule:"Explain first, interpret second."
-    },
-    es:{
-      good:"Uno mantiene baja la temperatura emocional; el otro detecta patrones y recuerda detalles. Eso puede crear un vínculo muy estable cuando la confianza está clara.",
-      loop:"La persona más tranquila explica menos → la otra nota el cambio → empieza a juntar evidencia → la persona tranquila se siente observada y se vuelve todavía más difícil de leer.",
-      a:"Da una frase de contexto antes de alejarte. Evita que la otra persona construya una teoría completa alrededor de tu silencio.",
-      b:"Pregunta por el cambio antes de convertirlo en patrón. La curiosidad te ayuda más que llevar la cuenta en silencio.",
-      rule:"Primero expliquen, después interpreten."
-    }
-  },
-  "0-2":{
-    en:{
-      good:"One person brings steadiness; the other brings momentum. Together, you can balance intensity with perspective.",
-      loop:"The energetic person pushes for movement → the calmer person slows down → the energetic person reads that as disinterest → the calmer person withdraws from the pressure.",
-      a:"Show engagement before asking for space.",
-      b:"Lower the intensity before asking for an answer.",
-      rule:"Do not confuse different speeds with different levels of care."
-    },
-    es:{
-      good:"Una persona aporta estabilidad y la otra impulso. Juntos pueden equilibrar intensidad con perspectiva.",
-      loop:"La persona más intensa empuja para avanzar → la persona tranquila baja el ritmo → eso se interpreta como desinterés → la persona tranquila se aleja por la presión.",
-      a:"Muestra interés antes de pedir espacio.",
-      b:"Baja la intensidad antes de pedir una respuesta.",
-      rule:"No confundan ritmos distintos con niveles distintos de interés."
-    }
-  },
-  "0-3":{
-    en:{
-      good:"You both understand the value of space. That makes the relationship feel easy when things are good.",
-      loop:"Both people pull back at the same time → nobody creates repair → distance starts feeling normal → the relationship quietly thins out.",
-      a:"Break the stalemate with one direct check-in.",
-      b:"Stay in the conversation ten minutes longer than your instinct wants.",
-      rule:"Space is healthy only when someone eventually comes back."
-    },
-    es:{
-      good:"Ambos entienden el valor del espacio. Eso hace que la relación se sienta fácil cuando todo va bien.",
-      loop:"Los dos se alejan al mismo tiempo → nadie inicia la reparación → la distancia empieza a sentirse normal → la relación se va debilitando en silencio.",
-      a:"Rompe el empate con una pregunta directa.",
-      b:"Quédate en la conversación diez minutos más de lo que te pide el instinto.",
-      rule:"El espacio solo es sano cuando alguien eventualmente regresa."
-    }
-  },
-  "0-4":{
-    en:{
-      good:"One person lowers the temperature; the other cuts through ambiguity. That can make you an efficient pair when respect is high.",
-      loop:"The direct person pushes for clarity → the calm person feels cornered → gives less → the direct person pushes harder.",
-      a:"Do not make silence your only boundary.",
-      b:"Ask for clarity without making urgency feel like a threat.",
-      rule:"Clarity works better when it arrives without pressure."
-    },
-    es:{
-      good:"Una persona baja la temperatura y la otra corta la ambigüedad. Pueden ser una dupla muy efectiva cuando hay respeto.",
-      loop:"La persona directa exige claridad → la persona tranquila se siente acorralada → explica menos → la persona directa presiona más.",
-      a:"No conviertas el silencio en tu único límite.",
-      b:"Pide claridad sin hacer que la urgencia se sienta como amenaza.",
-      rule:"La claridad funciona mejor cuando llega sin presión."
-    }
-  },
-  "0-5":{
-    en:{
-      good:"Both of you can look composed while a lot is happening internally. That creates empathy without needing constant explanation.",
-      loop:"You both assume the other person will speak up if something matters → neither does → invisible stress becomes distance.",
-      a:"Say what is happening before you are already overloaded.",
-      b:"Treat calm as a presentation, not proof that nothing is wrong.",
-      rule:"Do not wait for visible distress before checking in."
-    },
-    es:{
-      good:"Ambos pueden verse tranquilos mientras internamente pasa mucho. Eso crea empatía sin necesitar explicarlo todo.",
-      loop:"Los dos asumen que el otro hablará si algo importa → ninguno lo hace → el estrés invisible se convierte en distancia.",
-      a:"Di lo que pasa antes de llegar al límite.",
-      b:"Toma la calma como una presentación, no como prueba de que nada pasa.",
-      rule:"No esperen señales visibles de estrés para preguntar."
-    }
-  },
-  "0-6":{
-    en:{
-      good:"One person offers steadiness; the other adapts quickly. Socially, this can feel easy and low-friction.",
-      loop:"The adaptable person keeps adjusting → the calm person assumes everything is fine → the adaptable person eventually feels unseen.",
-      a:"Ask what they actually prefer instead of accepting every adjustment.",
-      b:"State your preference before adapting to theirs.",
-      rule:"Easy does not always mean equal."
-    },
-    es:{
-      good:"Una persona aporta estabilidad y la otra se adapta rápido. Socialmente puede sentirse muy fácil.",
-      loop:"La persona adaptable sigue ajustándose → la persona tranquila asume que todo está bien → la adaptable termina sintiéndose poco vista.",
-      a:"Pregunta qué prefiere realmente en vez de aceptar cada ajuste.",
-      b:"Di lo que prefieres antes de adaptarte.",
-      rule:"Que sea fácil no significa que sea equilibrado."
-    }
-  },
-  "0-7":{
-    en:{
-      good:"Both of you respect privacy and do not force closeness. Trust can grow slowly but solidly.",
-      loop:"Neither person wants to overstep → both wait for the other to open up → the relationship stays safer than it needs to be.",
-      a:"Offer one extra piece of yourself before being asked.",
-      b:"Reward openness instead of testing it.",
-      rule:"Someone has to go first."
-    },
-    es:{
-      good:"Ambos respetan la privacidad y no fuerzan cercanía. La confianza puede crecer lento pero fuerte.",
-      loop:"Ninguno quiere invadir → ambos esperan que el otro se abra → la relación se queda más segura de lo necesario.",
-      a:"Comparte una cosa más de ti antes de que te la pidan.",
-      b:"Premia la apertura en vez de ponerla a prueba.",
-      rule:"Alguien tiene que ir primero."
-    }
-  },
-  "1-1":{
-    en:{
-      good:"You both notice patterns quickly and care about consistency. Reliability matters a lot to both of you.",
-      loop:"One small inconsistency gets noticed by both → neither forgets it → each becomes more cautious → trust starts getting audited instead of experienced.",
-      a:"Bring up the issue while it is still one event, not a pattern.",
-      b:"Do not make the other person prove innocence against a case they did not know existed.",
-      rule:"Discuss evidence before it becomes a verdict."
-    },
-    es:{
-      good:"Ambos detectan patrones rápido y valoran mucho la consistencia. La confiabilidad importa bastante para los dos.",
-      loop:"Una pequeña inconsistencia la notan ambos → ninguno la olvida → ambos se vuelven más cautelosos → la confianza empieza a auditarse en vez de vivirse.",
-      a:"Habla del problema cuando todavía es un evento, no un patrón.",
-      b:"No hagas que la otra persona pruebe su inocencia ante un caso que ni sabía que existía.",
-      rule:"Hablen de la evidencia antes de que se convierta en veredicto."
-    }
-  },
-  "1-4":{
-    en:{
-      good:"One of you tracks patterns; the other says things directly. Done well, this creates unusually clear accountability.",
-      loop:"The pattern-reader brings accumulated evidence → the direct person feels prosecuted → responds sharply → the pattern-reader adds that reaction to the file.",
-      a:"Bring one issue at a time, not the whole archive.",
-      b:"Answer the concern without attacking the delivery.",
-      rule:"One issue, one conversation, one resolution."
-    },
-    es:{
-      good:"Uno registra patrones y el otro habla directo. Bien manejado, eso crea una responsabilidad muy clara.",
-      loop:"La persona que registra patrones trae evidencia acumulada → la persona directa se siente acusada → responde fuerte → esa reacción también entra al archivo.",
-      a:"Trae un problema a la vez, no todo el archivo.",
-      b:"Responde a la preocupación sin atacar la forma en que llegó.",
-      rule:"Un problema, una conversación, una resolución."
-    }
-  }
-};
-
-function genericPairRead(aIdx,bIdx){
-  const a=profile(aIdx), b=profile(bIdx);
-  const rel=activeChallenge?.rel||relationshipMode||"friend";
-  const traitA=activeChallenge?.traits||{};
-  const traitB=currentResult.traits||{};
+function strongestTraitMatch(a,b){
   const names=traitNames();
   const keys=Object.keys(names);
-
-  let biggestDiff=keys[0], biggestSame=keys[0], maxGap=-1, minGap=999;
+  let same=keys[0],diff=keys[0],min=999,max=-1;
   keys.forEach(k=>{
-    const gap=Math.abs((traitA[k]||0)-(traitB[k]||0));
-    if(gap>maxGap){maxGap=gap;biggestDiff=k}
-    if(gap<minGap){minGap=gap;biggestSame=k}
+    const gap=Math.abs(((a||{})[k]||0)-((b||{})[k]||0));
+    if(gap<min){min=gap;same=k}
+    if(gap>max){max=gap;diff=k}
   });
+  return {same,diff,sameLabel:names[same],diffLabel:names[diff]};
+}
+
+function sameProfileRead(idx, rel, aTraits, bTraits){
+  const d=PROFILE_DYNAMICS[lang][idx];
+  const t=strongestTraitMatch(aTraits,bTraits);
+
+  if(lang==="es"){
+    const reads=[
+      {
+        good:`Los dos saben mantener la calma y no necesitan convertir cada emoción en una conversación inmediata. Eso hace que entre ustedes haya poco drama y bastante espacio.`,
+        loop:`Los dos parecen estar bien → ninguno dice lo que cambió → cada uno asume que el otro hablará si importa → el problema se enfría por fuera, pero no necesariamente por dentro.`,
+        a:`Rompe el silencio antes de que se convierta en costumbre. Una sola frase de contexto cambia todo.`,
+        b:`No interpretes calma como ausencia de emoción. Pregunta una vez, sin presión.`,
+        rule:`Si ambos están callados, alguien tiene que decir la primera frase.`
+      },
+      {
+        good:`Entre ustedes casi nada pasa desapercibido. Ambos recuerdan cambios de tono, inconsistencias y pequeños detalles. Eso puede crear una confianza brutal cuando las cosas son consistentes.`,
+        loop:`Uno nota algo → no lo pregunta todavía → empieza a observar → el otro nota que algo cambió → también se pone alerta. De pronto ambos están leyendo señales y ninguno está diciendo qué pasó.`,
+        a:`Trae el detalle cuando todavía es un detalle, no cuando ya se convirtió en expediente.`,
+        b:`Pregunta antes de asumir que un cambio confirma un patrón.`,
+        rule:`Ningún archivo secreto. Si cuenta, se habla.`
+      },
+      {
+        good:`Los dos traen energía, espontaneidad y movimiento. Juntos difícilmente se aburren y suelen empujarse a hacer cosas que solos quizá no harían.`,
+        loop:`Uno sube la intensidad → el otro la iguala → nadie baja el volumen → algo pequeño termina sintiéndose enorme.`,
+        a:`Sé la primera persona que baja medio punto la intensidad sin desconectarse.`,
+        b:`No confundas emoción fuerte con urgencia real.`,
+        rule:`Uno puede acelerar; el otro tiene que saber cuándo frenar.`
+      },
+      {
+        good:`Los dos entienden el valor del espacio y rara vez asfixian al otro. Cuando hay confianza, la relación puede sentirse sorprendentemente ligera.`,
+        loop:`Algo incomoda → ambos se alejan → nadie quiere invadir → pasa tiempo → la distancia empieza a parecer normal.`,
+        a:`Cuando pidas espacio, incluye cuándo vuelves.`,
+        b:`No esperes indefinidamente a que el otro rompa el hielo.`,
+        rule:`Espacio sí. Desaparición mutua no.`
+      },
+      {
+        good:`Entre ustedes hay muy poca ambigüedad. Ambos prefieren saber a qué atenerse y pueden resolver cosas rápido.`,
+        loop:`Uno dice una verdad fuerte → el otro responde con otra todavía más fuerte → la conversación se convierte en competencia de precisión.`,
+        a:`Di la verdad sin convertirla en sentencia.`,
+        b:`Responde al contenido antes de defenderte de la forma.`,
+        rule:`Directo no significa destructivo.`
+      },
+      {
+        good:`Los dos entienden lo que es tener muchísimo pasando por dentro mientras por fuera todo parece normal. Hay una empatía silenciosa muy real.`,
+        loop:`Ambos procesan internamente → nadie quiere cargar al otro → los dos dicen “todo bien” → terminan saturados al mismo tiempo.`,
+        a:`Externaliza antes de tener la solución completa.`,
+        b:`Pregunta por carga, no solo por estado de ánimo.`,
+        rule:`No necesitan llegar con la respuesta; solo con la verdad.`
+      },
+      {
+        good:`Los dos leen el ambiente rápido y saben hacer que otros se sientan cómodos. Socialmente pueden funcionar casi sin fricción.`,
+        loop:`Ambos se adaptan → ninguno dice lo que realmente prefiere → todo parece fácil → después ambos sienten que cedieron más de lo que querían.`,
+        a:`Di tu preferencia antes de preguntar la del otro.`,
+        b:`No respondas “me da igual” si sí tienes una preferencia.`,
+        rule:`Adaptarse no cuenta como acuerdo si nadie dijo lo que quería.`
+      },
+      {
+        good:`Los dos toman la confianza en serio. Cuando alguien entra, entra de verdad. Eso puede producir una lealtad muy fuerte.`,
+        loop:`Ambos esperan pruebas → ninguno quiere exponerse primero → cada uno interpreta la cautela del otro como falta de interés.`,
+        a:`Da una pequeña señal de confianza sin exigir garantía total.`,
+        b:`Reconoce la apertura cuando aparezca; no la pongas inmediatamente a prueba.`,
+        rule:`La confianza no puede crecer si los dos esperan que el otro empiece.`
+      }
+    ];
+    return reads[idx];
+  }
+
+  const reads=[
+    {
+      good:`You both know how to stay calm without turning every emotion into an immediate conversation. That creates low drama and plenty of breathing room.`,
+      loop:`Both look fine → neither says what changed → each assumes the other will speak if it matters → the issue cools down on the outside but not necessarily on the inside.`,
+      a:`Break the silence before it becomes the pattern. One sentence of context changes everything.`,
+      b:`Do not mistake calm for lack of emotion. Ask once, without pressure.`,
+      rule:`If both people are quiet, someone has to say the first sentence.`
+    },
+    {
+      good:`Almost nothing gets past either of you. You both remember tone shifts, inconsistencies and small details. When things are consistent, that can create unusually strong trust.`,
+      loop:`One notices something → does not ask yet → starts watching → the other notices the change → becomes alert too. Suddenly both people are reading signals and nobody is saying what happened.`,
+      a:`Bring up the detail while it is still a detail, not after it becomes a case file.`,
+      b:`Ask before treating one change as proof of a larger pattern.`,
+      rule:`No secret files. If it counts, talk about it.`
+    },
+    {
+      good:`You both bring energy, spontaneity and movement. Together, boredom is unlikely and you tend to push each other into experiences neither might choose alone.`,
+      loop:`One raises the intensity → the other matches it → nobody lowers the volume → something small starts feeling huge.`,
+      a:`Be the first person to lower the intensity without disconnecting.`,
+      b:`Do not confuse strong emotion with real urgency.`,
+      rule:`One can accelerate; someone still needs to know when to brake.`
+    },
+    {
+      good:`You both understand the value of space and rarely crowd each other. With trust, the relationship can feel surprisingly light.`,
+      loop:`Something feels off → both pull back → neither wants to intrude → time passes → distance starts feeling normal.`,
+      a:`When you ask for space, include when you are coming back.`,
+      b:`Do not wait forever for the other person to break the ice.`,
+      rule:`Space, yes. Mutual disappearance, no.`
+    },
+    {
+      good:`There is very little ambiguity between you. Both people prefer knowing where they stand and can solve things fast.`,
+      loop:`One delivers a hard truth → the other answers with an even harder truth → the conversation becomes a contest in precision.`,
+      a:`Tell the truth without turning it into a verdict.`,
+      b:`Answer the content before defending against the delivery.`,
+      rule:`Direct does not have to mean destructive.`
+    },
+    {
+      good:`You both understand what it is like to have a lot happening internally while looking completely fine outside. That creates real quiet empathy.`,
+      loop:`Both process internally → neither wants to burden the other → both say “I’m fine” → both end up overloaded at the same time.`,
+      a:`Externalize before you have the whole answer.`,
+      b:`Ask about load, not only mood.`,
+      rule:`You do not need the solution before you tell the truth.`
+    },
+    {
+      good:`You both read the room quickly and make people comfortable. Socially, this can feel almost frictionless.`,
+      loop:`Both adapt → neither states a real preference → everything looks easy → later both feel they gave up more than they wanted.`,
+      a:`State your preference before asking theirs.`,
+      b:`Do not say “I don’t care” when you actually do.`,
+      rule:`Adapting is not agreement if nobody said what they wanted.`
+    },
+    {
+      good:`You both take trust seriously. Once someone is in, they are really in. That can create unusually strong loyalty.`,
+      loop:`Both wait for proof → neither wants to expose themselves first → each reads the other’s caution as lack of interest.`,
+      a:`Offer one small sign of trust without demanding certainty first.`,
+      b:`Reward openness when it appears instead of immediately testing it.`,
+      rule:`Trust cannot grow if both people are waiting for the other to start.`
+    }
+  ];
+  return reads[idx];
+}
+
+function crossProfileRead(aIdx,bIdx,rel,aTraits,bTraits){
+  const A=PROFILE_DYNAMICS[lang][aIdx];
+  const B=PROFILE_DYNAMICS[lang][bIdx];
+  const t=strongestTraitMatch(aTraits,bTraits);
 
   if(lang==="es"){
     return{
-      good:`Comparten suficiente terreno en ${names[biggestSame].toLowerCase()} para entenderse con facilidad, aunque sus perfiles base sean distintos.`,
-      loop:`Su diferencia más fuerte está en ${names[biggestDiff].toLowerCase()}. Cuando hay tensión, cada uno puede interpretar el estilo del otro como una intención, cuando en realidad puede ser solo una forma distinta de reaccionar.`,
-      a:`La persona ${a[0]} debería explicar su intención antes de asumir que su estilo se entiende solo.`,
-      b:`La persona ${b[0]} debería responder a lo que se dijo ahora, no a lo que teme que signifique.`,
-      rule:`Cuando difieran en ${names[biggestDiff].toLowerCase()}, hagan una pregunta antes de sacar una conclusión.`
+      good:`${A.short} aporta ${A.gift}; ${B.short} aporta ${B.gift}. Su punto de coincidencia más natural está en ${t.sameLabel.toLowerCase()}, y ahí es donde la relación suele sentirse fácil.`,
+      loop:`El riesgo aparece en ${t.diffLabel.toLowerCase()}: ${A.short} puede ${A.shadow}, mientras ${B.short} puede ${B.shadow}. Si ninguno explica su intención, cada uno termina reaccionando al estilo del otro en vez de a lo que realmente quiso decir.`,
+      a:`${A.short}: recuerda que la otra persona necesita ${B.need}. Ajusta tu señal antes de asumir que te entendió.`,
+      b:`${B.short}: recuerda que la otra persona necesita ${A.need}. Pregunta antes de convertir una reacción en una conclusión.`,
+      rule:`Cuando choquen en ${t.diffLabel.toLowerCase()}, una pregunta clara vale más que diez interpretaciones.`
     };
   }
 
   return{
-    good:`You share enough ground in ${names[biggestSame].toLowerCase()} to understand each other naturally, even if your base profiles are different.`,
-    loop:`Your biggest difference is ${names[biggestDiff].toLowerCase()}. Under tension, each person can mistake the other's style for an intention when it may simply be a different way of reacting.`,
-    a:`The ${a[0]} person should explain intent before assuming their style is self-explanatory.`,
-    b:`The ${b[0]} person should respond to what was actually said, not what they fear it means.`,
-    rule:`When you differ on ${names[biggestDiff].toLowerCase()}, ask one question before making one conclusion.`
+    good:`${A.short} brings ${A.gift}; ${B.short} brings ${B.gift}. Your easiest common ground is ${t.sameLabel.toLowerCase()}, and that is where the relationship tends to feel natural.`,
+    loop:`The risk shows up around ${t.diffLabel.toLowerCase()}: ${A.short} may ${A.shadow}, while ${B.short} may ${B.shadow}. If neither explains intent, each person starts reacting to the other's style instead of what they actually meant.`,
+    a:`${A.short}: remember that the other person needs ${B.need}. Adjust your signal before assuming they understood it.`,
+    b:`${B.short}: remember that the other person needs ${A.need}. Ask before turning one reaction into a conclusion.`,
+    rule:`When you clash around ${t.diffLabel.toLowerCase()}, one clear question beats ten interpretations.`
   };
 }
 
-function getPairRead(aIdx,bIdx){
-  const key=pairKey(aIdx,bIdx);
-  const specific=PAIR_READS[key]?.[lang]||PAIR_READS[key]?.en;
-  return specific||genericPairRead(aIdx,bIdx);
+function getPairRead(aIdx,bIdx,rel,aTraits,bTraits){
+  if(aIdx===bIdx) return sameProfileRead(aIdx,rel,aTraits,bTraits);
+  return crossProfileRead(aIdx,bIdx,rel,aTraits,bTraits);
 }
 
 function relationshipModifier(rel){
   const en={
-    friend:"In friendship, the biggest win is making support explicit instead of assuming it is understood.",
+    friend:"In friendship, support matters most when it is explicit instead of assumed.",
     family:"In family, old roles can distort current intentions, so respond to who the person is now.",
     partner:"In partnership, repair speed matters more than being perfectly matched.",
     work:"At work, clarity around ownership, timing and expectations matters more than personality fit."
   };
   const es={
-    friend:"En amistad, la mayor ventaja aparece cuando hacen explícito el apoyo en vez de asumir que se entiende.",
-    family:"En familia, los roles antiguos pueden distorsionar las intenciones actuales, así que respondan a quien la persona es hoy.",
+    friend:"En amistad, el apoyo funciona mejor cuando se hace explícito en vez de asumirse.",
+    family:"En familia, los roles antiguos pueden distorsionar las intenciones actuales; respondan a quien la persona es hoy.",
     partner:"En pareja, la velocidad para reparar importa más que estar perfectamente combinados.",
     work:"En trabajo, claridad sobre responsabilidades, tiempos y expectativas importa más que el encaje de personalidad."
   };
-  return (lang==="es"?es:en)[rel]||(lang==="es"?es:en).friend;
+  return (lang==="es"?es:en)[rel]||(lang==="es"?es.friend:en.friend);
+}
+
+function pairDisplayTitle(aIdx,bIdx){
+  if(aIdx===bIdx) return SAME_PROFILE_TITLES[lang][aIdx];
+  return `${profile(aIdx)[0]} + ${profile(bIdx)[0]}`;
 }
 
 function compatibility(a,b){const f=traitFit(a.traits,b.traits);let score=Math.round(80-Math.abs(a.pct-b.pct)*.25+(f!==null?(f-50)*.18:0)+(a.idx===b.idx?5:0));score=Math.max(55,Math.min(97,score));const label=lang==="es"?(score>=90?"Conexión muy fuerte":score>=82?"Conexión fuerte":score>=72?"Buena conexión con algo de fricción":"Diferentes, pero puede funcionar"):(score>=90?"Very strong fit":score>=82?"Strong connection":score>=72?"Good with some friction":"Different but workable");return{score,label}}
@@ -819,20 +932,17 @@ function renderConnection(c){
   const comp=compatibility(c,currentResult);
   const them=profile(c.idx);
   const you=profile(currentResult.idx);
-  const pair=getPairRead(c.idx,currentResult.idx);
+  const pair=getPairRead(c.idx,currentResult.idx,c.rel,c.traits,currentResult.traits);
   const relNote=relationshipModifier(c.rel);
 
   $("connectionAuto").classList.remove("hidden");
   $("connectionDetails").classList.remove("show");
   $("connectionDetailsToggle").innerText=tx("showDetails");
 
-  $("compareTitle").innerText=`${them[0]} + ${you[0]}`;
+  $("compareTitle").innerText=pairDisplayTitle(c.idx,currentResult.idx);
   $("compatScore").innerText=comp.score+"%";
   $("compatLabel").innerText=comp.label;
-
-  $("compatCopy").innerText=lang==="es"
-    ?`${relNote}`
-    :`${relNote}`;
+  $("compatCopy").innerText=relNote;
 
   $("quickGood").innerText=pair.good;
   $("quickWatch").innerText=pair.loop;
@@ -842,7 +952,6 @@ function renderConnection(c){
 
   $("themScore").innerText=c.pct+"%";
   $("themLabel").innerText=them[0];
-
   $("youScore").innerText=currentResult.pct+"%";
   $("youLabel").innerText=you[0];
 
