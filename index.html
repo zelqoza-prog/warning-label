@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WARNING LABEL — Self-Awareness Test</title>
 
 <style>
@@ -26,14 +26,14 @@ body{
 
 .wrap{
   max-width:720px;
-  margin:0 auto;
+  margin:auto;
   padding:24px 18px 60px;
 }
 
 .topbar{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 }
 
 .brand{
@@ -108,12 +108,19 @@ button{
   color:#fff;
 }
 
-.card{
+.card,
+.section{
   background:var(--card);
   border:1px solid var(--line);
   border-radius:24px;
   padding:24px;
   margin-top:20px;
+}
+
+.section{
+  border-radius:20px;
+  padding:20px;
+  margin-top:14px;
 }
 
 .hidden{
@@ -171,10 +178,6 @@ button{
   color:#fff;
   text-align:left;
   font-size:16px;
-}
-
-.option:hover{
-  border-color:#666;
 }
 
 .result{
@@ -240,7 +243,6 @@ button{
   border:1px solid var(--line);
   border-radius:18px;
   padding:12px;
-  text-align:left;
 }
 
 .sharemenu.show{
@@ -327,18 +329,6 @@ button{
   margin-top:5px;
 }
 
-.section{
-  background:#17171b;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:20px;
-  margin-top:14px;
-}
-
-.section h3{
-  margin:0 0 8px;
-}
-
 .relationship-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -376,10 +366,6 @@ button{
   border:1px solid #303038;
 }
 
-.preview h4{
-  margin:6px 0 8px;
-}
-
 .linkbox{
   display:none;
   margin-top:12px;
@@ -410,18 +396,21 @@ button{
   margin-top:8px;
 }
 
-.shared{
-  padding-top:18px;
-  text-align:center;
+.challengeBanner{
+  margin-top:18px;
+  padding:16px;
+  background:#1d1d22;
+  border:1px solid #34343b;
+  border-radius:16px;
+  text-align:left;
 }
 
-.sharedCard{
-  margin:20px 0;
-  background:#f3eddf;
-  color:#111;
+.connectionHero{
+  background:linear-gradient(145deg,#171b18,#1d211f);
+  border:1px solid #33453a;
   border-radius:24px;
-  padding:28px;
-  text-align:left;
+  padding:24px;
+  margin-top:20px;
 }
 
 .compareGrid{
@@ -447,7 +436,7 @@ button{
 }
 
 .traitRow{
-  margin-top:12px;
+  margin-top:14px;
 }
 
 .traitLabel{
@@ -457,7 +446,7 @@ button{
 
 .traitLine{
   display:grid;
-  grid-template-columns:52px 1fr 36px;
+  grid-template-columns:58px 1fr 36px;
   gap:8px;
   align-items:center;
   margin-top:6px;
@@ -486,6 +475,7 @@ button{
 
 @media(max-width:600px){
   h1{font-size:43px}
+
   .sharegrid,
   .metricGrid,
   .compareGrid,
@@ -504,638 +494,508 @@ button{
 
 <div class="wrap">
 
-  <div class="topbar">
-    <div class="brand">
-      WARNING<span>LABEL</span>
-    </div>
+<div class="topbar">
 
-    <div class="langs">
-      <button id="enBtn" class="langbtn" onclick="setLanguage('en')">EN</button>
-      <button id="esBtn" class="langbtn" onclick="setLanguage('es')">ES</button>
-    </div>
-  </div>
+<div class="brand">
+WARNING<span>LABEL</span>
+</div>
 
+<div class="langs">
+<button id="enBtn" class="langbtn" onclick="setLanguage('en')">EN</button>
+<button id="esBtn" class="langbtn" onclick="setLanguage('es')">ES</button>
+</div>
 
-  <section id="start" class="hero">
+</div>
 
-    <div id="challengeBanner" class="card hidden"></div>
 
-    <div id="eyebrow" class="eyebrow"></div>
+<section id="start" class="hero">
 
-    <h1 id="headline"></h1>
+<div id="challengeBanner" class="challengeBanner hidden"></div>
 
-    <p id="subhead"></p>
+<div id="eyebrow" class="eyebrow"></div>
 
-    <button
-      id="startBtn"
-      class="primary"
-      onclick="begin()">
-    </button>
+<h1 id="headline"></h1>
 
-    <p
-      id="disclaimer"
-      class="mini"
-      style="text-align:center">
-    </p>
+<p id="subhead"></p>
 
-  </section>
+<button
+id="startBtn"
+class="primary"
+onclick="begin()">
+</button>
 
+<p
+id="disclaimer"
+class="mini"
+style="text-align:center">
+</p>
 
-  <section id="shared" class="shared hidden">
+</section>
 
-    <div class="backbar">
-      <button
-        id="sharedBack"
-        class="backbtn"
-        onclick="exitShared()">
-      </button>
-    </div>
 
-    <div
-      id="sharedKicker"
-      class="eyebrow">
-    </div>
+<section id="quiz" class="hidden">
 
-    <h2 id="sharedTitle"></h2>
+<div class="backbar">
 
-    <p id="sharedCopy"></p>
+<button
+id="quizBack"
+class="backbtn"
+onclick="goBack()">
+</button>
 
-    <div class="sharedCard">
+</div>
 
-      <div class="warning">
-        ⚠ WARNING LABEL
-      </div>
+<div class="progress">
+<div id="bar" class="bar"></div>
+</div>
 
-      <div
-        id="sharedScore"
-        class="score">
-      </div>
+<div class="card">
 
-      <div
-        id="sharedLabel"
-        class="label">
-      </div>
+<div id="qnum" class="qnum"></div>
 
-      <div
-        id="sharedTag"
-        class="tag">
-      </div>
+<div id="question" class="question"></div>
 
-    </div>
+<div id="options"></div>
 
-    <button
-      id="ownTestBtn"
-      class="secondary"
-      onclick="startOwnFromShare()">
-    </button>
+</div>
 
-    <div
-      class="section"
-      style="text-align:left">
+</section>
 
-      <div
-        id="sharedRelTitle"
-        class="mini">
-      </div>
 
-      <div class="relationship-grid">
+<section id="result" class="result hidden">
 
-        <button
-          class="relbtn sharedRel active"
-          data-rel="friend"
-          onclick="setSharedRel('friend',this)">
-        </button>
+<div class="backbar">
 
-        <button
-          class="relbtn sharedRel"
-          data-rel="family"
-          onclick="setSharedRel('family',this)">
-        </button>
+<button
+id="resultBack"
+class="backbtn"
+onclick="goBack()">
+</button>
 
-        <button
-          class="relbtn sharedRel"
-          data-rel="partner"
-          onclick="setSharedRel('partner',this)">
-        </button>
+</div>
 
-        <button
-          class="relbtn sharedRel"
-          data-rel="work"
-          onclick="setSharedRel('work',this)">
-        </button>
+<div class="card">
 
-      </div>
+<div class="warning">
+⚠ WARNING LABEL
+</div>
 
-      <button
-        id="sharedCompareBtn"
-        class="primary"
-        style="margin-top:12px"
-        onclick="startConnectionFromShared()">
-      </button>
+<div id="score" class="score"></div>
 
-    </div>
+<div id="label" class="label"></div>
 
-  </section>
+<div id="tag" class="tag"></div>
 
 
-  <section id="quiz" class="hidden">
+<!-- CONNECTION RESULT -->
+<div id="connectionAuto" class="connectionHero hidden">
 
-    <div class="backbar">
+<div
+id="connectionKicker"
+class="eyebrow">
+</div>
 
-      <button
-        id="quizBack"
-        class="backbtn"
-        onclick="goBack()">
-      </button>
+<div
+id="compareTitle"
+class="reportTitle">
+</div>
 
-    </div>
+<div
+id="compatScore"
+class="score">
+</div>
 
-    <div class="progress">
-      <div id="bar" class="bar"></div>
-    </div>
+<div
+id="compatLabel"
+class="label">
+</div>
 
-    <div class="card">
+<p id="compatCopy"></p>
 
-      <div
-        id="qnum"
-        class="qnum">
-      </div>
 
-      <div
-        id="question"
-        class="question">
-      </div>
+<div class="positive">
 
-      <div id="options"></div>
+<h3 id="positiveTitle"></h3>
 
-    </div>
+<p id="positiveCopy"></p>
 
-  </section>
+</div>
 
 
-  <section
-    id="result"
-    class="result hidden">
+<div class="compareGrid">
 
-    <div class="backbar">
+<div class="person">
 
-      <button
-        id="resultBack"
-        class="backbtn"
-        onclick="goBack()">
-      </button>
+<div
+id="themText"
+class="mini">
+</div>
 
-    </div>
+<div
+id="themScore"
+class="label">
+</div>
 
+<div id="themLabel"></div>
 
-    <div class="card">
+</div>
 
-      <div class="warning">
-        ⚠ WARNING LABEL
-      </div>
 
-      <div
-        id="score"
-        class="score">
-      </div>
+<div class="person">
 
-      <div
-        id="label"
-        class="label">
-      </div>
+<div
+id="youText"
+class="mini">
+</div>
 
-      <div
-        id="tag"
-        class="tag">
-      </div>
+<div
+id="youScore"
+class="label">
+</div>
 
+<div id="youLabel"></div>
 
-      <div class="sharecard">
+</div>
 
-        <div class="warning">
-          ⚠ WARNING LABEL
-        </div>
+</div>
 
-        <div
-          id="shareScore"
-          class="score">
-        </div>
 
-        <div
-          id="shareLabel"
-          class="label">
-        </div>
+<div id="traitRows"></div>
 
-        <div
-          id="shareTag"
-          class="tag">
-        </div>
 
-        <div class="mini">
-          ZELQOZA ·
-          <span id="seeMine"></span>
-        </div>
+<div class="section">
+<h3 id="whyTitle"></h3>
+<p id="whyText"></p>
+</div>
 
-      </div>
+<div class="section">
+<h3 id="whereTitle"></h3>
+<p id="whereText"></p>
+</div>
 
+<div class="section">
+<h3 id="youDoTitle"></h3>
+<p id="youDoText"></p>
+</div>
 
-      <button
-        id="shareBtn"
-        class="secondary"
-        onclick="toggleShare()">
-      </button>
+<div class="section">
+<h3 id="theyDoTitle"></h3>
+<p id="theyDoText"></p>
+</div>
 
+<div class="section">
+<h3 id="ruleTitle"></h3>
+<p id="ruleText"></p>
+</div>
 
-      <div
-        id="shareMenu"
-        class="sharemenu">
+</div>
+<!-- END CONNECTION RESULT -->
 
-        <div class="sharegrid">
 
-          <button
-            id="copyResultBtn"
-            class="sharebtn"
-            onclick="copyResultLink()">
-          </button>
+<div class="sharecard">
 
-          <button
-            id="whatsappBtn"
-            class="sharebtn"
-            onclick="shareWhatsApp()">
-          </button>
+<div class="warning">
+⚠ WARNING LABEL
+</div>
 
-          <button
-            id="facebookBtn"
-            class="sharebtn"
-            onclick="shareFacebook()">
-          </button>
+<div
+id="shareScore"
+class="score">
+</div>
 
-          <button
-            id="moreBtn"
-            class="sharebtn"
-            onclick="nativeShare()">
-          </button>
+<div
+id="shareLabel"
+class="label">
+</div>
 
-        </div>
+<div
+id="shareTag"
+class="tag">
+</div>
 
-        <div
-          id="shareStatus"
-          class="status">
-        </div>
+<div class="mini">
+ZELQOZA · <span id="seeMine"></span>
+</div>
 
-      </div>
+</div>
 
 
-      <div class="paywall">
+<button
+id="shareBtn"
+class="secondary"
+onclick="toggleShare()">
+</button>
 
-        <h3 id="deepTitle"></h3>
 
-        <p id="deepCopy"></p>
+<div
+id="shareMenu"
+class="sharemenu">
 
-        <div class="payrow">
-          <span id="misreadLabel"></span>
-          <span class="blur">xxxxx</span>
-        </div>
+<div class="sharegrid">
 
-        <div class="payrow">
-          <span id="patternLabel"></span>
-          <span class="blur">xxxxx</span>
-        </div>
+<button
+id="copyResultBtn"
+class="sharebtn"
+onclick="copyResultLink()">
+</button>
 
-        <div class="payrow">
-          <span id="moveLabel"></span>
-          <span class="blur">xxxxx</span>
-        </div>
+<button
+id="whatsappBtn"
+class="sharebtn"
+onclick="shareWhatsApp()">
+</button>
 
-        <button
-          id="unlockBtn"
-          class="primary"
-          onclick="unlockDeepRead()">
-        </button>
+<button
+id="facebookBtn"
+class="sharebtn"
+onclick="shareFacebook()">
+</button>
 
-        <div
-          id="previewNote"
-          class="mini"
-          style="text-align:center;margin-top:8px">
-        </div>
+<button
+id="moreBtn"
+class="sharebtn"
+onclick="nativeShare()">
+</button>
 
-      </div>
+</div>
 
+<div
+id="shareStatus"
+class="status">
+</div>
 
-      <div
-        id="report"
-        class="report hidden">
+</div>
 
-        <div class="reportHero">
 
-          <div
-            id="reportTitle"
-            class="reportTitle">
-          </div>
+<div class="paywall">
 
-          <div
-            id="reportTag"
-            class="tag">
-          </div>
+<h3 id="deepTitle"></h3>
 
-          <div class="metricGrid">
+<p id="deepCopy"></p>
 
-            <div class="metric">
-              <span id="m1"></span>
-              <b id="mv1"></b>
-            </div>
+<div class="payrow">
+<span id="misreadLabel"></span>
+<span class="blur">xxxxx</span>
+</div>
 
-            <div class="metric">
-              <span id="m2"></span>
-              <b id="mv2"></b>
-            </div>
+<div class="payrow">
+<span id="patternLabel"></span>
+<span class="blur">xxxxx</span>
+</div>
 
-            <div class="metric">
-              <span id="m3"></span>
-              <b id="mv3"></b>
-            </div>
+<div class="payrow">
+<span id="moveLabel"></span>
+<span class="blur">xxxxx</span>
+</div>
 
-            <div class="metric">
-              <span id="m4"></span>
-              <b id="mv4"></b>
-            </div>
+<button
+id="unlockBtn"
+class="primary"
+onclick="unlockDeepRead()">
+</button>
 
-          </div>
+<div
+id="previewNote"
+class="mini"
+style="text-align:center;margin-top:8px">
+</div>
 
-        </div>
+</div>
 
 
-        <div class="section">
+<div
+id="report"
+class="report hidden">
 
-          <h3 id="underTitle"></h3>
+<div class="reportHero">
 
-          <p id="underText"></p>
+<div
+id="reportTitle"
+class="reportTitle">
+</div>
 
-        </div>
+<div
+id="reportTag"
+class="tag">
+</div>
 
+<div class="metricGrid">
 
-        <div class="section">
+<div class="metric">
+<span id="m1"></span>
+<b id="mv1"></b>
+</div>
 
-          <h3 id="frictionTitle"></h3>
+<div class="metric">
+<span id="m2"></span>
+<b id="mv2"></b>
+</div>
 
-          <p id="frictionText"></p>
+<div class="metric">
+<span id="m3"></span>
+<b id="mv3"></b>
+</div>
 
-        </div>
+<div class="metric">
+<span id="m4"></span>
+<b id="mv4"></b>
+</div>
 
+</div>
 
-        <div class="section">
+</div>
 
-          <h3 id="movesTitle"></h3>
 
-          <div id="moves"></div>
+<div class="section">
 
-        </div>
+<h3 id="underTitle"></h3>
 
+<p id="underText"></p>
 
-        <div class="section">
+</div>
 
-          <h3 id="connectionTitle"></h3>
 
-          <p id="connectionIntro"></p>
+<div class="section">
 
+<h3 id="frictionTitle"></h3>
 
-          <button
-            id="openConnectionBtn"
-            class="primary"
-            onclick="openConnectionSetup()">
-          </button>
+<p id="frictionText"></p>
 
+</div>
 
-          <div
-            id="connectionSetup"
-            class="connectionSetup">
 
-            <div
-              id="whatPerson"
-              class="mini">
-            </div>
+<div class="section">
 
+<h3 id="movesTitle"></h3>
 
-            <div class="relationship-grid">
+<div id="moves"></div>
 
-              <button
-                class="relbtn mainRel active"
-                data-rel="friend"
-                onclick="setRel('friend',this)">
-              </button>
+</div>
 
-              <button
-                class="relbtn mainRel"
-                data-rel="family"
-                onclick="setRel('family',this)">
-              </button>
 
-              <button
-                class="relbtn mainRel"
-                data-rel="partner"
-                onclick="setRel('partner',this)">
-              </button>
+<div class="section">
 
-              <button
-                class="relbtn mainRel"
-                data-rel="work"
-                onclick="setRel('work',this)">
-              </button>
+<h3 id="connectionTitle"></h3>
 
-            </div>
+<p id="connectionIntro"></p>
 
+<button
+id="openConnectionBtn"
+class="primary"
+onclick="openConnectionSetup()">
+</button>
 
-            <div class="preview">
 
-              <div
-                id="previewLine"
-                class="eyebrow">
-              </div>
+<div
+id="connectionSetup"
+class="connectionSetup">
 
-              <h4 id="previewTitle"></h4>
+<div
+id="whatPerson"
+class="mini">
+</div>
 
-              <p id="previewText"></p>
 
-            </div>
+<div class="relationship-grid">
 
+<button
+class="relbtn mainRel active"
+data-rel="friend"
+onclick="setRel('friend',this)">
+</button>
 
-            <button
-              id="createLinkBtn"
-              class="primary"
-              style="margin-top:12px"
-              onclick="createConnectionLink()">
-            </button>
+<button
+class="relbtn mainRel"
+data-rel="family"
+onclick="setRel('family',this)">
+</button>
 
+<button
+class="relbtn mainRel"
+data-rel="partner"
+onclick="setRel('partner',this)">
+</button>
 
-            <div
-              id="connectionStatus"
-              class="status">
-            </div>
+<button
+class="relbtn mainRel"
+data-rel="work"
+onclick="setRel('work',this)">
+</button>
 
+</div>
 
-            <div
-              id="linkbox"
-              class="linkbox">
 
-              <input
-                id="connectionInput"
-                readonly>
+<div class="preview">
 
+<div
+id="previewLine"
+class="eyebrow">
+</div>
 
-              <div class="linkactions">
+<h4 id="previewTitle"></h4>
 
-                <button
-                  id="copyLinkBtn"
-                  class="secondary"
-                  onclick="copyConnectionLink()">
-                </button>
+<p id="previewText"></p>
 
-                <button
-                  id="shareLinkBtn"
-                  class="secondary"
-                  onclick="shareChallenge()">
-                </button>
+</div>
 
-              </div>
 
-            </div>
+<button
+id="createLinkBtn"
+class="primary"
+style="margin-top:12px"
+onclick="createConnectionLink()">
+</button>
 
-          </div>
+<div
+id="connectionStatus"
+class="status">
+</div>
 
-        </div>
 
+<div
+id="linkbox"
+class="linkbox">
 
-        <div
-          id="comparison"
-          class="section hidden">
+<input
+id="connectionInput"
+readonly>
 
-          <div
-            id="compareTitle"
-            class="reportTitle">
-          </div>
 
-          <div
-            id="compatScore"
-            class="score">
-          </div>
+<div class="linkactions">
 
-          <div
-            id="compatLabel"
-            class="label">
-          </div>
+<button
+id="copyLinkBtn"
+class="secondary"
+onclick="copyConnectionLink()">
+</button>
 
-          <p id="compatCopy"></p>
+<button
+id="shareLinkBtn"
+class="secondary"
+onclick="shareChallenge()">
+</button>
 
+</div>
 
-          <div class="positive">
+</div>
 
-            <h3 id="positiveTitle"></h3>
+</div>
 
-            <p id="positiveCopy"></p>
+</div>
 
-          </div>
+</div>
 
 
-          <div class="compareGrid">
+<button
+id="againBtn"
+class="secondary"
+style="margin-top:18px"
+onclick="restartTest()">
+</button>
 
-            <div class="person">
+</div>
 
-              <div
-                id="themText"
-                class="mini">
-              </div>
-
-              <div
-                id="themScore"
-                class="label">
-              </div>
-
-              <div id="themLabel"></div>
-
-            </div>
-
-
-            <div class="person">
-
-              <div
-                id="youText"
-                class="mini">
-              </div>
-
-              <div
-                id="youScore"
-                class="label">
-              </div>
-
-              <div id="youLabel"></div>
-
-            </div>
-
-          </div>
-
-
-          <div id="traitRows"></div>
-
-
-          <div class="section">
-
-            <h3 id="whyTitle"></h3>
-
-            <p id="whyText"></p>
-
-          </div>
-
-
-          <div class="section">
-
-            <h3 id="whereTitle"></h3>
-
-            <p id="whereText"></p>
-
-          </div>
-
-
-          <div class="section">
-
-            <h3 id="youDoTitle"></h3>
-
-            <p id="youDoText"></p>
-
-          </div>
-
-
-          <div class="section">
-
-            <h3 id="theyDoTitle"></h3>
-
-            <p id="theyDoText"></p>
-
-          </div>
-
-
-          <div class="section">
-
-            <h3 id="ruleTitle"></h3>
-
-            <p id="ruleText"></p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <button
-        id="againBtn"
-        class="secondary"
-        style="margin-top:18px"
-        onclick="restartTest()">
-      </button>
-
-    </div>
-
-  </section>
+</section>
 
 </div>
 
@@ -1145,121 +1005,215 @@ button{
 const TXT={
 
 en:{
+
 eyebrow:"THE 30-SECOND SELF-AWARENESS TEST",
+
 headline:"How do people actually experience you?",
+
 subhead:"Six questions. One uncomfortable read. Find out what people may notice about you before you do.",
+
 start:"Read me",
+
 disclaimer:"For self-reflection and entertainment — not a clinical assessment.",
+
 back:"← Back",
-sharedKicker:"Someone shared their Warning Label",
-sharedTitle:"Here’s how they came out.",
-sharedCopy:"Take your own test — or compare your profile with theirs.",
-ownTest:"Take my own test",
-howKnow:"How do you know this person?",
-takeCompare:"Take test + see our Connection Read",
+
 seeMine:"See mine. Take yours. Compare.",
+
 shareResult:"Share my result",
+
 copyResult:"🔗 Copy result link",
+
 whatsapp:"💬 WhatsApp",
+
 facebook:"f Facebook",
+
 more:"↗ More options",
+
 deepTitle:"Your Deep Read",
+
 deepCopy:"See what people may misunderstand about you, what gets in your way, and what you can do differently.",
+
 misread:"What people may misread",
+
 pattern:"Your strongest pattern",
+
 move:"Your next move",
+
 unlock:"Unlock my Deep Read — $1",
+
 preview:"Preview mode — no charge yet.",
+
 m1:"People may read you as",
+
 m2:"Your real strength",
+
 m3:"Your growth edge",
+
 m4:"Social risk",
+
 under:"What people may misunderstand",
+
 friction:"What gets in your way",
+
 moves:"Your 3 next moves",
+
 connection:"Connection Read",
-connectionIntro:"Compare your real profile with someone you know. Choose the relationship, send them your private link, and when they finish the test you’ll get a side-by-side read of both profiles.",
+
+connectionIntro:"Compare your real profile with someone you know. Choose the relationship and send them your private link.",
+
 openConnection:"Start a Connection Read",
+
 whatPerson:"What is this person to you?",
+
 createLink:"Create my private Connection link",
+
 copyLink:"Copy link",
+
 shareLink:"Share it",
+
 friend:"Friend",
+
 family:"Family",
+
 partner:"Partner",
+
 work:"Work",
+
 them:"THEM",
+
 you:"YOU",
+
 why:"Why you click",
+
 where:"Where you misread each other",
+
 youDo:"What YOU should do with this person",
+
 theyDo:"What THEY should do with you",
+
 rule:"Your best communication rule",
+
 again:"↻ Take the test again",
+
 linkCreated:"Private Connection link created ✓",
+
 linkCopied:"Connection link copied ✓ — send it to the other person.",
+
 resultCopied:"Result link copied ✓",
+
 shareDone:"Share completed ✓",
+
+connectionKicker:"YOUR CONNECTION READ",
+
 q:(n,t)=>`QUESTION ${n} OF ${t}`
+
 },
 
 es:{
+
 eyebrow:"EL TEST DE AUTOCONOCIMIENTO DE 30 SEGUNDOS",
+
 headline:"¿Cómo te perciben realmente los demás?",
+
 subhead:"Seis preguntas. Una lectura incómodamente precisa. Descubre lo que otros pueden notar de ti antes que tú.",
+
 start:"Léeme",
+
 disclaimer:"Para reflexión personal y entretenimiento — no es una evaluación clínica.",
+
 back:"← Regresar",
-sharedKicker:"Alguien compartió su Warning Label",
-sharedTitle:"Así salió su resultado.",
-sharedCopy:"Haz tu propio test — o compara tu perfil con el suyo.",
-ownTest:"Hacer mi propio test",
-howKnow:"¿Qué relación tienes con esta persona?",
-takeCompare:"Hacer test + ver nuestra conexión",
+
 seeMine:"Ve el mío. Haz el tuyo. Comparemos.",
+
 shareResult:"Compartir mi resultado",
+
 copyResult:"🔗 Copiar enlace del resultado",
+
 whatsapp:"💬 WhatsApp",
+
 facebook:"f Facebook",
+
 more:"↗ Más opciones",
+
 deepTitle:"Tu lectura profunda",
+
 deepCopy:"Descubre qué pueden malinterpretar de ti, qué suele frenarte y qué puedes hacer diferente.",
+
 misread:"Lo que otros pueden malinterpretar",
+
 pattern:"Tu patrón más fuerte",
+
 move:"Tu siguiente movimiento",
+
 unlock:"Desbloquear mi lectura — $1",
+
 preview:"Modo de prueba — todavía no hay cobro.",
+
 m1:"Otros pueden verte como",
+
 m2:"Tu fortaleza real",
+
 m3:"Tu área de crecimiento",
+
 m4:"Riesgo social",
+
 under:"Lo que otros pueden malinterpretar",
+
 friction:"Lo que se interpone en tu camino",
+
 moves:"Tus 3 siguientes movimientos",
+
 connection:"Lectura de conexión",
-connectionIntro:"Compara tu perfil real con alguien que conoces. Elige la relación, envíale tu enlace privado y cuando termine el test verás ambos perfiles lado a lado.",
+
+connectionIntro:"Compara tu perfil real con alguien que conoces. Elige la relación y envíale tu enlace privado.",
+
 openConnection:"Iniciar lectura de conexión",
+
 whatPerson:"¿Qué es esta persona para ti?",
+
 createLink:"Crear mi enlace privado de conexión",
+
 copyLink:"Copiar enlace",
+
 shareLink:"Compartir",
+
 friend:"Amistad",
+
 family:"Familiar",
+
 partner:"Pareja",
+
 work:"Trabajo",
+
 them:"LA OTRA PERSONA",
+
 you:"TÚ",
+
 why:"Por qué conectan",
+
 where:"Dónde pueden malinterpretarse",
+
 youDo:"Lo que TÚ deberías hacer con esta persona",
+
 theyDo:"Lo que ESA PERSONA debería hacer contigo",
+
 rule:"Su mejor regla de comunicación",
+
 again:"↻ Volver a hacer el test",
+
 linkCreated:"Enlace privado creado ✓",
+
 linkCopied:"Enlace copiado ✓ — envíaselo a la otra persona.",
+
 resultCopied:"Enlace del resultado copiado ✓",
+
 shareDone:"Compartido ✓",
+
+connectionKicker:"SU LECTURA DE CONEXIÓN",
+
 q:(n,t)=>`PREGUNTA ${n} DE ${t}`
+
 }
 
 };
@@ -1444,7 +1398,7 @@ es:["Acceso Selectivo","No eres cerrado/a; eres selectivo/a. La confianza se gan
 
 
 let lang=
-((navigator.language||"en")
+((localStorage.getItem("zelqoza_lang")||navigator.language||"en")
 .toLowerCase()
 .startsWith("es"))
 ?"es"
@@ -1461,7 +1415,9 @@ regulation:0,
 social:0
 };
 
+
 let historyAnswers=[];
+
 
 let currentResult={
 pct:0,
@@ -1469,11 +1425,11 @@ idx:0,
 traits:null
 };
 
+
 let relationshipMode="friend";
 
-let sharedRelationshipMode="friend";
 
-let sharedPerson=null;
+let activeChallenge=null;
 
 
 const $=
@@ -1484,17 +1440,17 @@ document.getElementById(id);
 const tx=
 k=>
 TXT[lang][k]
-||TXT.en[k]
-||k;
+||
+TXT.en[k]
+||
+k;
 
 
-function profile(idx){
-return(
+const profile=
+idx=>
 PROFILES[idx][lang]
 ||
-PROFILES[idx].en
-);
-}
+PROFILES[idx].en;
 
 
 function setLanguage(l){
@@ -1518,12 +1474,14 @@ function applyLanguage(){
 document.documentElement.lang=
 lang;
 
+
 $("enBtn")
 .classList
 .toggle(
 "active",
 lang==="en"
 );
+
 
 $("esBtn")
 .classList
@@ -1533,74 +1491,62 @@ lang==="es"
 );
 
 
-$("eyebrow").innerText=tx("eyebrow");
-$("headline").innerText=tx("headline");
-$("subhead").innerText=tx("subhead");
-$("startBtn").innerText=tx("start");
-$("disclaimer").innerText=tx("disclaimer");
+const map={
+
+eyebrow:"eyebrow",
+headline:"headline",
+subhead:"subhead",
+startBtn:"start",
+disclaimer:"disclaimer",
+quizBack:"back",
+resultBack:"back",
+seeMine:"seeMine",
+shareBtn:"shareResult",
+copyResultBtn:"copyResult",
+whatsappBtn:"whatsapp",
+facebookBtn:"facebook",
+moreBtn:"more",
+deepTitle:"deepTitle",
+deepCopy:"deepCopy",
+misreadLabel:"misread",
+patternLabel:"pattern",
+moveLabel:"move",
+unlockBtn:"unlock",
+previewNote:"preview",
+m1:"m1",
+m2:"m2",
+m3:"m3",
+m4:"m4",
+underTitle:"under",
+frictionTitle:"friction",
+movesTitle:"moves",
+connectionTitle:"connection",
+connectionIntro:"connectionIntro",
+openConnectionBtn:"openConnection",
+whatPerson:"whatPerson",
+createLinkBtn:"createLink",
+copyLinkBtn:"copyLink",
+shareLinkBtn:"shareLink",
+connectionKicker:"connectionKicker",
+themText:"them",
+youText:"you",
+whyTitle:"why",
+whereTitle:"where",
+youDoTitle:"youDo",
+theyDoTitle:"theyDo",
+ruleTitle:"rule",
+againBtn:"again"
+
+};
 
 
-[
-"sharedBack",
-"quizBack",
-"resultBack"
-]
+Object
+.entries(map)
 .forEach(
-id=>
+([id,k])=>
 $(id).innerText=
-tx("back")
+tx(k)
 );
-
-
-$("sharedKicker").innerText=tx("sharedKicker");
-$("sharedTitle").innerText=tx("sharedTitle");
-$("sharedCopy").innerText=tx("sharedCopy");
-$("ownTestBtn").innerText=tx("ownTest");
-$("sharedRelTitle").innerText=tx("howKnow");
-$("sharedCompareBtn").innerText=tx("takeCompare");
-
-$("seeMine").innerText=tx("seeMine");
-
-$("shareBtn").innerText=tx("shareResult");
-$("copyResultBtn").innerText=tx("copyResult");
-$("whatsappBtn").innerText=tx("whatsapp");
-$("facebookBtn").innerText=tx("facebook");
-$("moreBtn").innerText=tx("more");
-
-$("deepTitle").innerText=tx("deepTitle");
-$("deepCopy").innerText=tx("deepCopy");
-$("misreadLabel").innerText=tx("misread");
-$("patternLabel").innerText=tx("pattern");
-$("moveLabel").innerText=tx("move");
-$("unlockBtn").innerText=tx("unlock");
-$("previewNote").innerText=tx("preview");
-
-$("m1").innerText=tx("m1");
-$("m2").innerText=tx("m2");
-$("m3").innerText=tx("m3");
-$("m4").innerText=tx("m4");
-
-$("underTitle").innerText=tx("under");
-$("frictionTitle").innerText=tx("friction");
-$("movesTitle").innerText=tx("moves");
-
-$("connectionTitle").innerText=tx("connection");
-$("connectionIntro").innerText=tx("connectionIntro");
-$("openConnectionBtn").innerText=tx("openConnection");
-$("whatPerson").innerText=tx("whatPerson");
-$("createLinkBtn").innerText=tx("createLink");
-$("copyLinkBtn").innerText=tx("copyLink");
-$("shareLinkBtn").innerText=tx("shareLink");
-
-$("themText").innerText=tx("them");
-$("youText").innerText=tx("you");
-$("whyTitle").innerText=tx("why");
-$("whereTitle").innerText=tx("where");
-$("youDoTitle").innerText=tx("youDo");
-$("theyDoTitle").innerText=tx("theyDo");
-$("ruleTitle").innerText=tx("rule");
-
-$("againBtn").innerText=tx("again");
 
 
 document
@@ -1647,20 +1593,14 @@ currentResult.pct,
 currentResult.traits
 );
 
-}
 
+if(activeChallenge){
 
-if(
-!$("shared")
-.classList
-.contains("hidden")
-&&
-sharedPerson
-){
-
-showShared(
-sharedPerson
+renderConnection(
+activeChallenge
 );
+
+}
 
 }
 
@@ -1668,6 +1608,7 @@ sharedPerson
 updatePreview(
 relationshipMode
 );
+
 
 initChallengeBanner();
 
@@ -1694,11 +1635,17 @@ function render(){
 const q=
 QUIZ[lang][i];
 
+
 $("bar")
 .style
 .width=
-(i/QUIZ[lang].length*100)
+(
+i/
+QUIZ[lang].length
+*100
+)
 +"%";
+
 
 $("qnum")
 .innerText=
@@ -1707,9 +1654,11 @@ i+1,
 QUIZ[lang].length
 );
 
+
 $("question")
 .innerText=
 q[0];
+
 
 $("options")
 .innerHTML="";
@@ -1747,7 +1696,8 @@ w,
 m=1
 ){
 
-Object.keys(w)
+Object
+.keys(w)
 .forEach(
 k=>
 traits[k]+=
@@ -1766,6 +1716,7 @@ historyAnswers.push({
 applyWeights(w);
 
 i++;
+
 
 i<QUIZ[lang].length
 ?
@@ -1786,6 +1737,7 @@ traits.directness<=0
 return 0;
 }
 
+
 if(
 traits.attachment>=2
 &&
@@ -1793,6 +1745,7 @@ traits.directness<=0
 ){
 return 1;
 }
+
 
 if(
 traits.social>=3
@@ -1802,17 +1755,20 @@ traits.regulation<=1
 return 2;
 }
 
+
 if(
 traits.attachment<=-3
 ){
 return 3;
 }
 
+
 if(
 traits.directness>=4
 ){
 return 4;
 }
+
 
 if(
 traits.regulation<=-2
@@ -1822,6 +1778,7 @@ traits.social<=1
 return 5;
 }
 
+
 if(
 traits.social>=2
 &&
@@ -1829,6 +1786,7 @@ traits.openness>=1
 ){
 return 6;
 }
+
 
 return 7;
 
@@ -1841,12 +1799,15 @@ $("quiz")
 .classList
 .add("hidden");
 
+
 $("result")
 .classList
 .remove("hidden");
 
+
 const idx=
 selectProfile();
+
 
 const strongest=
 Math.max(
@@ -1854,6 +1815,7 @@ Math.max(
 .values(traits)
 .map(Math.abs)
 );
+
 
 const pct=
 Math.min(
@@ -1864,18 +1826,36 @@ strongest*4
 )
 );
 
+
 applyResult(
 idx,
 pct,
 {...traits}
 );
 
-history
-.replaceState(
+
+if(activeChallenge){
+
+renderConnection(
+activeChallenge
+);
+
+history.replaceState(
+null,
+"",
+buildChallengeResultUrl()
+);
+
+}else{
+
+history.replaceState(
 null,
 "",
 getShareUrl()
 );
+
+}
+
 
 window.scrollTo({
 top:0,
@@ -1893,30 +1873,41 @@ tdata
 
 currentResult={
 idx,
-pct:Math.min(99,pct),
+pct:
+Math.min(
+99,
+pct
+),
 traits:
 tdata
 ||
 currentResult.traits
 };
 
+
 const p=
 profile(idx);
+
 
 $("score").innerText=
 currentResult.pct+"%";
 
+
 $("shareScore").innerText=
 currentResult.pct+"%";
+
 
 $("label").innerText=
 p[0];
 
+
 $("shareLabel").innerText=
 p[0];
 
+
 $("tag").innerText=
 p[1];
+
 
 $("shareTag").innerText=
 p[1];
@@ -1936,12 +1927,20 @@ $("result")
 .classList
 .add("hidden");
 
+
 $("report")
 .classList
 .add("hidden");
 
 
-if(historyAnswers.length){
+$("connectionAuto")
+.classList
+.add("hidden");
+
+
+if(
+historyAnswers.length
+){
 
 applyWeights(
 historyAnswers.pop(),
@@ -1954,9 +1953,11 @@ historyAnswers.pop(),
 i=
 QUIZ[lang].length-1;
 
+
 $("quiz")
 .classList
 .remove("hidden");
+
 
 render();
 
@@ -1971,6 +1972,7 @@ $("quiz")
 .classList
 .add("hidden");
 
+
 $("start")
 .classList
 .remove("hidden");
@@ -1980,7 +1982,9 @@ return;
 }
 
 
-if(historyAnswers.length){
+if(
+historyAnswers.length
+){
 
 applyWeights(
 historyAnswers.pop(),
@@ -1988,6 +1992,7 @@ historyAnswers.pop(),
 );
 
 }
+
 
 i--;
 
@@ -2030,18 +2035,23 @@ if(!v){
 return null;
 }
 
+
 const a=
 v
 .split(",")
 .map(Number);
+
 
 if(
 a.length!==5
 ||
 a.some(Number.isNaN)
 ){
+
 return null;
+
 }
+
 
 return{
 openness:a[0],
@@ -2136,7 +2146,10 @@ u.searchParams.set(
 currentResult.pct
 );
 
-if(currentResult.traits){
+
+if(
+currentResult.traits
+){
 
 u.searchParams.set(
 "t",
@@ -2147,6 +2160,7 @@ currentResult.traits
 
 }
 
+
 return u.toString();
 
 }
@@ -2156,21 +2170,22 @@ function toggleShare(){
 
 $("shareMenu")
 .classList
-.toggle("show");
+.toggle(
+"show"
+);
 
 }
 
 
 async function copyResultLink(){
 
-const ok=
-await copyText(
-getShareUrl()
-);
-
 $("shareStatus")
 .innerText=
-ok
+(
+await copyText(
+getShareUrl()
+)
+)
 ?
 tx("resultCopied")
 :
@@ -2185,6 +2200,7 @@ const p=
 profile(
 currentResult.idx
 );
+
 
 return lang==="es"
 
@@ -2232,7 +2248,9 @@ const url=
 getShareUrl();
 
 
-if(navigator.share){
+if(
+navigator.share
+){
 
 try{
 
@@ -2241,6 +2259,7 @@ title:"Warning Label",
 text,
 url
 });
+
 
 $("shareStatus")
 .innerText=
@@ -2253,16 +2272,15 @@ return;
 }
 
 
-const ok=
+$("shareStatus")
+.innerText=
+(
 await copyText(
 text+
 " "+
 url
-);
-
-$("shareStatus")
-.innerText=
-ok
+)
+)
 ?
 tx("resultCopied")
 :
@@ -2278,28 +2296,39 @@ profile(
 currentResult.idx
 );
 
+
 $("report")
 .classList
 .remove("hidden");
+
 
 $("reportTitle")
 .innerText=
 p[0];
 
+
 $("reportTag")
 .innerText=
 p[1];
 
-$("mv1").innerText=
+
+$("mv1")
+.innerText=
 p[3];
 
-$("mv2").innerText=
+
+$("mv2")
+.innerText=
 p[2];
 
-$("mv3").innerText=
+
+$("mv3")
+.innerText=
 p[4];
 
-$("mv4").innerText=
+
+$("mv4")
+.innerText=
 p[5];
 
 
@@ -2371,16 +2400,6 @@ $("moves")
 );
 
 
-const inc=
-getChallenge();
-
-if(inc){
-
-renderComparison(inc);
-
-}
-
-
 $("report")
 .scrollIntoView({
 behavior:"smooth"
@@ -2397,6 +2416,7 @@ btn
 relationshipMode=
 mode;
 
+
 document
 .querySelectorAll(
 ".mainRel"
@@ -2407,34 +2427,14 @@ x.classList
 .remove("active")
 );
 
+
 btn.classList
 .add("active");
 
-updatePreview(mode);
 
-}
-
-
-function setSharedRel(
-mode,
-btn
-){
-
-sharedRelationshipMode=
-mode;
-
-document
-.querySelectorAll(
-".sharedRel"
-)
-.forEach(
-x=>
-x.classList
-.remove("active")
+updatePreview(
+mode
 );
-
-btn.classList
-.add("active");
 
 }
 
@@ -2513,19 +2513,25 @@ en
 function updatePreview(mode){
 
 const d=
-previewData(mode);
+previewData(
+mode
+);
+
 
 if(!d){
 return;
 }
 
+
 $("previewLine")
 .innerText=
 d[0];
 
+
 $("previewTitle")
 .innerText=
 d[1];
+
 
 $("previewText")
 .innerText=
@@ -2538,11 +2544,15 @@ function openConnectionSetup(){
 
 $("connectionSetup")
 .classList
-.add("show");
+.add(
+"show"
+);
+
 
 updatePreview(
 relationshipMode
 );
+
 
 $("connectionSetup")
 .scrollIntoView({
@@ -2559,27 +2569,34 @@ new URL(
 base()
 );
 
+
 u.searchParams.set(
 "c",
 "1"
 );
+
 
 u.searchParams.set(
 "cr",
 currentResult.idx
 );
 
+
 u.searchParams.set(
 "cs",
 currentResult.pct
 );
+
 
 u.searchParams.set(
 "rel",
 relationshipMode
 );
 
-if(currentResult.traits){
+
+if(
+currentResult.traits
+){
 
 u.searchParams.set(
 "ct",
@@ -2589,6 +2606,7 @@ currentResult.traits
 );
 
 }
+
 
 return u.toString();
 
@@ -2600,34 +2618,39 @@ function createConnectionLink(){
 const url=
 makeChallengeUrl();
 
+
 $("connectionInput")
 .value=
 url;
 
+
 $("linkbox")
 .classList
-.add("show");
+.add(
+"show"
+);
+
 
 $("connectionStatus")
 .innerText=
-tx("linkCreated");
+tx(
+"linkCreated"
+);
 
 }
 
 
 async function copyConnectionLink(){
 
-const ok=
-await copyText(
-$("connectionInput")
-.value
-||
-makeChallengeUrl()
-);
-
 $("connectionStatus")
 .innerText=
-ok
+(
+await copyText(
+$("connectionInput").value
+||
+makeChallengeUrl()
+)
+)
 ?
 tx("linkCopied")
 :
@@ -2641,6 +2664,7 @@ async function shareChallenge(){
 const url=
 makeChallengeUrl();
 
+
 const text=
 lang==="es"
 
@@ -2649,7 +2673,9 @@ lang==="es"
 :`These are MY Warning Label results. Take yours and let’s unlock our Connection Read: ${url}`;
 
 
-if(navigator.share){
+if(
+navigator.share
+){
 
 try{
 
@@ -2658,6 +2684,7 @@ title:"Warning Label Connection",
 text,
 url
 });
+
 
 $("connectionStatus")
 .innerText=
@@ -2672,34 +2699,41 @@ return;
 
 window.open(
 "https://wa.me/?text="+
-encodeURIComponent(text),
+encodeURIComponent(
+text
+),
 "_blank"
 );
 
 }
 
 
-function getShared(){
+function readChallengeFromUrl(){
 
 const p=
 new URLSearchParams(
 location.search
 );
 
+
 if(
-p.get("share")!=="1"
+p.get("c")!=="1"
 ){
+
 return null;
+
 }
+
 
 const idx=
 Number(
-p.get("r")
+p.get("cr")
 );
+
 
 const pct=
 Number(
-p.get("s")
+p.get("cs")
 );
 
 
@@ -2718,228 +2752,10 @@ return null;
 }
 
 
-return{
-idx,
-pct,
-traits:
-parseTraits(
-p.get("t")
-)
-};
-
-}
-
-
-function showShared(s){
-
-sharedPerson=
-s;
-
-const p=
-profile(
-s.idx
-);
-
-$("start")
-.classList
-.add("hidden");
-
-$("shared")
-.classList
-.remove("hidden");
-
-$("sharedScore")
-.innerText=
-s.pct+"%";
-
-$("sharedLabel")
-.innerText=
-p[0];
-
-$("sharedTag")
-.innerText=
-p[1];
-
-}
-
-
-function clearState(){
-
-i=0;
-
-traits={
-openness:0,
-directness:0,
-attachment:0,
-regulation:0,
-social:0
-};
-
-historyAnswers=[];
-
-currentResult={
-pct:0,
-idx:0,
-traits:null
-};
-
-}
-
-
-function startOwnFromShare(){
-
-clearState();
-
-history.replaceState(
-null,
-"",
-base()
-);
-
-$("shared")
-.classList
-.add("hidden");
-
-$("start")
-.classList
-.remove("hidden");
-
-}
-
-
-function startConnectionFromShared(){
-
-if(!sharedPerson){
-return;
-}
-
-clearState();
-
-const u=
-new URL(
-base()
-);
-
-u.searchParams.set(
-"c",
-"1"
-);
-
-u.searchParams.set(
-"cr",
-sharedPerson.idx
-);
-
-u.searchParams.set(
-"cs",
-sharedPerson.pct
-);
-
-u.searchParams.set(
-"rel",
-sharedRelationshipMode
-);
-
-if(sharedPerson.traits){
-
-u.searchParams.set(
-"ct",
-compact(
-sharedPerson.traits
-)
-);
-
-}
-
-history.replaceState(
-null,
-"",
-u.toString()
-);
-
-$("shared")
-.classList
-.add("hidden");
-
-$("start")
-.classList
-.remove("hidden");
-
-initChallengeBanner();
-
-}
-
-
-function exitShared(){
-
-history.replaceState(
-null,
-"",
-base()
-);
-
-$("shared")
-.classList
-.add("hidden");
-
-$("start")
-.classList
-.remove("hidden");
-
-}
-
-
-function getChallenge(){
-
-const p=
-new URLSearchParams(
-location.search
-);
-
-if(
-p.get("c")!=="1"
-){
-return null;
-}
-
-const idx=
-Number(
-p.get("cr")
-);
-
-const pct=
-Number(
-p.get("cs")
-);
-
-
-if(
-!Number.isInteger(idx)
-||
-idx<0
-||
-idx>=PROFILES.length
-){
-
-return null;
-
-}
-
-
 let rel=
 p.get("rel")
 ||
 "friend";
-
-
-if(
-rel==="dating"
-){
-
-rel=
-"family";
-
-}
 
 
 return{
@@ -2955,16 +2771,71 @@ p.get("ct")
 }
 
 
+function saveActiveChallenge(c){
+
+activeChallenge=
+c;
+
+
+sessionStorage.setItem(
+"zelqoza_active_challenge",
+JSON.stringify(c)
+);
+
+}
+
+
+function loadActiveChallenge(){
+
+try{
+
+const x=
+sessionStorage.getItem(
+"zelqoza_active_challenge"
+);
+
+
+return x
+?
+JSON.parse(x)
+:
+null;
+
+}catch(e){
+
+return null;
+
+}
+
+}
+
+
+function clearActiveChallenge(){
+
+activeChallenge=
+null;
+
+
+sessionStorage.removeItem(
+"zelqoza_active_challenge"
+);
+
+}
+
+
 function initChallengeBanner(){
 
 const c=
-getChallenge();
+activeChallenge;
+
 
 if(!c){
 
 $("challengeBanner")
 .classList
-.add("hidden");
+.add(
+"hidden"
+);
 
 return;
 
@@ -2979,16 +2850,37 @@ c.idx
 
 $("challengeBanner")
 .classList
-.remove("hidden");
+.remove(
+"hidden"
+);
 
 
 $("challengeBanner")
 .innerText=
 lang==="es"
 
-?`Te enviaron SUS resultados: “${p[0]}” (${c.pct}%). Haz tus 6 preguntas para desbloquear una comparación real entre ambos.`
+?`Te enviaron SUS resultados: “${p[0]}” (${c.pct}%). Haz tus 6 preguntas y al terminar verás automáticamente la relación entre ambos perfiles.`
 
-:`They sent you THEIR results: “${p[0]}” (${c.pct}%). Take your 6-question test to unlock a real side-by-side comparison.`;
+:`They sent you THEIR results: “${p[0]}” (${c.pct}%). Take your 6-question test and your two profiles will be compared automatically.`;
+
+}
+
+
+function buildChallengeResultUrl(){
+
+const u=
+new URL(
+base()
+);
+
+
+u.searchParams.set(
+"done",
+"1"
+);
+
+
+return u.toString();
 
 }
 
@@ -3003,8 +2895,11 @@ if(
 ||
 !b
 ){
+
 return null;
+
 }
+
 
 const k=[
 "openness",
@@ -3013,6 +2908,7 @@ const k=[
 "regulation",
 "social"
 ];
+
 
 const avg=
 k.reduce(
@@ -3054,6 +2950,7 @@ a.traits,
 b.traits
 );
 
+
 let score=
 Math.round(
 80
@@ -3078,6 +2975,7 @@ a.idx===b.idx
 0
 )
 );
+
 
 score=
 Math.max(
@@ -3251,32 +3149,51 @@ b
 $("traitRows")
 .innerHTML="";
 
+
 const names=
 traitNames();
 
 
-Object.keys(names)
+Object
+.keys(names)
 .forEach(
 k=>{
 
 const av=
+Math.max(
+0,
+Math.min(
+100,
 Math.round(
 (
-(a?.[k]||0)
+(
+(a&&a[k])||0
+)
 +10
 )
 /20
 *100
+)
+)
 );
 
+
 const bv=
+Math.max(
+0,
+Math.min(
+100,
 Math.round(
 (
-(b?.[k]||0)
+(
+(b&&b[k])||0
+)
 +10
 )
 /20
 *100
+)
+)
 );
 
 
@@ -3338,7 +3255,12 @@ ${bv}
 }
 
 
-function renderComparison(c){
+function renderConnection(c){
+
+if(!c){
+return;
+}
+
 
 const comp=
 compatibility(
@@ -3346,15 +3268,18 @@ c,
 currentResult
 );
 
+
 const them=
 profile(
 c.idx
 );
 
+
 const you=
 profile(
 currentResult.idx
 );
+
 
 const rc=
 relCopy(
@@ -3362,9 +3287,11 @@ c.rel
 );
 
 
-$("comparison")
+$("connectionAuto")
 .classList
-.remove("hidden");
+.remove(
+"hidden"
+);
 
 
 $("compareTitle")
@@ -3460,19 +3387,58 @@ currentResult.traits
 
 function restartTest(){
 
-clearState();
+i=0;
+
+
+traits={
+openness:0,
+directness:0,
+attachment:0,
+regulation:0,
+social:0
+};
+
+
+historyAnswers=[];
+
+
+currentResult={
+pct:0,
+idx:0,
+traits:null
+};
+
+
+clearActiveChallenge();
+
 
 $("result")
 .classList
-.add("hidden");
+.add(
+"hidden"
+);
+
 
 $("quiz")
 .classList
-.add("hidden");
+.add(
+"hidden"
+);
+
 
 $("report")
 .classList
-.add("hidden");
+.add(
+"hidden"
+);
+
+
+$("connectionAuto")
+.classList
+.add(
+"hidden"
+);
+
 
 history.replaceState(
 null,
@@ -3480,9 +3446,13 @@ null,
 base()
 );
 
+
 $("start")
 .classList
-.remove("hidden");
+.remove(
+"hidden"
+);
+
 
 window.scrollTo({
 top:0,
@@ -3494,34 +3464,25 @@ behavior:"smooth"
 
 (function init(){
 
-const saved=
-localStorage.getItem(
-"zelqoza_lang"
+const fromUrl=
+readChallengeFromUrl();
+
+
+if(fromUrl){
+
+saveActiveChallenge(
+fromUrl
 );
 
-if(
-saved==="en"
-||
-saved==="es"
-){
+}else{
 
-lang=
-saved;
+activeChallenge=
+loadActiveChallenge();
 
 }
+
 
 applyLanguage();
-
-const s=
-getShared();
-
-if(s){
-
-showShared(s);
-
-return;
-
-}
 
 initChallengeBanner();
 
