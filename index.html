@@ -4,15 +4,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta property="og:title" content="Warning Label — Someone wants to compare with you">
-<meta property="og:description" content="Take the 30-second test and reveal how you two connect.">
+<meta property="og:title" content="WARNING LABEL — What do people really think about you?">
+<meta property="og:description" content="6 questions. See the impression you may be giving without realizing it.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://zelqoza.com/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Warning Label — Someone wants to compare with you">
-<meta name="twitter:description" content="Take the 30-second test and reveal how you two connect.">
+<meta name="twitter:title" content="WARNING LABEL — What do people really think about you?">
+<meta name="twitter:description" content="6 questions. See the impression you may be giving without realizing it.">
 
-<title>WARNING LABEL — Self-Awareness Test</title>
+<title>WARNING LABEL — What do people really think about you?</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0c'/%3E%3Cpath d='M13 17l8 31h8l3-14 3 14h8l8-31h-8l-4 19-4-19h-7l-4 19-4-19z' fill='%23ff5a4f'/%3E%3C/svg%3E">
 <style>
 :root{--bg:#f5efe6;--card:#fffdf9;--text:#181614;--muted:#716a63;--line:#ded4c8;--accent:#df675a}
@@ -46,6 +46,7 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
 .linkbox{display:none;margin-top:12px;padding:12px;border-radius:14px;background:#111216;border:1px solid #303038}.linkbox.show{display:block}
 .linkbox input{width:100%;padding:12px;border-radius:10px;border:1px solid #34343c;background:#0d0e11;color:#fff;font-size:13px}.linkactions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
 .challengeBanner{margin-top:18px;padding:16px;background:#1d1d22;border:1px solid #34343b;border-radius:16px;text-align:left}
+.sharedResultBanner{margin-top:18px;padding:16px 18px;background:#fff8f3;border:1px solid #e8b7ae;border-radius:16px;text-align:left;color:#231f1c}.sharedResultBanner strong{display:block;font-size:18px;line-height:1.25;margin-top:4px}.sharedResultBanner span{display:block;color:#6f655e;margin-top:6px;line-height:1.45}
 .connectionHero{background:linear-gradient(145deg,#171b18,#1d211f);border:1px solid #33453a;border-radius:24px;padding:24px;margin-top:20px}
 .compareGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.person{background:#1c1c21;border:1px solid #303038;border-radius:16px;padding:16px}
 .positive{margin-top:16px;padding:18px;border-radius:18px;background:#1a211d;border:1px solid #33453a}
@@ -221,6 +222,7 @@ body{background:var(--bg);color:var(--text)}
   </div>
 
   <section id="start" class="hero">
+    <div id="sharedResultBanner" class="sharedResultBanner hidden"></div>
     <div id="challengeBanner" class="challengeBanner hidden"></div>
     <div id="eyebrow" class="eyebrow"></div>
     <h1 id="headline"></h1>
@@ -407,7 +409,7 @@ const TXT={
 en:{
 eyebrow:"THE 30-SECOND SELF-AWARENESS TEST",headline:"What do people really think about you?",
 subhead:"6 questions. See the impression you may be giving without realizing it.",
-start:"Read me",disclaimer:"For self-reflection and entertainment — not a clinical assessment.",back:"← Back",
+start:"Take the test →",disclaimer:"For self-reflection and entertainment — not a clinical assessment.",back:"← Back",
 seeMine:"See mine. Take yours. Compare.",shareResult:"Share my result",copyResult:"🔗 Copy result link",
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ More options",deepTitle:"Your Deep Read",
 deepCopy:"See what people may misunderstand about you, what gets in your way, and what you can do differently.",
@@ -427,7 +429,7 @@ connectionKicker:"YOUR CONNECTION READ",quickGoodLabel:"BEST PART",quickWatchLab
 es:{
 eyebrow:"EL TEST DE AUTOCONOCIMIENTO DE 30 SEGUNDOS",headline:"¿Qué piensan realmente los demás de ti?",
 subhead:"6 preguntas. Descubre la impresión que puedes estar dando sin darte cuenta.",
-start:"Léeme",disclaimer:"Para reflexión personal y entretenimiento — no es una evaluación clínica.",back:"← Regresar",
+start:"Hacer el test →",disclaimer:"Para reflexión personal y entretenimiento — no es una evaluación clínica.",back:"← Regresar",
 seeMine:"Ve el mío. Haz el tuyo. Comparemos.",shareResult:"Compartir mi resultado",copyResult:"🔗 Copiar enlace del resultado",
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ Más opciones",deepTitle:"Tu lectura profunda",
 deepCopy:"Descubre qué pueden malinterpretar de ti, qué suele frenarte y qué puedes hacer diferente.",
@@ -524,19 +526,19 @@ es:[
 ]};
 
 const PROFILES=[
-{en:["Hard to Read","You stay calm and keep a lot to yourself. People may not always know what you are feeling.","Composure","Distant","Show a little more","Mixed signals"],es:["Difícil de Leer","Mantienes la calma y te guardas bastante. Los demás no siempre saben lo que estás sintiendo.","Serenidad","Distante","Mostrar un poco más","Señales confusas"]},
-{en:["Nothing Gets Past You","You notice changes, remember details, and quickly know when something feels off.","Attention to detail","Guarded","Ask before assuming","Keeping score"],es:["No Se Te Escapa Nada","Notas cambios, recuerdas detalles y sabes rápido cuando algo se siente diferente.","Atención al detalle","Reservado/a","Preguntar antes de asumir","Llevar la cuenta"]},
-{en:["Big Energy","You bring energy fast. People feel your presence, but sometimes your intensity can be a lot.","Energy","Intense","Pause first","Too much too fast"],es:["Mucha Energía","Traes energía rápido. La gente nota tu presencia, aunque a veces tu intensidad puede sentirse fuerte.","Energía","Intenso/a","Pausar primero","Demasiado, demasiado rápido"]},
-{en:["Needs Space","You care, but you still need room to reset. People can mistake that space for distance.","Independence","Distant","Say when you need space","Pulling away"],es:["Necesita Su Espacio","Te importa la gente, pero necesitas espacio para recargarte. A veces pueden confundir ese espacio con distancia.","Independencia","Distante","Decir cuándo necesitas espacio","Alejarte"]},
-{en:["No Filter","You say things clearly and directly. People rarely have to guess where you stand.","Clarity","Harsh","Add context","Unnecessary friction"],es:["Sin Filtro","Dices las cosas de forma clara y directa. La gente rara vez tiene que adivinar qué piensas.","Claridad","Duro/a","Dar contexto","Fricción innecesaria"]},
-{en:["Quiet Overthinker","You think a lot before you say much. People may see calm while your mind is still working.","Awareness","Fine","Say what is happening","Invisible stress"],es:["Piensa De Más En Silencio","Piensas mucho antes de decir demasiado. Los demás pueden verte tranquilo/a mientras tu mente sigue trabajando.","Percepción","Todo bien","Decir lo que está pasando","Estrés invisible"]},
-{en:["Reads the Room","You notice the mood and adjust quickly. People usually find you easy to be around.","Adaptability","Easygoing","Say what you prefer","Over-adapting"],es:["Lee El Ambiente","Notas el ambiente y te adaptas rápido. La gente suele sentir que es fácil estar contigo.","Adaptabilidad","Fácil de tratar","Decir lo que prefieres","Adaptarte de más"]},
-{en:["Trust Is Earned","You open up slowly. Once someone earns your trust, you take the relationship seriously.","Discernment","Reserved","Open a little sooner","Missed connection"],es:["La Confianza Se Gana","Te abres poco a poco. Cuando alguien se gana tu confianza, te tomas esa relación en serio.","Discernimiento","Reservado/a","Abrirte un poco antes","Perder conexiones"]}
+{en:["Hard to Read","You reveal less than people expect.","Composure","Distant","Show a little more","Mixed signals"],es:["Difícil de Leer","Muestras menos de lo que sientes.","Serenidad","Distante","Mostrar un poco más","Señales confusas"]},
+{en:["Nothing Gets Past You","You catch small changes other people miss.","Attention to detail","Guarded","Ask before assuming","Keeping score"],es:["No Se Te Escapa Nada","Notas pequeños cambios que otros no ven.","Atención al detalle","Reservado/a","Preguntar antes de asumir","Llevar la cuenta"]},
+{en:["Big Energy","People notice your energy quickly.","Energy","Intense","Pause first","Too much too fast"],es:["Mucha Energía","La gente nota tu energía rápido.","Energía","Intenso/a","Pausar primero","Demasiado, demasiado rápido"]},
+{en:["You Need Space","You care, but you need room to reset.","Independence","Distant","Say when you need space","Pulling away"],es:["Necesitas Tu Espacio","Te importa la gente, pero necesitas espacio para recargarte.","Independencia","Distante","Decir cuándo necesitas espacio","Alejarte"]},
+{en:["No Filter","People rarely have to guess what you think.","Clarity","Harsh","Add context","Unnecessary friction"],es:["Sin Filtro","La gente rara vez tiene que adivinar lo que piensas.","Claridad","Duro/a","Dar contexto","Fricción innecesaria"]},
+{en:["You Think More Than You Say","A lot happens in your head before you say it out loud.","Awareness","Fine","Say what is happening","Invisible stress"],es:["Piensas Más de lo que Dices","Pasan muchas cosas en tu cabeza antes de decirlas en voz alta.","Percepción","Todo bien","Decir lo que está pasando","Estrés invisible"]},
+{en:["Reads the Room","You pick up the mood fast and adjust naturally.","Adaptability","Easygoing","Say what you prefer","Over-adapting"],es:["Lee El Ambiente","Captas el ambiente rápido y te adaptas naturalmente.","Adaptabilidad","Fácil de tratar","Decir lo que prefieres","Adaptarte de más"]},
+{en:["Trust Is Earned","You do not trust quickly — but you take trust seriously.","Discernment","Reserved","Open a little sooner","Missed connection"],es:["La Confianza Se Gana","No confías rápido, pero te tomas la confianza en serio.","Discernimiento","Reservado/a","Abrirte un poco antes","Perder conexiones"]}
 ];
 
 let lang=((localStorage.getItem("zelqoza_lang")||navigator.language||"en").toLowerCase().startsWith("es"))?"es":"en";
 let i=0,traits={openness:0,directness:0,attachment:0,regulation:0,social:0},historyAnswers=[];
-let currentResult={pct:0,idx:0,traits:null},relationshipMode="friend",activeChallenge=null,connectionRevealed=false;
+let currentResult={pct:0,idx:0,traits:null},relationshipMode="friend",activeChallenge=null,sharedProfile=null,connectionRevealed=false;
 const $=id=>document.getElementById(id), tx=k=>TXT[lang][k]||TXT.en[k]||k, profile=idx=>PROFILES[idx][lang]||PROFILES[idx].en;
 
 function setLanguage(l){lang=l;localStorage.setItem("zelqoza_lang",l);applyLanguage();refreshDynamic()}
@@ -563,6 +565,7 @@ function refreshDynamic(){
     $("connectionDetailsToggle").innerText=$("connectionDetails").classList.contains("show")?tx("hideDetails"):tx("showDetails");
   }
   initChallengeBanner();
+  initSharedResultBanner();
 }
 
 function showIncomingConnectionCTA(){
@@ -597,8 +600,8 @@ function choose(w){historyAnswers.push({...w});applyWeights(w);i++;i<QUIZ[lang].
 function selectProfile(){if(traits.regulation>=3&&traits.directness<=0)return 0;if(traits.attachment>=2&&traits.directness<=0)return 1;if(traits.social>=3&&traits.regulation<=1)return 2;if(traits.attachment<=-3)return 3;if(traits.directness>=4)return 4;if(traits.regulation<=-2&&traits.social<=1)return 5;if(traits.social>=2&&traits.openness>=1)return 6;return 7}
 function finish(){
   $("quiz").classList.add("hidden");$("result").classList.remove("hidden");
-  const idx=selectProfile(),strongest=Math.max(...Object.values(traits).map(Math.abs)),pct=Math.min(99,68+Math.round(strongest*4));
-  applyResult(idx,pct,{...traits});
+  const idx=selectProfile();
+  applyResult(idx,0,{...traits});
   if(activeChallenge){
     connectionRevealed=false;
     $("connectionDivider").classList.add("hidden");
@@ -615,7 +618,7 @@ function base(){return "https://zelqoza.com/"}
 function compact(t){return["openness","directness","attachment","regulation","social"].map(k=>Math.round((t||{})[k]||0)).join(",")}
 function parseTraits(v){if(!v)return null;const a=v.split(",").map(Number);if(a.length!==5||a.some(Number.isNaN))return null;return{openness:a[0],directness:a[1],attachment:a[2],regulation:a[3],social:a[4]}}
 async function copyText(text){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return true}}catch(e){}try{const ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();return ok}catch(e){return false}}
-function getShareUrl(){const u=new URL(base());u.searchParams.set("share","1");u.searchParams.set("r",currentResult.idx);u.searchParams.set("s",currentResult.pct);if(currentResult.traits)u.searchParams.set("t",compact(currentResult.traits));return u.toString()}
+function getShareUrl(){const u=new URL(base());u.searchParams.set("share","1");u.searchParams.set("r",currentResult.idx);if(currentResult.traits)u.searchParams.set("t",compact(currentResult.traits));return u.toString()}
 function toggleShare(){$("shareMenu").classList.toggle("show")}
 async function copyResultLink(){$("shareStatus").innerText=(await copyText(getShareUrl()))?tx("resultCopied"):""}
 function shareMessage(){const p=profile(currentResult.idx);return lang==="es"?`Mi resultado: ${p[0]}. Ve el mío, haz el tuyo o compáralo conmigo.`:`My result: ${p[0]}. See mine, take yours, or compare with me.`}
@@ -637,7 +640,7 @@ function setRel(mode,btn){relationshipMode=mode;document.querySelectorAll(".main
 function previewData(mode){const en={friend:["Friend Connection Read","See what makes this friendship work","Compare what you share, where you differ, and how to support each other better."],family:["Family Connection Read","See what strengthens — and strains — this family bond","Compare old patterns, current needs, and how to make the relationship easier."],partner:["Partner Connection Read","See how your relationship actually works","Compare what helps you connect, what creates friction, and how to repair faster."],work:["Work Connection Read","See how to work better together","Compare communication styles, strengths and friction points."]};const es={friend:["Lectura de amistad","Descubre qué hace funcionar esta amistad","Compara lo que comparten, dónde difieren y cómo apoyarse mejor."],family:["Lectura familiar","Descubre qué fortalece — y qué tensiona — este vínculo","Compara patrones antiguos, necesidades actuales y cómo mejorar la relación."],partner:["Lectura de pareja","Descubre cómo funciona realmente su relación","Compara qué los conecta, qué genera fricción y cómo reparar más rápido."],work:["Lectura de trabajo","Descubre cómo trabajar mejor juntos","Compara estilos de comunicación, fortalezas y puntos de fricción."]};return (lang==="es"?es:en)[mode]}
 function updatePreview(mode){const d=previewData(mode);if(!d)return;$("previewLine").innerText=d[0];$("previewTitle").innerText=d[1];$("previewText").innerText=d[2]}
 function openConnectionSetup(){$("connectionSetup").classList.add("show");updatePreview(relationshipMode);$("connectionSetup").scrollIntoView({behavior:"smooth"})}
-function makeChallengeUrl(){const u=new URL(base());u.searchParams.set("c","1");u.searchParams.set("cr",currentResult.idx);u.searchParams.set("cs",currentResult.pct);u.searchParams.set("rel",relationshipMode);if(currentResult.traits)u.searchParams.set("ct",compact(currentResult.traits));return u.toString()}
+function makeChallengeUrl(){const u=new URL(base());u.searchParams.set("c","1");u.searchParams.set("cr",currentResult.idx);u.searchParams.set("rel",relationshipMode);if(currentResult.traits)u.searchParams.set("ct",compact(currentResult.traits));return u.toString()}
 function createConnectionLink(){const url=makeChallengeUrl();$("connectionInput").value=url;$("linkbox").classList.add("show");$("connectionStatus").innerText=tx("linkCreated")}
 async function copyConnectionLink(){const url=$("connectionInput").value||makeChallengeUrl();const text=challengeInviteText(relationshipMode,url);$("connectionStatus").innerText=(await copyText(text))?tx("linkCopied"):""}
 function challengeInviteText(rel,url){
@@ -667,25 +670,52 @@ async function shareChallenge(){
   window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank")
 }
 
-function readChallengeFromUrl(){const p=new URLSearchParams(location.search);if(p.get("c")!=="1")return null;const idx=Number(p.get("cr")),pct=Number(p.get("cs"));if(!Number.isInteger(idx)||idx<0||idx>=PROFILES.length||!Number.isFinite(pct))return null;let rel=p.get("rel")||"friend";if(rel==="dating")rel="family";return{idx,pct,rel,traits:parseTraits(p.get("ct"))}}
+function readChallengeFromUrl(){
+  const p=new URLSearchParams(location.search);
+  if(p.get("c")!=="1")return null;
+  const idx=Number(p.get("cr"));
+  if(!Number.isInteger(idx)||idx<0||idx>=PROFILES.length)return null;
+  let rel=p.get("rel")||"friend";
+  if(rel==="dating")rel="partner";
+  if(!["friend","family","partner","work"].includes(rel))rel="friend";
+  const legacyPct=Number(p.get("cs"));
+  return{idx,pct:Number.isFinite(legacyPct)?legacyPct:0,rel,traits:parseTraits(p.get("ct"))};
+}
+function readSharedProfileFromUrl(){
+  const p=new URLSearchParams(location.search);
+  if(p.get("share")!=="1")return null;
+  const idx=Number(p.get("r"));
+  if(!Number.isInteger(idx)||idx<0||idx>=PROFILES.length)return null;
+  return{idx,traits:parseTraits(p.get("t"))};
+}
 function saveActiveChallenge(c){activeChallenge=c;sessionStorage.setItem("zelqoza_active_challenge",JSON.stringify(c))}
 function loadActiveChallenge(){try{const x=sessionStorage.getItem("zelqoza_active_challenge");return x?JSON.parse(x):null}catch(e){return null}}
 function clearActiveChallenge(){activeChallenge=null;sessionStorage.removeItem("zelqoza_active_challenge")}
 function initChallengeBanner(){const c=activeChallenge;if(!c){$("challengeBanner").classList.add("hidden");return}const p=profile(c.idx);$("challengeBanner").classList.remove("hidden");$("challengeBanner").innerHTML=lang==="es"?`<strong>Alguien quiere compararse contigo.</strong><br><span style="color:#cfcfd5">Haz estas 6 preguntas. Al terminar verás qué funciona entre ustedes, dónde pueden chocar y cómo se leen el uno al otro.</span>`:`<strong>Someone wants to compare with you.</strong><br><span style="color:#cfcfd5">Answer these 6 questions. At the end you’ll see what works between you, where you may clash, and how you read each other.</span>`}
+function initSharedResultBanner(){
+  const box=$("sharedResultBanner");
+  if(!box)return;
+  if(!sharedProfile||activeChallenge){box.classList.add("hidden");return;}
+  const p=profile(sharedProfile.idx);
+  box.classList.remove("hidden");
+  box.innerHTML=lang==="es"
+    ?`<div class="eyebrow">RESULTADO COMPARTIDO</div><strong>${p[0]}</strong><span>Alguien te compartió su resultado. Haz las 6 preguntas para descubrir el tuyo.</span>`
+    :`<div class="eyebrow">SHARED RESULT</div><strong>${p[0]}</strong><span>Someone shared their result with you. Answer the 6 questions to discover yours.</span>`;
+}
 function buildChallengeResultUrl(){const u=new URL(base());u.searchParams.set("done","1");return u.toString()}
 
 function traitFit(a,b){if(!a||!b)return null;const k=["openness","directness","attachment","regulation","social"];const avg=k.reduce((s,x)=>s+Math.abs((a[x]||0)-(b[x]||0)),0)/k.length;return Math.max(0,Math.min(100,Math.round(100-avg*5)))}
 
 
 const PROFILE_KEYS=[
-  "professionally_unbothered",
-  "receipts_department",
-  "chaos_good_intentions",
-  "emotionally_self_checkout",
-  "truth_no_bubblewrap",
-  "quietly_overclocked",
-  "social_shapeshifter",
-  "selective_access"
+  "hard_to_read",
+  "nothing_gets_past_you",
+  "big_energy",
+  "you_need_space",
+  "no_filter",
+  "think_more_than_you_say",
+  "reads_the_room",
+  "trust_is_earned"
 ];
 
 const PROFILE_DYNAMICS={
@@ -712,7 +742,7 @@ const PROFILE_DYNAMICS={
       need:"room to be expressive without making every moment an emergency"
     },
     {
-      short:"Needs Space",
+      short:"You Need Space",
       core:"protects independence by stepping back before feeling exposed",
       gift:"does not cling and can regulate alone",
       shadow:"can leave emotionally before the other person knows there was a problem",
@@ -726,7 +756,7 @@ const PROFILE_DYNAMICS={
       need:"directness with context"
     },
     {
-      short:"Quiet Overthinker",
+      short:"You Think More Than You Say",
       core:"looks composed while processing far more than they show",
       gift:"notices complexity and thinks several moves ahead",
       shadow:"can hide stress until it is already too much",
@@ -770,7 +800,7 @@ const PROFILE_DYNAMICS={
       need:"espacio para expresarse sin convertir cada momento en emergencia"
     },
     {
-      short:"Necesita Su Espacio",
+      short:"Necesitas Tu Espacio",
       core:"protege su independencia alejándose antes de sentirse demasiado expuesto/a",
       gift:"no se aferra y sabe regularse por su cuenta",
       shadow:"puede irse emocionalmente antes de que la otra persona sepa que había un problema",
@@ -784,7 +814,7 @@ const PROFILE_DYNAMICS={
       need:"directitud con contexto"
     },
     {
-      short:"Piensa De Más En Silencio",
+      short:"Piensas Más de lo que Dices",
       core:"se ve tranquilo/a mientras procesa mucho más de lo que muestra",
       gift:"nota complejidad y piensa varios pasos adelante",
       shadow:"puede esconder estrés hasta que ya es demasiado",
@@ -812,9 +842,9 @@ const SAME_PROFILE_TITLES={
     "BOTH HARD TO READ",
     "NOTHING GETS PAST EITHER OF YOU",
     "DOUBLE BIG ENERGY",
-    "BOTH NEED SPACE",
+    "YOU BOTH NEED SPACE",
     "DOUBLE NO FILTER",
-    "TWO QUIET OVERTHINKERS",
+    "YOU BOTH THINK MORE THAN YOU SAY",
     "BOTH READ THE ROOM",
     "TRUST IS EARNED — TWICE"
   ],
@@ -824,7 +854,7 @@ const SAME_PROFILE_TITLES={
     "DOBLE MUCHA ENERGÍA",
     "LOS DOS NECESITAN SU ESPACIO",
     "DOBLE SIN FILTRO",
-    "DOS QUE PIENSAN DE MÁS EN SILENCIO",
+    "LOS DOS PIENSAN MÁS DE LO QUE DICEN",
     "LOS DOS LEEN EL AMBIENTE",
     "LA CONFIANZA SE GANA — POR LOS DOS"
   ]
@@ -1084,8 +1114,31 @@ function pairDisplayTitle(aIdx,bIdx){
   return `${profile(aIdx)[0]} + ${profile(bIdx)[0]}`;
 }
 
-// Individual profile percentages are intentionally hidden from the UI. pct is retained internally only for legacy connection calculations and link compatibility.
-function compatibility(a,b){const f=traitFit(a.traits,b.traits);let score=Math.round(80-Math.abs(a.pct-b.pct)*.25+(f!==null?(f-50)*.18:0)+(a.idx===b.idx?5:0));score=Math.max(55,Math.min(97,score));const label=lang==="es"?(score>=90?"Conexión muy fuerte":score>=82?"Conexión fuerte":score>=72?"Buena conexión con algo de fricción":"Diferentes, pero puede funcionar"):(score>=90?"Very strong fit":score>=82?"Strong connection":score>=72?"Good with some friction":"Different but workable");return{score,label}}
+// The Connection percentage is based on how the two answer patterns relate.
+// There is no individual percentage anymore, so it is never used here.
+function compatibility(a,b){
+  const rel=(a&&a.rel)||"friend";
+  const weights={
+    friend:{openness:1.2,directness:1.1,attachment:.9,regulation:.9,social:.9},
+    family:{openness:.8,directness:1.2,attachment:1.1,regulation:1.2,social:.7},
+    partner:{openness:.9,directness:1.3,attachment:1.4,regulation:1.0,social:.6},
+    work:{openness:1.0,directness:1.4,attachment:.5,regulation:1.2,social:.9}
+  }[rel]||{openness:1,directness:1,attachment:1,regulation:1,social:1};
+  let score;
+  if(a&&b&&a.traits&&b.traits){
+    const keys=Object.keys(weights);
+    const total=keys.reduce((s,k)=>s+weights[k],0);
+    const weightedGap=keys.reduce((s,k)=>s+Math.abs((a.traits[k]||0)-(b.traits[k]||0))*weights[k],0)/total;
+    score=Math.round(96-weightedGap*4.6+(a.idx===b.idx?2:0));
+  }else{
+    score=a&&b&&a.idx===b.idx?90:80;
+  }
+  score=Math.max(58,Math.min(97,score));
+  const label=lang==="es"
+    ?(score>=90?"Conexión muy fuerte":score>=82?"Conexión fuerte":score>=72?"Buena conexión con algo de fricción":"Diferentes, pero puede funcionar")
+    :(score>=90?"Very strong fit":score>=82?"Strong connection":score>=72?"Good with some friction":"Different but workable");
+  return{score,label};
+}
 function relCopy(rel){const en={friend:["You have useful common ground and enough difference to keep the friendship interesting.","The biggest risk is assuming the other person already knows what you mean.","Be a little more explicit than feels necessary.","Give them room without disappearing.","One clear sentence prevents ten wrong stories."],family:["You share history and familiarity that can make understanding each other feel automatic — until it isn’t.","Old roles can make one person react to who the other used to be instead of who they are now.","Say what you need without assuming family should automatically know.","Listen to the current message instead of answering the old pattern.","History explains the pattern, but it does not have to control the relationship."],partner:["You can complement each other well when both people feel safe enough to be direct.","Different coping styles can get mistaken for lack of care.","Name your need before your frustration.","Respond to the need underneath the reaction.","Talk about the pattern as the enemy — not each other."],work:["Your styles can be productive when roles and expectations are explicit.","Different communication speeds can look like disengagement or control.","State deadlines and ownership clearly.","Give context with requests.","Make expectations visible."]};const es={friend:["Tienen terreno en común y suficientes diferencias para que la amistad siga siendo interesante.","El mayor riesgo es asumir que la otra persona ya sabe lo que quieres decir.","Sé un poco más explícito/a de lo que te parecería necesario.","Dale espacio sin desaparecer.","Una frase clara evita diez historias equivocadas."],family:["Comparten historia y familiaridad que pueden hacer que entenderse parezca automático — hasta que deja de serlo.","Los roles antiguos pueden hacer que uno responda a quien la otra persona era antes, en vez de a quien es hoy.","Di lo que necesitas sin asumir que por ser familia deberían saberlo automáticamente.","Escucha el mensaje actual en lugar de responder al patrón antiguo.","La historia explica el patrón, pero no tiene que controlar la relación."],partner:["Pueden complementarse bien cuando ambos se sienten seguros para ser directos.","Los estilos distintos para manejar estrés pueden confundirse con falta de interés.","Nombra tu necesidad antes que tu frustración.","Responde a la necesidad debajo de la reacción.","Hablen del patrón como el enemigo, no del otro."],work:["Sus estilos pueden ser productivos cuando roles y expectativas son explícitos.","Ritmos distintos de comunicación pueden parecer desinterés o control.","Aclara fechas y responsabilidades.","Da contexto con tus solicitudes.","Hagan visibles las expectativas."]};return (lang==="es"?es:en)[rel]}
 function traitNames(){return lang==="es"?{openness:"Apertura",directness:"Directitud",attachment:"Cercanía",regulation:"Serenidad",social:"Energía social"}:{openness:"Openness",directness:"Directness",attachment:"Closeness",regulation:"Composure",social:"Social energy"}}
 function renderTraits(a,b){$("traitRows").innerHTML="";const names=traitNames();Object.keys(names).forEach(k=>{const av=Math.round((((a&&a[k])||0)+10)/20*100),bv=Math.round((((b&&b[k])||0)+10)/20*100);$("traitRows").innerHTML+=`<div class="traitRow"><div class="traitLabel">${names[k]}</div><div class="traitLine"><span>${tx("them")}</span><div class="track"><div class="fill them" style="width:${av}%"></div></div><span>${av}</span></div><div class="traitLine"><span>${tx("you")}</span><div class="track"><div class="fill" style="width:${bv}%"></div></div><span>${bv}</span></div></div>`})}
@@ -1153,8 +1206,19 @@ function restartTest(){i=0;traits={openness:0,directness:0,attachment:0,regulati
 
 (function init(){
   const fromUrl=readChallengeFromUrl();
-  if(fromUrl)saveActiveChallenge(fromUrl);else activeChallenge=loadActiveChallenge();
-  applyLanguage();initChallengeBanner();updatePreview("friend");
+  sharedProfile=readSharedProfileFromUrl();
+  if(fromUrl){
+    sharedProfile=null;
+    saveActiveChallenge(fromUrl);
+  }else if(sharedProfile){
+    clearActiveChallenge();
+  }else{
+    activeChallenge=loadActiveChallenge();
+  }
+  applyLanguage();
+  initChallengeBanner();
+  initSharedResultBanner();
+  updatePreview("friend");
 })();
 </script>
 </body>
