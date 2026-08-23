@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WARNING LABEL — Self-Awareness Test</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0c'/%3E%3Cpath d='M13 17l8 31h8l3-14 3 14h8l8-31h-8l-4 19-4-19h-7l-4 19-4-19z' fill='%23ff5a4f'/%3E%3C/svg%3E">
 <style>
 :root{--bg:#0b0b0c;--card:#151518;--text:#f5f5f2;--muted:#aaaab2;--line:#2a2a30;--accent:#ff5a4f}
 *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
@@ -187,7 +188,7 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
   <section id="result" class="result hidden">
     <div class="backbar"><button id="resultBack" class="backbtn" onclick="goBack()"></button></div>
     <div class="card">
-      <div class="warning">⚠ WARNING LABEL</div>
+      <div class="warning warning-label-text">YOUR WARNING LABEL</div>
       <div id="score" class="score"></div>
       <div id="label" class="label"></div>
       <div id="tag" class="tag"></div>
@@ -245,7 +246,7 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
       </div>
 
       <div class="sharecard">
-        <div class="warning">⚠ WARNING LABEL</div>
+        <div class="warning warning-label-text">YOUR WARNING LABEL</div>
         <div id="shareScore" class="score"></div>
         <div id="shareLabel" class="label"></div>
         <div id="shareTag" class="tag"></div>
@@ -331,8 +332,8 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
 <script>
 const TXT={
 en:{
-eyebrow:"THE 30-SECOND SELF-AWARENESS TEST",headline:"How do people actually experience you?",
-subhead:"Six questions. One uncomfortable read. Find out what people may notice about you before you do.",
+eyebrow:"THE 30-SECOND SELF-AWARENESS TEST",headline:"What do people notice about you first?",
+subhead:"Six quick questions. Get a surprisingly accurate read on how you come across.",
 start:"Read me",disclaimer:"For self-reflection and entertainment — not a clinical assessment.",back:"← Back",
 seeMine:"See mine. Take yours. Compare.",shareResult:"Share my result",copyResult:"🔗 Copy result link",
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ More options",deepTitle:"Your Deep Read",
@@ -351,8 +352,8 @@ linkCopied:"Connection link copied ✓ — send it to the other person.",resultC
 connectionKicker:"YOUR CONNECTION READ",quickGoodLabel:"BEST PART",quickWatchLabel:"WATCH THIS",showDetails:"See full connection breakdown",hideDetails:"Hide full breakdown",q:(n,t)=>`QUESTION ${n} OF ${t}`
 },
 es:{
-eyebrow:"EL TEST DE AUTOCONOCIMIENTO DE 30 SEGUNDOS",headline:"¿Cómo te perciben realmente los demás?",
-subhead:"Seis preguntas. Una lectura incómodamente precisa. Descubre lo que otros pueden notar de ti antes que tú.",
+eyebrow:"EL TEST DE AUTOCONOCIMIENTO DE 30 SEGUNDOS",headline:"¿Qué notan los demás de ti primero?",
+subhead:"Seis preguntas rápidas. Descubre cómo puedes estar llegando a los demás sin darte cuenta.",
 start:"Léeme",disclaimer:"Para reflexión personal y entretenimiento — no es una evaluación clínica.",back:"← Regresar",
 seeMine:"Ve el mío. Haz el tuyo. Comparemos.",shareResult:"Compartir mi resultado",copyResult:"🔗 Copiar enlace del resultado",
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ Más opciones",deepTitle:"Tu lectura profunda",
@@ -373,79 +374,79 @@ connectionKicker:"SU LECTURA DE CONEXIÓN",quickGoodLabel:"LO MEJOR",quickWatchL
 
 const QUIZ={
 en:[
-["Someone you care about suddenly feels distant. What do you do first?",[
+["Someone you care about feels distant. What do you do?",[
 ["Give them space and wait for them to come back",{attachment:-2,directness:-1,regulation:1}],
 ["Ask directly if something changed",{attachment:1,directness:2,regulation:1}],
 ["Act normal, but quietly analyze every detail",{attachment:2,directness:-1,regulation:-1}],
 ["Match their distance so I don’t look more invested",{attachment:1,directness:-2,regulation:-1}]
 ]],
-["You disagree with someone in a group. Your instinct is to…",[
-["Say exactly what I think, even if it changes the mood",{directness:2,social:1}],
-["Ask questions first and understand their logic",{openness:2,directness:1,regulation:1}],
-["Keep it to myself unless it really matters",{directness:-2,social:-1,regulation:1}],
-["Make a joke that gets my point across",{social:2}]
+["A friend does something that bothers you. What do you do?",[
+["I tell them right away",{directness:2,social:1}],
+["I first try to understand why they did it",{openness:2,directness:1,regulation:1}],
+["I let it go if it is not a big deal",{directness:-2,social:-1,regulation:1}],
+["I joke about it, but yeah, it bothered me",{social:2,directness:-1}]
 ]],
-["When you’re overwhelmed, people are most likely to see you…",[
+["When you are stressed, what usually happens?",[
 ["Disappear for a while",{social:-2,directness:-1}],
 ["Become unusually blunt",{directness:2,regulation:-2}],
 ["Keep functioning like nothing is wrong",{regulation:2,attachment:-1}],
 ["Talk it out with someone immediately",{social:2,attachment:2}]
 ]],
-["What usually creates the most friction in your relationships?",[
+["In relationships, what gets you in trouble most often?",[
 ["I need more space than people expect",{attachment:-2,social:-1}],
 ["I care a lot, but I don’t always say it clearly",{attachment:2,directness:-2}],
 ["I say things too directly when I’m frustrated",{directness:2,regulation:-1}],
 ["I avoid difficult conversations until they become bigger",{directness:-2,regulation:-2}]
 ]],
-["You walk into a room where you know almost nobody. What happens?",[
+["You walk into a room where you barely know anyone. What do you do?",[
 ["I can talk to almost anyone",{social:2,openness:1}],
 ["I find one person I click with and stay there",{social:0,attachment:1}],
 ["I observe first and warm up slowly",{social:-1,openness:1,regulation:1}],
 ["I immediately want to leave",{social:-2}]
 ]],
-["Pick the line that feels uncomfortably accurate.",[
-["I can be hard to read even when I care a lot",{attachment:1,directness:-2,regulation:1}],
-["I would rather be respected than fully understood",{attachment:-2,directness:2}],
-["I sometimes confuse self-protection with independence",{attachment:-2}],
-["I turn discomfort into humor before anyone notices",{social:2,regulation:-1,directness:-1}]
+["When something bothers you, what do you usually do?",[
+["I say it in the moment",{directness:2,attachment:1}],
+["I wait and think about it first",{regulation:2,directness:0}],
+["I act normal, but I definitely remember it",{attachment:2,directness:-2}],
+["I make a joke and change the subject",{social:2,regulation:-1,directness:-1}]
 ]]
 ],
 es:[
-["Alguien que te importa de repente se siente distante. ¿Qué haces primero?",[
+["Alguien que te importa está distante. ¿Qué haces?",[
 ["Le doy espacio y espero a que vuelva",{attachment:-2,directness:-1,regulation:1}],
 ["Le pregunto directamente si algo cambió",{attachment:1,directness:2,regulation:1}],
 ["Actúo normal, pero analizo cada detalle en silencio",{attachment:2,directness:-1,regulation:-1}],
 ["Igualo su distancia para no parecer más interesado/a",{attachment:1,directness:-2,regulation:-1}]
 ]],
-["No estás de acuerdo con alguien en un grupo. Tu instinto es…",[
-["Decir exactamente lo que pienso, aunque cambie el ambiente",{directness:2,social:1}],
-["Hacer preguntas primero y entender su lógica",{openness:2,directness:1,regulation:1}],
-["Guardármelo a menos que realmente importe",{directness:-2,social:-1,regulation:1}],
-["Hacer una broma que deje claro mi punto",{social:2}]
+["Un amigo hace algo que te molesta. ¿Qué haces?",[
+["Se lo digo de una vez",{directness:2,social:1}],
+["Primero trato de entender por qué lo hizo",{openness:2,directness:1,regulation:1}],
+["Lo dejo pasar si no es tan importante",{directness:-2,social:-1,regulation:1}],
+["Hago una broma, pero sí me molestó",{social:2,directness:-1}]
 ]],
-["Cuando estás saturado/a, los demás probablemente te ven…",[
+["Cuando estás estresado/a, ¿qué suele pasar?",[
 ["Desapareciendo un rato",{social:-2,directness:-1}],
 ["Más directo/a o brusco/a de lo normal",{directness:2,regulation:-2}],
 ["Funcionando como si no pasara nada",{regulation:2,attachment:-1}],
 ["Hablándolo inmediatamente con alguien",{social:2,attachment:2}]
 ]],
-["¿Qué suele generar más fricción en tus relaciones?",[
+["En tus relaciones, ¿qué te mete más en problemas?",[
 ["Necesito más espacio del que la gente espera",{attachment:-2,social:-1}],
 ["Me importa mucho, pero no siempre lo digo claramente",{attachment:2,directness:-2}],
 ["Cuando me frustro digo las cosas demasiado directo",{directness:2,regulation:-1}],
 ["Evito conversaciones difíciles hasta que se hacen más grandes",{directness:-2,regulation:-2}]
 ]],
-["Entras a un lugar donde casi no conoces a nadie. ¿Qué pasa?",[
+["Llegas a un lugar donde casi no conoces a nadie. ¿Qué haces?",[
 ["Puedo hablar con casi cualquiera",{social:2,openness:1}],
 ["Encuentro a una persona con la que conecto y me quedo ahí",{social:0,attachment:1}],
 ["Primero observo y poco a poco entro en confianza",{social:-1,openness:1,regulation:1}],
 ["Quiero irme inmediatamente",{social:-2}]
 ]],
-["Elige la frase que te resulte incómodamente cierta.",[
-["Puedo ser difícil de leer incluso cuando me importa mucho",{attachment:1,directness:-2,regulation:1}],
-["Prefiero que me respeten a que me entiendan completamente",{attachment:-2,directness:2}],
-["A veces confundo protegerme con ser independiente",{attachment:-2}],
-["Convierto la incomodidad en humor antes de que alguien la note",{social:2,regulation:-1,directness:-1}]
+["Cuando algo te molesta, normalmente…",[
+["Lo digo en el momento",{directness:2,attachment:1}],
+["Espero y lo pienso primero",{regulation:2,directness:0}],
+["Actúo normal, pero sí me lo guardo",{attachment:2,directness:-2}],
+["Hago una broma y cambio de tema",{social:2,regulation:-1,directness:-1}]
 ]]
 ]};
 
@@ -467,7 +468,12 @@ const $=id=>document.getElementById(id), tx=k=>TXT[lang][k]||TXT.en[k]||k, profi
 
 function setLanguage(l){lang=l;localStorage.setItem("zelqoza_lang",l);applyLanguage();refreshDynamic()}
 function applyLanguage(){
-  document.documentElement.lang=lang;$("enBtn").classList.toggle("active",lang==="en");$("esBtn").classList.toggle("active",lang==="es");
+  document.documentElement.lang=lang;
+
+document.querySelectorAll(".warning-label-text").forEach(el=>{
+  el.innerText=lang==="es" ? "TU WARNING LABEL" : "YOUR WARNING LABEL";
+});
+$("enBtn").classList.toggle("active",lang==="en");$("esBtn").classList.toggle("active",lang==="es");
   const map={eyebrow:"eyebrow",headline:"headline",subhead:"subhead",startBtn:"start",disclaimer:"disclaimer",quizBack:"back",resultBack:"back",seeMine:"seeMine",shareBtn:"shareResult",copyResultBtn:"copyResult",whatsappBtn:"whatsapp",facebookBtn:"facebook",moreBtn:"more",deepTitle:"deepTitle",deepCopy:"deepCopy",misreadLabel:"misread",patternLabel:"pattern",moveLabel:"move",unlockBtn:"unlock",previewNote:"preview",m1:"m1",m2:"m2",m3:"m3",m4:"m4",underTitle:"under",frictionTitle:"friction",movesTitle:"moves",connectionTitle:"connection",connectionIntro:"connectionIntro",openConnectionBtn:"openConnection",whatPerson:"whatPerson",createLinkBtn:"createLink",copyLinkBtn:"copyLink",shareLinkBtn:"shareLink",connectionKicker:"connectionKicker",quickGoodLabel:"quickGoodLabel",quickWatchLabel:"quickWatchLabel",connectionDetailsToggle:"showDetails",themText:"them",youText:"you",whyTitle:"why",whereTitle:"where",youDoTitle:"youDo",theyDoTitle:"theyDo",ruleTitle:"rule",againBtn:"again"};
   Object.entries(map).forEach(([id,k])=>$(id).innerText=tx(k));
   document.querySelectorAll("[data-rel]").forEach(b=>b.innerText=tx(b.dataset.rel));
