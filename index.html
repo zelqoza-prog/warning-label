@@ -424,7 +424,7 @@ seeMine:"See mine. Take yours. Compare.",shareResult:"Share my result",copyResul
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ More options",deepTitle:"Your Deep Read",
 deepCopy:"See what people may misunderstand about you, what gets in your way, and what you can do differently.",
 misread:"What people may misread",pattern:"Your strongest pattern",move:"Your next move",
-unlock:"Unlock my Deep Read — $1",preview:"Preview mode — no charge yet.",
+unlock:"Unlock my Deep Read — $1",preview:"Stripe test checkout — no real charge.",
 m1:"People may read you as",m2:"Your real strength",m3:"Your growth edge",m4:"Social risk",
 under:"What people may misunderstand",friction:"What gets in your way",moves:"Your 3 next moves",
 connection:"Connection Read",connectionIntro:"Compare your real profile with someone you know. Choose the relationship and send them your private link.",
@@ -444,7 +444,7 @@ seeMine:"Ve el mío. Haz el tuyo. Comparemos.",shareResult:"Compartir mi resulta
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ Más opciones",deepTitle:"Tu lectura profunda",
 deepCopy:"Descubre qué pueden malinterpretar de ti, qué suele frenarte y qué puedes hacer diferente.",
 misread:"Lo que otros pueden malinterpretar",pattern:"Tu patrón más fuerte",move:"Tu siguiente movimiento",
-unlock:"Desbloquear mi lectura — $1",preview:"Modo de prueba — todavía no hay cobro.",
+unlock:"Desbloquear mi lectura — $1",preview:"Checkout de prueba de Stripe — no hay cobro real.",
 m1:"Otros pueden verte como",m2:"Tu fortaleza real",m3:"Tu área de crecimiento",m4:"Riesgo social",
 under:"Lo que otros pueden malinterpretar",friction:"Lo que se interpone en tu camino",moves:"Tus 3 siguientes movimientos",
 connection:"Lectura de conexión",connectionIntro:"Compara tu perfil real con alguien que conoces. Elige la relación y envíale tu enlace privado.",
@@ -567,6 +567,37 @@ function gaEvent(name,params={}){
 }
 
 
+// --- Stripe test checkout: Deep Read ---
+const STRIPE_DEEP_READ_URL="https://buy.stripe.com/test_9B64gz0wMgA62pD4mPds400";
+const DEEP_READ_STORAGE_KEY="warning_label_pending_deep_read_v1";
+
+function savePendingDeepRead(){
+  try{
+    localStorage.setItem(DEEP_READ_STORAGE_KEY,JSON.stringify({
+      idx:currentResult.idx,
+      traits:currentResult.traits,
+      lang,
+      ts:Date.now()
+    }));
+  }catch(e){}
+}
+
+function loadPendingDeepRead(){
+  try{
+    const raw=localStorage.getItem(DEEP_READ_STORAGE_KEY);
+    if(!raw)return null;
+    const data=JSON.parse(raw);
+    if(!data||!Number.isInteger(data.idx)||data.idx<0||data.idx>=PROFILES.length)return null;
+    if(!data.traits||Date.now()-(data.ts||0)>2*60*60*1000)return null;
+    return data;
+  }catch(e){return null}
+}
+
+function clearPendingDeepRead(){
+  try{localStorage.removeItem(DEEP_READ_STORAGE_KEY)}catch(e){}
+}
+
+
 function setLanguage(l){lang=l;localStorage.setItem("zelqoza_lang",l);gaEvent("language_change",{selected_language:l});applyLanguage();refreshDynamic()}
 function applyLanguage(){
   document.documentElement.lang=lang;
@@ -664,14 +695,73 @@ function shareFacebook(){gaEvent("result_share",{method:"facebook",profile_key:P
 async function nativeShare(){const text=shareMessage(),url=getShareUrl();if(navigator.share){try{await navigator.share({title:"Warning Label",text,url});gaEvent("result_share",{method:"native",profile_key:PROFILE_KEYS[currentResult.idx]});$("shareStatus").innerText=tx("shareDone");return}catch(e){}}const ok=await copyText(text+" "+url);$("shareStatus").innerText=ok?tx("resultCopied"):"";if(ok)gaEvent("result_share",{method:"copy_fallback",profile_key:PROFILE_KEYS[currentResult.idx]})}
 
 function unlockDeepRead(){
+  if(!currentResult||!currentResult.traits)return;
+  savePendingDeepRead();
   gaEvent("deep_read_click",{profile_key:PROFILE_KEYS[currentResult.idx]});
+  gaEvent("checkout_start",{
+    product:"deep_read",
+    currency:"USD",
+    value:1,
+    checkout_provider:"stripe",
+    checkout_mode:"test",
+    entry_type:analyticsEntryType(),
+    profile_key:PROFILE_KEYS[currentResult.idx]
+  });
+  window.location.assign(STRIPE_DEEP_READ_URL);
+}
+
+function showDeepRead(fromCheckout=false){
   const p=profile(currentResult.idx);$("report").classList.remove("hidden");$("reportTitle").innerText=p[0];$("reportTag").innerText=p[1];
   $("mv1").innerText=p[3];$("mv2").innerText=p[2];$("mv3").innerText=p[4];$("mv4").innerText=p[5];
   $("underText").innerText=lang==="es"?`A veces los demás pueden verte como ${p[3].toLowerCase()}, especialmente bajo presión. Tu intención puede ser distinta a la señal que estás dando.`:`People may read you as ${p[3].toLowerCase()}, especially under pressure. Your intent can be different from the signal you are sending.`;
   $("frictionText").innerText=lang==="es"?`Tu punto de fricción más probable es ${p[5].toLowerCase()}. El problema aparece cuando los demás tienen que adivinar qué pasa.`:`Your most likely friction point is ${p[5].toLowerCase()}. It becomes a problem when other people have to guess what is happening.`;
   const ms=lang==="es"?[["Haz una cosa más explícita de lo normal.","Aclara una necesidad antes de esperar que la otra persona la adivine."],["Nombra la señal, no la historia.","Describe lo que notaste y haz una pregunta limpia."],["Conserva la fortaleza.","No cambies quién eres; haz que tu intención sea más fácil de leer."]]:[["Make one thing more explicit than usual.","State a need before expecting the other person to guess it."],["Name the signal, not the story.","Describe what you noticed and ask one clean question."],["Keep the strength.","Do not change who you are; make your intent easier to read."]];
   $("moves").innerHTML="";ms.forEach((m,n)=>$("moves").innerHTML+=`<div class="section"><b>${n+1}. ${m[0]}</b><p>${m[1]}</p></div>`);
+  if(fromCheckout){
+    $("unlockBtn").innerText=lang==="es"?"Checkout de prueba completado ✓":"Test checkout completed ✓";
+    $("previewNote").innerText=lang==="es"?"Regresaste desde Stripe. Pago de prueba, sin dinero real.":"Returned from Stripe. Test payment only — no real money.";
+  }
   $("report").scrollIntoView({behavior:"smooth"});
+}
+
+function restoreDeepReadAfterCheckout(){
+  const params=new URLSearchParams(location.search);
+  if(params.get("checkout")!=="success")return false;
+
+  const pending=loadPendingDeepRead();
+  gaEvent("checkout_return",{
+    product:"deep_read",
+    checkout_provider:"stripe",
+    checkout_mode:"test",
+    payment_verified:false,
+    had_pending_result:!!pending
+  });
+
+  if(!pending){
+    history.replaceState(null,"",base());
+    return false;
+  }
+
+  lang=pending.lang==="es"?"es":"en";
+  localStorage.setItem("zelqoza_lang",lang);
+  currentResult={idx:pending.idx,pct:0,traits:pending.traits};
+  activeChallenge=loadActiveChallenge();
+  sharedProfile=null;
+
+  $("start").classList.add("hidden");
+  $("quiz").classList.add("hidden");
+  $("result").classList.remove("hidden");
+  applyLanguage();
+  applyResult(currentResult.idx,0,currentResult.traits);
+  initChallengeBanner();
+  initSharedResultBanner();
+  updatePreview(relationshipMode);
+  if(activeChallenge)showIncomingConnectionCTA();
+
+  showDeepRead(true);
+  clearPendingDeepRead();
+  history.replaceState(null,"",base());
+  return true;
 }
 
 function setRel(mode,btn){relationshipMode=mode;gaEvent("connection_relation_select",{relation:mode});document.querySelectorAll(".mainRel").forEach(x=>x.classList.remove("active"));btn.classList.add("active");updatePreview(mode)}
@@ -1243,9 +1333,16 @@ function renderConnection(c){
   scoreEl.classList.add("score-pop");
 }
 
-function restartTest(){gaEvent("test_restart",{from_profile_key:currentResult&&PROFILE_KEYS[currentResult.idx]?PROFILE_KEYS[currentResult.idx]:"unknown"});i=0;traits={openness:0,directness:0,attachment:0,regulation:0,social:0};historyAnswers=[];currentResult={pct:0,idx:0,traits:null};connectionRevealed=false;clearActiveChallenge();$("result").classList.add("hidden");$("quiz").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");history.replaceState(null,"",base());$("start").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
+function restartTest(){clearPendingDeepRead();gaEvent("test_restart",{from_profile_key:currentResult&&PROFILE_KEYS[currentResult.idx]?PROFILE_KEYS[currentResult.idx]:"unknown"});i=0;traits={openness:0,directness:0,attachment:0,regulation:0,social:0};historyAnswers=[];currentResult={pct:0,idx:0,traits:null};connectionRevealed=false;clearActiveChallenge();$("result").classList.add("hidden");$("quiz").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");history.replaceState(null,"",base());$("start").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
 
 (function init(){
+  // Stripe sends test buyers back to ?checkout=success.
+  // This restores the local result for the test flow only.
+  if(new URLSearchParams(location.search).get("checkout")==="success"){
+    gaEvent("landing_view",{entry_type:"checkout_return"});
+    if(restoreDeepReadAfterCheckout())return;
+  }
+
   const fromUrl=readChallengeFromUrl();
   sharedProfile=readSharedProfileFromUrl();
   if(fromUrl){
