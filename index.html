@@ -340,8 +340,8 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
 <script>
 const TXT={
 en:{
-eyebrow:"THE 30-SECOND SELF-AWARENESS TEST",headline:"What do people think about you when you’re not there?",
-subhead:"6 questions. See the impression you may be leaving without realizing it.",
+eyebrow:"THE 30-SECOND SELF-AWARENESS TEST",headline:"What do people really think about you?",
+subhead:"6 questions. See the impression you may be giving without realizing it.",
 start:"Read me",disclaimer:"For self-reflection and entertainment — not a clinical assessment.",back:"← Back",
 seeMine:"See mine. Take yours. Compare.",shareResult:"Share my result",copyResult:"🔗 Copy result link",
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ More options",deepTitle:"Your Deep Read",
@@ -353,15 +353,15 @@ under:"What people may misunderstand",friction:"What gets in your way",moves:"Yo
 connection:"Connection Read",connectionIntro:"Compare your real profile with someone you know. Choose the relationship and send them your private link.",
 openConnection:"Start a Connection Read",whatPerson:"What is this person to you?",createLink:"Create my private Connection link",
 copyLink:"Copy link",shareLink:"Share it",friend:"Friend",family:"Family",partner:"Partner",work:"Work",
-them:"THEM",you:"YOU",why:"Why this works",where:"Your dangerous loop",
-youDo:"What YOU should do next",theyDo:"What THEY need to do",rule:"Your rule for this relationship",
+them:"THEM",you:"YOU",why:"Why it works",where:"Your loop",
+youDo:"Your move",theyDo:"Their move",rule:"Best rule",
 again:"↻ Take the test again",linkCreated:"Private Connection link created ✓",
 linkCopied:"Connection link copied ✓ — send it to the other person.",resultCopied:"Result link copied ✓",shareDone:"Share completed ✓",
 connectionKicker:"YOUR CONNECTION READ",quickGoodLabel:"BEST PART",quickWatchLabel:"YOUR LOOP",showDetails:"See full connection breakdown",hideDetails:"Hide full breakdown",q:(n,t)=>`QUESTION ${n} OF ${t}`
 },
 es:{
-eyebrow:"EL TEST DE AUTOCONOCIMIENTO DE 30 SEGUNDOS",headline:"¿Qué piensan de ti cuando no estás ahí?",
-subhead:"6 preguntas. Descubre la impresión que puedes estar dejando sin darte cuenta.",
+eyebrow:"EL TEST DE AUTOCONOCIMIENTO DE 30 SEGUNDOS",headline:"¿Qué piensan realmente los demás de ti?",
+subhead:"6 preguntas. Descubre la impresión que puedes estar dando sin darte cuenta.",
 start:"Léeme",disclaimer:"Para reflexión personal y entretenimiento — no es una evaluación clínica.",back:"← Regresar",
 seeMine:"Ve el mío. Haz el tuyo. Comparemos.",shareResult:"Compartir mi resultado",copyResult:"🔗 Copiar enlace del resultado",
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ Más opciones",deepTitle:"Tu lectura profunda",
@@ -373,8 +373,8 @@ under:"Lo que otros pueden malinterpretar",friction:"Lo que se interpone en tu c
 connection:"Lectura de conexión",connectionIntro:"Compara tu perfil real con alguien que conoces. Elige la relación y envíale tu enlace privado.",
 openConnection:"Iniciar lectura de conexión",whatPerson:"¿Qué es esta persona para ti?",createLink:"Crear mi enlace privado de conexión",
 copyLink:"Copiar enlace",shareLink:"Compartir",friend:"Amistad",family:"Familiar",partner:"Pareja",work:"Trabajo",
-them:"LA OTRA PERSONA",you:"TÚ",why:"Por qué esto funciona",where:"Su loop peligroso",
-youDo:"Lo que TÚ deberías hacer ahora",theyDo:"Lo que ESA PERSONA necesita hacer",rule:"Su regla para esta relación",
+them:"LA OTRA PERSONA",you:"TÚ",why:"Por qué funciona",where:"Su loop",
+youDo:"Tu movimiento",theyDo:"Su movimiento",rule:"Mejor regla",
 again:"↻ Volver a hacer el test",linkCreated:"Enlace privado creado ✓",
 linkCopied:"Enlace copiado ✓ — envíaselo a la otra persona.",resultCopied:"Enlace del resultado copiado ✓",shareDone:"Compartido ✓",
 connectionKicker:"SU LECTURA DE CONEXIÓN",quickGoodLabel:"LO MEJOR",quickWatchLabel:"EL LOOP ENTRE USTEDES",showDetails:"Ver análisis completo",hideDetails:"Ocultar análisis",q:(n,t)=>`PREGUNTA ${n} DE ${t}`
@@ -392,7 +392,7 @@ en:[
 ["No big deal.",{attachment:-1,regulation:2}],
 ["Okay… what happened?",{openness:2,regulation:1}],
 ["I’m annoyed, but I probably won’t say it.",{attachment:1,directness:-2,regulation:-1}],
-["Noted. I’ll remember that.",{attachment:2,openness:1,directness:-1}]
+["I won’t forget that.",{attachment:2,openness:1,directness:-1}]
 ]],
 ["You’ve had a terrible day. What sounds best?",[
 ["Being alone for a while",{social:-2,attachment:-1,regulation:1}],
@@ -430,7 +430,7 @@ es:[
 ["No pasa nada.",{attachment:-1,regulation:2}],
 ["Ok… ¿qué pasó?",{openness:2,regulation:1}],
 ["Sí me molestó, pero probablemente no diga nada.",{attachment:1,directness:-2,regulation:-1}],
-["Anotado. Me voy a acordar.",{attachment:2,openness:1,directness:-1}]
+["Eso no se me olvida.",{attachment:2,openness:1,directness:-1}]
 ]],
 ["Tuviste un día horrible. ¿Qué prefieres?",[
 ["Estar solo/a un rato",{social:-2,attachment:-1,regulation:1}],
@@ -751,8 +751,8 @@ function sameProfileRead(idx, rel, aTraits, bTraits){
         rule:`Si ambos están callados, alguien tiene que decir la primera frase.`
       },
       {
-        good:`Entre ustedes casi nada pasa desapercibido. Ambos recuerdan cambios de tono, inconsistencias y pequeños detalles. Eso puede crear una confianza brutal cuando las cosas son consistentes.`,
-        loop:`Uno nota algo → no lo pregunta todavía → empieza a observar → el otro nota que algo cambió → también se pone alerta. De pronto ambos están leyendo señales y ninguno está diciendo qué pasó.`,
+        good:`Los dos notan los pequeños detalles. Cuando las palabras y las acciones coinciden, la confianza entre ustedes puede hacerse muy fuerte.`,
+        loop:`Uno nota algo → no dice nada → el otro nota el cambio → ahora los dos están observándose en vez de hablar.`,
         a:`Trae el detalle cuando todavía es un detalle, no cuando ya se convirtió en expediente.`,
         b:`Pregunta antes de asumir que un cambio confirma un patrón.`,
         rule:`Ningún archivo secreto. Si cuenta, se habla.`
@@ -812,8 +812,8 @@ function sameProfileRead(idx, rel, aTraits, bTraits){
       rule:`If both people are quiet, someone has to say the first sentence.`
     },
     {
-      good:`Almost nothing gets past either of you. You both remember tone shifts, inconsistencies and small details. When things are consistent, that can create unusually strong trust.`,
-      loop:`One notices something → does not ask yet → starts watching → the other notices the change → becomes alert too. Suddenly both people are reading signals and nobody is saying what happened.`,
+      good:`You both notice the little things. When words and actions match, trust between you can get very strong.`,
+      loop:`One notices something → says nothing → the other notices the change → now both are watching each other instead of talking.`,
       a:`Bring up the detail while it is still a detail, not after it becomes a case file.`,
       b:`Ask before treating one change as proof of a larger pattern.`,
       rule:`No secret files. If it counts, talk about it.`
@@ -869,22 +869,45 @@ function crossProfileRead(aIdx,bIdx,rel,aTraits,bTraits){
   const B=PROFILE_DYNAMICS[lang][bIdx];
   const t=strongestTraitMatch(aTraits,bTraits);
 
+  const simpleEN=[
+    {gift:"stays calm",risk:"can go quiet"},
+    {gift:"notices small changes",risk:"can read too much into changes"},
+    {gift:"brings energy",risk:"can come on strong"},
+    {gift:"gives people space",risk:"can pull away"},
+    {gift:"says things directly",risk:"can sound harsher than intended"},
+    {gift:"thinks things through",risk:"can keep too much inside"},
+    {gift:"adapts easily",risk:"can hide what they really want"},
+    {gift:"takes trust seriously",risk:"can take a long time to open up"}
+  ];
+  const simpleES=[
+    {gift:"mantiene la calma",risk:"puede quedarse en silencio"},
+    {gift:"nota pequeños cambios",risk:"puede darle demasiadas vueltas a un cambio"},
+    {gift:"trae energía",risk:"puede llegar con demasiada intensidad"},
+    {gift:"sabe dar espacio",risk:"puede alejarse demasiado"},
+    {gift:"dice las cosas de frente",risk:"puede sonar más fuerte de lo que quería"},
+    {gift:"piensa mucho las cosas",risk:"puede guardarse demasiado"},
+    {gift:"se adapta fácil",risk:"puede esconder lo que realmente quiere"},
+    {gift:"se toma la confianza en serio",risk:"puede tardar mucho en abrirse"}
+  ];
+
   if(lang==="es"){
+    const a=simpleES[aIdx], b=simpleES[bIdx];
     return{
-      good:`${A.short} aporta ${A.gift}; ${B.short} aporta ${B.gift}. Su punto de coincidencia más natural está en ${t.sameLabel.toLowerCase()}, y ahí es donde la relación suele sentirse fácil.`,
-      loop:`El riesgo aparece en ${t.diffLabel.toLowerCase()}: ${A.short} puede ${A.shadow}, mientras ${B.short} puede ${B.shadow}. Si ninguno explica su intención, cada uno termina reaccionando al estilo del otro en vez de a lo que realmente quiso decir.`,
-      a:`${A.short}: recuerda que la otra persona necesita ${B.need}. Ajusta tu señal antes de asumir que te entendió.`,
-      b:`${B.short}: recuerda que la otra persona necesita ${A.need}. Pregunta antes de convertir una reacción en una conclusión.`,
-      rule:`Cuando choquen en ${t.diffLabel.toLowerCase()}, una pregunta clara vale más que diez interpretaciones.`
+      good:`Se complementan bien. Una persona ${a.gift}; la otra ${b.gift}. Eso puede hacer que cada uno note cosas que al otro se le escapan.`,
+      loop:`Aquí se pueden enredar: una persona ${a.risk} y la otra ${b.risk}. Si algo cambia y nadie pregunta, los dos pueden empezar a adivinar qué quiso decir el otro.`,
+      a:`Si algo se siente raro, dilo antes de asumir qué significa.`,
+      b:`Pregunta qué pasó antes de reaccionar a tu propia interpretación.`,
+      rule:`Pregunten antes de adivinar.`
     };
   }
 
+  const a=simpleEN[aIdx], b=simpleEN[bIdx];
   return{
-    good:`${A.short} brings ${A.gift}; ${B.short} brings ${B.gift}. Your easiest common ground is ${t.sameLabel.toLowerCase()}, and that is where the relationship tends to feel natural.`,
-    loop:`The risk shows up around ${t.diffLabel.toLowerCase()}: ${A.short} may ${A.shadow}, while ${B.short} may ${B.shadow}. If neither explains intent, each person starts reacting to the other's style instead of what they actually meant.`,
-    a:`${A.short}: remember that the other person needs ${B.need}. Adjust your signal before assuming they understood it.`,
-    b:`${B.short}: remember that the other person needs ${A.need}. Ask before turning one reaction into a conclusion.`,
-    rule:`When you clash around ${t.diffLabel.toLowerCase()}, one clear question beats ten interpretations.`
+    good:`You balance each other well. One person ${a.gift}; the other ${b.gift}. Together, you may notice things the other person would miss alone.`,
+    loop:`Here’s where you can get stuck: one person ${a.risk}, while the other ${b.risk}. If something changes and nobody asks, both people can start guessing what the other meant.`,
+    a:`If something feels off, say it before deciding what it means.`,
+    b:`Ask what happened before reacting to your own interpretation.`,
+    rule:`Ask before you guess.`
   };
 }
 
