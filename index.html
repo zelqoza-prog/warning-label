@@ -15,7 +15,7 @@
 <title>WARNING LABEL — Self-Awareness Test</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0c'/%3E%3Cpath d='M13 17l8 31h8l3-14 3 14h8l8-31h-8l-4 19-4-19h-7l-4 19-4-19z' fill='%23ff5a4f'/%3E%3C/svg%3E">
 <style>
-:root{--bg:#0b0b0c;--card:#151518;--text:#f5f5f2;--muted:#aaaab2;--line:#2a2a30;--accent:#ff5a4f}
+:root{--bg:#f5efe6;--card:#fffdf9;--text:#181614;--muted:#716a63;--line:#ded4c8;--accent:#df675a}
 *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
 .wrap{max-width:720px;margin:auto;padding:24px 18px 60px}.topbar{display:flex;justify-content:space-between;align-items:center}
 .brand{font-weight:900;letter-spacing:.08em;font-size:14px}.brand span{color:var(--accent)}.langs{display:flex;gap:6px}
@@ -182,6 +182,32 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
 .incomingConnectionCTA h3{margin:8px 0;font-size:25px;line-height:1.08}
 .incomingConnectionCTA p{margin:0 0 16px;color:#d7d7dc;font-size:15px;line-height:1.5}
 
+
+/* v28: clearer, warmer, more inviting visual system */
+body{background:var(--bg);color:var(--text)}
+.brand{color:#181614}.brand span{color:var(--accent)}
+.langbtn{background:#ece4da;color:#6d655e;border-color:#d7cec3}.langbtn.active{background:#181614;color:#fff;border-color:#181614}
+.primary{background:var(--accent);color:#fff;box-shadow:0 7px 20px rgba(144,72,62,.14)}
+.secondary{background:#1d1a18;color:#fff}
+.card,.section{background:var(--card);border-color:var(--line);box-shadow:0 8px 28px rgba(52,42,33,.05)}
+.backbtn{background:#ece4da;color:#2b2724;border-color:#d7cec3}
+.progress{background:#e3dbd1}.option{background:#fff;border-color:#ddd3c7;color:#181614}.option:hover{border-color:#c9b9aa;background:#fffaf4}
+.warning{border-color:var(--accent);color:var(--accent);background:#fff8f3}
+.tag{color:#3f3a36}.profile-score-caption{color:#776f68}.connection-score-caption{color:#ff9b92}
+.perceptionRead{background:#fbf6ef;border-color:#ded4c8}
+.perceptionRead p{color:#4f4944}.perceptionBox{background:#fff;border-color:#e2d8cc}.perceptionBox span{color:#8b8178}.perceptionBox b{color:#211e1b}
+.sharemenu{background:#fff;border-color:#ded4c8}.sharebtn{background:#f3ece4;color:#211e1b;border-color:#ddd3c7}
+.paywall{border-top-color:#ded4c8}.payrow{color:#4c4641}.status{color:#247a43}
+.reportHero{color:#fff}.reportHero .tag{color:#e5e1dc}.reportHero p{color:#d7d3cf}.metric{color:#fff}
+.challengeBanner{color:#fff}
+.incomingConnectionCTA{color:#fff}
+.connectionHero{color:#fff}.connectionHero .eyebrow{color:#d6d6dc}.connectionHero .label{color:#fff}.connectionHero p{color:#e4e4e8}
+.connectionHero .section{color:#181614}.connectionHero .section p{color:#716a63}.connectionHero .section h3{color:#181614}
+.person{color:#fff}.positive{color:#fff}.positive p{color:#dfe4e0}
+.preview{color:#fff}.preview p{color:#d8d4cf}.linkbox{color:#fff}.linkbox input{color:#fff}
+.connectionDivider{border-top-color:#d5cabf}.connectionDivider span{color:#8a8178}
+@media(max-width:600px){.wrap{padding-left:15px;padding-right:15px}.hero{padding-top:52px}h1{font-size:42px}.card{padding:20px}.score{font-size:68px}.label{font-size:29px}}
+
 </style>
 </head>
 <body>
@@ -216,7 +242,7 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
   <section id="result" class="result hidden">
     <div class="backbar"><button id="resultBack" class="backbtn" onclick="goBack()"></button></div>
     <div class="card">
-      <div class="warning warning-label-text">YOUR WARNING LABEL</div>
+      <div class="warning warning-label-text">YOUR RESULT</div>
       <div id="score" class="score"></div>
       <div id="label" class="label"></div>
       <div id="tag" class="tag"></div>
@@ -297,7 +323,7 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
       </div>
 
       <div class="sharecard">
-        <div class="warning warning-label-text">YOUR WARNING LABEL</div>
+        <div class="warning warning-label-text">YOUR RESULT</div>
         <div id="shareScore" class="score"></div>
         <div id="shareLabel" class="label"></div>
         <div id="shareTag" class="tag"></div>
@@ -502,14 +528,14 @@ es:[
 ]};
 
 const PROFILES=[
-{en:["Professionally Unbothered","You feel more than you show. Your calm is real — but people can mistake composure for distance.","Composure","Detached","Signal more","Mixed signals"],es:["Profesionalmente Imperturbable","Sientes más de lo que muestras. Tu calma es real, pero otros pueden confundir serenidad con distancia.","Serenidad","Distante","Mostrar más","Señales confusas"]},
-{en:["Receipts Department","You forgive more easily than you forget. You notice patterns, remember details and quietly update your trust.","Pattern recognition","Guarded","Release faster","Silent scorekeeping"],es:["Departamento de Recibos","Perdonas más fácil de lo que olvidas. Detectas patrones, recuerdas detalles y actualizas tu confianza en silencio.","Detectar patrones","Reservado/a","Soltar más rápido","Llevar la cuenta en silencio"]},
-{en:["Chaos With Good Intentions","You bring energy and instinct. The upside is magnetism. The downside is occasionally creating weather.","Energy","Unpredictable","Pause first","Emotional whiplash"],es:["Caos con Buenas Intenciones","Aportas energía e instinto. Lo bueno es el magnetismo; lo difícil es que a veces generas tormentas sin querer.","Energía","Impredecible","Pausar primero","Cambios emocionales bruscos"]},
-{en:["Emotionally Self-Checkout","You protect yourself by becoming less available before you become more vulnerable.","Independence","Uninvested","Stay present","Early exits"],es:["Salida Emocional Anticipada","Te proteges volviéndote menos disponible antes de permitirte ser más vulnerable.","Independencia","Desinteresado/a","Permanecer presente","Salir demasiado pronto"]},
-{en:["Truth With No Bubble Wrap","You value clarity over comfort. People know where they stand with you — sometimes sooner than they wanted.","Clarity","Harsh","Add context","Unnecessary friction"],es:["Verdad Sin Envoltura","Valoras la claridad más que la comodidad. La gente sabe dónde está contigo, a veces antes de lo que quería.","Claridad","Duro/a","Dar contexto","Fricción innecesaria"]},
-{en:["Quietly Overclocked","You look composed while your brain runs twelve tabs in the background.","Awareness","Fine","Externalize","Invisible stress"],es:["Sobreprocesando en Silencio","Te ves tranquilo/a mientras tu cerebro tiene doce pestañas abiertas al mismo tiempo.","Percepción","Todo bien","Exteriorizar","Estrés invisible"]},
-{en:["Social Shape-Shifter","You read the room quickly and adapt well. The risk is adapting so much that your own preference disappears.","Adaptability","Effortless","Hold your center","Over-adapting"],es:["Camaleón Social","Lees el ambiente rápido y te adaptas bien. El riesgo es adaptarte tanto que desaparezca lo que tú realmente quieres.","Adaptabilidad","Todo le resulta fácil","Mantener tu centro","Adaptarte de más"]},
-{en:["Selective Access","You are not closed off. You are curated. Trust is earned, not assumed.","Discernment","Reserved","Open sooner","Missed connection"],es:["Acceso Selectivo","No eres cerrado/a; eres selectivo/a. La confianza se gana, no se da por hecho.","Discernimiento","Reservado/a","Abrirte antes","Perder conexiones"]}
+{en:["Hard to Read","You stay calm and keep a lot to yourself. People may not always know what you are feeling.","Composure","Distant","Show a little more","Mixed signals"],es:["Difícil de Leer","Mantienes la calma y te guardas bastante. Los demás no siempre saben lo que estás sintiendo.","Serenidad","Distante","Mostrar un poco más","Señales confusas"]},
+{en:["Nothing Gets Past You","You notice changes, remember details, and quickly know when something feels off.","Attention to detail","Guarded","Ask before assuming","Keeping score"],es:["No Se Te Escapa Nada","Notas cambios, recuerdas detalles y sabes rápido cuando algo se siente diferente.","Atención al detalle","Reservado/a","Preguntar antes de asumir","Llevar la cuenta"]},
+{en:["Big Energy","You bring energy fast. People feel your presence, but sometimes your intensity can be a lot.","Energy","Intense","Pause first","Too much too fast"],es:["Mucha Energía","Traes energía rápido. La gente nota tu presencia, aunque a veces tu intensidad puede sentirse fuerte.","Energía","Intenso/a","Pausar primero","Demasiado, demasiado rápido"]},
+{en:["Needs Space","You care, but you still need room to reset. People can mistake that space for distance.","Independence","Distant","Say when you need space","Pulling away"],es:["Necesita Su Espacio","Te importa la gente, pero necesitas espacio para recargarte. A veces pueden confundir ese espacio con distancia.","Independencia","Distante","Decir cuándo necesitas espacio","Alejarte"]},
+{en:["No Filter","You say things clearly and directly. People rarely have to guess where you stand.","Clarity","Harsh","Add context","Unnecessary friction"],es:["Sin Filtro","Dices las cosas de forma clara y directa. La gente rara vez tiene que adivinar qué piensas.","Claridad","Duro/a","Dar contexto","Fricción innecesaria"]},
+{en:["Quiet Overthinker","You think a lot before you say much. People may see calm while your mind is still working.","Awareness","Fine","Say what is happening","Invisible stress"],es:["Piensa De Más En Silencio","Piensas mucho antes de decir demasiado. Los demás pueden verte tranquilo/a mientras tu mente sigue trabajando.","Percepción","Todo bien","Decir lo que está pasando","Estrés invisible"]},
+{en:["Reads the Room","You notice the mood and adjust quickly. People usually find you easy to be around.","Adaptability","Easygoing","Say what you prefer","Over-adapting"],es:["Lee El Ambiente","Notas el ambiente y te adaptas rápido. La gente suele sentir que es fácil estar contigo.","Adaptabilidad","Fácil de tratar","Decir lo que prefieres","Adaptarte de más"]},
+{en:["Trust Is Earned","You open up slowly. Once someone earns your trust, you take the relationship seriously.","Discernment","Reserved","Open a little sooner","Missed connection"],es:["La Confianza Se Gana","Te abres poco a poco. Cuando alguien se gana tu confianza, te tomas esa relación en serio.","Discernimiento","Reservado/a","Abrirte un poco antes","Perder conexiones"]}
 ];
 
 let lang=((localStorage.getItem("zelqoza_lang")||navigator.language||"en").toLowerCase().startsWith("es"))?"es":"en";
@@ -522,7 +548,7 @@ function applyLanguage(){
   document.documentElement.lang=lang;
 
 document.querySelectorAll(".warning-label-text").forEach(el=>{
-  el.innerText=lang==="es" ? "TU WARNING LABEL" : "YOUR WARNING LABEL";
+  el.innerText=lang==="es" ? "TU RESULTADO" : "YOUR RESULT";
 });
 $("enBtn").classList.toggle("active",lang==="en");$("esBtn").classList.toggle("active",lang==="es");
   const map={eyebrow:"eyebrow",headline:"headline",subhead:"subhead",startBtn:"start",disclaimer:"disclaimer",quizBack:"back",resultBack:"back",seeMine:"seeMine",shareBtn:"shareResult",copyResultBtn:"copyResult",whatsappBtn:"whatsapp",facebookBtn:"facebook",moreBtn:"more",deepTitle:"deepTitle",deepCopy:"deepCopy",misreadLabel:"misread",patternLabel:"pattern",moveLabel:"move",unlockBtn:"unlock",previewNote:"preview",m1:"m1",m2:"m2",m3:"m3",m4:"m4",underTitle:"under",frictionTitle:"friction",movesTitle:"moves",connectionTitle:"connection",connectionIntro:"connectionIntro",openConnectionBtn:"openConnection",whatPerson:"whatPerson",createLinkBtn:"createLink",copyLinkBtn:"copyLink",shareLinkBtn:"shareLink",connectionKicker:"connectionKicker",quickGoodLabel:"quickGoodLabel",quickWatchLabel:"quickWatchLabel",connectionDetailsToggle:"showDetails",themText:"them",youText:"you",whyTitle:"why",whereTitle:"where",youDoTitle:"youDo",theyDoTitle:"theyDo",ruleTitle:"rule",againBtn:"again"};
@@ -596,7 +622,7 @@ async function copyText(text){try{if(navigator.clipboard&&window.isSecureContext
 function getShareUrl(){const u=new URL(base());u.searchParams.set("share","1");u.searchParams.set("r",currentResult.idx);u.searchParams.set("s",currentResult.pct);if(currentResult.traits)u.searchParams.set("t",compact(currentResult.traits));return u.toString()}
 function toggleShare(){$("shareMenu").classList.toggle("show")}
 async function copyResultLink(){$("shareStatus").innerText=(await copyText(getShareUrl()))?tx("resultCopied"):""}
-function shareMessage(){const p=profile(currentResult.idx);return lang==="es"?`Mi WARNING LABEL: ${p[0]} — ${currentResult.pct}%. Ve mi resultado, haz el tuyo o compáralo conmigo.`:`My WARNING LABEL: ${p[0]} — ${currentResult.pct}%. See mine, take yours, or compare with me.`}
+function shareMessage(){const p=profile(currentResult.idx);return lang==="es"?`Mi resultado: ${p[0]} — ${currentResult.pct}%. Ve el mío, haz el tuyo o compáralo conmigo.`:`My result: ${p[0]} — ${currentResult.pct}%. See mine, take yours, or compare with me.`}
 function shareWhatsApp(){window.open("https://wa.me/?text="+encodeURIComponent(shareMessage()+" "+getShareUrl()),"_blank")}
 function shareFacebook(){window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(getShareUrl()),"_blank")}
 async function nativeShare(){const text=shareMessage(),url=getShareUrl();if(navigator.share){try{await navigator.share({title:"Warning Label",text,url});$("shareStatus").innerText=tx("shareDone");return}catch(e){}}$("shareStatus").innerText=(await copyText(text+" "+url))?tx("resultCopied"):""}
@@ -669,56 +695,56 @@ const PROFILE_KEYS=[
 const PROFILE_DYNAMICS={
   en:[
     {
-      short:"Unbothered",
-      core:"keeps the emotional temperature low and rarely shows the full intensity of what they feel",
+      short:"Hard to Read",
+      core:"stays calm and does not show every feeling",
       gift:"brings steadiness when everyone else is reacting",
       shadow:"can look distant exactly when they care most",
       need:"clear, low-pressure communication"
     },
     {
-      short:"Receipts",
-      core:"notices patterns, remembers details and quietly updates trust",
-      gift:"spots inconsistency before most people do",
-      shadow:"can keep a private scorecard long after the moment has passed",
+      short:"Nothing Gets Past You",
+      core:"notices changes, remembers details and pays attention when something feels off",
+      gift:"catches details other people miss",
+      shadow:"can keep thinking about a change instead of asking about it",
       need:"consistency and direct explanations"
     },
     {
-      short:"Good Chaos",
+      short:"Big Energy",
       core:"moves fast, feels fast and brings energy into the room",
       gift:"creates momentum, fun and emotional honesty",
       shadow:"can turn urgency into pressure before realizing it",
       need:"room to be expressive without making every moment an emergency"
     },
     {
-      short:"Self-Checkout",
+      short:"Needs Space",
       core:"protects independence by stepping back before feeling exposed",
       gift:"does not cling and can regulate alone",
       shadow:"can leave emotionally before the other person knows there was a problem",
       need:"space that still includes a clear return"
     },
     {
-      short:"No Bubble Wrap",
+      short:"No Filter",
       core:"values clarity over comfort and says what others may only think",
       gift:"cuts through confusion quickly",
       shadow:"can make a useful truth feel like an attack",
       need:"directness with context"
     },
     {
-      short:"Overclocked",
+      short:"Quiet Overthinker",
       core:"looks composed while processing far more than they show",
       gift:"notices complexity and thinks several moves ahead",
       shadow:"can hide stress until it is already too much",
       need:"permission to externalize before overload"
     },
     {
-      short:"Shape-Shifter",
+      short:"Reads the Room",
       core:"reads the room fast and adapts naturally to people",
       gift:"makes social situations easier for everyone",
       shadow:"can adapt so much that their real preference disappears",
       need:"space to state what they actually want"
     },
     {
-      short:"Selective Access",
+      short:"Trust Is Earned",
       core:"opens slowly and treats trust as something earned",
       gift:"builds deep loyalty once someone is inside",
       shadow:"can keep people outside long enough that they stop trying",
@@ -727,56 +753,56 @@ const PROFILE_DYNAMICS={
   ],
   es:[
     {
-      short:"Imperturbable",
-      core:"mantiene baja la temperatura emocional y rara vez muestra toda la intensidad de lo que siente",
+      short:"Difícil de Leer",
+      core:"mantiene la calma y no muestra todo lo que siente",
       gift:"aporta estabilidad cuando los demás están reaccionando",
       shadow:"puede parecer distante justo cuando más le importa algo",
       need:"comunicación clara y sin presión"
     },
     {
-      short:"Recibos",
-      core:"detecta patrones, recuerda detalles y actualiza su confianza en silencio",
-      gift:"nota inconsistencias antes que casi cualquiera",
-      shadow:"puede llevar una cuenta privada mucho después de que pasó el momento",
+      short:"No Se Te Escapa Nada",
+      core:"nota cambios, recuerda detalles y presta atención cuando algo se siente diferente",
+      gift:"nota detalles que a otros se les escapan",
+      shadow:"puede seguir pensando en un cambio en vez de preguntar qué pasó",
       need:"consistencia y explicaciones directas"
     },
     {
-      short:"Buen Caos",
+      short:"Mucha Energía",
       core:"se mueve rápido, siente rápido y trae energía al ambiente",
       gift:"crea impulso, diversión y honestidad emocional",
       shadow:"puede convertir urgencia en presión sin darse cuenta",
       need:"espacio para expresarse sin convertir cada momento en emergencia"
     },
     {
-      short:"Salida Emocional",
+      short:"Necesita Su Espacio",
       core:"protege su independencia alejándose antes de sentirse demasiado expuesto/a",
       gift:"no se aferra y sabe regularse por su cuenta",
       shadow:"puede irse emocionalmente antes de que la otra persona sepa que había un problema",
       need:"espacio que incluya una señal clara de regreso"
     },
     {
-      short:"Sin Envoltura",
+      short:"Sin Filtro",
       core:"valora la claridad más que la comodidad y dice lo que otros solo piensan",
       gift:"corta la confusión rápido",
       shadow:"puede hacer que una verdad útil se sienta como ataque",
       need:"directitud con contexto"
     },
     {
-      short:"Sobreprocesando",
+      short:"Piensa De Más En Silencio",
       core:"se ve tranquilo/a mientras procesa mucho más de lo que muestra",
       gift:"nota complejidad y piensa varios pasos adelante",
       shadow:"puede esconder estrés hasta que ya es demasiado",
       need:"permiso para exteriorizar antes de saturarse"
     },
     {
-      short:"Camaleón",
+      short:"Lee El Ambiente",
       core:"lee el ambiente rápido y se adapta naturalmente a las personas",
       gift:"hace más fáciles las situaciones sociales",
       shadow:"puede adaptarse tanto que desaparece lo que realmente quiere",
       need:"espacio para decir lo que de verdad prefiere"
     },
     {
-      short:"Acceso Selectivo",
+      short:"La Confianza Se Gana",
       core:"se abre despacio y trata la confianza como algo que se gana",
       gift:"construye lealtad profunda una vez que alguien entra",
       shadow:"puede mantener a la gente afuera tanto tiempo que dejan de intentarlo",
@@ -787,24 +813,24 @@ const PROFILE_DYNAMICS={
 
 const SAME_PROFILE_TITLES={
   en:[
-    "DOUBLE PROFESSIONALLY UNBOTHERED",
-    "DOUBLE RECEIPTS DEPARTMENT",
-    "DOUBLE CHAOS, GOOD INTENTIONS",
-    "DOUBLE EMOTIONAL SELF-CHECKOUT",
-    "DOUBLE TRUTH, NO BUBBLE WRAP",
-    "DOUBLE QUIETLY OVERCLOCKED",
-    "DOUBLE SOCIAL SHAPE-SHIFTER",
-    "DOUBLE SELECTIVE ACCESS"
+    "BOTH HARD TO READ",
+    "NOTHING GETS PAST EITHER OF YOU",
+    "DOUBLE BIG ENERGY",
+    "BOTH NEED SPACE",
+    "DOUBLE NO FILTER",
+    "TWO QUIET OVERTHINKERS",
+    "BOTH READ THE ROOM",
+    "TRUST IS EARNED — TWICE"
   ],
   es:[
-    "DOBLE PROFESIONALMENTE IMPERTURBABLE",
-    "DOBLE DEPARTAMENTO DE RECIBOS",
-    "DOBLE CAOS CON BUENAS INTENCIONES",
-    "DOBLE SALIDA EMOCIONAL ANTICIPADA",
-    "DOBLE VERDAD SIN ENVOLTURA",
-    "DOBLE SOBREPROCESANDO EN SILENCIO",
-    "DOBLE CAMALEÓN SOCIAL",
-    "DOBLE ACCESO SELECTIVO"
+    "LOS DOS SON DIFÍCILES DE LEER",
+    "A NINGUNO SE LE ESCAPA NADA",
+    "DOBLE MUCHA ENERGÍA",
+    "LOS DOS NECESITAN SU ESPACIO",
+    "DOBLE SIN FILTRO",
+    "DOS QUE PIENSAN DE MÁS EN SILENCIO",
+    "LOS DOS LEEN EL AMBIENTE",
+    "LA CONFIANZA SE GANA — POR LOS DOS"
   ]
 };
 
@@ -834,7 +860,7 @@ es:[
 function renderPerception(idx){
  const r=PERCEPTION_READS[lang][idx];
  if(!r)return;
- $("perceptionKicker").innerText=lang==="es"?"CÓMO PUEDES ESTAR LLEGANDO A LOS DEMÁS":"HOW YOU MAY COME ACROSS";
+ $("perceptionKicker").innerText=lang==="es"?"ASÍ PUEDEN VERTE LOS DEMÁS":"HOW PEOPLE MAY SEE YOU";
  $("perceptionTitle").innerText=r.title;
  $("perceptionMain").innerText=r.main;
  $("peopleLikeLabel").innerText=lang==="es"?"LO QUE LA GENTE SUELE VALORAR":"WHAT PEOPLE MAY LIKE";
@@ -1078,7 +1104,7 @@ function ensureScoreCaptions(){
  const personal=$("score"), connection=$("compatScore");
  if(personal&&!$("profileScoreCaption")){const e=document.createElement("div");e.id="profileScoreCaption";e.className="profile-score-caption";personal.insertAdjacentElement("afterend",e)}
  if(connection&&!$("connectionScoreCaption")){const e=document.createElement("div");e.id="connectionScoreCaption";e.className="connection-score-caption";connection.insertAdjacentElement("afterend",e)}
- if($("profileScoreCaption"))$("profileScoreCaption").innerText=lang==="es"?"COINCIDENCIA CON TU PERFIL":"MATCH TO YOUR PROFILE";
+ if($("profileScoreCaption"))$("profileScoreCaption").innerText=lang==="es"?"BASADO EN TUS 6 RESPUESTAS":"BASED ON YOUR 6 ANSWERS";
  if($("connectionScoreCaption"))$("connectionScoreCaption").innerText=lang==="es"?"COMPATIBILIDAD ENTRE USTEDES":"YOUR CONNECTION MATCH";
 }
 function renderConnection(c){
