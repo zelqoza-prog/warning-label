@@ -243,7 +243,6 @@ body{background:var(--bg);color:var(--text)}
     <div class="backbar"><button id="resultBack" class="backbtn" onclick="goBack()"></button></div>
     <div class="card">
       <div class="warning warning-label-text">YOUR RESULT</div>
-      <div id="score" class="score"></div>
       <div id="label" class="label"></div>
       <div id="tag" class="tag"></div>
 
@@ -302,12 +301,10 @@ body{background:var(--bg);color:var(--text)}
           <div class="compareGrid">
           <div class="person">
             <div id="themText" class="mini"></div>
-            <div id="themScore" class="label"></div>
             <div id="themLabel"></div>
           </div>
           <div class="person">
             <div id="youText" class="mini"></div>
-            <div id="youScore" class="label"></div>
             <div id="youLabel"></div>
           </div>
         </div>
@@ -324,7 +321,6 @@ body{background:var(--bg);color:var(--text)}
 
       <div class="sharecard">
         <div class="warning warning-label-text">YOUR RESULT</div>
-        <div id="shareScore" class="score"></div>
         <div id="shareLabel" class="label"></div>
         <div id="shareTag" class="tag"></div>
         <div class="mini">ZELQOZA · <span id="seeMine"></span></div>
@@ -613,7 +609,7 @@ function finish(){
   }
   window.scrollTo({top:0,behavior:"smooth"});
 }
-function applyResult(idx,pct,tdata){currentResult={idx,pct:Math.min(99,pct),traits:tdata||currentResult.traits};const p=profile(idx);$("score").innerText=$("shareScore").innerText=currentResult.pct+"%";renderPerception(currentResult.idx);ensureScoreCaptions();$("label").innerText=$("shareLabel").innerText=p[0];$("tag").innerText=$("shareTag").innerText=p[1]}
+function applyResult(idx,pct,tdata){currentResult={idx,pct:Math.min(99,pct),traits:tdata||currentResult.traits};const p=profile(idx);renderPerception(currentResult.idx);ensureScoreCaptions();$("label").innerText=$("shareLabel").innerText=p[0];$("tag").innerText=$("shareTag").innerText=p[1]}
 function goBack(){if(!$("result").classList.contains("hidden")){$("result").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");$("connectionDivider").classList.add("hidden");if($("incomingConnectionCTA"))$("incomingConnectionCTA").classList.add("hidden");connectionRevealed=false;if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i=QUIZ[lang].length-1;$("quiz").classList.remove("hidden");render();return}if(i===0){$("quiz").classList.add("hidden");$("start").classList.remove("hidden");return}if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i--;render()}
 function base(){return "https://zelqoza.com/"}
 function compact(t){return["openness","directness","attachment","regulation","social"].map(k=>Math.round((t||{})[k]||0)).join(",")}
@@ -622,7 +618,7 @@ async function copyText(text){try{if(navigator.clipboard&&window.isSecureContext
 function getShareUrl(){const u=new URL(base());u.searchParams.set("share","1");u.searchParams.set("r",currentResult.idx);u.searchParams.set("s",currentResult.pct);if(currentResult.traits)u.searchParams.set("t",compact(currentResult.traits));return u.toString()}
 function toggleShare(){$("shareMenu").classList.toggle("show")}
 async function copyResultLink(){$("shareStatus").innerText=(await copyText(getShareUrl()))?tx("resultCopied"):""}
-function shareMessage(){const p=profile(currentResult.idx);return lang==="es"?`Mi resultado: ${p[0]} — ${currentResult.pct}%. Ve el mío, haz el tuyo o compáralo conmigo.`:`My result: ${p[0]} — ${currentResult.pct}%. See mine, take yours, or compare with me.`}
+function shareMessage(){const p=profile(currentResult.idx);return lang==="es"?`Mi resultado: ${p[0]}. Ve el mío, haz el tuyo o compáralo conmigo.`:`My result: ${p[0]}. See mine, take yours, or compare with me.`}
 function shareWhatsApp(){window.open("https://wa.me/?text="+encodeURIComponent(shareMessage()+" "+getShareUrl()),"_blank")}
 function shareFacebook(){window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(getShareUrl()),"_blank")}
 async function nativeShare(){const text=shareMessage(),url=getShareUrl();if(navigator.share){try{await navigator.share({title:"Warning Label",text,url});$("shareStatus").innerText=tx("shareDone");return}catch(e){}}$("shareStatus").innerText=(await copyText(text+" "+url))?tx("resultCopied"):""}
@@ -1088,6 +1084,7 @@ function pairDisplayTitle(aIdx,bIdx){
   return `${profile(aIdx)[0]} + ${profile(bIdx)[0]}`;
 }
 
+// Individual profile percentages are intentionally hidden from the UI. pct is retained internally only for legacy connection calculations and link compatibility.
 function compatibility(a,b){const f=traitFit(a.traits,b.traits);let score=Math.round(80-Math.abs(a.pct-b.pct)*.25+(f!==null?(f-50)*.18:0)+(a.idx===b.idx?5:0));score=Math.max(55,Math.min(97,score));const label=lang==="es"?(score>=90?"Conexión muy fuerte":score>=82?"Conexión fuerte":score>=72?"Buena conexión con algo de fricción":"Diferentes, pero puede funcionar"):(score>=90?"Very strong fit":score>=82?"Strong connection":score>=72?"Good with some friction":"Different but workable");return{score,label}}
 function relCopy(rel){const en={friend:["You have useful common ground and enough difference to keep the friendship interesting.","The biggest risk is assuming the other person already knows what you mean.","Be a little more explicit than feels necessary.","Give them room without disappearing.","One clear sentence prevents ten wrong stories."],family:["You share history and familiarity that can make understanding each other feel automatic — until it isn’t.","Old roles can make one person react to who the other used to be instead of who they are now.","Say what you need without assuming family should automatically know.","Listen to the current message instead of answering the old pattern.","History explains the pattern, but it does not have to control the relationship."],partner:["You can complement each other well when both people feel safe enough to be direct.","Different coping styles can get mistaken for lack of care.","Name your need before your frustration.","Respond to the need underneath the reaction.","Talk about the pattern as the enemy — not each other."],work:["Your styles can be productive when roles and expectations are explicit.","Different communication speeds can look like disengagement or control.","State deadlines and ownership clearly.","Give context with requests.","Make expectations visible."]};const es={friend:["Tienen terreno en común y suficientes diferencias para que la amistad siga siendo interesante.","El mayor riesgo es asumir que la otra persona ya sabe lo que quieres decir.","Sé un poco más explícito/a de lo que te parecería necesario.","Dale espacio sin desaparecer.","Una frase clara evita diez historias equivocadas."],family:["Comparten historia y familiaridad que pueden hacer que entenderse parezca automático — hasta que deja de serlo.","Los roles antiguos pueden hacer que uno responda a quien la otra persona era antes, en vez de a quien es hoy.","Di lo que necesitas sin asumir que por ser familia deberían saberlo automáticamente.","Escucha el mensaje actual en lugar de responder al patrón antiguo.","La historia explica el patrón, pero no tiene que controlar la relación."],partner:["Pueden complementarse bien cuando ambos se sienten seguros para ser directos.","Los estilos distintos para manejar estrés pueden confundirse con falta de interés.","Nombra tu necesidad antes que tu frustración.","Responde a la necesidad debajo de la reacción.","Hablen del patrón como el enemigo, no del otro."],work:["Sus estilos pueden ser productivos cuando roles y expectativas son explícitos.","Ritmos distintos de comunicación pueden parecer desinterés o control.","Aclara fechas y responsabilidades.","Da contexto con tus solicitudes.","Hagan visibles las expectativas."]};return (lang==="es"?es:en)[rel]}
 function traitNames(){return lang==="es"?{openness:"Apertura",directness:"Directitud",attachment:"Cercanía",regulation:"Serenidad",social:"Energía social"}:{openness:"Openness",directness:"Directness",attachment:"Closeness",regulation:"Composure",social:"Social energy"}}
@@ -1101,10 +1098,8 @@ function toggleConnectionDetails(){
 }
 
 function ensureScoreCaptions(){
- const personal=$("score"), connection=$("compatScore");
- if(personal&&!$("profileScoreCaption")){const e=document.createElement("div");e.id="profileScoreCaption";e.className="profile-score-caption";personal.insertAdjacentElement("afterend",e)}
+ const connection=$("compatScore");
  if(connection&&!$("connectionScoreCaption")){const e=document.createElement("div");e.id="connectionScoreCaption";e.className="connection-score-caption";connection.insertAdjacentElement("afterend",e)}
- if($("profileScoreCaption"))$("profileScoreCaption").innerText=lang==="es"?"BASADO EN TUS 6 RESPUESTAS":"BASED ON YOUR 6 ANSWERS";
  if($("connectionScoreCaption"))$("connectionScoreCaption").innerText=lang==="es"?"COMPATIBILIDAD ENTRE USTEDES":"YOUR CONNECTION MATCH";
 }
 function renderConnection(c){
@@ -1137,9 +1132,7 @@ function renderConnection(c){
   $("positiveTitle").innerText=lang==="es"?"Lo que realmente funciona entre ustedes":"What actually works between you";
   $("positiveCopy").innerText=pair.good;
 
-  $("themScore").innerText=c.pct+"%";
   $("themLabel").innerText=them[0];
-  $("youScore").innerText=currentResult.pct+"%";
   $("youLabel").innerText=you[0];
 
   $("whyText").innerText=pair.good;
