@@ -1,3498 +1,667 @@
+
+bce105c8-5a2f-4a8b-a08a-eb1227ee3cbe.png
+eso muestra al friend al final no hace relacion entre los dos perfiles no se algo poditivo
+
+d6638bf6-95b5-4f9c-9027-497420fa2fc3.png
+el boton copiar y compartir no funcionan
+
+de7a3329-aeba-4ec9-8bdc-d8b9269386e2.png
+puse este ultimo codigo que me mandaste y no abre nada
+
+00167f5b-3389-4fa8-bd90-36735068edbd.png
+asi se ve
+
+aa231ac8-1fa7-41bb-b550-b9a7b9cfed7f.png
+
+694fbbe3-aa30-4e2c-ae9d-c44adee81365.png
+9bc2b170-4249-473e-abba-5a3e56db4b3d.png
+d2cc9f68-5b7a-4cca-beef-aa9538b8767f.png
+si lo hice quedo bien mira
+
+Perfecto. Vuelve a la pantalla principal del repositorio, donde ves los archivos CNAME e index.html.
+
+Cuando estés ahí, dime “listo” y te digo el siguiente clic.
+
+
+7c5af3ef-5d7b-4346-90fa-6935718c7f06.png
+aqui?
+
+Sí, exactamente ahí. Estás viendo el index.html correcto.
+
+Ahora haz solo esto:
+
+Arriba, junto a Raw y el icono de descarga, ves el lápiz ✏️ con una flechita hacia abajo.
+
+Haz clic en la flechita ▼ al lado del lápiz.
+
+No cambies nada todavía. Dime qué opciones te aparecen.
+
+
+414f25da-a4d0-472c-a866-72e7633f9afd.png
+
+Sí, perfecto. Ahí veo las opciones.
+
+Haz clic en “In place” debajo de Edit file....
+
+Eso te abrirá otra vez el editor de index.html. No borres nada todavía. Cuando se abra, dime “listo”.
+
+
+listo
+
+Perfecto. Ahora vamos a hacerlo fácil.
+
+Abre este archivo de texto en otra pestaña:
+
+Abrir código completo v18 en texto
+
+Cuando se abra, haz Ctrl + A y luego Ctrl + C.
+
+Después vuelve a GitHub. No pegues todavía; dime “copiado”. 
+
+
+index_WARNING_LABEL_CONNECTION_POLISHED_v18.txt
+Documento
+
+
+Biblioteca
+/
+Zelqoza
+/
+index_WARNING_LABEL_CONNECTION_POLISHED_v18.txt
+
+
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WARNING LABEL — Self-Awareness Test</title>
-
 <style>
-:root{
-  --bg:#0b0b0c;
-  --card:#151518;
-  --text:#f5f5f2;
-  --muted:#aaaab2;
-  --line:#2a2a30;
-  --accent:#ff5a4f;
+:root{--bg:#0b0b0c;--card:#151518;--text:#f5f5f2;--muted:#aaaab2;--line:#2a2a30;--accent:#ff5a4f}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
+.wrap{max-width:720px;margin:auto;padding:24px 18px 60px}.topbar{display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:900;letter-spacing:.08em;font-size:14px}.brand span{color:var(--accent)}.langs{display:flex;gap:6px}
+.langbtn{width:auto;padding:8px 11px;border-radius:10px;background:#1d1d22;color:#bbb;border:1px solid #303037;font-size:12px}.langbtn.active{color:#fff;border-color:var(--accent)}
+.hero{padding:66px 0 34px}.eyebrow{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:12px}
+h1{font-size:54px;line-height:.96;margin:12px 0 18px;letter-spacing:-.04em} p{color:var(--muted);font-size:18px;line-height:1.5}
+button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;font-size:17px;cursor:pointer}
+.primary{background:var(--accent);color:#fff}.secondary{background:#242429;color:#fff}
+.card,.section{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;margin-top:20px}
+.section{border-radius:20px;padding:20px;margin-top:14px}.hidden{display:none!important}
+.backbar{display:flex;margin:6px 0 14px}.backbtn{width:auto;padding:10px 14px;border-radius:12px;background:#1d1d22;color:#fff;border:1px solid #303037;font-size:14px}
+.progress{height:5px;background:#222;border-radius:9px;overflow:hidden;margin:22px 0}.bar{height:100%;background:var(--accent);width:0}
+.qnum{color:var(--muted);font-size:13px}.question{font-size:25px;font-weight:800;margin:8px 0 18px}
+.option{display:block;width:100%;padding:15px 16px;margin:10px 0;background:#1e1e22;border:1px solid #303037;border-radius:14px;color:#fff;text-align:left;font-size:16px}
+.result{text-align:center}.warning{display:inline-block;border:2px solid var(--accent);color:var(--accent);font-weight:900;padding:7px 12px;border-radius:9px;letter-spacing:.08em}
+.score{font-size:74px;font-weight:950;letter-spacing:-.06em;margin:18px 0 0}.label{font-size:31px;font-weight:900;margin:4px 0 15px}
+.tag{font-size:19px;color:#f3f3f5;line-height:1.55;font-weight:500}
+.sharecard{margin:24px 0;background:#f3eddf;color:#111;border-radius:22px;padding:26px;text-align:left}.sharecard .warning{color:#111;border-color:#111}.sharecard .score{font-size:58px}.sharecard .tag{color:#333}
+.sharemenu{display:none;margin-top:12px;background:#1b1b1f;border:1px solid var(--line);border-radius:18px;padding:12px}.sharemenu.show{display:block}
+.sharegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sharebtn{background:#242429;color:#fff;border:1px solid #33343a;border-radius:12px;padding:13px;font-size:14px}
+.status{font-size:13px;color:#9be7b0;margin-top:10px;min-height:18px;text-align:center}
+.paywall{text-align:left;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}.payrow{display:flex;justify-content:space-between;padding:10px 0;color:#ddd}.blur{filter:blur(5px);user-select:none}
+.report{margin-top:22px;text-align:left}.reportHero{border-radius:24px;padding:28px;background:linear-gradient(135deg,#17171b,#23232a);border:1px solid var(--line)}
+.reportTitle{font-size:36px;font-weight:950;margin:8px 0 10px}.metricGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.metric{background:#1d1d22;border:1px solid #303038;border-radius:16px;padding:16px}.metric b{display:block;font-size:22px;margin-top:5px}
+.relationship-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.relbtn{padding:11px 8px;border-radius:12px;background:#242429;color:#fff;border:1px solid #35353c;font-size:13px}.relbtn.active{border-color:var(--accent)}
+.connectionSetup{display:none;margin-top:14px}.connectionSetup.show{display:block}.preview{margin-top:12px;padding:16px;border-radius:16px;background:#1c1c21;border:1px solid #303038}
+.linkbox{display:none;margin-top:12px;padding:12px;border-radius:14px;background:#111216;border:1px solid #303038}.linkbox.show{display:block}
+.linkbox input{width:100%;padding:12px;border-radius:10px;border:1px solid #34343c;background:#0d0e11;color:#fff;font-size:13px}.linkactions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.challengeBanner{margin-top:18px;padding:16px;background:#1d1d22;border:1px solid #34343b;border-radius:16px;text-align:left}
+.connectionHero{background:linear-gradient(145deg,#171b18,#1d211f);border:1px solid #33453a;border-radius:24px;padding:24px;margin-top:20px}
+.compareGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.person{background:#1c1c21;border:1px solid #303038;border-radius:16px;padding:16px}
+.positive{margin-top:16px;padding:18px;border-radius:18px;background:#1a211d;border:1px solid #33453a}
+.traitRow{margin-top:14px}.traitLabel{font-size:13px;font-weight:800}.traitLine{display:grid;grid-template-columns:58px 1fr 36px;gap:8px;align-items:center;margin-top:6px}
+.track{height:8px;background:#2a2a31;border-radius:999px;overflow:hidden}.fill{height:100%;background:var(--accent)}.fill.them{opacity:.55}.mini{font-size:12px;color:var(--muted)}
+@media(max-width:600px){h1{font-size:43px}.sharegrid,.metricGrid,.compareGrid,.linkactions{grid-template-columns:1fr}.relationship-grid{grid-template-columns:1fr 1fr}}
+
+/* v18: Connection payoff polish */
+.connectionHero{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,90,79,.16), transparent 36%),
+    linear-gradient(145deg,#171b18,#1d211f);
 }
-
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Inter,Arial,sans-serif;
+.connectionHero::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:24px;
+  pointer-events:none;
+  background:linear-gradient(120deg,transparent 15%,rgba(255,255,255,.08) 48%,transparent 70%);
+  transform:translateX(-120%);
+  animation:connectionSheen 1.15s ease .35s both;
 }
-
-.wrap{
-  max-width:720px;
-  margin:auto;
-  padding:24px 18px 60px;
+.connectionPayoff{
+  text-align:center;
+  padding:8px 0 4px;
 }
-
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.connectionPayoff .eyebrow{
+  color:#d6d6dc;
 }
-
-.brand{
-  font-weight:900;
-  letter-spacing:.08em;
-  font-size:14px;
+.connectionPayoff .score{
+  margin:10px 0 0;
+  font-size:82px;
+  line-height:.95;
+  transform-origin:center;
 }
-
-.brand span{color:var(--accent)}
-
-.langs{
-  display:flex;
-  gap:6px;
+.connectionPayoff .label{
+  margin-top:8px;
+  font-size:24px;
 }
-
-.langbtn{
-  width:auto;
-  padding:8px 11px;
-  border-radius:10px;
-  background:#1d1d22;
-  color:#bbb;
-  border:1px solid #303037;
-  font-size:12px;
-}
-
-.langbtn.active{
-  color:#fff;
-  border-color:var(--accent);
-}
-
-.hero{
-  padding:66px 0 34px;
-}
-
-.eyebrow{
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  font-size:12px;
-}
-
-h1{
-  font-size:54px;
-  line-height:.96;
-  margin:12px 0 18px;
-  letter-spacing:-.04em;
-}
-
-p{
-  color:var(--muted);
-  font-size:18px;
+.connectionOneLiner{
+  max-width:560px;
+  margin:8px auto 0;
+  color:#e4e4e8;
+  font-size:15px;
   line-height:1.5;
 }
-
-button{
-  width:100%;
-  border:0;
-  border-radius:16px;
-  padding:17px 18px;
-  font-weight:800;
-  font-size:17px;
-  cursor:pointer;
-}
-
-.primary{
-  background:var(--accent);
-  color:#fff;
-}
-
-.secondary{
-  background:#242429;
-  color:#fff;
-}
-
-.card,
-.section{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:24px;
-  margin-top:20px;
-}
-
-.section{
-  border-radius:20px;
-  padding:20px;
-  margin-top:14px;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.backbar{
-  display:flex;
-  margin:6px 0 14px;
-}
-
-.backbtn{
-  width:auto;
-  padding:10px 14px;
-  border-radius:12px;
-  background:#1d1d22;
-  color:#fff;
-  border:1px solid #303037;
-  font-size:14px;
-}
-
-.progress{
-  height:5px;
-  background:#222;
-  border-radius:9px;
-  overflow:hidden;
-  margin:22px 0;
-}
-
-.bar{
-  height:100%;
-  background:var(--accent);
-  width:0;
-}
-
-.qnum{
-  color:var(--muted);
-  font-size:13px;
-}
-
-.question{
-  font-size:25px;
-  font-weight:800;
-  margin:8px 0 18px;
-}
-
-.option{
-  display:block;
-  width:100%;
-  padding:15px 16px;
-  margin:10px 0;
-  background:#1e1e22;
-  border:1px solid #303037;
-  border-radius:14px;
-  color:#fff;
-  text-align:left;
-  font-size:16px;
-}
-
-.result{
-  text-align:center;
-}
-
-.warning{
-  display:inline-block;
-  border:2px solid var(--accent);
-  color:var(--accent);
-  font-weight:900;
-  padding:7px 12px;
-  border-radius:9px;
-  letter-spacing:.08em;
-}
-
-.score{
-  font-size:74px;
-  font-weight:950;
-  letter-spacing:-.06em;
-  margin:18px 0 0;
-}
-
-.label{
-  font-size:31px;
-  font-weight:900;
-  margin:4px 0 15px;
-}
-
-.tag{
-  font-size:19px;
-  color:#f3f3f5;
-  line-height:1.55;
-  font-weight:500;
-}
-
-.sharecard{
-  margin:24px 0;
-  background:#f3eddf;
-  color:#111;
-  border-radius:22px;
-  padding:26px;
-  text-align:left;
-}
-
-.sharecard .warning{
-  color:#111;
-  border-color:#111;
-}
-
-.sharecard .score{
-  font-size:58px;
-}
-
-.sharecard .tag{
-  color:#333;
-}
-
-.sharemenu{
-  display:none;
-  margin-top:12px;
-  background:#1b1b1f;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:12px;
-}
-
-.sharemenu.show{
-  display:block;
-}
-
-.sharegrid{
+.connectionQuick{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-}
-
-.sharebtn{
-  background:#242429;
-  color:#fff;
-  border:1px solid #33343a;
-  border-radius:12px;
-  padding:13px;
-  font-size:14px;
-}
-
-.status{
-  font-size:13px;
-  color:#9be7b0;
-  margin-top:10px;
-  min-height:18px;
-  text-align:center;
-}
-
-.paywall{
-  text-align:left;
-  margin-top:22px;
-  padding-top:20px;
-  border-top:1px solid var(--line);
-}
-
-.payrow{
-  display:flex;
-  justify-content:space-between;
-  padding:10px 0;
-  color:#ddd;
-}
-
-.blur{
-  filter:blur(5px);
-  user-select:none;
-}
-
-.report{
-  margin-top:22px;
-  text-align:left;
-}
-
-.reportHero{
-  border-radius:24px;
-  padding:28px;
-  background:linear-gradient(135deg,#17171b,#23232a);
-  border:1px solid var(--line);
-}
-
-.reportTitle{
-  font-size:36px;
-  font-weight:950;
-  margin:8px 0 10px;
-}
-
-.metricGrid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
   margin-top:16px;
 }
-
-.metric{
-  background:#1d1d22;
-  border:1px solid #303038;
-  border-radius:16px;
-  padding:16px;
-}
-
-.metric b{
-  display:block;
-  font-size:22px;
-  margin-top:5px;
-}
-
-.relationship-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  margin-top:10px;
-}
-
-.relbtn{
-  padding:11px 8px;
-  border-radius:12px;
-  background:#242429;
-  color:#fff;
-  border:1px solid #35353c;
-  font-size:13px;
-}
-
-.relbtn.active{
-  border-color:var(--accent);
-}
-
-.connectionSetup{
-  display:none;
-  margin-top:14px;
-}
-
-.connectionSetup.show{
-  display:block;
-}
-
-.preview{
-  margin-top:12px;
-  padding:16px;
-  border-radius:16px;
-  background:#1c1c21;
-  border:1px solid #303038;
-}
-
-.linkbox{
-  display:none;
-  margin-top:12px;
-  padding:12px;
+.connectionQuick .quick{
+  background:#17191a;
+  border:1px solid #30383a;
   border-radius:14px;
-  background:#111216;
-  border:1px solid #303038;
-}
-
-.linkbox.show{
-  display:block;
-}
-
-.linkbox input{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #34343c;
-  background:#0d0e11;
-  color:#fff;
-  font-size:13px;
-}
-
-.linkactions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:8px;
-}
-
-.challengeBanner{
-  margin-top:18px;
-  padding:16px;
-  background:#1d1d22;
-  border:1px solid #34343b;
-  border-radius:16px;
+  padding:13px;
   text-align:left;
 }
-
-.connectionHero{
-  background:linear-gradient(145deg,#171b18,#1d211f);
-  border:1px solid #33453a;
-  border-radius:24px;
-  padding:24px;
-  margin-top:20px;
-}
-
-.compareGrid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:14px;
-}
-
-.person{
-  background:#1c1c21;
-  border:1px solid #303038;
-  border-radius:16px;
-  padding:16px;
-}
-
-.positive{
-  margin-top:16px;
-  padding:18px;
-  border-radius:18px;
-  background:#1a211d;
-  border:1px solid #33453a;
-}
-
-.traitRow{
-  margin-top:14px;
-}
-
-.traitLabel{
-  font-size:13px;
-  font-weight:800;
-}
-
-.traitLine{
-  display:grid;
-  grid-template-columns:58px 1fr 36px;
-  gap:8px;
-  align-items:center;
-  margin-top:6px;
-}
-
-.track{
-  height:8px;
-  background:#2a2a31;
-  border-radius:999px;
-  overflow:hidden;
-}
-
-.fill{
-  height:100%;
-  background:var(--accent);
-}
-
-.fill.them{
-  opacity:.55;
-}
-
-.mini{
-  font-size:12px;
+.connectionQuick .quick span{
+  display:block;
   color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:10px;
 }
-
+.connectionQuick .quick b{
+  display:block;
+  margin-top:5px;
+  font-size:14px;
+  line-height:1.35;
+}
+.connectionDetailsToggle{
+  margin-top:14px;
+  background:#202126;
+  color:#fff;
+  border:1px solid #34353b;
+}
+.connectionDetails{
+  display:none;
+  margin-top:12px;
+}
+.connectionDetails.show{
+  display:block;
+  animation:detailsIn .35s ease both;
+}
+.score-pop{
+  animation:scorePop .85s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes scorePop{
+  0%{opacity:0;transform:scale(.72) translateY(10px)}
+  60%{opacity:1;transform:scale(1.08) translateY(0)}
+  100%{opacity:1;transform:scale(1)}
+}
+@keyframes connectionSheen{
+  to{transform:translateX(120%)}
+}
+@keyframes detailsIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
 @media(max-width:600px){
-  h1{font-size:43px}
-
-  .sharegrid,
-  .metricGrid,
-  .compareGrid,
-  .linkactions{
-    grid-template-columns:1fr;
-  }
-
-  .relationship-grid{
-    grid-template-columns:1fr 1fr;
-  }
+  .connectionHero{padding:18px 14px}
+  .connectionPayoff .score{font-size:68px}
+  .connectionPayoff .label{font-size:21px}
+  .connectionOneLiner{font-size:14px}
+  .connectionQuick{grid-template-columns:1fr}
+  .compareGrid{grid-template-columns:1fr 1fr}
+  .person{padding:12px}
+  .person .label{font-size:22px}
+  .traitRow{padding-top:2px}
 }
+
 </style>
 </head>
-
 <body>
-
 <div class="wrap">
+  <div class="topbar">
+    <div class="brand">WARNING<span>LABEL</span></div>
+    <div class="langs">
+      <button id="enBtn" class="langbtn" onclick="setLanguage('en')">EN</button>
+      <button id="esBtn" class="langbtn" onclick="setLanguage('es')">ES</button>
+    </div>
+  </div>
 
-<div class="topbar">
+  <section id="start" class="hero">
+    <div id="challengeBanner" class="challengeBanner hidden"></div>
+    <div id="eyebrow" class="eyebrow"></div>
+    <h1 id="headline"></h1>
+    <p id="subhead"></p>
+    <button id="startBtn" class="primary" onclick="begin()"></button>
+    <p id="disclaimer" class="mini" style="text-align:center"></p>
+  </section>
 
-<div class="brand">
-WARNING<span>LABEL</span>
+  <section id="quiz" class="hidden">
+    <div class="backbar"><button id="quizBack" class="backbtn" onclick="goBack()"></button></div>
+    <div class="progress"><div id="bar" class="bar"></div></div>
+    <div class="card">
+      <div id="qnum" class="qnum"></div>
+      <div id="question" class="question"></div>
+      <div id="options"></div>
+    </div>
+  </section>
+
+  <section id="result" class="result hidden">
+    <div class="backbar"><button id="resultBack" class="backbtn" onclick="goBack()"></button></div>
+    <div class="card">
+      <div class="warning">⚠ WARNING LABEL</div>
+      <div id="score" class="score"></div>
+      <div id="label" class="label"></div>
+      <div id="tag" class="tag"></div>
+
+      <div id="connectionAuto" class="connectionHero hidden">
+
+        <div class="connectionPayoff">
+          <div id="connectionKicker" class="eyebrow"></div>
+          <div id="compareTitle" class="reportTitle"></div>
+          <div id="compatScore" class="score"></div>
+          <div id="compatLabel" class="label"></div>
+          <p id="compatCopy" class="connectionOneLiner"></p>
+        </div>
+
+        <div class="connectionQuick">
+          <div class="quick">
+            <span id="quickGoodLabel"></span>
+            <b id="quickGood"></b>
+          </div>
+          <div class="quick">
+            <span id="quickWatchLabel"></span>
+            <b id="quickWatch"></b>
+          </div>
+        </div>
+
+        <button id="connectionDetailsToggle" class="connectionDetailsToggle" onclick="toggleConnectionDetails()"></button>
+
+        <div id="connectionDetails" class="connectionDetails">
+          <div class="positive">
+            <h3 id="positiveTitle"></h3>
+            <p id="positiveCopy"></p>
+          </div>
+
+          <div class="compareGrid">
+          <div class="person">
+            <div id="themText" class="mini"></div>
+            <div id="themScore" class="label"></div>
+            <div id="themLabel"></div>
+          </div>
+          <div class="person">
+            <div id="youText" class="mini"></div>
+            <div id="youScore" class="label"></div>
+            <div id="youLabel"></div>
+          </div>
+        </div>
+
+        <div id="traitRows"></div>
+
+        <div class="section"><h3 id="whyTitle"></h3><p id="whyText"></p></div>
+        <div class="section"><h3 id="whereTitle"></h3><p id="whereText"></p></div>
+        <div class="section"><h3 id="youDoTitle"></h3><p id="youDoText"></p></div>
+        <div class="section"><h3 id="theyDoTitle"></h3><p id="theyDoText"></p></div>
+          <div class="section"><h3 id="ruleTitle"></h3><p id="ruleText"></p></div>
+        </div>
+      </div>
+
+      <div class="sharecard">
+        <div class="warning">⚠ WARNING LABEL</div>
+        <div id="shareScore" class="score"></div>
+        <div id="shareLabel" class="label"></div>
+        <div id="shareTag" class="tag"></div>
+        <div class="mini">ZELQOZA · <span id="seeMine"></span></div>
+      </div>
+
+      <button id="shareBtn" class="secondary" onclick="toggleShare()"></button>
+      <div id="shareMenu" class="sharemenu">
+        <div class="sharegrid">
+          <button id="copyResultBtn" class="sharebtn" onclick="copyResultLink()"></button>
+          <button id="whatsappBtn" class="sharebtn" onclick="shareWhatsApp()"></button>
+          <button id="facebookBtn" class="sharebtn" onclick="shareFacebook()"></button>
+          <button id="moreBtn" class="sharebtn" onclick="nativeShare()"></button>
+        </div>
+        <div id="shareStatus" class="status"></div>
+      </div>
+
+      <div class="paywall">
+        <h3 id="deepTitle"></h3>
+        <p id="deepCopy"></p>
+        <div class="payrow"><span id="misreadLabel"></span><span class="blur">xxxxx</span></div>
+        <div class="payrow"><span id="patternLabel"></span><span class="blur">xxxxx</span></div>
+        <div class="payrow"><span id="moveLabel"></span><span class="blur">xxxxx</span></div>
+        <button id="unlockBtn" class="primary" onclick="unlockDeepRead()"></button>
+        <div id="previewNote" class="mini" style="text-align:center;margin-top:8px"></div>
+      </div>
+
+      <div id="report" class="report hidden">
+        <div class="reportHero">
+          <div id="reportTitle" class="reportTitle"></div>
+          <div id="reportTag" class="tag"></div>
+          <div class="metricGrid">
+            <div class="metric"><span id="m1"></span><b id="mv1"></b></div>
+            <div class="metric"><span id="m2"></span><b id="mv2"></b></div>
+            <div class="metric"><span id="m3"></span><b id="mv3"></b></div>
+            <div class="metric"><span id="m4"></span><b id="mv4"></b></div>
+          </div>
+        </div>
+
+        <div class="section"><h3 id="underTitle"></h3><p id="underText"></p></div>
+        <div class="section"><h3 id="frictionTitle"></h3><p id="frictionText"></p></div>
+        <div class="section"><h3 id="movesTitle"></h3><div id="moves"></div></div>
+
+        <div class="section">
+          <h3 id="connectionTitle"></h3>
+          <p id="connectionIntro"></p>
+          <button id="openConnectionBtn" class="primary" onclick="openConnectionSetup()"></button>
+
+          <div id="connectionSetup" class="connectionSetup">
+            <div id="whatPerson" class="mini"></div>
+            <div class="relationship-grid">
+              <button class="relbtn mainRel active" data-rel="friend" onclick="setRel('friend',this)"></button>
+              <button class="relbtn mainRel" data-rel="family" onclick="setRel('family',this)"></button>
+              <button class="relbtn mainRel" data-rel="partner" onclick="setRel('partner',this)"></button>
+              <button class="relbtn mainRel" data-rel="work" onclick="setRel('work',this)"></button>
+            </div>
+
+            <div class="preview">
+              <div id="previewLine" class="eyebrow"></div>
+              <h4 id="previewTitle"></h4>
+              <p id="previewText"></p>
+            </div>
+
+            <button id="createLinkBtn" class="primary" style="margin-top:12px" onclick="createConnectionLink()"></button>
+            <div id="connectionStatus" class="status"></div>
+
+            <div id="linkbox" class="linkbox">
+              <input id="connectionInput" readonly>
+              <div class="linkactions">
+                <button id="copyLinkBtn" class="secondary" onclick="copyConnectionLink()"></button>
+                <button id="shareLinkBtn" class="secondary" onclick="shareChallenge()"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button id="againBtn" class="secondary" style="margin-top:18px" onclick="restartTest()"></button>
+    </div>
+  </section>
 </div>
-
-<div class="langs">
-<button id="enBtn" class="langbtn" onclick="setLanguage('en')">EN</button>
-<button id="esBtn" class="langbtn" onclick="setLanguage('es')">ES</button>
-</div>
-
-</div>
-
-
-<section id="start" class="hero">
-
-<div id="challengeBanner" class="challengeBanner hidden"></div>
-
-<div id="eyebrow" class="eyebrow"></div>
-
-<h1 id="headline"></h1>
-
-<p id="subhead"></p>
-
-<button
-id="startBtn"
-class="primary"
-onclick="begin()">
-</button>
-
-<p
-id="disclaimer"
-class="mini"
-style="text-align:center">
-</p>
-
-</section>
-
-
-<section id="quiz" class="hidden">
-
-<div class="backbar">
-
-<button
-id="quizBack"
-class="backbtn"
-onclick="goBack()">
-</button>
-
-</div>
-
-<div class="progress">
-<div id="bar" class="bar"></div>
-</div>
-
-<div class="card">
-
-<div id="qnum" class="qnum"></div>
-
-<div id="question" class="question"></div>
-
-<div id="options"></div>
-
-</div>
-
-</section>
-
-
-<section id="result" class="result hidden">
-
-<div class="backbar">
-
-<button
-id="resultBack"
-class="backbtn"
-onclick="goBack()">
-</button>
-
-</div>
-
-<div class="card">
-
-<div class="warning">
-⚠ WARNING LABEL
-</div>
-
-<div id="score" class="score"></div>
-
-<div id="label" class="label"></div>
-
-<div id="tag" class="tag"></div>
-
-
-<!-- CONNECTION RESULT -->
-<div id="connectionAuto" class="connectionHero hidden">
-
-<div
-id="connectionKicker"
-class="eyebrow">
-</div>
-
-<div
-id="compareTitle"
-class="reportTitle">
-</div>
-
-<div
-id="compatScore"
-class="score">
-</div>
-
-<div
-id="compatLabel"
-class="label">
-</div>
-
-<p id="compatCopy"></p>
-
-
-<div class="positive">
-
-<h3 id="positiveTitle"></h3>
-
-<p id="positiveCopy"></p>
-
-</div>
-
-
-<div class="compareGrid">
-
-<div class="person">
-
-<div
-id="themText"
-class="mini">
-</div>
-
-<div
-id="themScore"
-class="label">
-</div>
-
-<div id="themLabel"></div>
-
-</div>
-
-
-<div class="person">
-
-<div
-id="youText"
-class="mini">
-</div>
-
-<div
-id="youScore"
-class="label">
-</div>
-
-<div id="youLabel"></div>
-
-</div>
-
-</div>
-
-
-<div id="traitRows"></div>
-
-
-<div class="section">
-<h3 id="whyTitle"></h3>
-<p id="whyText"></p>
-</div>
-
-<div class="section">
-<h3 id="whereTitle"></h3>
-<p id="whereText"></p>
-</div>
-
-<div class="section">
-<h3 id="youDoTitle"></h3>
-<p id="youDoText"></p>
-</div>
-
-<div class="section">
-<h3 id="theyDoTitle"></h3>
-<p id="theyDoText"></p>
-</div>
-
-<div class="section">
-<h3 id="ruleTitle"></h3>
-<p id="ruleText"></p>
-</div>
-
-</div>
-<!-- END CONNECTION RESULT -->
-
-
-<div class="sharecard">
-
-<div class="warning">
-⚠ WARNING LABEL
-</div>
-
-<div
-id="shareScore"
-class="score">
-</div>
-
-<div
-id="shareLabel"
-class="label">
-</div>
-
-<div
-id="shareTag"
-class="tag">
-</div>
-
-<div class="mini">
-ZELQOZA · <span id="seeMine"></span>
-</div>
-
-</div>
-
-
-<button
-id="shareBtn"
-class="secondary"
-onclick="toggleShare()">
-</button>
-
-
-<div
-id="shareMenu"
-class="sharemenu">
-
-<div class="sharegrid">
-
-<button
-id="copyResultBtn"
-class="sharebtn"
-onclick="copyResultLink()">
-</button>
-
-<button
-id="whatsappBtn"
-class="sharebtn"
-onclick="shareWhatsApp()">
-</button>
-
-<button
-id="facebookBtn"
-class="sharebtn"
-onclick="shareFacebook()">
-</button>
-
-<button
-id="moreBtn"
-class="sharebtn"
-onclick="nativeShare()">
-</button>
-
-</div>
-
-<div
-id="shareStatus"
-class="status">
-</div>
-
-</div>
-
-
-<div class="paywall">
-
-<h3 id="deepTitle"></h3>
-
-<p id="deepCopy"></p>
-
-<div class="payrow">
-<span id="misreadLabel"></span>
-<span class="blur">xxxxx</span>
-</div>
-
-<div class="payrow">
-<span id="patternLabel"></span>
-<span class="blur">xxxxx</span>
-</div>
-
-<div class="payrow">
-<span id="moveLabel"></span>
-<span class="blur">xxxxx</span>
-</div>
-
-<button
-id="unlockBtn"
-class="primary"
-onclick="unlockDeepRead()">
-</button>
-
-<div
-id="previewNote"
-class="mini"
-style="text-align:center;margin-top:8px">
-</div>
-
-</div>
-
-
-<div
-id="report"
-class="report hidden">
-
-<div class="reportHero">
-
-<div
-id="reportTitle"
-class="reportTitle">
-</div>
-
-<div
-id="reportTag"
-class="tag">
-</div>
-
-<div class="metricGrid">
-
-<div class="metric">
-<span id="m1"></span>
-<b id="mv1"></b>
-</div>
-
-<div class="metric">
-<span id="m2"></span>
-<b id="mv2"></b>
-</div>
-
-<div class="metric">
-<span id="m3"></span>
-<b id="mv3"></b>
-</div>
-
-<div class="metric">
-<span id="m4"></span>
-<b id="mv4"></b>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<h3 id="underTitle"></h3>
-
-<p id="underText"></p>
-
-</div>
-
-
-<div class="section">
-
-<h3 id="frictionTitle"></h3>
-
-<p id="frictionText"></p>
-
-</div>
-
-
-<div class="section">
-
-<h3 id="movesTitle"></h3>
-
-<div id="moves"></div>
-
-</div>
-
-
-<div class="section">
-
-<h3 id="connectionTitle"></h3>
-
-<p id="connectionIntro"></p>
-
-<button
-id="openConnectionBtn"
-class="primary"
-onclick="openConnectionSetup()">
-</button>
-
-
-<div
-id="connectionSetup"
-class="connectionSetup">
-
-<div
-id="whatPerson"
-class="mini">
-</div>
-
-
-<div class="relationship-grid">
-
-<button
-class="relbtn mainRel active"
-data-rel="friend"
-onclick="setRel('friend',this)">
-</button>
-
-<button
-class="relbtn mainRel"
-data-rel="family"
-onclick="setRel('family',this)">
-</button>
-
-<button
-class="relbtn mainRel"
-data-rel="partner"
-onclick="setRel('partner',this)">
-</button>
-
-<button
-class="relbtn mainRel"
-data-rel="work"
-onclick="setRel('work',this)">
-</button>
-
-</div>
-
-
-<div class="preview">
-
-<div
-id="previewLine"
-class="eyebrow">
-</div>
-
-<h4 id="previewTitle"></h4>
-
-<p id="previewText"></p>
-
-</div>
-
-
-<button
-id="createLinkBtn"
-class="primary"
-style="margin-top:12px"
-onclick="createConnectionLink()">
-</button>
-
-<div
-id="connectionStatus"
-class="status">
-</div>
-
-
-<div
-id="linkbox"
-class="linkbox">
-
-<input
-id="connectionInput"
-readonly>
-
-
-<div class="linkactions">
-
-<button
-id="copyLinkBtn"
-class="secondary"
-onclick="copyConnectionLink()">
-</button>
-
-<button
-id="shareLinkBtn"
-class="secondary"
-onclick="shareChallenge()">
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<button
-id="againBtn"
-class="secondary"
-style="margin-top:18px"
-onclick="restartTest()">
-</button>
-
-</div>
-
-</section>
-
-</div>
-
 
 <script>
-
 const TXT={
-
 en:{
-
-eyebrow:"THE 30-SECOND SELF-AWARENESS TEST",
-
-headline:"How do people actually experience you?",
-
+eyebrow:"THE 30-SECOND SELF-AWARENESS TEST",headline:"How do people actually experience you?",
 subhead:"Six questions. One uncomfortable read. Find out what people may notice about you before you do.",
-
-start:"Read me",
-
-disclaimer:"For self-reflection and entertainment — not a clinical assessment.",
-
-back:"← Back",
-
-seeMine:"See mine. Take yours. Compare.",
-
-shareResult:"Share my result",
-
-copyResult:"🔗 Copy result link",
-
-whatsapp:"💬 WhatsApp",
-
-facebook:"f Facebook",
-
-more:"↗ More options",
-
-deepTitle:"Your Deep Read",
-
+start:"Read me",disclaimer:"For self-reflection and entertainment — not a clinical assessment.",back:"← Back",
+seeMine:"See mine. Take yours. Compare.",shareResult:"Share my result",copyResult:"🔗 Copy result link",
+whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ More options",deepTitle:"Your Deep Read",
 deepCopy:"See what people may misunderstand about you, what gets in your way, and what you can do differently.",
-
-misread:"What people may misread",
-
-pattern:"Your strongest pattern",
-
-move:"Your next move",
-
-unlock:"Unlock my Deep Read — $1",
-
-preview:"Preview mode — no charge yet.",
-
-m1:"People may read you as",
-
-m2:"Your real strength",
-
-m3:"Your growth edge",
-
-m4:"Social risk",
-
-under:"What people may misunderstand",
-
-friction:"What gets in your way",
-
-moves:"Your 3 next moves",
-
-connection:"Connection Read",
-
-connectionIntro:"Compare your real profile with someone you know. Choose the relationship and send them your private link.",
-
-openConnection:"Start a Connection Read",
-
-whatPerson:"What is this person to you?",
-
-createLink:"Create my private Connection link",
-
-copyLink:"Copy link",
-
-shareLink:"Share it",
-
-friend:"Friend",
-
-family:"Family",
-
-partner:"Partner",
-
-work:"Work",
-
-them:"THEM",
-
-you:"YOU",
-
-why:"Why you click",
-
-where:"Where you misread each other",
-
-youDo:"What YOU should do with this person",
-
-theyDo:"What THEY should do with you",
-
-rule:"Your best communication rule",
-
-again:"↻ Take the test again",
-
-linkCreated:"Private Connection link created ✓",
-
-linkCopied:"Connection link copied ✓ — send it to the other person.",
-
-resultCopied:"Result link copied ✓",
-
-shareDone:"Share completed ✓",
-
-connectionKicker:"YOUR CONNECTION READ",
-
-q:(n,t)=>`QUESTION ${n} OF ${t}`
-
+misread:"What people may misread",pattern:"Your strongest pattern",move:"Your next move",
+unlock:"Unlock my Deep Read — $1",preview:"Preview mode — no charge yet.",
+m1:"People may read you as",m2:"Your real strength",m3:"Your growth edge",m4:"Social risk",
+under:"What people may misunderstand",friction:"What gets in your way",moves:"Your 3 next moves",
+connection:"Connection Read",connectionIntro:"Compare your real profile with someone you know. Choose the relationship and send them your private link.",
+openConnection:"Start a Connection Read",whatPerson:"What is this person to you?",createLink:"Create my private Connection link",
+copyLink:"Copy link",shareLink:"Share it",friend:"Friend",family:"Family",partner:"Partner",work:"Work",
+them:"THEM",you:"YOU",why:"Why you click",where:"Where you misread each other",
+youDo:"What YOU should do with this person",theyDo:"What THEY should do with you",rule:"Your best communication rule",
+again:"↻ Take the test again",linkCreated:"Private Connection link created ✓",
+linkCopied:"Connection link copied ✓ — send it to the other person.",resultCopied:"Result link copied ✓",shareDone:"Share completed ✓",
+connectionKicker:"YOUR CONNECTION READ",quickGoodLabel:"BEST PART",quickWatchLabel:"WATCH THIS",showDetails:"See full connection breakdown",hideDetails:"Hide full breakdown",q:(n,t)=>`QUESTION ${n} OF ${t}`
 },
-
 es:{
-
-eyebrow:"EL TEST DE AUTOCONOCIMIENTO DE 30 SEGUNDOS",
-
-headline:"¿Cómo te perciben realmente los demás?",
-
+eyebrow:"EL TEST DE AUTOCONOCIMIENTO DE 30 SEGUNDOS",headline:"¿Cómo te perciben realmente los demás?",
 subhead:"Seis preguntas. Una lectura incómodamente precisa. Descubre lo que otros pueden notar de ti antes que tú.",
-
-start:"Léeme",
-
-disclaimer:"Para reflexión personal y entretenimiento — no es una evaluación clínica.",
-
-back:"← Regresar",
-
-seeMine:"Ve el mío. Haz el tuyo. Comparemos.",
-
-shareResult:"Compartir mi resultado",
-
-copyResult:"🔗 Copiar enlace del resultado",
-
-whatsapp:"💬 WhatsApp",
-
-facebook:"f Facebook",
-
-more:"↗ Más opciones",
-
-deepTitle:"Tu lectura profunda",
-
+start:"Léeme",disclaimer:"Para reflexión personal y entretenimiento — no es una evaluación clínica.",back:"← Regresar",
+seeMine:"Ve el mío. Haz el tuyo. Comparemos.",shareResult:"Compartir mi resultado",copyResult:"🔗 Copiar enlace del resultado",
+whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ Más opciones",deepTitle:"Tu lectura profunda",
 deepCopy:"Descubre qué pueden malinterpretar de ti, qué suele frenarte y qué puedes hacer diferente.",
-
-misread:"Lo que otros pueden malinterpretar",
-
-pattern:"Tu patrón más fuerte",
-
-move:"Tu siguiente movimiento",
-
-unlock:"Desbloquear mi lectura — $1",
-
-preview:"Modo de prueba — todavía no hay cobro.",
-
-m1:"Otros pueden verte como",
-
-m2:"Tu fortaleza real",
-
-m3:"Tu área de crecimiento",
-
-m4:"Riesgo social",
-
-under:"Lo que otros pueden malinterpretar",
-
-friction:"Lo que se interpone en tu camino",
-
-moves:"Tus 3 siguientes movimientos",
-
-connection:"Lectura de conexión",
-
-connectionIntro:"Compara tu perfil real con alguien que conoces. Elige la relación y envíale tu enlace privado.",
-
-openConnection:"Iniciar lectura de conexión",
-
-whatPerson:"¿Qué es esta persona para ti?",
-
-createLink:"Crear mi enlace privado de conexión",
-
-copyLink:"Copiar enlace",
-
-shareLink:"Compartir",
-
-friend:"Amistad",
-
-family:"Familiar",
-
-partner:"Pareja",
-
-work:"Trabajo",
-
-them:"LA OTRA PERSONA",
-
-you:"TÚ",
-
-why:"Por qué conectan",
-
-where:"Dónde pueden malinterpretarse",
-
-youDo:"Lo que TÚ deberías hacer con esta persona",
-
-theyDo:"Lo que ESA PERSONA debería hacer contigo",
-
-rule:"Su mejor regla de comunicación",
-
-again:"↻ Volver a hacer el test",
-
-linkCreated:"Enlace privado creado ✓",
-
-linkCopied:"Enlace copiado ✓ — envíaselo a la otra persona.",
-
-resultCopied:"Enlace del resultado copiado ✓",
-
-shareDone:"Compartido ✓",
-
-connectionKicker:"SU LECTURA DE CONEXIÓN",
-
-q:(n,t)=>`PREGUNTA ${n} DE ${t}`
-
-}
-
-};
-
+misread:"Lo que otros pueden malinterpretar",pattern:"Tu patrón más fuerte",move:"Tu siguiente movimiento",
+unlock:"Desbloquear mi lectura — $1",preview:"Modo de prueba — todavía no hay cobro.",
+m1:"Otros pueden verte como",m2:"Tu fortaleza real",m3:"Tu área de crecimiento",m4:"Riesgo social",
+under:"Lo que otros pueden malinterpretar",friction:"Lo que se interpone en tu camino",moves:"Tus 3 siguientes movimientos",
+connection:"Lectura de conexión",connectionIntro:"Compara tu perfil real con alguien que conoces. Elige la relación y envíale tu enlace privado.",
+openConnection:"Iniciar lectura de conexión",whatPerson:"¿Qué es esta persona para ti?",createLink:"Crear mi enlace privado de conexión",
+copyLink:"Copiar enlace",shareLink:"Compartir",friend:"Amistad",family:"Familiar",partner:"Pareja",work:"Trabajo",
+them:"LA OTRA PERSONA",you:"TÚ",why:"Por qué conectan",where:"Dónde pueden malinterpretarse",
+youDo:"Lo que TÚ deberías hacer con esta persona",theyDo:"Lo que ESA PERSONA debería hacer contigo",rule:"Su mejor regla de comunicación",
+again:"↻ Volver a hacer el test",linkCreated:"Enlace privado creado ✓",
+linkCopied:"Enlace copiado ✓ — envíaselo a la otra persona.",resultCopied:"Enlace del resultado copiado ✓",shareDone:"Compartido ✓",
+connectionKicker:"SU LECTURA DE CONEXIÓN",quickGoodLabel:"LO MEJOR",quickWatchLabel:"OJO CON ESTO",showDetails:"Ver análisis completo",hideDetails:"Ocultar análisis",q:(n,t)=>`PREGUNTA ${n} DE ${t}`
+}};
 
 const QUIZ={
-
 en:[
-
-[
-"Someone you care about suddenly feels distant. What do you do first?",
-[
+["Someone you care about suddenly feels distant. What do you do first?",[
 ["Give them space and wait for them to come back",{attachment:-2,directness:-1,regulation:1}],
 ["Ask directly if something changed",{attachment:1,directness:2,regulation:1}],
 ["Act normal, but quietly analyze every detail",{attachment:2,directness:-1,regulation:-1}],
 ["Match their distance so I don’t look more invested",{attachment:1,directness:-2,regulation:-1}]
-]
-],
-
-[
-"You disagree with someone in a group. Your instinct is to…",
-[
+]],
+["You disagree with someone in a group. Your instinct is to…",[
 ["Say exactly what I think, even if it changes the mood",{directness:2,social:1}],
 ["Ask questions first and understand their logic",{openness:2,directness:1,regulation:1}],
 ["Keep it to myself unless it really matters",{directness:-2,social:-1,regulation:1}],
 ["Make a joke that gets my point across",{social:2}]
-]
-],
-
-[
-"When you’re overwhelmed, people are most likely to see you…",
-[
+]],
+["When you’re overwhelmed, people are most likely to see you…",[
 ["Disappear for a while",{social:-2,directness:-1}],
 ["Become unusually blunt",{directness:2,regulation:-2}],
 ["Keep functioning like nothing is wrong",{regulation:2,attachment:-1}],
 ["Talk it out with someone immediately",{social:2,attachment:2}]
-]
-],
-
-[
-"What usually creates the most friction in your relationships?",
-[
+]],
+["What usually creates the most friction in your relationships?",[
 ["I need more space than people expect",{attachment:-2,social:-1}],
 ["I care a lot, but I don’t always say it clearly",{attachment:2,directness:-2}],
 ["I say things too directly when I’m frustrated",{directness:2,regulation:-1}],
 ["I avoid difficult conversations until they become bigger",{directness:-2,regulation:-2}]
-]
-],
-
-[
-"You walk into a room where you know almost nobody. What happens?",
-[
+]],
+["You walk into a room where you know almost nobody. What happens?",[
 ["I can talk to almost anyone",{social:2,openness:1}],
 ["I find one person I click with and stay there",{social:0,attachment:1}],
 ["I observe first and warm up slowly",{social:-1,openness:1,regulation:1}],
 ["I immediately want to leave",{social:-2}]
-]
-],
-
-[
-"Pick the line that feels uncomfortably accurate.",
-[
+]],
+["Pick the line that feels uncomfortably accurate.",[
 ["I can be hard to read even when I care a lot",{attachment:1,directness:-2,regulation:1}],
 ["I would rather be respected than fully understood",{attachment:-2,directness:2}],
 ["I sometimes confuse self-protection with independence",{attachment:-2}],
 ["I turn discomfort into humor before anyone notices",{social:2,regulation:-1,directness:-1}]
-]
-]
-
+]]
 ],
-
 es:[
-
-[
-"Alguien que te importa de repente se siente distante. ¿Qué haces primero?",
-[
+["Alguien que te importa de repente se siente distante. ¿Qué haces primero?",[
 ["Le doy espacio y espero a que vuelva",{attachment:-2,directness:-1,regulation:1}],
 ["Le pregunto directamente si algo cambió",{attachment:1,directness:2,regulation:1}],
 ["Actúo normal, pero analizo cada detalle en silencio",{attachment:2,directness:-1,regulation:-1}],
 ["Igualo su distancia para no parecer más interesado/a",{attachment:1,directness:-2,regulation:-1}]
-]
-],
-
-[
-"No estás de acuerdo con alguien en un grupo. Tu instinto es…",
-[
+]],
+["No estás de acuerdo con alguien en un grupo. Tu instinto es…",[
 ["Decir exactamente lo que pienso, aunque cambie el ambiente",{directness:2,social:1}],
 ["Hacer preguntas primero y entender su lógica",{openness:2,directness:1,regulation:1}],
 ["Guardármelo a menos que realmente importe",{directness:-2,social:-1,regulation:1}],
 ["Hacer una broma que deje claro mi punto",{social:2}]
-]
-],
-
-[
-"Cuando estás saturado/a, los demás probablemente te ven…",
-[
+]],
+["Cuando estás saturado/a, los demás probablemente te ven…",[
 ["Desapareciendo un rato",{social:-2,directness:-1}],
 ["Más directo/a o brusco/a de lo normal",{directness:2,regulation:-2}],
 ["Funcionando como si no pasara nada",{regulation:2,attachment:-1}],
 ["Hablándolo inmediatamente con alguien",{social:2,attachment:2}]
-]
-],
-
-[
-"¿Qué suele generar más fricción en tus relaciones?",
-[
+]],
+["¿Qué suele generar más fricción en tus relaciones?",[
 ["Necesito más espacio del que la gente espera",{attachment:-2,social:-1}],
 ["Me importa mucho, pero no siempre lo digo claramente",{attachment:2,directness:-2}],
 ["Cuando me frustro digo las cosas demasiado directo",{directness:2,regulation:-1}],
 ["Evito conversaciones difíciles hasta que se hacen más grandes",{directness:-2,regulation:-2}]
-]
-],
-
-[
-"Entras a un lugar donde casi no conoces a nadie. ¿Qué pasa?",
-[
+]],
+["Entras a un lugar donde casi no conoces a nadie. ¿Qué pasa?",[
 ["Puedo hablar con casi cualquiera",{social:2,openness:1}],
 ["Encuentro a una persona con la que conecto y me quedo ahí",{social:0,attachment:1}],
 ["Primero observo y poco a poco entro en confianza",{social:-1,openness:1,regulation:1}],
 ["Quiero irme inmediatamente",{social:-2}]
-]
-],
-
-[
-"Elige la frase que te resulte incómodamente cierta.",
-[
+]],
+["Elige la frase que te resulte incómodamente cierta.",[
 ["Puedo ser difícil de leer incluso cuando me importa mucho",{attachment:1,directness:-2,regulation:1}],
 ["Prefiero que me respeten a que me entiendan completamente",{attachment:-2,directness:2}],
 ["A veces confundo protegerme con ser independiente",{attachment:-2}],
 ["Convierto la incomodidad en humor antes de que alguien la note",{social:2,regulation:-1,directness:-1}]
-]
-]
-
-]
-
-};
-
+]]
+]};
 
 const PROFILES=[
-
-{
-en:["Professionally Unbothered","You feel more than you show. Your calm is real — but people can mistake composure for distance.","Composure","Detached","Signal more","Mixed signals"],
-es:["Profesionalmente Imperturbable","Sientes más de lo que muestras. Tu calma es real, pero otros pueden confundir serenidad con distancia.","Serenidad","Distante","Mostrar más","Señales confusas"]
-},
-
-{
-en:["Receipts Department","You forgive more easily than you forget. You notice patterns, remember details and quietly update your trust.","Pattern recognition","Guarded","Release faster","Silent scorekeeping"],
-es:["Departamento de Recibos","Perdonas más fácil de lo que olvidas. Detectas patrones, recuerdas detalles y actualizas tu confianza en silencio.","Detectar patrones","Reservado/a","Soltar más rápido","Llevar la cuenta en silencio"]
-},
-
-{
-en:["Chaos With Good Intentions","You bring energy and instinct. The upside is magnetism. The downside is occasionally creating weather.","Energy","Unpredictable","Pause first","Emotional whiplash"],
-es:["Caos con Buenas Intenciones","Aportas energía e instinto. Lo bueno es el magnetismo; lo difícil es que a veces generas tormentas sin querer.","Energía","Impredecible","Pausar primero","Cambios emocionales bruscos"]
-},
-
-{
-en:["Emotionally Self-Checkout","You protect yourself by becoming less available before you become more vulnerable.","Independence","Uninvested","Stay present","Early exits"],
-es:["Salida Emocional Anticipada","Te proteges volviéndote menos disponible antes de permitirte ser más vulnerable.","Independencia","Desinteresado/a","Permanecer presente","Salir demasiado pronto"]
-},
-
-{
-en:["Truth With No Bubble Wrap","You value clarity over comfort. People know where they stand with you — sometimes sooner than they wanted.","Clarity","Harsh","Add context","Unnecessary friction"],
-es:["Verdad Sin Envoltura","Valoras la claridad más que la comodidad. La gente sabe dónde está contigo, a veces antes de lo que quería.","Claridad","Duro/a","Dar contexto","Fricción innecesaria"]
-},
-
-{
-en:["Quietly Overclocked","You look composed while your brain runs twelve tabs in the background.","Awareness","Fine","Externalize","Invisible stress"],
-es:["Sobreprocesando en Silencio","Te ves tranquilo/a mientras tu cerebro tiene doce pestañas abiertas al mismo tiempo.","Percepción","Todo bien","Exteriorizar","Estrés invisible"]
-},
-
-{
-en:["Social Shape-Shifter","You read the room quickly and adapt well. The risk is adapting so much that your own preference disappears.","Adaptability","Effortless","Hold your center","Over-adapting"],
-es:["Camaleón Social","Lees el ambiente rápido y te adaptas bien. El riesgo es adaptarte tanto que desaparezca lo que tú realmente quieres.","Adaptabilidad","Todo le resulta fácil","Mantener tu centro","Adaptarte de más"]
-},
-
-{
-en:["Selective Access","You are not closed off. You are curated. Trust is earned, not assumed.","Discernment","Reserved","Open sooner","Missed connection"],
-es:["Acceso Selectivo","No eres cerrado/a; eres selectivo/a. La confianza se gana, no se da por hecho.","Discernimiento","Reservado/a","Abrirte antes","Perder conexiones"]
-}
-
+{en:["Professionally Unbothered","You feel more than you show. Your calm is real — but people can mistake composure for distance.","Composure","Detached","Signal more","Mixed signals"],es:["Profesionalmente Imperturbable","Sientes más de lo que muestras. Tu calma es real, pero otros pueden confundir serenidad con distancia.","Serenidad","Distante","Mostrar más","Señales confusas"]},
+{en:["Receipts Department","You forgive more easily than you forget. You notice patterns, remember details and quietly update your trust.","Pattern recognition","Guarded","Release faster","Silent scorekeeping"],es:["Departamento de Recibos","Perdonas más fácil de lo que olvidas. Detectas patrones, recuerdas detalles y actualizas tu confianza en silencio.","Detectar patrones","Reservado/a","Soltar más rápido","Llevar la cuenta en silencio"]},
+{en:["Chaos With Good Intentions","You bring energy and instinct. The upside is magnetism. The downside is occasionally creating weather.","Energy","Unpredictable","Pause first","Emotional whiplash"],es:["Caos con Buenas Intenciones","Aportas energía e instinto. Lo bueno es el magnetismo; lo difícil es que a veces generas tormentas sin querer.","Energía","Impredecible","Pausar primero","Cambios emocionales bruscos"]},
+{en:["Emotionally Self-Checkout","You protect yourself by becoming less available before you become more vulnerable.","Independence","Uninvested","Stay present","Early exits"],es:["Salida Emocional Anticipada","Te proteges volviéndote menos disponible antes de permitirte ser más vulnerable.","Independencia","Desinteresado/a","Permanecer presente","Salir demasiado pronto"]},
+{en:["Truth With No Bubble Wrap","You value clarity over comfort. People know where they stand with you — sometimes sooner than they wanted.","Clarity","Harsh","Add context","Unnecessary friction"],es:["Verdad Sin Envoltura","Valoras la claridad más que la comodidad. La gente sabe dónde está contigo, a veces antes de lo que quería.","Claridad","Duro/a","Dar contexto","Fricción innecesaria"]},
+{en:["Quietly Overclocked","You look composed while your brain runs twelve tabs in the background.","Awareness","Fine","Externalize","Invisible stress"],es:["Sobreprocesando en Silencio","Te ves tranquilo/a mientras tu cerebro tiene doce pestañas abiertas al mismo tiempo.","Percepción","Todo bien","Exteriorizar","Estrés invisible"]},
+{en:["Social Shape-Shifter","You read the room quickly and adapt well. The risk is adapting so much that your own preference disappears.","Adaptability","Effortless","Hold your center","Over-adapting"],es:["Camaleón Social","Lees el ambiente rápido y te adaptas bien. El riesgo es adaptarte tanto que desaparezca lo que tú realmente quieres.","Adaptabilidad","Todo le resulta fácil","Mantener tu centro","Adaptarte de más"]},
+{en:["Selective Access","You are not closed off. You are curated. Trust is earned, not assumed.","Discernment","Reserved","Open sooner","Missed connection"],es:["Acceso Selectivo","No eres cerrado/a; eres selectivo/a. La confianza se gana, no se da por hecho.","Discernimiento","Reservado/a","Abrirte antes","Perder conexiones"]}
 ];
 
+let lang=((localStorage.getItem("zelqoza_lang")||navigator.language||"en").toLowerCase().startsWith("es"))?"es":"en";
+let i=0,traits={openness:0,directness:0,attachment:0,regulation:0,social:0},historyAnswers=[];
+let currentResult={pct:0,idx:0,traits:null},relationshipMode="friend",activeChallenge=null;
+const $=id=>document.getElementById(id), tx=k=>TXT[lang][k]||TXT.en[k]||k, profile=idx=>PROFILES[idx][lang]||PROFILES[idx].en;
 
-let lang=
-((localStorage.getItem("zelqoza_lang")||navigator.language||"en")
-.toLowerCase()
-.startsWith("es"))
-?"es"
-:"en";
-
-
-let i=0;
-
-let traits={
-openness:0,
-directness:0,
-attachment:0,
-regulation:0,
-social:0
-};
-
-
-let historyAnswers=[];
-
-
-let currentResult={
-pct:0,
-idx:0,
-traits:null
-};
-
-
-let relationshipMode="friend";
-
-
-let activeChallenge=null;
-
-
-const $=
-id=>
-document.getElementById(id);
-
-
-const tx=
-k=>
-TXT[lang][k]
-||
-TXT.en[k]
-||
-k;
-
-
-const profile=
-idx=>
-PROFILES[idx][lang]
-||
-PROFILES[idx].en;
-
-
-function setLanguage(l){
-
-lang=l;
-
-localStorage.setItem(
-"zelqoza_lang",
-l
-);
-
-applyLanguage();
-
-refreshDynamic();
-
-}
-
-
+function setLanguage(l){lang=l;localStorage.setItem("zelqoza_lang",l);applyLanguage();refreshDynamic()}
 function applyLanguage(){
-
-document.documentElement.lang=
-lang;
-
-
-$("enBtn")
-.classList
-.toggle(
-"active",
-lang==="en"
-);
-
-
-$("esBtn")
-.classList
-.toggle(
-"active",
-lang==="es"
-);
-
-
-const map={
-
-eyebrow:"eyebrow",
-headline:"headline",
-subhead:"subhead",
-startBtn:"start",
-disclaimer:"disclaimer",
-quizBack:"back",
-resultBack:"back",
-seeMine:"seeMine",
-shareBtn:"shareResult",
-copyResultBtn:"copyResult",
-whatsappBtn:"whatsapp",
-facebookBtn:"facebook",
-moreBtn:"more",
-deepTitle:"deepTitle",
-deepCopy:"deepCopy",
-misreadLabel:"misread",
-patternLabel:"pattern",
-moveLabel:"move",
-unlockBtn:"unlock",
-previewNote:"preview",
-m1:"m1",
-m2:"m2",
-m3:"m3",
-m4:"m4",
-underTitle:"under",
-frictionTitle:"friction",
-movesTitle:"moves",
-connectionTitle:"connection",
-connectionIntro:"connectionIntro",
-openConnectionBtn:"openConnection",
-whatPerson:"whatPerson",
-createLinkBtn:"createLink",
-copyLinkBtn:"copyLink",
-shareLinkBtn:"shareLink",
-connectionKicker:"connectionKicker",
-themText:"them",
-youText:"you",
-whyTitle:"why",
-whereTitle:"where",
-youDoTitle:"youDo",
-theyDoTitle:"theyDo",
-ruleTitle:"rule",
-againBtn:"again"
-
-};
-
-
-Object
-.entries(map)
-.forEach(
-([id,k])=>
-$(id).innerText=
-tx(k)
-);
-
-
-document
-.querySelectorAll(
-"[data-rel]"
-)
-.forEach(
-b=>
-b.innerText=
-tx(
-b.dataset.rel
-)
-);
-
+  document.documentElement.lang=lang;$("enBtn").classList.toggle("active",lang==="en");$("esBtn").classList.toggle("active",lang==="es");
+  const map={eyebrow:"eyebrow",headline:"headline",subhead:"subhead",startBtn:"start",disclaimer:"disclaimer",quizBack:"back",resultBack:"back",seeMine:"seeMine",shareBtn:"shareResult",copyResultBtn:"copyResult",whatsappBtn:"whatsapp",facebookBtn:"facebook",moreBtn:"more",deepTitle:"deepTitle",deepCopy:"deepCopy",misreadLabel:"misread",patternLabel:"pattern",moveLabel:"move",unlockBtn:"unlock",previewNote:"preview",m1:"m1",m2:"m2",m3:"m3",m4:"m4",underTitle:"under",frictionTitle:"friction",movesTitle:"moves",connectionTitle:"connection",connectionIntro:"connectionIntro",openConnectionBtn:"openConnection",whatPerson:"whatPerson",createLinkBtn:"createLink",copyLinkBtn:"copyLink",shareLinkBtn:"shareLink",connectionKicker:"connectionKicker",quickGoodLabel:"quickGoodLabel",quickWatchLabel:"quickWatchLabel",connectionDetailsToggle:"showDetails",themText:"them",youText:"you",whyTitle:"why",whereTitle:"where",youDoTitle:"youDo",theyDoTitle:"theyDo",ruleTitle:"rule",againBtn:"again"};
+  Object.entries(map).forEach(([id,k])=>$(id).innerText=tx(k));
+  document.querySelectorAll("[data-rel]").forEach(b=>b.innerText=tx(b.dataset.rel));
 }
-
-
-function refreshDynamic(){
-
-if(
-!$("quiz")
-.classList
-.contains("hidden")
-&&
-i<QUIZ[lang].length
-){
-
-render();
-
-}
-
-
-if(
-!$("result")
-.classList
-.contains("hidden")
-&&
-currentResult.traits
-){
-
-applyResult(
-currentResult.idx,
-currentResult.pct,
-currentResult.traits
-);
-
-
-if(activeChallenge){
-
-renderConnection(
-activeChallenge
-);
-
-}
-
-}
-
-
-updatePreview(
-relationshipMode
-);
-
-
-initChallengeBanner();
-
-}
-
-
-function begin(){
-
-$("start")
-.classList
-.add("hidden");
-
-$("quiz")
-.classList
-.remove("hidden");
-
-render();
-
-}
-
-
-function render(){
-
-const q=
-QUIZ[lang][i];
-
-
-$("bar")
-.style
-.width=
-(
-i/
-QUIZ[lang].length
-*100
-)
-+"%";
-
-
-$("qnum")
-.innerText=
-tx("q")(
-i+1,
-QUIZ[lang].length
-);
-
-
-$("question")
-.innerText=
-q[0];
-
-
-$("options")
-.innerHTML="";
-
-
-q[1]
-.forEach(
-([text,w])=>{
-
-const b=
-document.createElement(
-"button"
-);
-
-b.className=
-"option";
-
-b.innerText=
-text;
-
-b.onclick=
-()=>choose(w);
-
-$("options")
-.appendChild(b);
-
-}
-);
-
-}
-
-
-function applyWeights(
-w,
-m=1
-){
-
-Object
-.keys(w)
-.forEach(
-k=>
-traits[k]+=
-w[k]*m
-);
-
-}
-
-
-function choose(w){
-
-historyAnswers.push({
-...w
-});
-
-applyWeights(w);
-
-i++;
-
-
-i<QUIZ[lang].length
-?
-render()
-:
-finish();
-
-}
-
-
-function selectProfile(){
-
-if(
-traits.regulation>=3
-&&
-traits.directness<=0
-){
-return 0;
-}
-
-
-if(
-traits.attachment>=2
-&&
-traits.directness<=0
-){
-return 1;
-}
-
-
-if(
-traits.social>=3
-&&
-traits.regulation<=1
-){
-return 2;
-}
-
-
-if(
-traits.attachment<=-3
-){
-return 3;
-}
-
-
-if(
-traits.directness>=4
-){
-return 4;
-}
-
-
-if(
-traits.regulation<=-2
-&&
-traits.social<=1
-){
-return 5;
-}
-
-
-if(
-traits.social>=2
-&&
-traits.openness>=1
-){
-return 6;
-}
-
-
-return 7;
-
-}
-
-
+function refreshDynamic(){if(!$("quiz").classList.contains("hidden")&&i<QUIZ[lang].length)render();if(!$("result").classList.contains("hidden")&&currentResult.traits){applyResult(currentResult.idx,currentResult.pct,currentResult.traits);if(activeChallenge)renderConnection(activeChallenge)}updatePreview(relationshipMode);if($("connectionDetailsToggle")){$("connectionDetailsToggle").innerText=$("connectionDetails").classList.contains("show")?tx("hideDetails"):tx("showDetails")}initChallengeBanner()}
+function begin(){$("start").classList.add("hidden");$("quiz").classList.remove("hidden");render()}
+function render(){const q=QUIZ[lang][i];$("bar").style.width=(i/QUIZ[lang].length*100)+"%";$("qnum").innerText=tx("q")(i+1,QUIZ[lang].length);$("question").innerText=q[0];$("options").innerHTML="";q[1].forEach(([text,w])=>{const b=document.createElement("button");b.className="option";b.innerText=text;b.onclick=()=>choose(w);$("options").appendChild(b)})}
+function applyWeights(w,m=1){Object.keys(w).forEach(k=>traits[k]+=w[k]*m)}
+function choose(w){historyAnswers.push({...w});applyWeights(w);i++;i<QUIZ[lang].length?render():finish()}
+function selectProfile(){if(traits.regulation>=3&&traits.directness<=0)return 0;if(traits.attachment>=2&&traits.directness<=0)return 1;if(traits.social>=3&&traits.regulation<=1)return 2;if(traits.attachment<=-3)return 3;if(traits.directness>=4)return 4;if(traits.regulation<=-2&&traits.social<=1)return 5;if(traits.social>=2&&traits.openness>=1)return 6;return 7}
 function finish(){
-
-$("quiz")
-.classList
-.add("hidden");
-
-
-$("result")
-.classList
-.remove("hidden");
-
-
-const idx=
-selectProfile();
-
-
-const strongest=
-Math.max(
-...Object
-.values(traits)
-.map(Math.abs)
-);
-
-
-const pct=
-Math.min(
-99,
-68+
-Math.round(
-strongest*4
-)
-);
-
-
-applyResult(
-idx,
-pct,
-{...traits}
-);
-
-
-if(activeChallenge){
-
-renderConnection(
-activeChallenge
-);
-
-history.replaceState(
-null,
-"",
-buildChallengeResultUrl()
-);
-
-}else{
-
-history.replaceState(
-null,
-"",
-getShareUrl()
-);
-
+  $("quiz").classList.add("hidden");$("result").classList.remove("hidden");
+  const idx=selectProfile(),strongest=Math.max(...Object.values(traits).map(Math.abs)),pct=Math.min(99,68+Math.round(strongest*4));
+  applyResult(idx,pct,{...traits});
+  if(activeChallenge){renderConnection(activeChallenge);history.replaceState(null,"",buildChallengeResultUrl())}else{history.replaceState(null,"",getShareUrl())}
+  window.scrollTo({top:0,behavior:"smooth"});
 }
-
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-function applyResult(
-idx,
-pct,
-tdata
-){
-
-currentResult={
-idx,
-pct:
-Math.min(
-99,
-pct
-),
-traits:
-tdata
-||
-currentResult.traits
-};
-
-
-const p=
-profile(idx);
-
-
-$("score").innerText=
-currentResult.pct+"%";
-
-
-$("shareScore").innerText=
-currentResult.pct+"%";
-
-
-$("label").innerText=
-p[0];
-
-
-$("shareLabel").innerText=
-p[0];
-
-
-$("tag").innerText=
-p[1];
-
-
-$("shareTag").innerText=
-p[1];
-
-}
-
-
-function goBack(){
-
-if(
-!$("result")
-.classList
-.contains("hidden")
-){
-
-$("result")
-.classList
-.add("hidden");
-
-
-$("report")
-.classList
-.add("hidden");
-
-
-$("connectionAuto")
-.classList
-.add("hidden");
-
-
-if(
-historyAnswers.length
-){
-
-applyWeights(
-historyAnswers.pop(),
--1
-);
-
-}
-
-
-i=
-QUIZ[lang].length-1;
-
-
-$("quiz")
-.classList
-.remove("hidden");
-
-
-render();
-
-return;
-
-}
-
-
-if(i===0){
-
-$("quiz")
-.classList
-.add("hidden");
-
-
-$("start")
-.classList
-.remove("hidden");
-
-return;
-
-}
-
-
-if(
-historyAnswers.length
-){
-
-applyWeights(
-historyAnswers.pop(),
--1
-);
-
-}
-
-
-i--;
-
-render();
-
-}
-
-
-function base(){
-
-return "https://zelqoza.com/";
-
-}
-
-
-function compact(t){
-
-return[
-"openness",
-"directness",
-"attachment",
-"regulation",
-"social"
-]
-.map(
-k=>
-Math.round(
-(t||{})[k]
-||0
-)
-)
-.join(",");
-
-}
-
-
-function parseTraits(v){
-
-if(!v){
-return null;
-}
-
-
-const a=
-v
-.split(",")
-.map(Number);
-
-
-if(
-a.length!==5
-||
-a.some(Number.isNaN)
-){
-
-return null;
-
-}
-
-
-return{
-openness:a[0],
-directness:a[1],
-attachment:a[2],
-regulation:a[3],
-social:a[4]
-};
-
-}
-
-
-async function copyText(text){
-
-try{
-
-if(
-navigator.clipboard
-&&
-window.isSecureContext
-){
-
-await navigator
-.clipboard
-.writeText(text);
-
-return true;
-
-}
-
-}catch(e){}
-
-
-try{
-
-const ta=
-document.createElement(
-"textarea"
-);
-
-ta.value=
-text;
-
-ta.style.position=
-"fixed";
-
-ta.style.opacity=
-"0";
-
-document.body
-.appendChild(ta);
-
-ta.select();
-
-const ok=
-document.execCommand(
-"copy"
-);
-
-ta.remove();
-
-return ok;
-
-}catch(e){
-
-return false;
-
-}
-
-}
-
-
-function getShareUrl(){
-
-const u=
-new URL(
-base()
-);
-
-u.searchParams.set(
-"share",
-"1"
-);
-
-u.searchParams.set(
-"r",
-currentResult.idx
-);
-
-u.searchParams.set(
-"s",
-currentResult.pct
-);
-
-
-if(
-currentResult.traits
-){
-
-u.searchParams.set(
-"t",
-compact(
-currentResult.traits
-)
-);
-
-}
-
-
-return u.toString();
-
-}
-
-
-function toggleShare(){
-
-$("shareMenu")
-.classList
-.toggle(
-"show"
-);
-
-}
-
-
-async function copyResultLink(){
-
-$("shareStatus")
-.innerText=
-(
-await copyText(
-getShareUrl()
-)
-)
-?
-tx("resultCopied")
-:
-"";
-
-}
-
-
-function shareMessage(){
-
-const p=
-profile(
-currentResult.idx
-);
-
-
-return lang==="es"
-
-?`Mi WARNING LABEL: ${p[0]} — ${currentResult.pct}%. Ve mi resultado, haz el tuyo o compáralo conmigo.`
-
-:`My WARNING LABEL: ${p[0]} — ${currentResult.pct}%. See mine, take yours, or compare with me.`;
-
-}
-
-
-function shareWhatsApp(){
-
-window.open(
-"https://wa.me/?text="+
-encodeURIComponent(
-shareMessage()
-+" "+
-getShareUrl()
-),
-"_blank"
-);
-
-}
-
-
-function shareFacebook(){
-
-window.open(
-"https://www.facebook.com/sharer/sharer.php?u="+
-encodeURIComponent(
-getShareUrl()
-),
-"_blank"
-);
-
-}
-
-
-async function nativeShare(){
-
-const text=
-shareMessage();
-
-const url=
-getShareUrl();
-
-
-if(
-navigator.share
-){
-
-try{
-
-await navigator.share({
-title:"Warning Label",
-text,
-url
-});
-
-
-$("shareStatus")
-.innerText=
-tx("shareDone");
-
-return;
-
-}catch(e){}
-
-}
-
-
-$("shareStatus")
-.innerText=
-(
-await copyText(
-text+
-" "+
-url
-)
-)
-?
-tx("resultCopied")
-:
-"";
-
-}
-
+function applyResult(idx,pct,tdata){currentResult={idx,pct:Math.min(99,pct),traits:tdata||currentResult.traits};const p=profile(idx);$("score").innerText=$("shareScore").innerText=currentResult.pct+"%";$("label").innerText=$("shareLabel").innerText=p[0];$("tag").innerText=$("shareTag").innerText=p[1]}
+function goBack(){if(!$("result").classList.contains("hidden")){$("result").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i=QUIZ[lang].length-1;$("quiz").classList.remove("hidden");render();return}if(i===0){$("quiz").classList.add("hidden");$("start").classList.remove("hidden");return}if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i--;render()}
+function base(){return "https://zelqoza.com/"}
+function compact(t){return["openness","directness","attachment","regulation","social"].map(k=>Math.round((t||{})[k]||0)).join(",")}
+function parseTraits(v){if(!v)return null;const a=v.split(",").map(Number);if(a.length!==5||a.some(Number.isNaN))return null;return{openness:a[0],directness:a[1],attachment:a[2],regulation:a[3],social:a[4]}}
+async function copyText(text){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return true}}catch(e){}try{const ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();return ok}catch(e){return false}}
+function getShareUrl(){const u=new URL(base());u.searchParams.set("share","1");u.searchParams.set("r",currentResult.idx);u.searchParams.set("s",currentResult.pct);if(currentResult.traits)u.searchParams.set("t",compact(currentResult.traits));return u.toString()}
+function toggleShare(){$("shareMenu").classList.toggle("show")}
+async function copyResultLink(){$("shareStatus").innerText=(await copyText(getShareUrl()))?tx("resultCopied"):""}
+function shareMessage(){const p=profile(currentResult.idx);return lang==="es"?`Mi WARNING LABEL: ${p[0]} — ${currentResult.pct}%. Ve mi resultado, haz el tuyo o compáralo conmigo.`:`My WARNING LABEL: ${p[0]} — ${currentResult.pct}%. See mine, take yours, or compare with me.`}
+function shareWhatsApp(){window.open("https://wa.me/?text="+encodeURIComponent(shareMessage()+" "+getShareUrl()),"_blank")}
+function shareFacebook(){window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(getShareUrl()),"_blank")}
+async function nativeShare(){const text=shareMessage(),url=getShareUrl();if(navigator.share){try{await navigator.share({title:"Warning Label",text,url});$("shareStatus").innerText=tx("shareDone");return}catch(e){}}$("shareStatus").innerText=(await copyText(text+" "+url))?tx("resultCopied"):""}
 
 function unlockDeepRead(){
-
-const p=
-profile(
-currentResult.idx
-);
-
-
-$("report")
-.classList
-.remove("hidden");
-
-
-$("reportTitle")
-.innerText=
-p[0];
-
-
-$("reportTag")
-.innerText=
-p[1];
-
-
-$("mv1")
-.innerText=
-p[3];
-
-
-$("mv2")
-.innerText=
-p[2];
-
-
-$("mv3")
-.innerText=
-p[4];
-
-
-$("mv4")
-.innerText=
-p[5];
-
-
-$("underText")
-.innerText=
-lang==="es"
-
-?`A veces los demás pueden verte como ${p[3].toLowerCase()}, especialmente bajo presión. Tu intención puede ser distinta a la señal que estás dando.`
-
-:`People may read you as ${p[3].toLowerCase()}, especially under pressure. Your intent can be different from the signal you are sending.`;
-
-
-$("frictionText")
-.innerText=
-lang==="es"
-
-?`Tu punto de fricción más probable es ${p[5].toLowerCase()}. El problema aparece cuando los demás tienen que adivinar qué pasa.`
-
-:`Your most likely friction point is ${p[5].toLowerCase()}. It becomes a problem when other people have to guess what is happening.`;
-
-
-const ms=
-lang==="es"
-
-?[
-[
-"Haz una cosa más explícita de lo normal.",
-"Aclara una necesidad antes de esperar que la otra persona la adivine."
-],
-[
-"Nombra la señal, no la historia.",
-"Describe lo que notaste y haz una pregunta limpia."
-],
-[
-"Conserva la fortaleza.",
-"No cambies quién eres; haz que tu intención sea más fácil de leer."
-]
-]
-
-:[
-[
-"Make one thing more explicit than usual.",
-"State a need before expecting the other person to guess it."
-],
-[
-"Name the signal, not the story.",
-"Describe what you noticed and ask one clean question."
-],
-[
-"Keep the strength.",
-"Do not change who you are; make your intent easier to read."
-]
-];
-
-
-$("moves")
-.innerHTML="";
-
-
-ms.forEach(
-(m,n)=>
-$("moves")
-.innerHTML+=`
-<div class="section">
-<b>${n+1}. ${m[0]}</b>
-<p>${m[1]}</p>
-</div>
-`
-);
-
-
-$("report")
-.scrollIntoView({
-behavior:"smooth"
-});
-
+  const p=profile(currentResult.idx);$("report").classList.remove("hidden");$("reportTitle").innerText=p[0];$("reportTag").innerText=p[1];
+  $("mv1").innerText=p[3];$("mv2").innerText=p[2];$("mv3").innerText=p[4];$("mv4").innerText=p[5];
+  $("underText").innerText=lang==="es"?`A veces los demás pueden verte como ${p[3].toLowerCase()}, especialmente bajo presión. Tu intención puede ser distinta a la señal que estás dando.`:`People may read you as ${p[3].toLowerCase()}, especially under pressure. Your intent can be different from the signal you are sending.`;
+  $("frictionText").innerText=lang==="es"?`Tu punto de fricción más probable es ${p[5].toLowerCase()}. El problema aparece cuando los demás tienen que adivinar qué pasa.`:`Your most likely friction point is ${p[5].toLowerCase()}. It becomes a problem when other people have to guess what is happening.`;
+  const ms=lang==="es"?[["Haz una cosa más explícita de lo normal.","Aclara una necesidad antes de esperar que la otra persona la adivine."],["Nombra la señal, no la historia.","Describe lo que notaste y haz una pregunta limpia."],["Conserva la fortaleza.","No cambies quién eres; haz que tu intención sea más fácil de leer."]]:[["Make one thing more explicit than usual.","State a need before expecting the other person to guess it."],["Name the signal, not the story.","Describe what you noticed and ask one clean question."],["Keep the strength.","Do not change who you are; make your intent easier to read."]];
+  $("moves").innerHTML="";ms.forEach((m,n)=>$("moves").innerHTML+=`<div class="section"><b>${n+1}. ${m[0]}</b><p>${m[1]}</p></div>`);
+  $("report").scrollIntoView({behavior:"smooth"});
 }
 
+function setRel(mode,btn){relationshipMode=mode;document.querySelectorAll(".mainRel").forEach(x=>x.classList.remove("active"));btn.classList.add("active");updatePreview(mode)}
+function previewData(mode){const en={friend:["Friend Connection Read","See what makes this friendship work","Compare what you share, where you differ, and how to support each other better."],family:["Family Connection Read","See what strengthens — and strains — this family bond","Compare old patterns, current needs, and how to make the relationship easier."],partner:["Partner Connection Read","See how your relationship actually works","Compare what helps you connect, what creates friction, and how to repair faster."],work:["Work Connection Read","See how to work better together","Compare communication styles, strengths and friction points."]};const es={friend:["Lectura de amistad","Descubre qué hace funcionar esta amistad","Compara lo que comparten, dónde difieren y cómo apoyarse mejor."],family:["Lectura familiar","Descubre qué fortalece — y qué tensiona — este vínculo","Compara patrones antiguos, necesidades actuales y cómo mejorar la relación."],partner:["Lectura de pareja","Descubre cómo funciona realmente su relación","Compara qué los conecta, qué genera fricción y cómo reparar más rápido."],work:["Lectura de trabajo","Descubre cómo trabajar mejor juntos","Compara estilos de comunicación, fortalezas y puntos de fricción."]};return (lang==="es"?es:en)[mode]}
+function updatePreview(mode){const d=previewData(mode);if(!d)return;$("previewLine").innerText=d[0];$("previewTitle").innerText=d[1];$("previewText").innerText=d[2]}
+function openConnectionSetup(){$("connectionSetup").classList.add("show");updatePreview(relationshipMode);$("connectionSetup").scrollIntoView({behavior:"smooth"})}
+function makeChallengeUrl(){const u=new URL(base());u.searchParams.set("c","1");u.searchParams.set("cr",currentResult.idx);u.searchParams.set("cs",currentResult.pct);u.searchParams.set("rel",relationshipMode);if(currentResult.traits)u.searchParams.set("ct",compact(currentResult.traits));return u.toString()}
+function createConnectionLink(){const url=makeChallengeUrl();$("connectionInput").value=url;$("linkbox").classList.add("show");$("connectionStatus").innerText=tx("linkCreated")}
+async function copyConnectionLink(){$("connectionStatus").innerText=(await copyText($("connectionInput").value||makeChallengeUrl()))?tx("linkCopied"):""}
+async function shareChallenge(){const url=makeChallengeUrl(),text=lang==="es"?`Estos son MIS resultados de Warning Label. Haz el tuyo y veamos nuestra lectura de conexión: ${url}`:`These are MY Warning Label results. Take yours and let’s unlock our Connection Read: ${url}`;if(navigator.share){try{await navigator.share({title:"Warning Label Connection",text,url});$("connectionStatus").innerText=tx("shareDone");return}catch(e){}}window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank")}
 
-function setRel(
-mode,
-btn
-){
+function readChallengeFromUrl(){const p=new URLSearchParams(location.search);if(p.get("c")!=="1")return null;const idx=Number(p.get("cr")),pct=Number(p.get("cs"));if(!Number.isInteger(idx)||idx<0||idx>=PROFILES.length||!Number.isFinite(pct))return null;let rel=p.get("rel")||"friend";if(rel==="dating")rel="family";return{idx,pct,rel,traits:parseTraits(p.get("ct"))}}
+function saveActiveChallenge(c){activeChallenge=c;sessionStorage.setItem("zelqoza_active_challenge",JSON.stringify(c))}
+function loadActiveChallenge(){try{const x=sessionStorage.getItem("zelqoza_active_challenge");return x?JSON.parse(x):null}catch(e){return null}}
+function clearActiveChallenge(){activeChallenge=null;sessionStorage.removeItem("zelqoza_active_challenge")}
+function initChallengeBanner(){const c=activeChallenge;if(!c){$("challengeBanner").classList.add("hidden");return}const p=profile(c.idx);$("challengeBanner").classList.remove("hidden");$("challengeBanner").innerText=lang==="es"?`Te enviaron SUS resultados: “${p[0]}” (${c.pct}%). Haz tus 6 preguntas y al terminar verás automáticamente la relación entre ambos perfiles.`:`They sent you THEIR results: “${p[0]}” (${c.pct}%). Take your 6-question test and your two profiles will be compared automatically.`}
+function buildChallengeResultUrl(){const u=new URL(base());u.searchParams.set("done","1");return u.toString()}
 
-relationshipMode=
-mode;
+function traitFit(a,b){if(!a||!b)return null;const k=["openness","directness","attachment","regulation","social"];const avg=k.reduce((s,x)=>s+Math.abs((a[x]||0)-(b[x]||0)),0)/k.length;return Math.max(0,Math.min(100,Math.round(100-avg*5)))}
+function compatibility(a,b){const f=traitFit(a.traits,b.traits);let score=Math.round(80-Math.abs(a.pct-b.pct)*.25+(f!==null?(f-50)*.18:0)+(a.idx===b.idx?5:0));score=Math.max(55,Math.min(97,score));const label=lang==="es"?(score>=90?"Conexión muy fuerte":score>=82?"Conexión fuerte":score>=72?"Buena conexión con algo de fricción":"Diferentes, pero puede funcionar"):(score>=90?"Very strong fit":score>=82?"Strong connection":score>=72?"Good with some friction":"Different but workable");return{score,label}}
+function relCopy(rel){const en={friend:["You have useful common ground and enough difference to keep the friendship interesting.","The biggest risk is assuming the other person already knows what you mean.","Be a little more explicit than feels necessary.","Give them room without disappearing.","One clear sentence prevents ten wrong stories."],family:["You share history and familiarity that can make understanding each other feel automatic — until it isn’t.","Old roles can make one person react to who the other used to be instead of who they are now.","Say what you need without assuming family should automatically know.","Listen to the current message instead of answering the old pattern.","History explains the pattern, but it does not have to control the relationship."],partner:["You can complement each other well when both people feel safe enough to be direct.","Different coping styles can get mistaken for lack of care.","Name your need before your frustration.","Respond to the need underneath the reaction.","Talk about the pattern as the enemy — not each other."],work:["Your styles can be productive when roles and expectations are explicit.","Different communication speeds can look like disengagement or control.","State deadlines and ownership clearly.","Give context with requests.","Make expectations visible."]};const es={friend:["Tienen terreno en común y suficientes diferencias para que la amistad siga siendo interesante.","El mayor riesgo es asumir que la otra persona ya sabe lo que quieres decir.","Sé un poco más explícito/a de lo que te parecería necesario.","Dale espacio sin desaparecer.","Una frase clara evita diez historias equivocadas."],family:["Comparten historia y familiaridad que pueden hacer que entenderse parezca automático — hasta que deja de serlo.","Los roles antiguos pueden hacer que uno responda a quien la otra persona era antes, en vez de a quien es hoy.","Di lo que necesitas sin asumir que por ser familia deberían saberlo automáticamente.","Escucha el mensaje actual en lugar de responder al patrón antiguo.","La historia explica el patrón, pero no tiene que controlar la relación."],partner:["Pueden complementarse bien cuando ambos se sienten seguros para ser directos.","Los estilos distintos para manejar estrés pueden confundirse con falta de interés.","Nombra tu necesidad antes que tu frustración.","Responde a la necesidad debajo de la reacción.","Hablen del patrón como el enemigo, no del otro."],work:["Sus estilos pueden ser productivos cuando roles y expectativas son explícitos.","Ritmos distintos de comunicación pueden parecer desinterés o control.","Aclara fechas y responsabilidades.","Da contexto con tus solicitudes.","Hagan visibles las expectativas."]};return (lang==="es"?es:en)[rel]}
+function traitNames(){return lang==="es"?{openness:"Apertura",directness:"Directitud",attachment:"Cercanía",regulation:"Serenidad",social:"Energía social"}:{openness:"Openness",directness:"Directness",attachment:"Closeness",regulation:"Composure",social:"Social energy"}}
+function renderTraits(a,b){$("traitRows").innerHTML="";const names=traitNames();Object.keys(names).forEach(k=>{const av=Math.round((((a&&a[k])||0)+10)/20*100),bv=Math.round((((b&&b[k])||0)+10)/20*100);$("traitRows").innerHTML+=`<div class="traitRow"><div class="traitLabel">${names[k]}</div><div class="traitLine"><span>${tx("them")}</span><div class="track"><div class="fill them" style="width:${av}%"></div></div><span>${av}</span></div><div class="traitLine"><span>${tx("you")}</span><div class="track"><div class="fill" style="width:${bv}%"></div></div><span>${bv}</span></div></div>`})}
 
-
-document
-.querySelectorAll(
-".mainRel"
-)
-.forEach(
-x=>
-x.classList
-.remove("active")
-);
-
-
-btn.classList
-.add("active");
-
-
-updatePreview(
-mode
-);
-
+function toggleConnectionDetails(){
+  const details=$("connectionDetails");
+  const btn=$("connectionDetailsToggle");
+  const open=details.classList.toggle("show");
+  btn.innerText=open?tx("hideDetails"):tx("showDetails");
 }
-
-
-function previewData(mode){
-
-const en={
-
-friend:[
-"Friend Connection Read",
-"See what makes this friendship work",
-"Compare what you share, where you differ, and how to support each other better."
-],
-
-family:[
-"Family Connection Read",
-"See what strengthens — and strains — this family bond",
-"Compare old patterns, current needs, and how to make the relationship easier."
-],
-
-partner:[
-"Partner Connection Read",
-"See how your relationship actually works",
-"Compare what helps you connect, what creates friction, and how to repair faster."
-],
-
-work:[
-"Work Connection Read",
-"See how to work better together",
-"Compare communication styles, strengths and friction points."
-]
-
-};
-
-
-const es={
-
-friend:[
-"Lectura de amistad",
-"Descubre qué hace funcionar esta amistad",
-"Compara lo que comparten, dónde difieren y cómo apoyarse mejor."
-],
-
-family:[
-"Lectura familiar",
-"Descubre qué fortalece — y qué tensiona — este vínculo",
-"Compara patrones antiguos, necesidades actuales y cómo mejorar la relación."
-],
-
-partner:[
-"Lectura de pareja",
-"Descubre cómo funciona realmente su relación",
-"Compara qué los conecta, qué genera fricción y cómo reparar más rápido."
-],
-
-work:[
-"Lectura de trabajo",
-"Descubre cómo trabajar mejor juntos",
-"Compara estilos de comunicación, fortalezas y puntos de fricción."
-]
-
-};
-
-
-return(
-lang==="es"
-?
-es
-:
-en
-)[mode];
-
-}
-
-
-function updatePreview(mode){
-
-const d=
-previewData(
-mode
-);
-
-
-if(!d){
-return;
-}
-
-
-$("previewLine")
-.innerText=
-d[0];
-
-
-$("previewTitle")
-.innerText=
-d[1];
-
-
-$("previewText")
-.innerText=
-d[2];
-
-}
-
-
-function openConnectionSetup(){
-
-$("connectionSetup")
-.classList
-.add(
-"show"
-);
-
-
-updatePreview(
-relationshipMode
-);
-
-
-$("connectionSetup")
-.scrollIntoView({
-behavior:"smooth"
-});
-
-}
-
-
-function makeChallengeUrl(){
-
-const u=
-new URL(
-base()
-);
-
-
-u.searchParams.set(
-"c",
-"1"
-);
-
-
-u.searchParams.set(
-"cr",
-currentResult.idx
-);
-
-
-u.searchParams.set(
-"cs",
-currentResult.pct
-);
-
-
-u.searchParams.set(
-"rel",
-relationshipMode
-);
-
-
-if(
-currentResult.traits
-){
-
-u.searchParams.set(
-"ct",
-compact(
-currentResult.traits
-)
-);
-
-}
-
-
-return u.toString();
-
-}
-
-
-function createConnectionLink(){
-
-const url=
-makeChallengeUrl();
-
-
-$("connectionInput")
-.value=
-url;
-
-
-$("linkbox")
-.classList
-.add(
-"show"
-);
-
-
-$("connectionStatus")
-.innerText=
-tx(
-"linkCreated"
-);
-
-}
-
-
-async function copyConnectionLink(){
-
-$("connectionStatus")
-.innerText=
-(
-await copyText(
-$("connectionInput").value
-||
-makeChallengeUrl()
-)
-)
-?
-tx("linkCopied")
-:
-"";
-
-}
-
-
-async function shareChallenge(){
-
-const url=
-makeChallengeUrl();
-
-
-const text=
-lang==="es"
-
-?`Estos son MIS resultados de Warning Label. Haz el tuyo y veamos nuestra lectura de conexión: ${url}`
-
-:`These are MY Warning Label results. Take yours and let’s unlock our Connection Read: ${url}`;
-
-
-if(
-navigator.share
-){
-
-try{
-
-await navigator.share({
-title:"Warning Label Connection",
-text,
-url
-});
-
-
-$("connectionStatus")
-.innerText=
-tx("shareDone");
-
-return;
-
-}catch(e){}
-
-}
-
-
-window.open(
-"https://wa.me/?text="+
-encodeURIComponent(
-text
-),
-"_blank"
-);
-
-}
-
-
-function readChallengeFromUrl(){
-
-const p=
-new URLSearchParams(
-location.search
-);
-
-
-if(
-p.get("c")!=="1"
-){
-
-return null;
-
-}
-
-
-const idx=
-Number(
-p.get("cr")
-);
-
-
-const pct=
-Number(
-p.get("cs")
-);
-
-
-if(
-!Number.isInteger(idx)
-||
-idx<0
-||
-idx>=PROFILES.length
-||
-!Number.isFinite(pct)
-){
-
-return null;
-
-}
-
-
-let rel=
-p.get("rel")
-||
-"friend";
-
-
-return{
-idx,
-pct,
-rel,
-traits:
-parseTraits(
-p.get("ct")
-)
-};
-
-}
-
-
-function saveActiveChallenge(c){
-
-activeChallenge=
-c;
-
-
-sessionStorage.setItem(
-"zelqoza_active_challenge",
-JSON.stringify(c)
-);
-
-}
-
-
-function loadActiveChallenge(){
-
-try{
-
-const x=
-sessionStorage.getItem(
-"zelqoza_active_challenge"
-);
-
-
-return x
-?
-JSON.parse(x)
-:
-null;
-
-}catch(e){
-
-return null;
-
-}
-
-}
-
-
-function clearActiveChallenge(){
-
-activeChallenge=
-null;
-
-
-sessionStorage.removeItem(
-"zelqoza_active_challenge"
-);
-
-}
-
-
-function initChallengeBanner(){
-
-const c=
-activeChallenge;
-
-
-if(!c){
-
-$("challengeBanner")
-.classList
-.add(
-"hidden"
-);
-
-return;
-
-}
-
-
-const p=
-profile(
-c.idx
-);
-
-
-$("challengeBanner")
-.classList
-.remove(
-"hidden"
-);
-
-
-$("challengeBanner")
-.innerText=
-lang==="es"
-
-?`Te enviaron SUS resultados: “${p[0]}” (${c.pct}%). Haz tus 6 preguntas y al terminar verás automáticamente la relación entre ambos perfiles.`
-
-:`They sent you THEIR results: “${p[0]}” (${c.pct}%). Take your 6-question test and your two profiles will be compared automatically.`;
-
-}
-
-
-function buildChallengeResultUrl(){
-
-const u=
-new URL(
-base()
-);
-
-
-u.searchParams.set(
-"done",
-"1"
-);
-
-
-return u.toString();
-
-}
-
-
-function traitFit(
-a,
-b
-){
-
-if(
-!a
-||
-!b
-){
-
-return null;
-
-}
-
-
-const k=[
-"openness",
-"directness",
-"attachment",
-"regulation",
-"social"
-];
-
-
-const avg=
-k.reduce(
-(s,x)=>
-s+
-Math.abs(
-(a[x]||0)
--
-(b[x]||0)
-),
-0
-)
-/
-k.length;
-
-
-return Math.max(
-0,
-Math.min(
-100,
-Math.round(
-100-
-avg*5
-)
-)
-);
-
-}
-
-
-function compatibility(
-a,
-b
-){
-
-const f=
-traitFit(
-a.traits,
-b.traits
-);
-
-
-let score=
-Math.round(
-80
--
-Math.abs(
-a.pct-b.pct
-)*.25
-+
-(
-f!==null
-?
-(f-50)*.18
-:
-0
-)
-+
-(
-a.idx===b.idx
-?
-5
-:
-0
-)
-);
-
-
-score=
-Math.max(
-55,
-Math.min(
-97,
-score
-)
-);
-
-
-const label=
-lang==="es"
-
-?(
-score>=90
-?
-"Conexión muy fuerte"
-:
-score>=82
-?
-"Conexión fuerte"
-:
-score>=72
-?
-"Buena conexión con algo de fricción"
-:
-"Diferentes, pero puede funcionar"
-)
-
-:(
-score>=90
-?
-"Very strong fit"
-:
-score>=82
-?
-"Strong connection"
-:
-score>=72
-?
-"Good with some friction"
-:
-"Different but workable"
-);
-
-
-return{
-score,
-label
-};
-
-}
-
-
-function relCopy(rel){
-
-const en={
-
-friend:[
-"You have useful common ground and enough difference to keep the friendship interesting.",
-"The biggest risk is assuming the other person already knows what you mean.",
-"Be a little more explicit than feels necessary.",
-"Give them room without disappearing.",
-"One clear sentence prevents ten wrong stories."
-],
-
-family:[
-"You share history and familiarity that can make understanding each other feel automatic — until it isn’t.",
-"Old roles can make one person react to who the other used to be instead of who they are now.",
-"Say what you need without assuming family should automatically know.",
-"Listen to the current message instead of answering the old pattern.",
-"History explains the pattern, but it does not have to control the relationship."
-],
-
-partner:[
-"You can complement each other well when both people feel safe enough to be direct.",
-"Different coping styles can get mistaken for lack of care.",
-"Name your need before your frustration.",
-"Respond to the need underneath the reaction.",
-"Talk about the pattern as the enemy — not each other."
-],
-
-work:[
-"Your styles can be productive when roles and expectations are explicit.",
-"Different communication speeds can look like disengagement or control.",
-"State deadlines and ownership clearly.",
-"Give context with requests.",
-"Make expectations visible."
-]
-
-};
-
-
-const es={
-
-friend:[
-"Tienen terreno en común y suficientes diferencias para que la amistad siga siendo interesante.",
-"El mayor riesgo es asumir que la otra persona ya sabe lo que quieres decir.",
-"Sé un poco más explícito/a de lo que te parecería necesario.",
-"Dale espacio sin desaparecer.",
-"Una frase clara evita diez historias equivocadas."
-],
-
-family:[
-"Comparten historia y familiaridad que pueden hacer que entenderse parezca automático — hasta que deja de serlo.",
-"Los roles antiguos pueden hacer que uno responda a quien la otra persona era antes, en vez de a quien es hoy.",
-"Di lo que necesitas sin asumir que por ser familia deberían saberlo automáticamente.",
-"Escucha el mensaje actual en lugar de responder al patrón antiguo.",
-"La historia explica el patrón, pero no tiene que controlar la relación."
-],
-
-partner:[
-"Pueden complementarse bien cuando ambos se sienten seguros para ser directos.",
-"Los estilos distintos para manejar estrés pueden confundirse con falta de interés.",
-"Nombra tu necesidad antes que tu frustración.",
-"Responde a la necesidad debajo de la reacción.",
-"Hablen del patrón como el enemigo, no del otro."
-],
-
-work:[
-"Sus estilos pueden ser productivos cuando roles y expectativas son explícitos.",
-"Ritmos distintos de comunicación pueden parecer desinterés o control.",
-"Aclara fechas y responsabilidades.",
-"Da contexto con tus solicitudes.",
-"Hagan visibles las expectativas."
-]
-
-};
-
-
-return(
-lang==="es"
-?
-es
-:
-en
-)[rel];
-
-}
-
-
-function traitNames(){
-
-return lang==="es"
-
-?{
-openness:"Apertura",
-directness:"Directitud",
-attachment:"Cercanía",
-regulation:"Serenidad",
-social:"Energía social"
-}
-
-:{
-openness:"Openness",
-directness:"Directness",
-attachment:"Closeness",
-regulation:"Composure",
-social:"Social energy"
-};
-
-}
-
-
-function renderTraits(
-a,
-b
-){
-
-$("traitRows")
-.innerHTML="";
-
-
-const names=
-traitNames();
-
-
-Object
-.keys(names)
-.forEach(
-k=>{
-
-const av=
-Math.max(
-0,
-Math.min(
-100,
-Math.round(
-(
-(
-(a&&a[k])||0
-)
-+10
-)
-/20
-*100
-)
-)
-);
-
-
-const bv=
-Math.max(
-0,
-Math.min(
-100,
-Math.round(
-(
-(
-(b&&b[k])||0
-)
-+10
-)
-/20
-*100
-)
-)
-);
-
-
-$("traitRows")
-.innerHTML+=`
-
-<div class="traitRow">
-
-<div class="traitLabel">
-${names[k]}
-</div>
-
-<div class="traitLine">
-
-<span>
-${tx("them")}
-</span>
-
-<div class="track">
-<div
-class="fill them"
-style="width:${av}%">
-</div>
-</div>
-
-<span>
-${av}
-</span>
-
-</div>
-
-
-<div class="traitLine">
-
-<span>
-${tx("you")}
-</span>
-
-<div class="track">
-<div
-class="fill"
-style="width:${bv}%">
-</div>
-</div>
-
-<span>
-${bv}
-</span>
-
-</div>
-
-</div>
-
-`;
-
-}
-);
-
-}
-
 
 function renderConnection(c){
+  if(!c)return;
 
-if(!c){
-return;
+  const comp=compatibility(c,currentResult);
+  const them=profile(c.idx);
+  const you=profile(currentResult.idx);
+  const rc=relCopy(c.rel);
+
+  $("connectionAuto").classList.remove("hidden");
+  $("connectionDetails").classList.remove("show");
+  $("connectionDetailsToggle").innerText=tx("showDetails");
+
+  $("compareTitle").innerText=`${them[0]} + ${you[0]}`;
+  $("compatScore").innerText=comp.score+"%";
+  $("compatLabel").innerText=comp.label;
+
+  $("compatCopy").innerText=lang==="es"
+    ?"La lectura rápida de cómo funcionan juntos. Abajo puedes abrir el análisis completo."
+    :"The quick read on how you work together. Open the full breakdown below for the details.";
+
+  $("quickGood").innerText=rc[0];
+  $("quickWatch").innerText=rc[1];
+
+  $("positiveTitle").innerText=lang==="es"?"Lo bueno entre ustedes":"What’s good between you";
+  $("positiveCopy").innerText=rc[0];
+
+  $("themScore").innerText=c.pct+"%";
+  $("themLabel").innerText=them[0];
+
+  $("youScore").innerText=currentResult.pct+"%";
+  $("youLabel").innerText=you[0];
+
+  $("whyText").innerText=rc[0];
+  $("whereText").innerText=rc[1];
+  $("youDoText").innerText=rc[2];
+  $("theyDoText").innerText=rc[3];
+  $("ruleText").innerText=rc[4];
+
+  renderTraits(c.traits,currentResult.traits);
+
+  const scoreEl=$("compatScore");
+  scoreEl.classList.remove("score-pop");
+  void scoreEl.offsetWidth;
+  scoreEl.classList.add("score-pop");
 }
 
-
-const comp=
-compatibility(
-c,
-currentResult
-);
-
-
-const them=
-profile(
-c.idx
-);
-
-
-const you=
-profile(
-currentResult.idx
-);
-
-
-const rc=
-relCopy(
-c.rel
-);
-
-
-$("connectionAuto")
-.classList
-.remove(
-"hidden"
-);
-
-
-$("compareTitle")
-.innerText=
-`${them[0]} + ${you[0]}`;
-
-
-$("compatScore")
-.innerText=
-comp.score+"%";
-
-
-$("compatLabel")
-.innerText=
-comp.label;
-
-
-$("compatCopy")
-.innerText=
-lang==="es"
-
-?"Esta lectura muestra cómo interactúan sus dos estilos. No es una predicción."
-
-:"This read shows how your two styles interact. It is not a prediction.";
-
-
-$("positiveTitle")
-.innerText=
-lang==="es"
-?
-"Lo bueno entre ustedes"
-:
-"What’s good between you";
-
-
-$("positiveCopy")
-.innerText=
-rc[0];
-
-
-$("themScore")
-.innerText=
-c.pct+"%";
-
-
-$("themLabel")
-.innerText=
-them[0];
-
-
-$("youScore")
-.innerText=
-currentResult.pct+"%";
-
-
-$("youLabel")
-.innerText=
-you[0];
-
-
-$("whyText")
-.innerText=
-rc[0];
-
-
-$("whereText")
-.innerText=
-rc[1];
-
-
-$("youDoText")
-.innerText=
-rc[2];
-
-
-$("theyDoText")
-.innerText=
-rc[3];
-
-
-$("ruleText")
-.innerText=
-rc[4];
-
-
-renderTraits(
-c.traits,
-currentResult.traits
-);
-
-}
-
-
-function restartTest(){
-
-i=0;
-
-
-traits={
-openness:0,
-directness:0,
-attachment:0,
-regulation:0,
-social:0
-};
-
-
-historyAnswers=[];
-
-
-currentResult={
-pct:0,
-idx:0,
-traits:null
-};
-
-
-clearActiveChallenge();
-
-
-$("result")
-.classList
-.add(
-"hidden"
-);
-
-
-$("quiz")
-.classList
-.add(
-"hidden"
-);
-
-
-$("report")
-.classList
-.add(
-"hidden"
-);
-
-
-$("connectionAuto")
-.classList
-.add(
-"hidden"
-);
-
-
-history.replaceState(
-null,
-"",
-base()
-);
-
-
-$("start")
-.classList
-.remove(
-"hidden"
-);
-
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
+function restartTest(){i=0;traits={openness:0,directness:0,attachment:0,regulation:0,social:0};historyAnswers=[];currentResult={pct:0,idx:0,traits:null};clearActiveChallenge();$("result").classList.add("hidden");$("quiz").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");history.replaceState(null,"",base());$("start").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
 
 (function init(){
-
-const fromUrl=
-readChallengeFromUrl();
-
-
-if(fromUrl){
-
-saveActiveChallenge(
-fromUrl
-);
-
-}else{
-
-activeChallenge=
-loadActiveChallenge();
-
-}
-
-
-applyLanguage();
-
-initChallengeBanner();
-
-updatePreview(
-"friend"
-);
-
+  const fromUrl=readChallengeFromUrl();
+  if(fromUrl)saveActiveChallenge(fromUrl);else activeChallenge=loadActiveChallenge();
+  applyLanguage();initChallengeBanner();updatePreview("friend");
 })();
-
 </script>
-
 </body>
 </html>
