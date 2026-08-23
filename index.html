@@ -162,7 +162,18 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
   .traitRow{padding-top:2px}
 }
 
-.profile-score-caption,.connection-score-caption{margin:-6px 0 14px;text-align:center;font-size:11px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#bfc0c7}.connection-score-caption{color:#ff8a82;margin-top:-2px}</style>
+.profile-score-caption,.connection-score-caption{margin:-6px 0 14px;text-align:center;font-size:11px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#bfc0c7}.connection-score-caption{color:#ff8a82;margin-top:-2px}
+.perceptionRead{margin-top:22px;padding:22px;border:1px solid #303037;border-radius:18px;background:#111113;text-align:left}
+.perceptionRead h3{font-size:25px;line-height:1.05;margin:8px 0 10px}
+.perceptionRead p{color:#e4e4e8;line-height:1.5;margin:0 0 14px}
+.perceptionGrid{display:grid;gap:9px}
+.perceptionBox{padding:14px;border:1px solid #303037;border-radius:13px;background:#17171a}
+.perceptionBox span{display:block;color:#aaaab2;font-size:10px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:6px}
+.perceptionBox b{font-size:14px;line-height:1.4}
+.connectionDivider{margin:28px 0 8px;padding:22px 12px 4px;text-align:center;border-top:1px solid #333}
+.connectionDivider span{display:block;color:#aaaab2;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
+.connectionDivider b{font-size:24px;line-height:1.05}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -200,6 +211,22 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
       <div id="score" class="score"></div>
       <div id="label" class="label"></div>
       <div id="tag" class="tag"></div>
+
+      <div id="perceptionRead" class="perceptionRead">
+        <div id="perceptionKicker" class="eyebrow"></div>
+        <h3 id="perceptionTitle"></h3>
+        <p id="perceptionMain"></p>
+        <div class="perceptionGrid">
+          <div class="perceptionBox"><span id="peopleLikeLabel"></span><b id="peopleLike"></b></div>
+          <div class="perceptionBox"><span id="peopleMisreadLabel"></span><b id="peopleMisread"></b></div>
+          <div class="perceptionBox"><span id="peopleLearnLabel"></span><b id="peopleLearn"></b></div>
+        </div>
+      </div>
+
+      <div id="connectionDivider" class="connectionDivider hidden">
+        <span id="connectionDividerTop"></span>
+        <b id="connectionDividerTitle"></b>
+      </div>
 
       <div id="connectionAuto" class="connectionHero hidden">
 
@@ -499,7 +526,7 @@ function finish(){
   if(activeChallenge){renderConnection(activeChallenge);history.replaceState(null,"",buildChallengeResultUrl())}else{history.replaceState(null,"",getShareUrl())}
   window.scrollTo({top:0,behavior:"smooth"});
 }
-function applyResult(idx,pct,tdata){currentResult={idx,pct:Math.min(99,pct),traits:tdata||currentResult.traits};const p=profile(idx);$("score").innerText=$("shareScore").innerText=currentResult.pct+"%";ensureScoreCaptions();$("label").innerText=$("shareLabel").innerText=p[0];$("tag").innerText=$("shareTag").innerText=p[1]}
+function applyResult(idx,pct,tdata){currentResult={idx,pct:Math.min(99,pct),traits:tdata||currentResult.traits};const p=profile(idx);$("score").innerText=$("shareScore").innerText=currentResult.pct+"%";renderPerception(currentResult.idx);ensureScoreCaptions();$("label").innerText=$("shareLabel").innerText=p[0];$("tag").innerText=$("shareTag").innerText=p[1]}
 function goBack(){if(!$("result").classList.contains("hidden")){$("result").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i=QUIZ[lang].length-1;$("quiz").classList.remove("hidden");render();return}if(i===0){$("quiz").classList.add("hidden");$("start").classList.remove("hidden");return}if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i--;render()}
 function base(){return "https://zelqoza.com/"}
 function compact(t){return["openness","directness","attachment","regulation","social"].map(k=>Math.round((t||{})[k]||0)).join(",")}
@@ -719,6 +746,43 @@ const SAME_PROFILE_TITLES={
     "DOBLE ACCESO SELECTIVO"
   ]
 };
+
+
+const PERCEPTION_READS={
+en:[
+ {title:"People may see you as calm — and a little hard to read.",main:"You rarely make every feeling visible. That can make you seem confident and low-drama, even when there is more going on underneath.",like:"You stay steady when other people get reactive.",misread:"Your calm can look like distance or lack of interest.",learn:"You care more than you always show."},
+ {title:"People may see you as observant and hard to fool.",main:"You notice small changes, remember details and pay attention when words and actions stop matching. People often learn that consistency matters with you.",like:"You catch things other people miss.",misread:"Your caution can look like you are keeping score.",learn:"You are reliable — and you expect reliability back."},
+ {title:"People may see you as fun, intense and impossible to ignore.",main:"You bring energy quickly. People often know when you are excited, annoyed or fully invested because you do not move through life at half-volume.",like:"You make things happen and bring people with you.",misread:"Your urgency can feel like pressure.",learn:"Your intensity usually comes from caring, not controlling."},
+ {title:"People may see you as independent and difficult to chase.",main:"You are comfortable giving yourself space and you rarely force closeness. That can feel refreshing — but people may not always know when you actually need them.",like:"You do not make every feeling someone else’s responsibility.",misread:"Pulling back can look like you stopped caring.",learn:"You usually come back when you feel safe, not pressured."},
+ {title:"People may see you as honest, confident and very direct.",main:"You tend to say the thing other people are circling around. That makes you easy to understand, even if your delivery sometimes lands harder than you intended.",like:"People rarely have to guess where they stand with you.",misread:"Clarity can sometimes sound like criticism.",learn:"You would rather solve the real issue than pretend everything is fine."},
+ {title:"People may see you as composed, thoughtful and always processing.",main:"You often think more than you say. People may experience you as calm and capable without realizing how much is happening in your head.",like:"You notice complexity before reacting.",misread:"Being quiet can make people think nothing is wrong.",learn:"You usually need time to process before you explain."},
+ {title:"People may see you as easy to talk to and good with almost anyone.",main:"You read people quickly and adjust naturally. That makes others comfortable around you, although they may not always know what you personally prefer.",like:"You make social situations feel easier.",misread:"Adapting can make you seem less opinionated than you are.",learn:"You notice the room before the room notices you."},
+ {title:"People may see you as private, selective and worth earning.",main:"You do not give everyone immediate access to you. That can make you seem mysterious at first, but people who earn your trust often experience you as deeply loyal.",like:"Your trust means something because you do not hand it out casually.",misread:"Your caution can look like disinterest.",learn:"Once you trust someone, you take that relationship seriously."}
+],
+es:[
+ {title:"Los demás pueden verte tranquilo/a — y un poco difícil de leer.",main:"No haces visible todo lo que sientes. Eso puede hacerte parecer seguro/a y sin drama, incluso cuando por dentro está pasando mucho más.",like:"Mantienes la calma cuando otros reaccionan.",misread:"Tu calma puede parecer distancia o desinterés.",learn:"Te importa más de lo que siempre demuestras."},
+ {title:"Los demás pueden verte observador/a y difícil de engañar.",main:"Notas pequeños cambios, recuerdas detalles y detectas cuando las palabras y las acciones dejan de coincidir. La gente aprende rápido que contigo la consistencia importa.",like:"Notas cosas que a otros se les escapan.",misread:"Tu cautela puede parecer que llevas la cuenta.",learn:"Eres confiable — y esperas lo mismo de los demás."},
+ {title:"Los demás pueden verte divertido/a, intenso/a e imposible de ignorar.",main:"Traes energía rápido. La gente suele saber cuándo estás emocionado/a, molesto/a o totalmente involucrado/a porque no vives a medio volumen.",like:"Haces que las cosas pasen y contagias energía.",misread:"Tu urgencia puede sentirse como presión.",learn:"Tu intensidad normalmente viene de que te importa, no de querer controlar."},
+ {title:"Los demás pueden verte independiente y difícil de perseguir.",main:"Sabes darte espacio y rara vez fuerzas cercanía. Eso puede sentirse refrescante, aunque la gente no siempre sabe cuándo realmente la necesitas.",like:"No conviertes cada emoción en responsabilidad de otra persona.",misread:"Alejarte puede parecer que dejaste de interesarte.",learn:"Sueles volver cuando te sientes seguro/a, no presionado/a."},
+ {title:"Los demás pueden verte honesto/a, seguro/a y muy directo/a.",main:"Sueles decir lo que otros están rodeando. Eso hace fácil entenderte, aunque a veces tu forma de decirlo llegue más fuerte de lo que querías.",like:"La gente rara vez tiene que adivinar dónde está contigo.",misread:"Tu claridad puede sonar a crítica.",learn:"Prefieres resolver el problema real que fingir que todo está bien."},
+ {title:"Los demás pueden verte tranquilo/a, reflexivo/a y siempre procesando.",main:"Muchas veces piensas más de lo que dices. Puedes parecer calmado/a y capaz sin que los demás sepan cuánto está pasando en tu cabeza.",like:"Notas la complejidad antes de reaccionar.",misread:"Tu silencio puede hacer pensar que no pasa nada.",learn:"Normalmente necesitas procesar antes de explicar."},
+ {title:"Los demás pueden verte fácil de tratar y bueno/a con casi cualquiera.",main:"Lees rápido a las personas y te adaptas naturalmente. Eso hace que otros se sientan cómodos, aunque no siempre sepan qué prefieres tú.",like:"Haces que las situaciones sociales se sientan más fáciles.",misread:"Adaptarte puede hacer parecer que tienes menos opinión de la que realmente tienes.",learn:"Lees el ambiente antes de que el ambiente te lea a ti."},
+ {title:"Los demás pueden verte reservado/a, selectivo/a y difícil de conocer rápido.",main:"No le das acceso inmediato a todo el mundo. Al principio eso puede hacerte parecer misterioso/a, pero quienes ganan tu confianza suelen descubrir mucha lealtad.",like:"Tu confianza significa algo porque no la entregas por costumbre.",misread:"Tu cautela puede parecer desinterés.",learn:"Cuando confías en alguien, te tomas esa relación en serio."}
+]};
+
+function renderPerception(idx){
+ const r=PERCEPTION_READS[lang][idx];
+ if(!r)return;
+ $("perceptionKicker").innerText=lang==="es"?"CÓMO PUEDES ESTAR LLEGANDO A LOS DEMÁS":"HOW YOU MAY COME ACROSS";
+ $("perceptionTitle").innerText=r.title;
+ $("perceptionMain").innerText=r.main;
+ $("peopleLikeLabel").innerText=lang==="es"?"LO QUE LA GENTE SUELE VALORAR":"WHAT PEOPLE MAY LIKE";
+ $("peopleMisreadLabel").innerText=lang==="es"?"LO QUE PUEDEN MALINTERPRETAR":"WHAT THEY MAY MISREAD";
+ $("peopleLearnLabel").innerText=lang==="es"?"LO QUE DESCUBREN CON EL TIEMPO":"WHAT THEY LEARN OVER TIME";
+ $("peopleLike").innerText=r.like;
+ $("peopleMisread").innerText=r.misread;
+ $("peopleLearn").innerText=r.learn;
+}
 
 function pairKey(a,b){
   const x=Math.min(a,b), y=Math.max(a,b);
@@ -959,6 +1023,9 @@ function ensureScoreCaptions(){
 function renderConnection(c){
   if(!c)return;
   ensureScoreCaptions();
+  $("connectionDivider").classList.remove("hidden");
+  $("connectionDividerTop").innerText=lang==="es"?"AHORA, SOBRE USTEDES DOS…":"NOW, ABOUT THE TWO OF YOU…";
+  $("connectionDividerTitle").innerText=lang==="es"?"SU LECTURA DE CONEXIÓN":"YOUR CONNECTION READ";
 
   const comp=compatibility(c,currentResult);
   const them=profile(c.idx);
