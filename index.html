@@ -162,7 +162,7 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
   .traitRow{padding-top:2px}
 }
 
-</style>
+.profile-score-caption,.connection-score-caption{margin:-6px 0 14px;text-align:center;font-size:11px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#bfc0c7}.connection-score-caption{color:#ff8a82;margin-top:-2px}</style>
 </head>
 <body>
 <div class="wrap">
@@ -388,11 +388,11 @@ en:[
 ["Act normal, but notice every detail",{attachment:2,directness:-1,regulation:-1}],
 ["Pull back too",{attachment:1,directness:-2,regulation:-1}]
 ]],
-["Someone cancels on you at the last minute. You…",[
-["Tell them it bothered me",{directness:2,social:1}],
-["Ask what happened",{openness:2,directness:1,regulation:1}],
-["Say it’s fine, but remember it",{attachment:2,directness:-1}],
-["Honestly don’t care that much",{attachment:-1,regulation:2}]
+["Someone cancels on you at the last minute. Your first reaction is…",[
+["No big deal.",{attachment:-1,regulation:2}],
+["Okay… what happened?",{openness:2,regulation:1}],
+["I’m annoyed, but I probably won’t say it.",{attachment:1,directness:-2,regulation:-1}],
+["Noted. I’ll remember that.",{attachment:2,openness:1,directness:-1}]
 ]],
 ["You’ve had a terrible day. What sounds best?",[
 ["Being alone for a while",{social:-2,attachment:-1,regulation:1}],
@@ -400,11 +400,11 @@ en:[
 ["Distracting myself and moving on",{regulation:2,attachment:-1}],
 ["Someone noticing without me having to say it",{attachment:2,directness:-2}]
 ]],
-["What is hardest for you in a relationship?",[
-["Asking for what I need",{directness:-2,attachment:1}],
-["Trusting again after something changes",{attachment:2,regulation:-1}],
-["Giving space when I want answers",{attachment:2,regulation:-1,directness:1}],
-["Saying when something hurt me",{directness:-2,attachment:1}]
+["When someone really matters to you, you tend to…",[
+["Want to talk to them all the time",{attachment:2,social:1}],
+["Act pretty much the same",{regulation:2,attachment:-1}],
+["Notice every little change",{attachment:2,openness:1,regulation:-1}],
+["Still need a lot of my own space",{attachment:-2,social:-1,regulation:1}]
 ]],
 ["You walk into a room where you barely know anyone. What do you do?",[
 ["Talk to almost anyone",{social:2,openness:1}],
@@ -426,11 +426,11 @@ es:[
 ["Actúo normal, pero noto cada detalle",{attachment:2,directness:-1,regulation:-1}],
 ["También me alejo",{attachment:1,directness:-2,regulation:-1}]
 ]],
-["Alguien te cancela a última hora. Tú…",[
-["Le digo que me molestó",{directness:2,social:1}],
-["Pregunto qué pasó",{openness:2,directness:1,regulation:1}],
-["Digo “todo bien”, pero lo recuerdo",{attachment:2,directness:-1}],
-["La verdad, no me importa tanto",{attachment:-1,regulation:2}]
+["Alguien te cancela a última hora. Lo primero que piensas es…",[
+["No pasa nada.",{attachment:-1,regulation:2}],
+["Ok… ¿qué pasó?",{openness:2,regulation:1}],
+["Sí me molestó, pero probablemente no diga nada.",{attachment:1,directness:-2,regulation:-1}],
+["Anotado. Me voy a acordar.",{attachment:2,openness:1,directness:-1}]
 ]],
 ["Tuviste un día horrible. ¿Qué prefieres?",[
 ["Estar solo/a un rato",{social:-2,attachment:-1,regulation:1}],
@@ -438,11 +438,11 @@ es:[
 ["Distraerme y seguir",{regulation:2,attachment:-1}],
 ["Que alguien se dé cuenta sin que tenga que decirlo",{attachment:2,directness:-2}]
 ]],
-["¿Qué te cuesta más en una relación?",[
-["Pedir lo que necesito",{directness:-2,attachment:1}],
-["Volver a confiar cuando algo cambia",{attachment:2,regulation:-1}],
-["Dar espacio cuando quiero respuestas",{attachment:2,regulation:-1,directness:1}],
-["Decir que algo me dolió",{directness:-2,attachment:1}]
+["Cuando alguien te importa mucho, tú…",[
+["Quiero hablar con esa persona todo el tiempo",{attachment:2,social:1}],
+["Actúo prácticamente igual",{regulation:2,attachment:-1}],
+["Noto cualquier pequeño cambio",{attachment:2,openness:1,regulation:-1}],
+["Sigo necesitando bastante mi espacio",{attachment:-2,social:-1,regulation:1}]
 ]],
 ["Llegas a un lugar donde casi no conoces a nadie. ¿Qué haces?",[
 ["Hablo con casi cualquiera",{social:2,openness:1}],
@@ -499,7 +499,7 @@ function finish(){
   if(activeChallenge){renderConnection(activeChallenge);history.replaceState(null,"",buildChallengeResultUrl())}else{history.replaceState(null,"",getShareUrl())}
   window.scrollTo({top:0,behavior:"smooth"});
 }
-function applyResult(idx,pct,tdata){currentResult={idx,pct:Math.min(99,pct),traits:tdata||currentResult.traits};const p=profile(idx);$("score").innerText=$("shareScore").innerText=currentResult.pct+"%";$("label").innerText=$("shareLabel").innerText=p[0];$("tag").innerText=$("shareTag").innerText=p[1]}
+function applyResult(idx,pct,tdata){currentResult={idx,pct:Math.min(99,pct),traits:tdata||currentResult.traits};const p=profile(idx);$("score").innerText=$("shareScore").innerText=currentResult.pct+"%";ensureScoreCaptions();$("label").innerText=$("shareLabel").innerText=p[0];$("tag").innerText=$("shareTag").innerText=p[1]}
 function goBack(){if(!$("result").classList.contains("hidden")){$("result").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i=QUIZ[lang].length-1;$("quiz").classList.remove("hidden");render();return}if(i===0){$("quiz").classList.add("hidden");$("start").classList.remove("hidden");return}if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);i--;render()}
 function base(){return "https://zelqoza.com/"}
 function compact(t){return["openness","directness","attachment","regulation","social"].map(k=>Math.round((t||{})[k]||0)).join(",")}
@@ -926,8 +926,16 @@ function toggleConnectionDetails(){
   btn.innerText=open?tx("hideDetails"):tx("showDetails");
 }
 
+function ensureScoreCaptions(){
+ const personal=$("score"), connection=$("compatScore");
+ if(personal&&!$("profileScoreCaption")){const e=document.createElement("div");e.id="profileScoreCaption";e.className="profile-score-caption";personal.insertAdjacentElement("afterend",e)}
+ if(connection&&!$("connectionScoreCaption")){const e=document.createElement("div");e.id="connectionScoreCaption";e.className="connection-score-caption";connection.insertAdjacentElement("afterend",e)}
+ if($("profileScoreCaption"))$("profileScoreCaption").innerText=lang==="es"?"COINCIDENCIA CON TU PERFIL":"MATCH TO YOUR PROFILE";
+ if($("connectionScoreCaption"))$("connectionScoreCaption").innerText=lang==="es"?"COMPATIBILIDAD ENTRE USTEDES":"YOUR CONNECTION MATCH";
+}
 function renderConnection(c){
   if(!c)return;
+  ensureScoreCaptions();
 
   const comp=compatibility(c,currentResult);
   const them=profile(c.idx);
