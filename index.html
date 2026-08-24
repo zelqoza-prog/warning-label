@@ -45,6 +45,7 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
 .launchLabel{font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.06em;color:#75665e}
 .oldPrice{text-decoration:line-through;color:#8c7b72;font-size:17px;font-weight:750}
 .launchPrice{font-size:27px;font-weight:950;color:#17120f;letter-spacing:-.03em}
+.localCurrencyNote{margin-top:7px;font-size:12px;line-height:1.4;color:#75665e}
 .payrow{display:flex;justify-content:space-between;padding:10px 0;color:#ddd}.blur{filter:blur(5px);user-select:none}
 .report{margin-top:22px;text-align:left}.reportHero{border-radius:24px;padding:28px;background:linear-gradient(135deg,#17171b,#23232a);border:1px solid var(--line)}
 .reportTitle{font-size:36px;font-weight:950;margin:8px 0 10px}.metricGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
@@ -365,8 +366,10 @@ body{background:var(--bg);color:var(--text)}
           <div id="connectionIncluded" class="offerIncluded"></div>
           <div class="priceLine">
             <span id="launchPriceLabel" class="launchLabel"></span>
-            <span class="oldPrice">$3.99</span>
-            <strong class="launchPrice">$1 USD</strong>
+            <span class="oldPrice">~US$3.99</span>
+            <strong class="launchPrice">~US$1</strong>
+          </div>
+          <div id="localCurrencyNote" class="localCurrencyNote"></div>
           </div>
         </div>
 
@@ -440,9 +443,9 @@ subhead:"6 questions. See the impression you may be giving without realizing it.
 start:"Take the test →",disclaimer:"For self-reflection and entertainment — not a clinical assessment.",back:"← Back",
 seeMine:"See mine. Take yours. Compare.",shareResult:"Share my result",copyResult:"🔗 Copy result link",
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ More options",deepTitle:"Your Deep Read",
-deepCopy:"See what people may misunderstand about you, what gets in your way, and what you can do differently.",connectionIncluded:"Includes 1 Connection Read with a friend, partner, family member, or coworker.",launchPrice:"Launch price",
+deepCopy:"See what people may misunderstand about you, what gets in your way, and what you can do differently.",connectionIncluded:"Includes 1 Connection Read with a friend, partner, family member, or coworker.",launchPrice:"Launch price",localCurrencyNote:"Stripe may show the equivalent in your local currency at checkout.",
 misread:"What people may misread",pattern:"Your strongest pattern",move:"Your next move",
-unlock:"Unlock Deep Read + Connection — $1",preview:"Secure checkout with Stripe.",
+unlock:"Unlock Deep Read + Connection — ~US$1",preview:"Secure checkout with Stripe.",
 m1:"People may read you as",m2:"Your real strength",m3:"Your growth edge",m4:"Social risk",
 under:"What people may misunderstand",friction:"What gets in your way",moves:"Your 3 next moves",
 connection:"Connection Read",connectionIntro:"Compare your real profile with someone you know. Choose the relationship and send them your private link.",
@@ -460,9 +463,9 @@ subhead:"6 preguntas. Descubre la impresión que puedes estar dando sin darte cu
 start:"Hacer el test →",disclaimer:"Para reflexión personal y entretenimiento — no es una evaluación clínica.",back:"← Regresar",
 seeMine:"Ve el mío. Haz el tuyo. Comparemos.",shareResult:"Compartir mi resultado",copyResult:"🔗 Copiar enlace del resultado",
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ Más opciones",deepTitle:"Tu lectura profunda",
-deepCopy:"Descubre qué pueden malinterpretar de ti, qué suele frenarte y qué puedes hacer diferente.",connectionIncluded:"Incluye 1 Lectura de Conexión con un amigo, pareja, familiar o compañero de trabajo.",launchPrice:"Precio de lanzamiento",
+deepCopy:"Descubre qué pueden malinterpretar de ti, qué suele frenarte y qué puedes hacer diferente.",connectionIncluded:"Incluye 1 Lectura de Conexión con un amigo, pareja, familiar o compañero de trabajo.",launchPrice:"Precio de lanzamiento",localCurrencyNote:"Stripe puede mostrar el equivalente en tu moneda local al pagar.",
 misread:"Lo que otros pueden malinterpretar",pattern:"Tu patrón más fuerte",move:"Tu siguiente movimiento",
-unlock:"Desbloquear Deep Read + Conexión — $1",preview:"Pago seguro con Stripe.",
+unlock:"Desbloquear Deep Read + Conexión — ~US$1",preview:"Pago seguro con Stripe.",
 m1:"Otros pueden verte como",m2:"Tu fortaleza real",m3:"Tu área de crecimiento",m4:"Riesgo social",
 under:"Lo que otros pueden malinterpretar",friction:"Lo que se interpone en tu camino",moves:"Tus 3 siguientes movimientos",
 connection:"Lectura de conexión",connectionIntro:"Compara tu perfil real con alguien que conoces. Elige la relación y envíale tu enlace privado.",
@@ -586,7 +589,7 @@ function gaEvent(name,params={}){
 
 
 // --- Stripe live checkout: Deep Read ---
-const STRIPE_DEEP_READ_URL="https://buy.stripe.com/cNi5kD3KE1XgaXUe1ZgEg00";
+const STRIPE_DEEP_READ_URL="https://buy.stripe.com/3cIfZh1CweK29TQcXVgEg01";
 const STRIPE_VERIFY_URL="https://warning-label-payment-verify.zelqoza.workers.dev";
 const DEEP_READ_STORAGE_KEY="warning_label_pending_deep_read_live_v1";
 const DEEP_READ_ACCESS_KEY="warning_label_verified_deep_read_live_v1";
@@ -655,7 +658,7 @@ document.querySelectorAll(".warning-label-text").forEach(el=>{
   el.innerText=lang==="es" ? "TU RESULTADO" : "YOUR RESULT";
 });
 $("enBtn").classList.toggle("active",lang==="en");$("esBtn").classList.toggle("active",lang==="es");
-  const map={eyebrow:"eyebrow",headline:"headline",subhead:"subhead",startBtn:"start",disclaimer:"disclaimer",quizBack:"back",resultBack:"back",seeMine:"seeMine",shareBtn:"shareResult",copyResultBtn:"copyResult",whatsappBtn:"whatsapp",facebookBtn:"facebook",moreBtn:"more",deepTitle:"deepTitle",deepCopy:"deepCopy",connectionIncluded:"connectionIncluded",launchPriceLabel:"launchPrice",misreadLabel:"misread",patternLabel:"pattern",moveLabel:"move",unlockBtn:"unlock",previewNote:"preview",m1:"m1",m2:"m2",m3:"m3",m4:"m4",underTitle:"under",frictionTitle:"friction",movesTitle:"moves",connectionTitle:"connection",connectionIntro:"connectionIntro",openConnectionBtn:"openConnection",whatPerson:"whatPerson",createLinkBtn:"createLink",copyLinkBtn:"copyLink",shareLinkBtn:"shareLink",connectionKicker:"connectionKicker",quickGoodLabel:"quickGoodLabel",quickWatchLabel:"quickWatchLabel",connectionDetailsToggle:"showDetails",themText:"them",youText:"you",whyTitle:"why",whereTitle:"where",youDoTitle:"youDo",theyDoTitle:"theyDo",ruleTitle:"rule",againBtn:"again"};
+  const map={eyebrow:"eyebrow",headline:"headline",subhead:"subhead",startBtn:"start",disclaimer:"disclaimer",quizBack:"back",resultBack:"back",seeMine:"seeMine",shareBtn:"shareResult",copyResultBtn:"copyResult",whatsappBtn:"whatsapp",facebookBtn:"facebook",moreBtn:"more",deepTitle:"deepTitle",deepCopy:"deepCopy",connectionIncluded:"connectionIncluded",launchPriceLabel:"launchPrice",localCurrencyNote:"localCurrencyNote",misreadLabel:"misread",patternLabel:"pattern",moveLabel:"move",unlockBtn:"unlock",previewNote:"preview",m1:"m1",m2:"m2",m3:"m3",m4:"m4",underTitle:"under",frictionTitle:"friction",movesTitle:"moves",connectionTitle:"connection",connectionIntro:"connectionIntro",openConnectionBtn:"openConnection",whatPerson:"whatPerson",createLinkBtn:"createLink",copyLinkBtn:"copyLink",shareLinkBtn:"shareLink",connectionKicker:"connectionKicker",quickGoodLabel:"quickGoodLabel",quickWatchLabel:"quickWatchLabel",connectionDetailsToggle:"showDetails",themText:"them",youText:"you",whyTitle:"why",whereTitle:"where",youDoTitle:"youDo",theyDoTitle:"theyDo",ruleTitle:"rule",againBtn:"again"};
   Object.entries(map).forEach(([id,k])=>$(id).innerText=tx(k));
   document.querySelectorAll("[data-rel]").forEach(b=>b.innerText=tx(b.dataset.rel));
 }
@@ -749,8 +752,8 @@ function unlockDeepRead(){
   gaEvent("deep_read_click",{profile_key:PROFILE_KEYS[currentResult.idx]});
   gaEvent("checkout_start",{
     product:"deep_read",
-    currency:"USD",
-    value:1,
+    currency:"MXN",
+    value:20,
     checkout_provider:"stripe",
     checkout_mode:"live",
     entry_type:analyticsEntryType(),
@@ -835,7 +838,7 @@ async function restoreDeepReadAfterCheckout(){
 
   if(!verification.verified){
     $("unlockBtn").disabled=false;
-    $("unlockBtn").innerText=lang==="es"?"Volver a Stripe — $1":"Return to Stripe — $1";
+    $("unlockBtn").innerText=lang==="es"?"Volver a Stripe":"Return to Stripe";
     $("previewNote").innerText=lang==="es"
       ?"No pudimos verificar el pago. Tu Deep Read sigue bloqueado."
       :"We could not verify the payment. Your Deep Read is still locked.";
@@ -850,15 +853,17 @@ async function restoreDeepReadAfterCheckout(){
 
   gaEvent("purchase",{
     transaction_id:sessionId,
-    currency:"USD",
-    value:1,
+    currency:"MXN",
+    value:20,
     items:[{item_id:"deep_read",item_name:"WARNING LABEL — Deep Read",price:1,quantity:1}]
   });
   gaEvent("payment_verified",{
     product:"deep_read",
     checkout_mode:"live",
-    amount_total:verification.amount_total||100,
-    currency:verification.currency||"usd"
+    amount_total:verification.amount_total||2000,
+    currency:verification.currency||"mxn",
+    presentment_amount:verification.presentment_amount||null,
+    presentment_currency:verification.presentment_currency||null
   });
 
   saveVerifiedDeepReadAccess(sessionId);
