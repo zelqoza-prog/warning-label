@@ -569,6 +569,7 @@ function gaEvent(name,params={}){
 
 // --- Stripe test checkout: Deep Read ---
 const STRIPE_DEEP_READ_URL="https://buy.stripe.com/test_9B64gz0wMgA62pD4mPds400";
+const STRIPE_VERIFY_URL="https://warning-label-payment-verify.zelqoza.workers.dev";
 const DEEP_READ_STORAGE_KEY="warning_label_pending_deep_read_v1";
 
 function savePendingDeepRead(){
@@ -724,30 +725,24 @@ function showDeepRead(fromCheckout=false){
   $("report").scrollIntoView({behavior:"smooth"});
 }
 
-function restoreDeepReadAfterCheckout(){
-  const params=new URLSearchParams(location.search);
-  if(params.get("checkout")!=="success")return false;
 
-  const pending=loadPendingDeepRead();
-  gaEvent("checkout_return",{
-    product:"deep_read",
-    checkout_provider:"stripe",
-    checkout_mode:"test",
-    payment_verified:false,
-    had_pending_result:!!pending
-  });
+async function verifyStripeCheckout(sessionId){
+  if(!sessionId || !sessionId.startsWith("cs_test_")) return {verified:false,error:"missing_session"};
+  try{
+    const res=await fetch(`${STRIPE_VERIFY_URL}?session_id=${encodeURIComponent(sessionId)}`,{
+      method:"GET",mode:"cors",cache:"no-store"
+    });
+    if(!res.ok)return {verified:false,error:"verify_http_"+res.status};
+    return await res.json();
+  }catch(e){return {verified:false,error:"verify_network"}}
+}
 
-  if(!pending){
-    history.replaceState(null,"",base());
-    return false;
-  }
-
+function restorePendingResult(pending){
   lang=pending.lang==="es"?"es":"en";
   localStorage.setItem("zelqoza_lang",lang);
   currentResult={idx:pending.idx,pct:0,traits:pending.traits};
   activeChallenge=loadActiveChallenge();
   sharedProfile=null;
-
   $("start").classList.add("hidden");
   $("quiz").classList.add("hidden");
   $("result").classList.remove("hidden");
@@ -757,13 +752,71 @@ function restoreDeepReadAfterCheckout(){
   initSharedResultBanner();
   updatePreview(relationshipMode);
   if(activeChallenge)showIncomingConnectionCTA();
+}
+
+async function restoreDeepReadAfterCheckout(){
+  const params=new URLSearchParams(location.search);
+  if(params.get("checkout")!=="success")return false;
+
+  const pending=loadPendingDeepRead();
+  const sessionId=params.get("session_id")||"";
+
+  gaEvent("checkout_return",{
+    product:"deep_read",
+    checkout_provider:"stripe",
+    checkout_mode:"test",
+    had_pending_result:!!pending,
+    had_session_id:!!sessionId
+  });
+
+  if(!pending){
+    history.replaceState(null,"",base());
+    return false;
+  }
+
+  restorePendingResult(pending);
+
+  $("unlockBtn").innerText=lang==="es"?"Verificando pago…":"Verifying payment…";
+  $("unlockBtn").disabled=true;
+  $("previewNote").innerText=lang==="es"
+    ?"Estamos confirmando el pago de prueba con Stripe."
+    :"Confirming the test payment with Stripe.";
+
+  const verification=await verifyStripeCheckout(sessionId);
+
+  if(!verification.verified){
+    $("unlockBtn").disabled=false;
+    $("unlockBtn").innerText=lang==="es"?"Volver a Stripe — $1":"Return to Stripe — $1";
+    $("previewNote").innerText=lang==="es"
+      ?"No pudimos verificar el pago. Tu Deep Read sigue bloqueado."
+      :"We could not verify the payment. Your Deep Read is still locked.";
+    gaEvent("payment_verification_failed",{
+      product:"deep_read",
+      checkout_mode:"test",
+      reason:verification.error||"not_verified"
+    });
+    history.replaceState(null,"",base());
+    return true;
+  }
+
+  gaEvent("purchase",{
+    transaction_id:sessionId,
+    currency:"USD",
+    value:1,
+    items:[{item_id:"deep_read",item_name:"WARNING LABEL — Deep Read",price:1,quantity:1}]
+  });
+  gaEvent("payment_verified",{
+    product:"deep_read",
+    checkout_mode:"test",
+    amount_total:verification.amount_total||100,
+    currency:verification.currency||"usd"
+  });
 
   showDeepRead(true);
   clearPendingDeepRead();
   history.replaceState(null,"",base());
   return true;
 }
-
 function setRel(mode,btn){relationshipMode=mode;gaEvent("connection_relation_select",{relation:mode});document.querySelectorAll(".mainRel").forEach(x=>x.classList.remove("active"));btn.classList.add("active");updatePreview(mode)}
 function previewData(mode){const en={friend:["Friend Connection Read","See what makes this friendship work","Compare what you share, where you differ, and how to support each other better."],family:["Family Connection Read","See what strengthens — and strains — this family bond","Compare old patterns, current needs, and how to make the relationship easier."],partner:["Partner Connection Read","See how your relationship actually works","Compare what helps you connect, what creates friction, and how to repair faster."],work:["Work Connection Read","See how to work better together","Compare communication styles, strengths and friction points."]};const es={friend:["Lectura de amistad","Descubre qué hace funcionar esta amistad","Compara lo que comparten, dónde difieren y cómo apoyarse mejor."],family:["Lectura familiar","Descubre qué fortalece — y qué tensiona — este vínculo","Compara patrones antiguos, necesidades actuales y cómo mejorar la relación."],partner:["Lectura de pareja","Descubre cómo funciona realmente su relación","Compara qué los conecta, qué genera fricción y cómo reparar más rápido."],work:["Lectura de trabajo","Descubre cómo trabajar mejor juntos","Compara estilos de comunicación, fortalezas y puntos de fricción."]};return (lang==="es"?es:en)[mode]}
 function updatePreview(mode){const d=previewData(mode);if(!d)return;$("previewLine").innerText=d[0];$("previewTitle").innerText=d[1];$("previewText").innerText=d[2]}
@@ -1335,12 +1388,12 @@ function renderConnection(c){
 
 function restartTest(){clearPendingDeepRead();gaEvent("test_restart",{from_profile_key:currentResult&&PROFILE_KEYS[currentResult.idx]?PROFILE_KEYS[currentResult.idx]:"unknown"});i=0;traits={openness:0,directness:0,attachment:0,regulation:0,social:0};historyAnswers=[];currentResult={pct:0,idx:0,traits:null};connectionRevealed=false;clearActiveChallenge();$("result").classList.add("hidden");$("quiz").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");history.replaceState(null,"",base());$("start").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
 
-(function init(){
-  // Stripe sends test buyers back to ?checkout=success.
-  // This restores the local result for the test flow only.
+(async function init(){
+  // Stripe sends test buyers back with a Checkout Session ID.
+  // The paid report unlocks only after the Worker verifies Stripe.
   if(new URLSearchParams(location.search).get("checkout")==="success"){
     gaEvent("landing_view",{entry_type:"checkout_return"});
-    if(restoreDeepReadAfterCheckout())return;
+    if(await restoreDeepReadAfterCheckout())return;
   }
 
   const fromUrl=readChallengeFromUrl();
