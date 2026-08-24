@@ -37,7 +37,15 @@ button{width:100%;border:0;border-radius:16px;padding:17px 18px;font-weight:800;
 .sharemenu{display:none;margin-top:12px;background:#1b1b1f;border:1px solid var(--line);border-radius:18px;padding:12px}.sharemenu.show{display:block}
 .sharegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sharebtn{background:#242429;color:#fff;border:1px solid #33343a;border-radius:12px;padding:13px;font-size:14px}
 .status{font-size:13px;color:#9be7b0;margin-top:10px;min-height:18px;text-align:center}
-.paywall{text-align:left;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}.payrow{display:flex;justify-content:space-between;padding:10px 0;color:#ddd}.blur{filter:blur(5px);user-select:none}
+.paywall{text-align:left;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.offerBox{margin:14px 0 10px;padding:16px 17px;border:1px solid #e1c8ba;border-radius:17px;background:#fff8f3;color:#241d19}
+.offerIncluded{font-size:14px;font-weight:750;line-height:1.45}
+.offerIncluded:before{content:"✓";display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;margin-right:8px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:950;vertical-align:middle}
+.priceLine{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-top:12px}
+.launchLabel{font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.06em;color:#75665e}
+.oldPrice{text-decoration:line-through;color:#8c7b72;font-size:17px;font-weight:750}
+.launchPrice{font-size:27px;font-weight:950;color:#17120f;letter-spacing:-.03em}
+.payrow{display:flex;justify-content:space-between;padding:10px 0;color:#ddd}.blur{filter:blur(5px);user-select:none}
 .report{margin-top:22px;text-align:left}.reportHero{border-radius:24px;padding:28px;background:linear-gradient(135deg,#17171b,#23232a);border:1px solid var(--line)}
 .reportTitle{font-size:36px;font-weight:950;margin:8px 0 10px}.metricGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
 .metric{background:#1d1d22;border:1px solid #303038;border-radius:16px;padding:16px}.metric b{display:block;font-size:22px;margin-top:5px}
@@ -349,9 +357,19 @@ body{background:var(--bg);color:var(--text)}
         <div id="shareStatus" class="status"></div>
       </div>
 
-      <div class="paywall">
+      <div id="paywall" class="paywall">
         <h3 id="deepTitle"></h3>
         <p id="deepCopy"></p>
+
+        <div class="offerBox">
+          <div id="connectionIncluded" class="offerIncluded"></div>
+          <div class="priceLine">
+            <span id="launchPriceLabel" class="launchLabel"></span>
+            <span class="oldPrice">$3.99</span>
+            <strong class="launchPrice">$1 USD</strong>
+          </div>
+        </div>
+
         <div class="payrow"><span id="misreadLabel"></span><span class="blur">xxxxx</span></div>
         <div class="payrow"><span id="patternLabel"></span><span class="blur">xxxxx</span></div>
         <div class="payrow"><span id="moveLabel"></span><span class="blur">xxxxx</span></div>
@@ -422,9 +440,9 @@ subhead:"6 questions. See the impression you may be giving without realizing it.
 start:"Take the test →",disclaimer:"For self-reflection and entertainment — not a clinical assessment.",back:"← Back",
 seeMine:"See mine. Take yours. Compare.",shareResult:"Share my result",copyResult:"🔗 Copy result link",
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ More options",deepTitle:"Your Deep Read",
-deepCopy:"See what people may misunderstand about you, what gets in your way, and what you can do differently.",
+deepCopy:"See what people may misunderstand about you, what gets in your way, and what you can do differently.",connectionIncluded:"Includes 1 Connection Read with a friend, partner, family member, or coworker.",launchPrice:"Launch price",
 misread:"What people may misread",pattern:"Your strongest pattern",move:"Your next move",
-unlock:"Unlock my Deep Read — $1",preview:"Stripe test checkout — no real charge.",
+unlock:"Unlock Deep Read + Connection — $1",preview:"Stripe test checkout — no real charge.",
 m1:"People may read you as",m2:"Your real strength",m3:"Your growth edge",m4:"Social risk",
 under:"What people may misunderstand",friction:"What gets in your way",moves:"Your 3 next moves",
 connection:"Connection Read",connectionIntro:"Compare your real profile with someone you know. Choose the relationship and send them your private link.",
@@ -442,9 +460,9 @@ subhead:"6 preguntas. Descubre la impresión que puedes estar dando sin darte cu
 start:"Hacer el test →",disclaimer:"Para reflexión personal y entretenimiento — no es una evaluación clínica.",back:"← Regresar",
 seeMine:"Ve el mío. Haz el tuyo. Comparemos.",shareResult:"Compartir mi resultado",copyResult:"🔗 Copiar enlace del resultado",
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ Más opciones",deepTitle:"Tu lectura profunda",
-deepCopy:"Descubre qué pueden malinterpretar de ti, qué suele frenarte y qué puedes hacer diferente.",
+deepCopy:"Descubre qué pueden malinterpretar de ti, qué suele frenarte y qué puedes hacer diferente.",connectionIncluded:"Incluye 1 Lectura de Conexión con un amigo, pareja, familiar o compañero de trabajo.",launchPrice:"Precio de lanzamiento",
 misread:"Lo que otros pueden malinterpretar",pattern:"Tu patrón más fuerte",move:"Tu siguiente movimiento",
-unlock:"Desbloquear mi lectura — $1",preview:"Checkout de prueba de Stripe — no hay cobro real.",
+unlock:"Desbloquear Deep Read + Conexión — $1",preview:"Checkout de prueba de Stripe — no hay cobro real.",
 m1:"Otros pueden verte como",m2:"Tu fortaleza real",m3:"Tu área de crecimiento",m4:"Riesgo social",
 under:"Lo que otros pueden malinterpretar",friction:"Lo que se interpone en tu camino",moves:"Tus 3 siguientes movimientos",
 connection:"Lectura de conexión",connectionIntro:"Compara tu perfil real con alguien que conoces. Elige la relación y envíale tu enlace privado.",
@@ -571,6 +589,7 @@ function gaEvent(name,params={}){
 const STRIPE_DEEP_READ_URL="https://buy.stripe.com/test_9B64gz0wMgA62pD4mPds400";
 const STRIPE_VERIFY_URL="https://warning-label-payment-verify.zelqoza.workers.dev";
 const DEEP_READ_STORAGE_KEY="warning_label_pending_deep_read_v1";
+const DEEP_READ_ACCESS_KEY="warning_label_verified_deep_read_v1";
 
 function savePendingDeepRead(){
   try{
@@ -598,6 +617,35 @@ function clearPendingDeepRead(){
   try{localStorage.removeItem(DEEP_READ_STORAGE_KEY)}catch(e){}
 }
 
+function saveVerifiedDeepReadAccess(sessionId){
+  try{
+    localStorage.setItem(DEEP_READ_ACCESS_KEY,JSON.stringify({
+      sessionId,
+      idx:currentResult.idx,
+      traits:currentResult.traits,
+      lang,
+      ts:Date.now()
+    }));
+  }catch(e){}
+}
+
+function loadVerifiedDeepReadAccess(){
+  try{
+    const raw=localStorage.getItem(DEEP_READ_ACCESS_KEY);
+    if(!raw)return null;
+    const data=JSON.parse(raw);
+    if(!data || !data.sessionId || !data.sessionId.startsWith("cs_test_"))return null;
+    if(!Number.isInteger(data.idx) || data.idx<0 || data.idx>=PROFILES.length)return null;
+    if(!data.traits)return null;
+    return data;
+  }catch(e){return null}
+}
+
+function clearVerifiedDeepReadAccess(){
+  try{localStorage.removeItem(DEEP_READ_ACCESS_KEY)}catch(e){}
+}
+
+
 
 function setLanguage(l){lang=l;localStorage.setItem("zelqoza_lang",l);gaEvent("language_change",{selected_language:l});applyLanguage();refreshDynamic()}
 function applyLanguage(){
@@ -607,7 +655,7 @@ document.querySelectorAll(".warning-label-text").forEach(el=>{
   el.innerText=lang==="es" ? "TU RESULTADO" : "YOUR RESULT";
 });
 $("enBtn").classList.toggle("active",lang==="en");$("esBtn").classList.toggle("active",lang==="es");
-  const map={eyebrow:"eyebrow",headline:"headline",subhead:"subhead",startBtn:"start",disclaimer:"disclaimer",quizBack:"back",resultBack:"back",seeMine:"seeMine",shareBtn:"shareResult",copyResultBtn:"copyResult",whatsappBtn:"whatsapp",facebookBtn:"facebook",moreBtn:"more",deepTitle:"deepTitle",deepCopy:"deepCopy",misreadLabel:"misread",patternLabel:"pattern",moveLabel:"move",unlockBtn:"unlock",previewNote:"preview",m1:"m1",m2:"m2",m3:"m3",m4:"m4",underTitle:"under",frictionTitle:"friction",movesTitle:"moves",connectionTitle:"connection",connectionIntro:"connectionIntro",openConnectionBtn:"openConnection",whatPerson:"whatPerson",createLinkBtn:"createLink",copyLinkBtn:"copyLink",shareLinkBtn:"shareLink",connectionKicker:"connectionKicker",quickGoodLabel:"quickGoodLabel",quickWatchLabel:"quickWatchLabel",connectionDetailsToggle:"showDetails",themText:"them",youText:"you",whyTitle:"why",whereTitle:"where",youDoTitle:"youDo",theyDoTitle:"theyDo",ruleTitle:"rule",againBtn:"again"};
+  const map={eyebrow:"eyebrow",headline:"headline",subhead:"subhead",startBtn:"start",disclaimer:"disclaimer",quizBack:"back",resultBack:"back",seeMine:"seeMine",shareBtn:"shareResult",copyResultBtn:"copyResult",whatsappBtn:"whatsapp",facebookBtn:"facebook",moreBtn:"more",deepTitle:"deepTitle",deepCopy:"deepCopy",connectionIncluded:"connectionIncluded",launchPriceLabel:"launchPrice",misreadLabel:"misread",patternLabel:"pattern",moveLabel:"move",unlockBtn:"unlock",previewNote:"preview",m1:"m1",m2:"m2",m3:"m3",m4:"m4",underTitle:"under",frictionTitle:"friction",movesTitle:"moves",connectionTitle:"connection",connectionIntro:"connectionIntro",openConnectionBtn:"openConnection",whatPerson:"whatPerson",createLinkBtn:"createLink",copyLinkBtn:"copyLink",shareLinkBtn:"shareLink",connectionKicker:"connectionKicker",quickGoodLabel:"quickGoodLabel",quickWatchLabel:"quickWatchLabel",connectionDetailsToggle:"showDetails",themText:"them",youText:"you",whyTitle:"why",whereTitle:"where",youDoTitle:"youDo",theyDoTitle:"theyDo",ruleTitle:"rule",againBtn:"again"};
   Object.entries(map).forEach(([id,k])=>$(id).innerText=tx(k));
   document.querySelectorAll("[data-rel]").forEach(b=>b.innerText=tx(b.dataset.rel));
 }
@@ -712,6 +760,7 @@ function unlockDeepRead(){
 }
 
 function showDeepRead(fromCheckout=false){
+  if($("paywall"))$("paywall").classList.add("hidden");
   const p=profile(currentResult.idx);$("report").classList.remove("hidden");$("reportTitle").innerText=p[0];$("reportTag").innerText=p[1];
   $("mv1").innerText=p[3];$("mv2").innerText=p[2];$("mv3").innerText=p[4];$("mv4").innerText=p[5];
   $("underText").innerText=lang==="es"?`A veces los demás pueden verte como ${p[3].toLowerCase()}, especialmente bajo presión. Tu intención puede ser distinta a la señal que estás dando.`:`People may read you as ${p[3].toLowerCase()}, especially under pressure. Your intent can be different from the signal you are sending.`;
@@ -719,8 +768,8 @@ function showDeepRead(fromCheckout=false){
   const ms=lang==="es"?[["Haz una cosa más explícita de lo normal.","Aclara una necesidad antes de esperar que la otra persona la adivine."],["Nombra la señal, no la historia.","Describe lo que notaste y haz una pregunta limpia."],["Conserva la fortaleza.","No cambies quién eres; haz que tu intención sea más fácil de leer."]]:[["Make one thing more explicit than usual.","State a need before expecting the other person to guess it."],["Name the signal, not the story.","Describe what you noticed and ask one clean question."],["Keep the strength.","Do not change who you are; make your intent easier to read."]];
   $("moves").innerHTML="";ms.forEach((m,n)=>$("moves").innerHTML+=`<div class="section"><b>${n+1}. ${m[0]}</b><p>${m[1]}</p></div>`);
   if(fromCheckout){
-    $("unlockBtn").innerText=lang==="es"?"Checkout de prueba completado ✓":"Test checkout completed ✓";
-    $("previewNote").innerText=lang==="es"?"Regresaste desde Stripe. Pago de prueba, sin dinero real.":"Returned from Stripe. Test payment only — no real money.";
+    $("unlockBtn").innerText=lang==="es"?"Pago verificado ✓":"Payment verified ✓";
+    $("previewNote").innerText=lang==="es"?"Pago de prueba verificado por Stripe.":"Test payment verified by Stripe.";
   }
   $("report").scrollIntoView({behavior:"smooth"});
 }
@@ -812,11 +861,35 @@ async function restoreDeepReadAfterCheckout(){
     currency:verification.currency||"usd"
   });
 
+  saveVerifiedDeepReadAccess(sessionId);
   showDeepRead(true);
   clearPendingDeepRead();
   history.replaceState(null,"",base());
   return true;
 }
+
+async function restoreVerifiedDeepReadAccess(){
+  if(location.search)return false;
+  const access=loadVerifiedDeepReadAccess();
+  if(!access)return false;
+
+  const verification=await verifyStripeCheckout(access.sessionId);
+  if(!verification.verified){
+    clearVerifiedDeepReadAccess();
+    return false;
+  }
+
+  restorePendingResult(access);
+  showDeepRead(false);
+  gaEvent("deep_read_restored",{
+    product:"deep_read",
+    checkout_mode:"test",
+    profile_key:PROFILE_KEYS[access.idx]
+  });
+  return true;
+}
+
+
 function setRel(mode,btn){relationshipMode=mode;gaEvent("connection_relation_select",{relation:mode});document.querySelectorAll(".mainRel").forEach(x=>x.classList.remove("active"));btn.classList.add("active");updatePreview(mode)}
 function previewData(mode){const en={friend:["Friend Connection Read","See what makes this friendship work","Compare what you share, where you differ, and how to support each other better."],family:["Family Connection Read","See what strengthens — and strains — this family bond","Compare old patterns, current needs, and how to make the relationship easier."],partner:["Partner Connection Read","See how your relationship actually works","Compare what helps you connect, what creates friction, and how to repair faster."],work:["Work Connection Read","See how to work better together","Compare communication styles, strengths and friction points."]};const es={friend:["Lectura de amistad","Descubre qué hace funcionar esta amistad","Compara lo que comparten, dónde difieren y cómo apoyarse mejor."],family:["Lectura familiar","Descubre qué fortalece — y qué tensiona — este vínculo","Compara patrones antiguos, necesidades actuales y cómo mejorar la relación."],partner:["Lectura de pareja","Descubre cómo funciona realmente su relación","Compara qué los conecta, qué genera fricción y cómo reparar más rápido."],work:["Lectura de trabajo","Descubre cómo trabajar mejor juntos","Compara estilos de comunicación, fortalezas y puntos de fricción."]};return (lang==="es"?es:en)[mode]}
 function updatePreview(mode){const d=previewData(mode);if(!d)return;$("previewLine").innerText=d[0];$("previewTitle").innerText=d[1];$("previewText").innerText=d[2]}
@@ -1386,7 +1459,7 @@ function renderConnection(c){
   scoreEl.classList.add("score-pop");
 }
 
-function restartTest(){clearPendingDeepRead();gaEvent("test_restart",{from_profile_key:currentResult&&PROFILE_KEYS[currentResult.idx]?PROFILE_KEYS[currentResult.idx]:"unknown"});i=0;traits={openness:0,directness:0,attachment:0,regulation:0,social:0};historyAnswers=[];currentResult={pct:0,idx:0,traits:null};connectionRevealed=false;clearActiveChallenge();$("result").classList.add("hidden");$("quiz").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");history.replaceState(null,"",base());$("start").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
+function restartTest(){clearPendingDeepRead();if($("paywall"))$("paywall").classList.remove("hidden");$("report").classList.add("hidden");gaEvent("test_restart",{from_profile_key:currentResult&&PROFILE_KEYS[currentResult.idx]?PROFILE_KEYS[currentResult.idx]:"unknown"});i=0;traits={openness:0,directness:0,attachment:0,regulation:0,social:0};historyAnswers=[];currentResult={pct:0,idx:0,traits:null};connectionRevealed=false;clearActiveChallenge();$("result").classList.add("hidden");$("quiz").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");history.replaceState(null,"",base());$("start").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
 
 (async function init(){
   // Stripe sends test buyers back with a Checkout Session ID.
@@ -1395,6 +1468,8 @@ function restartTest(){clearPendingDeepRead();gaEvent("test_restart",{from_profi
     gaEvent("landing_view",{entry_type:"checkout_return"});
     if(await restoreDeepReadAfterCheckout())return;
   }
+
+  if(await restoreVerifiedDeepReadAccess())return;
 
   const fromUrl=readChallengeFromUrl();
   sharedProfile=readSharedProfileFromUrl();
