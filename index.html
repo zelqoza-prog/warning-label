@@ -442,7 +442,7 @@ seeMine:"See mine. Take yours. Compare.",shareResult:"Share my result",copyResul
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ More options",deepTitle:"Your Deep Read",
 deepCopy:"See what people may misunderstand about you, what gets in your way, and what you can do differently.",connectionIncluded:"Includes 1 Connection Read with a friend, partner, family member, or coworker.",launchPrice:"Launch price",
 misread:"What people may misread",pattern:"Your strongest pattern",move:"Your next move",
-unlock:"Unlock Deep Read + Connection — $1",preview:"Stripe test checkout — no real charge.",
+unlock:"Unlock Deep Read + Connection — $1",preview:"Secure checkout with Stripe.",
 m1:"People may read you as",m2:"Your real strength",m3:"Your growth edge",m4:"Social risk",
 under:"What people may misunderstand",friction:"What gets in your way",moves:"Your 3 next moves",
 connection:"Connection Read",connectionIntro:"Compare your real profile with someone you know. Choose the relationship and send them your private link.",
@@ -462,7 +462,7 @@ seeMine:"Ve el mío. Haz el tuyo. Comparemos.",shareResult:"Compartir mi resulta
 whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ Más opciones",deepTitle:"Tu lectura profunda",
 deepCopy:"Descubre qué pueden malinterpretar de ti, qué suele frenarte y qué puedes hacer diferente.",connectionIncluded:"Incluye 1 Lectura de Conexión con un amigo, pareja, familiar o compañero de trabajo.",launchPrice:"Precio de lanzamiento",
 misread:"Lo que otros pueden malinterpretar",pattern:"Tu patrón más fuerte",move:"Tu siguiente movimiento",
-unlock:"Desbloquear Deep Read + Conexión — $1",preview:"Checkout de prueba de Stripe — no hay cobro real.",
+unlock:"Desbloquear Deep Read + Conexión — $1",preview:"Pago seguro con Stripe.",
 m1:"Otros pueden verte como",m2:"Tu fortaleza real",m3:"Tu área de crecimiento",m4:"Riesgo social",
 under:"Lo que otros pueden malinterpretar",friction:"Lo que se interpone en tu camino",moves:"Tus 3 siguientes movimientos",
 connection:"Lectura de conexión",connectionIntro:"Compara tu perfil real con alguien que conoces. Elige la relación y envíale tu enlace privado.",
@@ -585,11 +585,11 @@ function gaEvent(name,params={}){
 }
 
 
-// --- Stripe test checkout: Deep Read ---
-const STRIPE_DEEP_READ_URL="https://buy.stripe.com/test_9B64gz0wMgA62pD4mPds400";
+// --- Stripe live checkout: Deep Read ---
+const STRIPE_DEEP_READ_URL="https://buy.stripe.com/cNi5kD3KE1XgaXUe1ZgEg00";
 const STRIPE_VERIFY_URL="https://warning-label-payment-verify.zelqoza.workers.dev";
-const DEEP_READ_STORAGE_KEY="warning_label_pending_deep_read_v1";
-const DEEP_READ_ACCESS_KEY="warning_label_verified_deep_read_v1";
+const DEEP_READ_STORAGE_KEY="warning_label_pending_deep_read_live_v1";
+const DEEP_READ_ACCESS_KEY="warning_label_verified_deep_read_live_v1";
 
 function savePendingDeepRead(){
   try{
@@ -634,7 +634,7 @@ function loadVerifiedDeepReadAccess(){
     const raw=localStorage.getItem(DEEP_READ_ACCESS_KEY);
     if(!raw)return null;
     const data=JSON.parse(raw);
-    if(!data || !data.sessionId || !data.sessionId.startsWith("cs_test_"))return null;
+    if(!data || !data.sessionId || !data.sessionId.startsWith("cs_live_"))return null;
     if(!Number.isInteger(data.idx) || data.idx<0 || data.idx>=PROFILES.length)return null;
     if(!data.traits)return null;
     return data;
@@ -752,7 +752,7 @@ function unlockDeepRead(){
     currency:"USD",
     value:1,
     checkout_provider:"stripe",
-    checkout_mode:"test",
+    checkout_mode:"live",
     entry_type:analyticsEntryType(),
     profile_key:PROFILE_KEYS[currentResult.idx]
   });
@@ -769,14 +769,14 @@ function showDeepRead(fromCheckout=false){
   $("moves").innerHTML="";ms.forEach((m,n)=>$("moves").innerHTML+=`<div class="section"><b>${n+1}. ${m[0]}</b><p>${m[1]}</p></div>`);
   if(fromCheckout){
     $("unlockBtn").innerText=lang==="es"?"Pago verificado ✓":"Payment verified ✓";
-    $("previewNote").innerText=lang==="es"?"Pago de prueba verificado por Stripe.":"Test payment verified by Stripe.";
+    $("previewNote").innerText=lang==="es"?"Pago verificado por Stripe.":"Payment verified by Stripe.";
   }
   $("report").scrollIntoView({behavior:"smooth"});
 }
 
 
 async function verifyStripeCheckout(sessionId){
-  if(!sessionId || !sessionId.startsWith("cs_test_")) return {verified:false,error:"missing_session"};
+  if(!sessionId || !sessionId.startsWith("cs_live_")) return {verified:false,error:"missing_session"};
   try{
     const res=await fetch(`${STRIPE_VERIFY_URL}?session_id=${encodeURIComponent(sessionId)}`,{
       method:"GET",mode:"cors",cache:"no-store"
@@ -813,7 +813,7 @@ async function restoreDeepReadAfterCheckout(){
   gaEvent("checkout_return",{
     product:"deep_read",
     checkout_provider:"stripe",
-    checkout_mode:"test",
+    checkout_mode:"live",
     had_pending_result:!!pending,
     had_session_id:!!sessionId
   });
@@ -828,8 +828,8 @@ async function restoreDeepReadAfterCheckout(){
   $("unlockBtn").innerText=lang==="es"?"Verificando pago…":"Verifying payment…";
   $("unlockBtn").disabled=true;
   $("previewNote").innerText=lang==="es"
-    ?"Estamos confirmando el pago de prueba con Stripe."
-    :"Confirming the test payment with Stripe.";
+    ?"Estamos confirmando el pago con Stripe."
+    :"Confirming payment with Stripe.";
 
   const verification=await verifyStripeCheckout(sessionId);
 
@@ -841,7 +841,7 @@ async function restoreDeepReadAfterCheckout(){
       :"We could not verify the payment. Your Deep Read is still locked.";
     gaEvent("payment_verification_failed",{
       product:"deep_read",
-      checkout_mode:"test",
+      checkout_mode:"live",
       reason:verification.error||"not_verified"
     });
     history.replaceState(null,"",base());
@@ -856,7 +856,7 @@ async function restoreDeepReadAfterCheckout(){
   });
   gaEvent("payment_verified",{
     product:"deep_read",
-    checkout_mode:"test",
+    checkout_mode:"live",
     amount_total:verification.amount_total||100,
     currency:verification.currency||"usd"
   });
@@ -883,7 +883,7 @@ async function restoreVerifiedDeepReadAccess(){
   showDeepRead(false);
   gaEvent("deep_read_restored",{
     product:"deep_read",
-    checkout_mode:"test",
+    checkout_mode:"live",
     profile_key:PROFILE_KEYS[access.idx]
   });
   return true;
