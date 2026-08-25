@@ -589,7 +589,7 @@ function gaEvent(name,params={}){
 
 
 // --- Stripe live checkout: Deep Read ---
-const STRIPE_DEEP_READ_URL="https://buy.stripe.com/3cIfZh1CweK29TQcXVgEg01";
+const STRIPE_DEEP_READ_URL="https://warning-label-payment-verify.zelqoza.workers.dev/checkout";
 const STRIPE_VERIFY_URL="https://warning-label-payment-verify.zelqoza.workers.dev";
 const DEEP_READ_STORAGE_KEY="warning_label_pending_deep_read_live_v1";
 const DEEP_READ_ACCESS_KEY="warning_label_verified_deep_read_live_v1";
@@ -752,8 +752,9 @@ function unlockDeepRead(){
   gaEvent("deep_read_click",{profile_key:PROFILE_KEYS[currentResult.idx]});
   gaEvent("checkout_start",{
     product:"deep_read",
-    currency:"MXN",
-    value:20,
+    advertised_base_currency:"USD",
+    advertised_base_value:1,
+    pricing_strategy:"country_router",
     checkout_provider:"stripe",
     checkout_mode:"live",
     entry_type:analyticsEntryType(),
@@ -851,17 +852,27 @@ async function restoreDeepReadAfterCheckout(){
     return true;
   }
 
+  const purchaseCurrency=(verification.currency||"").toUpperCase();
+  const purchaseValue=purchaseCurrency==="MXN"
+    ? (verification.amount_total||2000)/100
+    : (verification.amount_total||100)/100;
+
   gaEvent("purchase",{
     transaction_id:sessionId,
-    currency:"MXN",
-    value:20,
-    items:[{item_id:"deep_read",item_name:"WARNING LABEL — Deep Read",price:1,quantity:1}]
+    currency:purchaseCurrency,
+    value:purchaseValue,
+    items:[{
+      item_id:"deep_read",
+      item_name:"WARNING LABEL — Deep Read",
+      price:purchaseValue,
+      quantity:1
+    }]
   });
   gaEvent("payment_verified",{
     product:"deep_read",
     checkout_mode:"live",
-    amount_total:verification.amount_total||2000,
-    currency:verification.currency||"mxn",
+    amount_total:verification.amount_total||null,
+    currency:verification.currency||null,
     presentment_amount:verification.presentment_amount||null,
     presentment_currency:verification.presentment_currency||null
   });
