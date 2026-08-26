@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f4eee5">
+
+  <title>What Do People Think of Me? | THE READ by Zelqoza</title>
+
+  <meta name="description"
+        content="Wondering what people really think of you? Learn what shapes other people's impressions and take THE READ, a free 6-question self-awareness test by Zelqoza.">
+
+  <link rel="canonical" href="https://zelqoza.com/what-do-people-think-of-me/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zelqoza.com/what-do-people-think-of-me/">
+  <meta property="og:title" content="What Do People Think of Me? | THE READ by Zelqoza">
+  <meta property="og:description"
+        content="6 questions. Discover the impression you may be giving without realizing it.">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What Do People Think of Me? | THE READ">
+  <meta name="twitter:description"
+        content="See how you may come across to other people in 6 quick questions.">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-47NGTFCD17"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-47NGTFCD17');
+
+    function seoCTA(position){
+      try{
+        gtag('event','seo_cta_click',{
+          seo_page:'what_do_people_think_of_me',
+          cta_position:position
+        });
+      }catch(e){}
+    }
+  </script>
+
+  <style>
+    :root{
+      --bg:#f4eee5;
+      --card:#fffdf9;
+      --text:#171412;
+      --muted:#756d66;
+      --line:#dfd4c8;
+      --accent:#e86b5f;
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at 12% 8%,rgba(232,107,95,.09),transparent 25rem),
+        radial-gradient(circle at 90% 35%,rgba(125,97,212,.055),transparent 28rem),
+        linear-gradient(180deg,#f7f2eb,var(--bg));
+      color:var(--text);
+      font-family:Inter,Arial,sans-serif;
+      line-height:1.65;
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      max-width:800px;
+      margin:auto;
+      padding:26px 18px 76px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:60px;
+    }
+
+    .lockup{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .brand{
+      font-size:13px;
+      font-weight:950;
+      letter-spacing:.16em;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:7px 10px;
+      border:1px solid rgba(23,20,18,.1);
+      border-radius:999px;
+      background:rgba(255,253,249,.72);
+      font-size:10px;
+      font-weight:950;
+      letter-spacing:.12em;
+    }
+
+    .dot{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--accent);
+    }
+
+    .home{
+      color:var(--text);
+      text-decoration:none;
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.145em;
+      font-size:12px;
+      color:var(--muted);
+      font-weight:850;
+    }
+
+    h1{
+      font-size:clamp(44px,8vw,68px);
+      line-height:.96;
+      letter-spacing:-.055em;
+      margin:12px 0 20px;
+    }
+
+    .lead{
+      font-size:20px;
+      color:var(--muted);
+      max-width:680px;
+      margin-bottom:28px;
+    }
+
+    .cta{
+      display:block;
+      text-align:center;
+      background:linear-gradient(135deg,var(--accent),#dd5d55);
+      color:white;
+      text-decoration:none;
+      font-size:18px;
+      font-weight:900;
+      padding:18px 22px;
+      border-radius:16px;
+      margin:28px 0 12px;
+      box-shadow:0 13px 32px rgba(173,73,65,.18);
+      transition:.18s ease;
+    }
+
+    .cta:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 38px rgba(173,73,65,.24);
+    }
+
+    .small{
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    article{margin-top:58px}
+
+    section{
+      background:rgba(255,253,249,.92);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:28px;
+      margin:20px 0;
+      box-shadow:0 16px 50px rgba(61,46,35,.055);
+    }
+
+    h2{
+      font-size:29px;
+      line-height:1.12;
+      letter-spacing:-.035em;
+      margin:0 0 14px;
+    }
+
+    h3{
+      font-size:20px;
+      margin:24px 0 8px;
+    }
+
+    p{margin:0 0 16px}
+
+    ul{
+      padding-left:22px;
+      margin:12px 0;
+    }
+
+    li{margin:9px 0}
+
+    .callout{
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(145deg,#171513,#24201e);
+      color:#fff;
+    }
+
+    .callout:after{
+      content:"THE READ";
+      position:absolute;
+      right:-7px;
+      bottom:-20px;
+      font-size:82px;
+      font-weight:1000;
+      letter-spacing:-.08em;
+      color:rgba(255,255,255,.035);
+    }
+
+    .callout p{color:#d9d2cd}
+
+    footer{
+      border-top:1px solid var(--line);
+      margin-top:48px;
+      padding-top:24px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    footer a{color:inherit}
+
+    @media(max-width:600px){
+      header{margin-bottom:44px}
+      .lockup{gap:7px}
+      .badge{font-size:9px;padding:6px 8px}
+      section{padding:22px}
+      .lead{font-size:18px}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"How can I know what people think of me?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"You cannot know exactly what every person thinks, but you can learn a lot from the patterns you show through communication, openness, reactions and social behavior."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Why might people misunderstand me?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Other people see your behavior but do not always know your intentions. Independence can look like distance, caution can look like distrust, and humor can sometimes hide seriousness."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Is THE READ a psychological test?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"No. THE READ is a self-reflection and entertainment experience, not a clinical or psychological assessment."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header>
+      <div class="lockup">
+        <div class="brand">ZELQOZA</div>
+        <div class="badge"><span class="dot"></span>THE READ</div>
+      </div>
+
+      <a class="home"
+         href="https://zelqoza.com/"
+         onclick="seoCTA('header')">
+        Take the test →
+      </a>
+    </header>
+
+    <div class="eyebrow">Self-awareness · Social perception</div>
+
+    <h1>What do people really think of me?</h1>
+
+    <p class="lead">
+      You cannot read everyone's mind. But the way you communicate,
+      react, open up and connect gives people signals — and those
+      signals shape what they think about you.
+    </p>
+
+    <a class="cta"
+       href="https://zelqoza.com/"
+       onclick="seoCTA('hero')">
+      Take THE READ — 6 questions →
+    </a>
+
+    <div class="small">
+      About 30 seconds · Free result · No signup
+    </div>
+
+    <article>
+
+      <section>
+        <h2>People form an impression before they know your full story.</h2>
+
+        <p>
+          Most people do not know everything you are thinking or feeling.
+          They build an impression from what they can observe.
+        </p>
+
+        <p>
+          How quickly you answer. Whether you speak up when something
+          bothers you. How much space you need. How you react when plans
+          change. Whether you seem easy to approach or difficult to read.
+        </p>
+
+        <p>
+          Those small signals can become the story people tell themselves
+          about who you are.
+        </p>
+      </section>
+
+      <section>
+        <h2>What do people usually notice first?</h2>
+
+        <p>
+          Different people notice different things, but first impressions
+          often come from a few visible patterns:
+        </p>
+
+        <ul>
+          <li>How comfortable you seem around new people</li>
+          <li>How direct or careful you are when communicating</li>
+          <li>Whether you show emotion openly or keep it private</li>
+          <li>How much attention you pay to small changes</li>
+          <li>How independent or connected you appear</li>
+        </ul>
+
+        <p>
+          None of these automatically make a person better or worse.
+          They simply influence how others experience you.
+        </p>
+      </section>
+
+      <section>
+        <h2>Your intention and their interpretation are not always the same.</h2>
+
+        <p>
+          You might stay quiet because you are thinking carefully.
+          Someone else might assume you are upset.
+        </p>
+
+        <p>
+          You might give people space because you respect their
+          independence. They might wonder why you seem distant.
+        </p>
+
+        <p>
+          You might remember small details because you pay attention.
+          Someone else might think you are keeping score.
+        </p>
+
+        <p>
+          This gap between intention and interpretation is where many
+          misunderstandings begin.
+        </p>
+      </section>
+
+      <section>
+        <h2>So how do you find out what impression you give?</h2>
+
+        <p>
+          You cannot get one universal answer because different people
+          experience different sides of you.
+        </p>
+
+        <p>
+          But you can look for consistent patterns in how you react,
+          communicate and relate to other people.
+        </p>
+
+        <p>
+          That is what THE READ is designed to explore.
+        </p>
+      </section>
+
+      <section class="callout">
+        <h2>See how you may come across.</h2>
+
+        <p>
+          THE READ gives you six everyday situations and looks for the
+          pattern across your answers. Your result shows how people may
+          see you, what they may appreciate, what they may misunderstand
+          and what becomes clearer over time.
+        </p>
+
+        <a class="cta"
+           href="https://zelqoza.com/"
+           onclick="seoCTA('article')">
+          What do people really think about you? →
+        </a>
+      </section>
+
+      <section>
+        <h2>Frequently asked questions</h2>
+
+        <h3>How can I know what people think of me?</h3>
+        <p>
+          You cannot know exactly what every person thinks, but recurring
+          reactions from other people and your own behavioral patterns can
+          give you useful clues about the impression you create.
+        </p>
+
+        <h3>Why might people misunderstand me?</h3>
+        <p>
+          Because people see your actions without always knowing the
+          intention behind them. A behavior that feels completely natural
+          to you may communicate something different to someone else.
+        </p>
+
+        <h3>Is THE READ a psychological test?</h3>
+        <p>
+          No. THE READ is designed for self-reflection and entertainment.
+          It is not a clinical or psychological assessment.
+        </p>
+      </section>
+
+    </article>
+
+    <footer>
+      <strong>ZELQOZA · THE READ</strong><br>
+      A 30-second self-awareness experience at
+      <a href="https://zelqoza.com/">zelqoza.com</a>.
+    </footer>
+
+  </main>
+</body>
+</html>
