@@ -4,16 +4,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta property="og:title" content="WARNING LABEL — What do people really think about you?">
-<meta property="og:description" content="6 questions. See the impression you may be giving without realizing it.">
+<meta name="theme-color" content="#f4eee5">
+<meta name="description" content="Take THE READ, a 30-second self-awareness test by Zelqoza. Answer 6 questions and discover how people may see you, what they may misunderstand, and what becomes clearer over time.">
+<link rel="canonical" href="https://zelqoza.com/">
+<meta property="og:title" content="THE READ — What do people really think about you? | Zelqoza">
+<meta property="og:description" content="6 questions. Discover how you may come across, what people may misread, and what becomes clearer once they know you.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://zelqoza.com/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WARNING LABEL — What do people really think about you?">
+<meta name="twitter:title" content="THE READ — What do people really think about you? | Zelqoza">
 <meta name="twitter:description" content="6 questions. See the impression you may be giving without realizing it.">
 
-<title>WARNING LABEL — What do people really think about you?</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0c'/%3E%3Cpath d='M13 17l8 31h8l3-14 3 14h8l8-31h-8l-4 19-4-19h-7l-4 19-4-19z' fill='%23ff5a4f'/%3E%3C/svg%3E">
+<title>THE READ — What do people really think about you? | Zelqoza</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23181614'/%3E%3Cpath d='M15 16h35v9L28 41h22v8H14v-9l22-16H15z' fill='%23e86b5f'/%3E%3C/svg%3E">
 <style>
 :root{--bg:#f5efe6;--card:#fffdf9;--text:#181614;--muted:#716a63;--line:#ded4c8;--accent:#df675a}
 *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
@@ -218,9 +221,286 @@ body{background:var(--bg);color:var(--text)}
 .connectionDivider{border-top-color:#d5cabf}.connectionDivider span{color:#8a8178}
 @media(max-width:600px){.wrap{padding-left:15px;padding-right:15px}.hero{padding-top:52px}h1{font-size:42px}.card{padding:20px}.score{font-size:68px}.label{font-size:29px}}
 
+
+/* v40 — THE READ by Zelqoza: premium motion + brand system */
+:root{
+  --bg:#f4eee5;
+  --card:#fffdf9;
+  --text:#171412;
+  --muted:#756d66;
+  --line:#dfd4c8;
+  --accent:#e86b5f;
+  --accent-2:#c94e49;
+  --ink:#171412;
+  --soft:#f9f4ed;
+  --glow:rgba(232,107,95,.22);
+}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 14% 8%,rgba(232,107,95,.09),transparent 24rem),
+    radial-gradient(circle at 88% 26%,rgba(125,97,212,.055),transparent 28rem),
+    linear-gradient(180deg,#f7f2eb 0%,var(--bg) 48%,#f2eae0 100%);
+}
+body::before,body::after{
+  content:"";
+  position:fixed;
+  z-index:0;
+  width:420px;height:420px;
+  border-radius:50%;
+  filter:blur(85px);
+  pointer-events:none;
+  opacity:.18;
+  animation:ambientDrift 16s ease-in-out infinite alternate;
+}
+body::before{left:-250px;top:18vh;background:#ef8d7e}
+body::after{right:-280px;top:48vh;background:#a18de2;animation-delay:-7s}
+.wrap{position:relative;z-index:1}
+.topbar{
+  padding:7px 0 2px;
+  min-height:52px;
+}
+.brandLockup{display:flex;align-items:center;gap:10px}
+.brand{
+  color:var(--ink);
+  font-size:13px;
+  letter-spacing:.16em;
+  font-weight:950;
+}
+.productBadge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 10px;
+  border:1px solid rgba(23,20,18,.10);
+  border-radius:999px;
+  background:rgba(255,253,249,.72);
+  box-shadow:0 8px 28px rgba(63,45,32,.06);
+  backdrop-filter:blur(14px);
+  color:#312b27;
+  font-size:10px;
+  font-weight:950;
+  letter-spacing:.12em;
+}
+.signalDot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 0 var(--glow);
+  animation:signalPulse 2.4s ease-out infinite;
+}
+.hero{
+  position:relative;
+  padding:76px 0 42px;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  right:-90px;
+  top:10px;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(232,107,95,.12) 0%,rgba(232,107,95,.045) 42%,transparent 72%);
+  filter:blur(8px);
+  pointer-events:none;
+}
+.hero .eyebrow{animation:softRise .65s ease both}
+.hero h1{
+  max-width:680px;
+  color:var(--ink);
+  text-wrap:balance;
+  animation:softRise .72s .07s ease both;
+}
+.hero>p{max-width:660px;animation:softRise .72s .14s ease both}
+.hero>.primary{animation:softRise .72s .20s ease both}
+.hero>.mini{animation:softRise .72s .26s ease both}
+.eyebrow{
+  font-weight:850;
+  letter-spacing:.145em;
+}
+.card,.section{
+  box-shadow:0 16px 50px rgba(61,46,35,.065);
+}
+.card{
+  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+}
+.primary{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:linear-gradient(135deg,var(--accent),#dd5d55);
+  box-shadow:0 13px 32px rgba(173,73,65,.18);
+  transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+}
+.primary::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  z-index:-1;
+  background:linear-gradient(105deg,transparent 22%,rgba(255,255,255,.24) 46%,transparent 68%);
+  transform:translateX(-130%);
+  animation:ctaSheen 4.8s ease-in-out infinite;
+}
+.primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 38px rgba(173,73,65,.24);
+  filter:saturate(1.04);
+}
+.primary:active{transform:translateY(0) scale(.992)}
+.secondary,.backbtn,.langbtn,.sharebtn,.relbtn,.connectionDetailsToggle{
+  transition:transform .17s ease,border-color .17s ease,background .17s ease,box-shadow .17s ease;
+}
+.secondary:hover,.backbtn:hover,.sharebtn:hover,.relbtn:hover,.connectionDetailsToggle:hover{transform:translateY(-1px)}
+.progress{height:6px;border-radius:999px}
+.bar{
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--accent),#f19a85);
+  box-shadow:0 0 18px rgba(232,107,95,.28);
+  transition:width .48s cubic-bezier(.2,.75,.2,1);
+}
+.question{letter-spacing:-.025em}
+.option{
+  position:relative;
+  overflow:hidden;
+  transform:translateY(0);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.option:hover{
+  transform:translateY(-2px);
+  border-color:#c8afa0;
+  box-shadow:0 10px 25px rgba(73,54,41,.07);
+}
+.option:active{transform:translateY(0) scale(.995)}
+.option-enter{animation:optionIn .42s cubic-bezier(.2,.75,.2,1) both}
+.readmark{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 11px;
+  border:1px solid rgba(232,107,95,.45);
+  border-radius:999px;
+  background:#fff5ef;
+  color:#b94f48;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.readmark::before{
+  content:"";
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent);
+}
+.sharecard .readmark{
+  color:#211b18;
+  border-color:rgba(33,27,24,.16);
+  background:rgba(255,255,255,.45);
+}
+.perceptionRead{
+  position:relative;
+  overflow:hidden;
+}
+.perceptionRead::before{
+  content:"";
+  position:absolute;
+  width:170px;height:170px;
+  border-radius:50%;
+  right:-90px;top:-100px;
+  background:radial-gradient(circle,rgba(232,107,95,.14),transparent 70%);
+}
+.perceptionBox{
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.perceptionBox:hover{
+  transform:translateY(-2px);
+  border-color:#d4c4b7;
+  box-shadow:0 10px 24px rgba(68,50,38,.055);
+}
+.offerBox{
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 12px 28px rgba(91,58,42,.055);
+}
+.offerBox::after{
+  content:"";
+  position:absolute;
+  width:150px;height:150px;border-radius:50%;
+  right:-78px;top:-92px;
+  background:radial-gradient(circle,rgba(232,107,95,.13),transparent 68%);
+}
+.launchPrice{position:relative;z-index:1}
+.reportHero{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 83% 0%,rgba(232,107,95,.22),transparent 35%),
+    linear-gradient(145deg,#171513,#24201e);
+  box-shadow:0 24px 54px rgba(24,20,18,.18);
+}
+.reportHero::after{
+  content:"THE READ";
+  position:absolute;
+  right:-8px;bottom:-15px;
+  color:rgba(255,255,255,.035);
+  font-weight:1000;
+  font-size:72px;
+  letter-spacing:-.08em;
+}
+.result-enter{animation:resultIn .58s cubic-bezier(.2,.75,.2,1) both}
+.deep-enter{animation:deepIn .58s cubic-bezier(.2,.75,.2,1) both}
+.connectionHero{box-shadow:0 28px 60px rgba(20,25,21,.18)}
+.langbtn.active{box-shadow:0 6px 16px rgba(24,20,18,.12)}
+@keyframes softRise{
+  from{opacity:0;transform:translateY(14px);filter:blur(4px)}
+  to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+@keyframes optionIn{
+  from{opacity:0;transform:translateY(9px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes resultIn{
+  from{opacity:0;transform:translateY(14px) scale(.987);filter:blur(5px)}
+  to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+@keyframes deepIn{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes signalPulse{
+  0%{box-shadow:0 0 0 0 rgba(232,107,95,.35)}
+  72%{box-shadow:0 0 0 8px rgba(232,107,95,0)}
+  100%{box-shadow:0 0 0 0 rgba(232,107,95,0)}
+}
+@keyframes ctaSheen{
+  0%,68%{transform:translateX(-135%)}
+  86%,100%{transform:translateX(135%)}
+}
+@keyframes ambientDrift{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to{transform:translate3d(34px,-22px,0) scale(1.09)}
+}
+@media(max-width:600px){
+  .topbar{align-items:flex-start}
+  .brandLockup{gap:7px}
+  .productBadge{padding:6px 8px;font-size:9px}
+  .hero{padding-top:58px}
+  .hero::before{right:-125px;top:8px;width:240px;height:240px}
+  .primary{box-shadow:0 10px 24px rgba(173,73,65,.16)}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+}
+
 </style>
 
-<!-- Google Analytics 4 — WARNING LABEL -->
+<!-- Google Analytics 4 — THE READ by Zelqoza -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-47NGTFCD17"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -233,7 +513,10 @@ body{background:var(--bg);color:var(--text)}
 <body>
 <div class="wrap">
   <div class="topbar">
-    <div class="brand">WARNING<span>LABEL</span></div>
+    <div class="brandLockup">
+      <div class="brand">ZELQOZA</div>
+      <div class="productBadge"><span class="signalDot"></span>THE READ</div>
+    </div>
     <div class="langs">
       <button id="enBtn" class="langbtn" onclick="setLanguage('en')">EN</button>
       <button id="esBtn" class="langbtn" onclick="setLanguage('es')">ES</button>
@@ -263,7 +546,7 @@ body{background:var(--bg);color:var(--text)}
   <section id="result" class="result hidden">
     <div class="backbar"><button id="resultBack" class="backbtn" onclick="goBack()"></button></div>
     <div class="card">
-      <div class="warning warning-label-text">YOUR RESULT</div>
+      <div class="readmark read-badge-text">YOUR READ</div>
       <div id="label" class="label"></div>
       <div id="tag" class="tag"></div>
 
@@ -341,10 +624,10 @@ body{background:var(--bg);color:var(--text)}
       </div>
 
       <div class="sharecard">
-        <div class="warning warning-label-text">YOUR RESULT</div>
+        <div class="readmark read-badge-text">YOUR READ</div>
         <div id="shareLabel" class="label"></div>
         <div id="shareTag" class="tag"></div>
-        <div class="mini">ZELQOZA · <span id="seeMine"></span></div>
+        <div class="mini">ZELQOZA · THE READ · <span id="seeMine"></span></div>
       </div>
 
       <button id="shareBtn" class="secondary" onclick="toggleShare()"></button>
@@ -438,11 +721,11 @@ body{background:var(--bg);color:var(--text)}
 <script>
 const TXT={
 en:{
-eyebrow:"THE 30-SECOND SELF-AWARENESS TEST",headline:"What do people really think about you?",
+eyebrow:"ZELQOZA · SELF-AWARENESS · FIRST IMPRESSIONS",headline:"What do people really think about you?",
 subhead:"6 questions. See the impression you may be giving without realizing it.",
-start:"Take the test →",disclaimer:"For self-reflection and entertainment — not a clinical assessment.",back:"← Back",
+start:"Take THE READ →",disclaimer:"6 questions · About 30 seconds · No signup",back:"← Back",
 seeMine:"See mine. Take yours. Compare.",shareResult:"Share my result",copyResult:"🔗 Copy result link",
-whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ More options",deepTitle:"Your Deep Read",
+whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ More options",deepTitle:"Unlock your Deep Read",
 deepCopy:"See what people may misunderstand about you, what gets in your way, and what you can do differently.",connectionIncluded:"Includes 1 Connection Read with a friend, partner, family member, or coworker.",launchPrice:"Launch price",localCurrencyNote:"Stripe may show the equivalent in your local currency at checkout.",
 misread:"What people may misread",pattern:"Your strongest pattern",move:"Your next move",
 unlock:"Unlock Deep Read + Connection — ~US$1",preview:"Secure checkout with Stripe.",
@@ -458,11 +741,11 @@ linkCopied:"Connection link copied ✓ — send it to the other person.",resultC
 connectionKicker:"YOUR CONNECTION READ",quickGoodLabel:"BEST PART",quickWatchLabel:"YOUR LOOP",showDetails:"See full connection breakdown",hideDetails:"Hide full breakdown",q:(n,t)=>`QUESTION ${n} OF ${t}`
 },
 es:{
-eyebrow:"EL TEST DE AUTOCONOCIMIENTO DE 30 SEGUNDOS",headline:"¿Qué piensan realmente los demás de ti?",
+eyebrow:"ZELQOZA · AUTOCONOCIMIENTO · PRIMERAS IMPRESIONES",headline:"¿Qué piensan realmente los demás de ti?",
 subhead:"6 preguntas. Descubre la impresión que puedes estar dando sin darte cuenta.",
-start:"Hacer el test →",disclaimer:"Para reflexión personal y entretenimiento — no es una evaluación clínica.",back:"← Regresar",
+start:"Hacer THE READ →",disclaimer:"6 preguntas · Unos 30 segundos · Sin registro",back:"← Regresar",
 seeMine:"Ve el mío. Haz el tuyo. Comparemos.",shareResult:"Compartir mi resultado",copyResult:"🔗 Copiar enlace del resultado",
-whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ Más opciones",deepTitle:"Tu lectura profunda",
+whatsapp:"💬 WhatsApp",facebook:"f Facebook",more:"↗ Más opciones",deepTitle:"Desbloquea tu Deep Read",
 deepCopy:"Descubre qué pueden malinterpretar de ti, qué suele frenarte y qué puedes hacer diferente.",connectionIncluded:"Incluye 1 Lectura de Conexión con un amigo, pareja, familiar o compañero de trabajo.",launchPrice:"Precio de lanzamiento",localCurrencyNote:"Stripe puede mostrar el equivalente en tu moneda local al pagar.",
 misread:"Lo que otros pueden malinterpretar",pattern:"Tu patrón más fuerte",move:"Tu siguiente movimiento",
 unlock:"Desbloquear Deep Read + Conexión — ~US$1",preview:"Pago seguro con Stripe.",
@@ -572,7 +855,7 @@ let i=0,traits={openness:0,directness:0,attachment:0,regulation:0,social:0},hist
 let currentResult={pct:0,idx:0,traits:null},relationshipMode="friend",activeChallenge=null,sharedProfile=null,connectionRevealed=false;
 const $=id=>document.getElementById(id), tx=k=>TXT[lang][k]||TXT.en[k]||k, profile=idx=>PROFILES[idx][lang]||PROFILES[idx].en;
 
-// --- WARNING LABEL analytics funnel ---
+// --- THE READ analytics funnel ---
 const GA_MEASUREMENT_ID="G-47NGTFCD17";
 function analyticsEntryType(){
   if(activeChallenge)return "connection";
@@ -654,8 +937,8 @@ function setLanguage(l){lang=l;localStorage.setItem("zelqoza_lang",l);gaEvent("l
 function applyLanguage(){
   document.documentElement.lang=lang;
 
-document.querySelectorAll(".warning-label-text").forEach(el=>{
-  el.innerText=lang==="es" ? "TU RESULTADO" : "YOUR RESULT";
+document.querySelectorAll(".read-badge-text").forEach(el=>{
+  el.innerText=lang==="es" ? "TU LECTURA" : "YOUR READ";
 });
 $("enBtn").classList.toggle("active",lang==="en");$("esBtn").classList.toggle("active",lang==="es");
   const map={eyebrow:"eyebrow",headline:"headline",subhead:"subhead",startBtn:"start",disclaimer:"disclaimer",quizBack:"back",resultBack:"back",seeMine:"seeMine",shareBtn:"shareResult",copyResultBtn:"copyResult",whatsappBtn:"whatsapp",facebookBtn:"facebook",moreBtn:"more",deepTitle:"deepTitle",deepCopy:"deepCopy",connectionIncluded:"connectionIncluded",launchPriceLabel:"launchPrice",localCurrencyNote:"localCurrencyNote",misreadLabel:"misread",patternLabel:"pattern",moveLabel:"move",unlockBtn:"unlock",previewNote:"preview",m1:"m1",m2:"m2",m3:"m3",m4:"m4",underTitle:"under",frictionTitle:"friction",movesTitle:"moves",connectionTitle:"connection",connectionIntro:"connectionIntro",openConnectionBtn:"openConnection",whatPerson:"whatPerson",createLinkBtn:"createLink",copyLinkBtn:"copyLink",shareLinkBtn:"shareLink",connectionKicker:"connectionKicker",quickGoodLabel:"quickGoodLabel",quickWatchLabel:"quickWatchLabel",connectionDetailsToggle:"showDetails",themText:"them",youText:"you",whyTitle:"why",whereTitle:"where",youDoTitle:"youDo",theyDoTitle:"theyDo",ruleTitle:"rule",againBtn:"again"};
@@ -710,12 +993,32 @@ function revealIncomingConnection(){
 }
 
 function begin(){gaEvent("quiz_start",{entry_type:analyticsEntryType()});$("start").classList.add("hidden");$("quiz").classList.remove("hidden");render()}
-function render(){const q=QUIZ[lang][i];$("bar").style.width=(i/QUIZ[lang].length*100)+"%";$("qnum").innerText=tx("q")(i+1,QUIZ[lang].length);$("question").innerText=q[0];$("options").innerHTML="";q[1].forEach(([text,w])=>{const b=document.createElement("button");b.className="option";b.innerText=text;b.onclick=()=>choose(w);$("options").appendChild(b)})}
+function render(){
+  const q=QUIZ[lang][i];
+  $("bar").style.width=(i/QUIZ[lang].length*100)+"%";
+  $("qnum").innerText=tx("q")(i+1,QUIZ[lang].length);
+  $("question").innerText=q[0];
+  $("options").innerHTML="";
+  q[1].forEach(([text,w],idx)=>{
+    const b=document.createElement("button");
+    b.className="option option-enter";
+    b.style.animationDelay=(idx*55)+"ms";
+    b.innerText=text;
+    b.onclick=()=>choose(w);
+    $("options").appendChild(b);
+  });
+}
 function applyWeights(w,m=1){Object.keys(w).forEach(k=>traits[k]+=w[k]*m)}
 function choose(w){gaEvent("quiz_question_answer",{question_number:i+1,entry_type:analyticsEntryType()});historyAnswers.push({...w});applyWeights(w);i++;i<QUIZ[lang].length?render():finish()}
 function selectProfile(){if(traits.regulation>=3&&traits.directness<=0)return 0;if(traits.attachment>=2&&traits.directness<=0)return 1;if(traits.social>=3&&traits.regulation<=1)return 2;if(traits.attachment<=-3)return 3;if(traits.directness>=4)return 4;if(traits.regulation<=-2&&traits.social<=1)return 5;if(traits.social>=2&&traits.openness>=1)return 6;return 7}
 function finish(){
   $("quiz").classList.add("hidden");$("result").classList.remove("hidden");
+  const resultCard=$("result").querySelector(".card");
+  if(resultCard){
+    resultCard.classList.remove("result-enter");
+    void resultCard.offsetWidth;
+    resultCard.classList.add("result-enter");
+  }
   const idx=selectProfile();
   applyResult(idx,0,{...traits});
   const entryType=analyticsEntryType();
@@ -744,7 +1047,7 @@ async function copyResultLink(){const ok=await copyText(getShareUrl());$("shareS
 function shareMessage(){const p=profile(currentResult.idx);return lang==="es"?`Mi resultado: ${p[0]}. Ve el mío, haz el tuyo o compáralo conmigo.`:`My result: ${p[0]}. See mine, take yours, or compare with me.`}
 function shareWhatsApp(){gaEvent("result_share",{method:"whatsapp",profile_key:PROFILE_KEYS[currentResult.idx]});window.open("https://wa.me/?text="+encodeURIComponent(shareMessage()+" "+getShareUrl()),"_blank")}
 function shareFacebook(){gaEvent("result_share",{method:"facebook",profile_key:PROFILE_KEYS[currentResult.idx]});window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(getShareUrl()),"_blank")}
-async function nativeShare(){const text=shareMessage(),url=getShareUrl();if(navigator.share){try{await navigator.share({title:"Warning Label",text,url});gaEvent("result_share",{method:"native",profile_key:PROFILE_KEYS[currentResult.idx]});$("shareStatus").innerText=tx("shareDone");return}catch(e){}}const ok=await copyText(text+" "+url);$("shareStatus").innerText=ok?tx("resultCopied"):"";if(ok)gaEvent("result_share",{method:"copy_fallback",profile_key:PROFILE_KEYS[currentResult.idx]})}
+async function nativeShare(){const text=shareMessage(),url=getShareUrl();if(navigator.share){try{await navigator.share({title:"THE READ by Zelqoza",text,url});gaEvent("result_share",{method:"native",profile_key:PROFILE_KEYS[currentResult.idx]});$("shareStatus").innerText=tx("shareDone");return}catch(e){}}const ok=await copyText(text+" "+url);$("shareStatus").innerText=ok?tx("resultCopied"):"";if(ok)gaEvent("result_share",{method:"copy_fallback",profile_key:PROFILE_KEYS[currentResult.idx]})}
 
 function unlockDeepRead(){
   if(!currentResult||!currentResult.traits)return;
@@ -765,7 +1068,7 @@ function unlockDeepRead(){
 
 function showDeepRead(fromCheckout=false){
   if($("paywall"))$("paywall").classList.add("hidden");
-  const p=profile(currentResult.idx);$("report").classList.remove("hidden");$("reportTitle").innerText=p[0];$("reportTag").innerText=p[1];
+  const p=profile(currentResult.idx);$("report").classList.remove("hidden");$("report").classList.remove("deep-enter");void $("report").offsetWidth;$("report").classList.add("deep-enter");$("reportTitle").innerText=p[0];$("reportTag").innerText=p[1];
   $("mv1").innerText=p[3];$("mv2").innerText=p[2];$("mv3").innerText=p[4];$("mv4").innerText=p[5];
   $("underText").innerText=lang==="es"?`A veces los demás pueden verte como ${p[3].toLowerCase()}, especialmente bajo presión. Tu intención puede ser distinta a la señal que estás dando.`:`People may read you as ${p[3].toLowerCase()}, especially under pressure. Your intent can be different from the signal you are sending.`;
   $("frictionText").innerText=lang==="es"?`Tu punto de fricción más probable es ${p[5].toLowerCase()}. El problema aparece cuando los demás tienen que adivinar qué pasa.`:`Your most likely friction point is ${p[5].toLowerCase()}. It becomes a problem when other people have to guess what is happening.`;
@@ -863,7 +1166,7 @@ async function restoreDeepReadAfterCheckout(){
     value:purchaseValue,
     items:[{
       item_id:"deep_read",
-      item_name:"WARNING LABEL — Deep Read",
+      item_name:"THE READ — Deep Read",
       price:purchaseValue,
       quantity:1
     }]
@@ -915,16 +1218,16 @@ function createConnectionLink(){const url=makeChallengeUrl();$("connectionInput"
 async function copyConnectionLink(){const url=$("connectionInput").value||makeChallengeUrl();const text=challengeInviteText(relationshipMode,url);const ok=await copyText(text);$("connectionStatus").innerText=ok?tx("linkCopied"):"";if(ok)gaEvent("connection_share",{method:"copy_link",relation:relationshipMode,profile_key:PROFILE_KEYS[currentResult.idx]})}
 function challengeInviteText(rel,url){
   const es={
-    friend:`A ver si de verdad me conoces 😏\nYa hice mi Warning Label. Haz tus 6 preguntas y veamos qué dice de nuestra amistad.\n\n${url}`,
-    family:`Tengo curiosidad por ver qué dice de nosotros 👀\nYa hice mi Warning Label. Haz tus 6 preguntas y comparemos nuestros resultados.\n\n${url}`,
-    partner:`Quiero saber qué tan bien nos leemos 👀\nYa hice mi Warning Label. Haz el tuyo y veamos qué dice de nosotros dos.\n\n${url}`,
-    work:`A ver qué tan bien funcionamos juntos 👀\nYa hice mi Warning Label. Haz tus 6 preguntas y comparemos cómo trabajamos.\n\n${url}`
+    friend:`A ver si de verdad me conoces 😏\nYa hice THE READ. Haz tus 6 preguntas y veamos qué dice de nuestra amistad.\n\n${url}`,
+    family:`Tengo curiosidad por ver qué dice de nosotros 👀\nYa hice THE READ. Haz tus 6 preguntas y comparemos nuestros resultados.\n\n${url}`,
+    partner:`Quiero saber qué tan bien nos leemos 👀\nYa hice THE READ. Haz el tuyo y veamos qué dice de nosotros dos.\n\n${url}`,
+    work:`A ver qué tan bien funcionamos juntos 👀\nYa hice THE READ. Haz tus 6 preguntas y comparemos cómo trabajamos.\n\n${url}`
   };
   const en={
-    friend:`Let’s see if you really know me 😏\nI did my Warning Label. Answer your 6 questions and let’s see what it says about our friendship.\n\n${url}`,
-    family:`I’m curious what this says about us 👀\nI did my Warning Label. Answer your 6 questions and let’s compare our results.\n\n${url}`,
-    partner:`I want to see how well we really read each other 👀\nI did my Warning Label. Take yours and let’s see what it says about us.\n\n${url}`,
-    work:`Let’s see how well we actually work together 👀\nI did my Warning Label. Answer your 6 questions and let’s compare how we work.\n\n${url}`
+    friend:`Let’s see if you really know me 😏\nI did THE READ. Answer your 6 questions and let’s see what it says about our friendship.\n\n${url}`,
+    family:`I’m curious what this says about us 👀\nI did THE READ. Answer your 6 questions and let’s compare our results.\n\n${url}`,
+    partner:`I want to see how well we really read each other 👀\nI did THE READ. Take yours and let’s see what it says about us.\n\n${url}`,
+    work:`Let’s see how well we actually work together 👀\nI did THE READ. Answer your 6 questions and let’s compare how we work.\n\n${url}`
   };
   return (lang==="es"?es:en)[rel]||(lang==="es"?es.friend:en.friend);
 }
@@ -932,7 +1235,7 @@ async function shareChallenge(){
   const url=makeChallengeUrl(),text=challengeInviteText(relationshipMode,url);
   if(navigator.share){
     try{
-      await navigator.share({title:"Warning Label Connection",text});
+      await navigator.share({title:"THE READ — Connection Read",text});
       gaEvent("connection_share",{method:"native",relation:relationshipMode,profile_key:PROFILE_KEYS[currentResult.idx]});
       $("connectionStatus").innerText=tx("shareDone");
       return
