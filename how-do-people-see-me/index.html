@@ -1,182 +1,73 @@
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
-  <title>How Do People See Me? Take the 6-Question Test | WARNING LABEL</title>
-
-  <meta name="description"
-        content="Wondering how other people see you? Learn what shapes first impressions, what people may misunderstand about you, and take a free 6-question self-awareness test.">
-
+  <meta name="theme-color" content="#f4eee5">
+  <title>How Do People See Me? | THE READ by Zelqoza</title>
+  <meta name="description" content="Wondering how other people see you? Learn what shapes first impressions, what people may misunderstand about you, and take THE READ, a free 6-question self-awareness test by Zelqoza.">
   <link rel="canonical" href="https://zelqoza.com/how-do-people-see-me/">
-
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zelqoza.com/how-do-people-see-me/">
-  <meta property="og:title" content="How Do People See Me? | WARNING LABEL">
-  <meta property="og:description"
-        content="See the impression you may be giving without realizing it. Take the 6-question WARNING LABEL test.">
-
+  <meta property="og:title" content="How Do People See Me? | THE READ by Zelqoza">
+  <meta property="og:description" content="See the impression you may be giving without realizing it. Take the 6-question THE READ test.">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="How Do People See Me? | WARNING LABEL">
-  <meta name="twitter:description"
-        content="See the impression you may be giving without realizing it.">
+  <meta name="twitter:title" content="How Do People See Me? | THE READ">
+  <meta name="twitter:description" content="See the impression you may be giving without realizing it.">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-47NGTFCD17"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());
+    gtag('config','G-47NGTFCD17');
+    function seoCTA(position){
+      try{gtag('event','seo_cta_click',{seo_page:'how_do_people_see_me',cta_position:position});}catch(e){}
+    }
+  </script>
 
   <style>
-    :root{
-      --bg:#f5efe6;
-      --card:#fffdf9;
-      --text:#181412;
-      --muted:#74675f;
-      --line:#dfd2c8;
-      --accent:#e6675c;
-      --dark:#1d1917;
-    }
-
+    :root{--bg:#f4eee5;--card:#fffdf9;--text:#171412;--muted:#756d66;--line:#dfd4c8;--accent:#e86b5f}
     *{box-sizing:border-box}
-
+    html{scroll-behavior:smooth}
     body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:Inter,Arial,sans-serif;
-      line-height:1.65;
+      margin:0;min-height:100vh;overflow-x:hidden;
+      background:
+        radial-gradient(circle at 12% 8%,rgba(232,107,95,.09),transparent 25rem),
+        radial-gradient(circle at 90% 35%,rgba(125,97,212,.055),transparent 28rem),
+        linear-gradient(180deg,#f7f2eb,var(--bg));
+      color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.65
     }
-
-    .wrap{
-      max-width:780px;
-      margin:auto;
-      padding:24px 18px 70px;
-    }
-
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:56px;
-    }
-
-    .brand{
-      font-weight:900;
-      letter-spacing:.08em;
-      font-size:14px;
-    }
-
-    .home{
-      color:var(--text);
-      text-decoration:none;
-      font-weight:700;
-      font-size:14px;
-    }
-
-    .eyebrow{
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      font-size:12px;
-      color:var(--muted);
-      font-weight:800;
-    }
-
-    h1{
-      font-size:clamp(42px,8vw,68px);
-      line-height:.96;
-      letter-spacing:-.055em;
-      margin:12px 0 20px;
-    }
-
-    .lead{
-      font-size:20px;
-      color:var(--muted);
-      max-width:680px;
-      margin-bottom:28px;
-    }
-
-    .cta{
-      display:block;
-      text-align:center;
-      background:var(--accent);
-      color:white;
-      text-decoration:none;
-      font-size:18px;
-      font-weight:900;
-      padding:18px 22px;
-      border-radius:16px;
-      margin:28px 0 12px;
-    }
-
-    .small{
-      text-align:center;
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    article{
-      margin-top:58px;
-    }
-
-    section{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:28px;
-      margin:20px 0;
-    }
-
-    h2{
-      font-size:29px;
-      line-height:1.12;
-      letter-spacing:-.035em;
-      margin:0 0 14px;
-    }
-
-    h3{
-      font-size:20px;
-      margin:24px 0 8px;
-    }
-
-    p{
-      margin:0 0 16px;
-    }
-
-    ul{
-      padding-left:22px;
-      margin:12px 0;
-    }
-
-    li{
-      margin:9px 0;
-    }
-
-    .callout{
-      background:var(--dark);
-      color:white;
-    }
-
-    .callout p{
-      color:#d9d2cd;
-    }
-
-    .callout .cta{
-      margin-bottom:0;
-    }
-
-    footer{
-      border-top:1px solid var(--line);
-      margin-top:48px;
-      padding-top:24px;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    footer a{
-      color:inherit;
-    }
-
-    @media(max-width:600px){
-      header{margin-bottom:42px}
-      section{padding:22px}
-      .lead{font-size:18px}
-    }
+    body:before{content:"";position:fixed;left:-220px;top:24vh;width:390px;height:390px;border-radius:50%;background:#ef8d7e;filter:blur(90px);opacity:.16;pointer-events:none;animation:drift 14s ease-in-out infinite alternate}
+    .wrap{position:relative;z-index:1;max-width:800px;margin:auto;padding:26px 18px 76px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:60px}
+    .lockup{display:flex;align-items:center;gap:10px}
+    .brand{font-size:13px;font-weight:950;letter-spacing:.16em}
+    .badge{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid rgba(23,20,18,.1);border-radius:999px;background:rgba(255,253,249,.72);font-size:10px;font-weight:950;letter-spacing:.12em}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(232,107,95,.32);animation:pulse 2.4s ease-out infinite}
+    .home{color:var(--text);text-decoration:none;font-weight:800;font-size:14px}
+    .eyebrow{text-transform:uppercase;letter-spacing:.145em;font-size:12px;color:var(--muted);font-weight:850}
+    h1{font-size:clamp(44px,8vw,68px);line-height:.96;letter-spacing:-.055em;margin:12px 0 20px;animation:rise .65s ease both}
+    .lead{font-size:20px;color:var(--muted);max-width:680px;margin-bottom:28px;animation:rise .7s .08s ease both}
+    .cta{position:relative;overflow:hidden;display:block;text-align:center;background:linear-gradient(135deg,var(--accent),#dd5d55);color:#fff;text-decoration:none;font-size:18px;font-weight:900;padding:18px 22px;border-radius:16px;margin:28px 0 12px;box-shadow:0 13px 32px rgba(173,73,65,.18);transition:.18s ease;animation:rise .7s .15s ease both}
+    .cta:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(173,73,65,.24)}
+    .small{text-align:center;color:var(--muted);font-size:12px}
+    article{margin-top:58px}
+    section{background:rgba(255,253,249,.92);border:1px solid var(--line);border-radius:22px;padding:28px;margin:20px 0;box-shadow:0 16px 50px rgba(61,46,35,.055)}
+    h2{font-size:29px;line-height:1.12;letter-spacing:-.035em;margin:0 0 14px}
+    h3{font-size:20px;margin:24px 0 8px}
+    p{margin:0 0 16px}
+    ul{padding-left:22px;margin:12px 0} li{margin:9px 0}
+    .callout{position:relative;overflow:hidden;background:linear-gradient(145deg,#171513,#24201e);color:#fff}
+    .callout:after{content:"THE READ";position:absolute;right:-7px;bottom:-20px;font-size:82px;font-weight:1000;letter-spacing:-.08em;color:rgba(255,255,255,.035)}
+    .callout p{color:#d9d2cd}.callout .cta{margin-bottom:0}
+    footer{border-top:1px solid var(--line);margin-top:48px;padding-top:24px;color:var(--muted);font-size:13px} footer a{color:inherit}
+    @keyframes rise{from{opacity:0;transform:translateY(14px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(232,107,95,.35)}72%{box-shadow:0 0 0 8px rgba(232,107,95,0)}100%{box-shadow:0 0 0 0 rgba(232,107,95,0)}}
+    @keyframes drift{to{transform:translate3d(35px,-20px,0) scale(1.08)}}
+    @media(max-width:600px){header{margin-bottom:44px}.lockup{gap:7px}.badge{font-size:9px;padding:6px 8px}section{padding:22px}.lead{font-size:18px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 
   <script type="application/ld+json">
@@ -185,12 +76,8 @@
     "@type":"WebPage",
     "name":"How Do People See Me?",
     "url":"https://zelqoza.com/how-do-people-see-me/",
-    "description":"A guide to understanding how other people may perceive you, with a 6-question self-awareness test.",
-    "isPartOf":{
-      "@type":"WebSite",
-      "name":"WARNING LABEL",
-      "url":"https://zelqoza.com/"
-    }
+    "description":"A guide to understanding how other people may perceive you, with THE READ, a 6-question self-awareness test by Zelqoza.",
+    "isPartOf":{"@type":"WebSite","name":"Zelqoza","url":"https://zelqoza.com/"}
   }
   </script>
 
@@ -199,93 +86,38 @@
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"How can I know how other people see me?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"You cannot know exactly what every person thinks, but you can look at the signals you tend to give through communication, reactions, social behavior, openness and consistency. The WARNING LABEL test uses six everyday situations to help you reflect on the impression you may be giving."
-        }
-      },
-      {
-        "@type":"Question",
-        "name":"Why might people see me differently than I see myself?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Other people experience your behavior rather than your intentions. Something that feels like independence to you may look distant to someone else, while careful observation may be interpreted as caution or intensity."
-        }
-      },
-      {
-        "@type":"Question",
-        "name":"Is WARNING LABEL a psychological assessment?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"No. WARNING LABEL is designed for self-reflection and entertainment and is not a clinical or psychological assessment."
-        }
-      }
+      {"@type":"Question","name":"How can I know how other people see me?","acceptedAnswer":{"@type":"Answer","text":"You cannot know exactly what every person thinks, but you can look at the signals you tend to give through communication, reactions, social behavior, openness and consistency. THE READ uses six everyday situations to help you reflect on the impression you may be giving."}},
+      {"@type":"Question","name":"Why might people see me differently than I see myself?","acceptedAnswer":{"@type":"Answer","text":"Other people experience your behavior rather than your intentions. Something that feels like independence to you may look distant to someone else, while careful observation may be interpreted as caution or intensity."}},
+      {"@type":"Question","name":"Is THE READ a psychological assessment?","acceptedAnswer":{"@type":"Answer","text":"No. THE READ is designed for self-reflection and entertainment and is not a clinical or psychological assessment."}}
     ]
   }
   </script>
 </head>
-
 <body>
   <main class="wrap">
-
     <header>
-      <div class="brand">WARNING LABEL</div>
-      <a class="home" href="https://zelqoza.com/">Take the test →</a>
+      <div class="lockup"><div class="brand">ZELQOZA</div><div class="badge"><span class="dot"></span>THE READ</div></div>
+      <a class="home" href="https://zelqoza.com/" onclick="seoCTA('header')">Take the test →</a>
     </header>
 
     <div class="eyebrow">Self-awareness · First impressions</div>
-
     <h1>How do people see me?</h1>
+    <p class="lead">You know what you mean. Other people only see what you show. That difference can completely change the impression you leave.</p>
 
-    <p class="lead">
-      You know what you mean. Other people only see what you show.
-      That difference can completely change the impression you leave.
-    </p>
-
-    <a class="cta" href="https://zelqoza.com/">
-      Take the 6-question test →
-    </a>
-
-    <div class="small">
-      About 30 seconds · Free result · No signup required
-    </div>
+    <a class="cta" href="https://zelqoza.com/" onclick="seoCTA('hero')">Take THE READ — 6 questions →</a>
+    <div class="small">About 30 seconds · Free result · No signup required</div>
 
     <article>
-
       <section>
         <h2>You experience your intentions. Other people experience your behavior.</h2>
-
-        <p>
-          That is one of the simplest reasons people can see us differently
-          from how we see ourselves.
-        </p>
-
-        <p>
-          You may think you are giving someone space. They may experience you
-          as distant. You may think you are being careful before trusting
-          someone. They may see you as hard to read. You may think you are
-          simply being direct. Someone else may experience that same behavior
-          as confidence — or intensity.
-        </p>
-
-        <p>
-          None of those interpretations automatically means something is
-          wrong. They are simply different views of the same behavior.
-        </p>
+        <p>That is one of the simplest reasons people can see us differently from how we see ourselves.</p>
+        <p>You may think you are giving someone space. They may experience you as distant. You may think you are being careful before trusting someone. They may see you as hard to read. You may think you are simply being direct. Someone else may experience that same behavior as confidence — or intensity.</p>
+        <p>None of those interpretations automatically means something is wrong. They are simply different views of the same behavior.</p>
       </section>
 
       <section>
         <h2>What shapes the way people perceive you?</h2>
-
-        <p>
-          People form impressions from patterns. They notice what you do when
-          plans change, when something feels uncomfortable, when you care
-          about someone, and when you enter a social situation.
-        </p>
-
+        <p>People form impressions from patterns. They notice what you do when plans change, when something feels uncomfortable, when you care about someone, and when you enter a social situation.</p>
         <ul>
           <li>How quickly you open up to people</li>
           <li>Whether you say what bothers you or keep it to yourself</li>
@@ -293,105 +125,41 @@
           <li>How strongly you notice small changes in other people</li>
           <li>How you behave around people you do not know well</li>
         </ul>
-
-        <p>
-          Over time, those small behaviors become the version of you that
-          other people learn to expect.
-        </p>
+        <p>Over time, those small behaviors become the version of you that other people learn to expect.</p>
       </section>
 
       <section>
         <h2>Why are first impressions sometimes wrong?</h2>
-
-        <p>
-          First impressions are fast. Context is slow.
-        </p>
-
-        <p>
-          A quiet person can initially seem uninterested and later be seen as
-          thoughtful. Someone socially adaptable can seem effortless while
-          privately paying very close attention to everyone in the room.
-          Someone who rarely asks for reassurance may appear extremely
-          independent even when relationships matter deeply to them.
-        </p>
-
-        <p>
-          This is why the most useful question is not simply
-          <strong>“What do people think of me?”</strong>
-          but also:
-          <strong>“What signals might I be giving them?”</strong>
-        </p>
+        <p>First impressions are fast. Context is slow.</p>
+        <p>A quiet person can initially seem uninterested and later be seen as thoughtful. Someone socially adaptable can seem effortless while privately paying very close attention to everyone in the room. Someone who rarely asks for reassurance may appear extremely independent even when relationships matter deeply to them.</p>
+        <p>This is why the most useful question is not simply <strong>“What do people think of me?”</strong> but also: <strong>“What signals might I be giving them?”</strong></p>
       </section>
 
       <section>
         <h2>What might people misunderstand about you?</h2>
-
-        <p>
-          Misunderstandings often happen when your intention and your visible
-          behavior tell two different stories.
-        </p>
-
-        <p>
-          Independence can look like distance. Humor can hide seriousness.
-          Observation can look like suspicion. Confidence can look like
-          indifference. Needing time before responding can look like avoiding
-          the conversation.
-        </p>
-
-        <p>
-          Understanding that gap does not mean changing your personality.
-          Sometimes simply making your intentions a little more visible is
-          enough.
-        </p>
+        <p>Misunderstandings often happen when your intention and your visible behavior tell two different stories.</p>
+        <p>Independence can look like distance. Humor can hide seriousness. Observation can look like suspicion. Confidence can look like indifference. Needing time before responding can look like avoiding the conversation.</p>
+        <p>Understanding that gap does not mean changing your personality. Sometimes simply making your intentions a little more visible is enough.</p>
       </section>
 
       <section class="callout">
         <h2>See the impression you may be giving.</h2>
-
-        <p>
-          WARNING LABEL uses six everyday situations to identify a pattern in
-          how you may come across to other people — including what they may
-          appreciate, what they may misread and what becomes clearer once
-          they know you better.
-        </p>
-
-        <a class="cta" href="https://zelqoza.com/">
-          What do people really think about you? →
-        </a>
+        <p>THE READ uses six everyday situations to identify a pattern in how you may come across to other people — including what they may appreciate, what they may misread and what becomes clearer once they know you better.</p>
+        <a class="cta" href="https://zelqoza.com/" onclick="seoCTA('article')">What do people really think about you? →</a>
       </section>
 
       <section>
         <h2>Frequently asked questions</h2>
-
         <h3>How can I know how other people see me?</h3>
-        <p>
-          You cannot know exactly what every person thinks. But you can examine
-          the patterns you consistently show through communication, reactions,
-          openness, social behavior and relationships.
-        </p>
-
+        <p>You cannot know exactly what every person thinks. But you can examine the patterns you consistently show through communication, reactions, openness, social behavior and relationships.</p>
         <h3>Why might people see me differently than I see myself?</h3>
-        <p>
-          Because you know your intentions while other people mostly observe
-          your behavior. The same action can therefore mean something
-          different from each perspective.
-        </p>
-
-        <h3>Is this a psychological assessment?</h3>
-        <p>
-          No. WARNING LABEL is for self-reflection and entertainment. It is
-          not a clinical or psychological assessment.
-        </p>
+        <p>Because you know your intentions while other people mostly observe your behavior. The same action can therefore mean something different from each perspective.</p>
+        <h3>Is THE READ a psychological assessment?</h3>
+        <p>No. THE READ is for self-reflection and entertainment. It is not a clinical or psychological assessment.</p>
       </section>
-
     </article>
 
-    <footer>
-      <strong>WARNING LABEL</strong><br>
-      A 30-second self-awareness test by
-      <a href="https://zelqoza.com/">Zelqoza</a>.
-    </footer>
-
+    <footer><strong>ZELQOZA · THE READ</strong><br>A 30-second self-awareness experience at <a href="https://zelqoza.com/">zelqoza.com</a>.</footer>
   </main>
 </body>
 </html>
