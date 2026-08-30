@@ -1218,19 +1218,22 @@ function createConnectionLink(){const url=makeChallengeUrl();$("connectionInput"
 async function copyConnectionLink(){const url=$("connectionInput").value||makeChallengeUrl();const text=challengeInviteText(relationshipMode,url);const ok=await copyText(text);$("connectionStatus").innerText=ok?tx("linkCopied"):"";if(ok)gaEvent("connection_share",{method:"copy_link",relation:relationshipMode,profile_key:PROFILE_KEYS[currentResult.idx]})}
 function challengeInviteText(rel,url){
   const es={
-    friend:`A ver si de verdad me conoces 😏\nYa hice THE READ. Haz tus 6 preguntas y veamos qué dice de nuestra amistad.\n\n${url}`,
-    family:`Tengo curiosidad por ver qué dice de nosotros 👀\nYa hice THE READ. Haz tus 6 preguntas y comparemos nuestros resultados.\n\n${url}`,
-    partner:`Quiero saber qué tan bien nos leemos 👀\nYa hice THE READ. Haz el tuyo y veamos qué dice de nosotros dos.\n\n${url}`,
-    work:`A ver qué tan bien funcionamos juntos 👀\nYa hice THE READ. Haz tus 6 preguntas y comparemos cómo trabajamos.\n\n${url}`
+    friend:`Hice THE READ 👀 Haz el tuyo y luego veamos cómo salimos como amigos.\n\n${url}`,
+    family:`Hice THE READ 👀 Haz el tuyo y luego veamos cómo nos compara.\n\n${url}`,
+    partner:`Hice THE READ 👀 Haz el tuyo y luego veamos qué dice de nosotros.\n\n${url}`,
+    work:`Hice THE READ 👀 Haz el tuyo y luego veamos cómo funcionamos juntos.\n\n${url}`
   };
+
   const en={
-    friend:`Let’s see if you really know me 😏\nI did THE READ. Answer your 6 questions and let’s see what it says about our friendship.\n\n${url}`,
-    family:`I’m curious what this says about us 👀\nI did THE READ. Answer your 6 questions and let’s compare our results.\n\n${url}`,
-    partner:`I want to see how well we really read each other 👀\nI did THE READ. Take yours and let’s see what it says about us.\n\n${url}`,
-    work:`Let’s see how well we actually work together 👀\nI did THE READ. Answer your 6 questions and let’s compare how we work.\n\n${url}`
+    friend:`I just did THE READ 👀 Take yours, then let’s see how we compare as friends.\n\n${url}`,
+    family:`I just did THE READ 👀 Take yours, then let’s see how we compare.\n\n${url}`,
+    partner:`I just did THE READ 👀 Take yours, then let’s see what it says about us.\n\n${url}`,
+    work:`I just did THE READ 👀 Take yours, then let’s see how we work together.\n\n${url}`
   };
-  return (lang==="es"?es:en)[rel]||(lang==="es"?es.friend:en.friend);
+
+return (lang==="es"?es:en)[rel]||(lang==="es"?es.friend:en.friend);
 }
+
 async function shareChallenge(){
   const url=makeChallengeUrl(),text=challengeInviteText(relationshipMode,url);
   if(navigator.share){
