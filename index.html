@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -620,6 +621,8 @@ body::after{right:-280px;top:48vh;background:#a18de2;animation-delay:-7s}
 .gatePrice strong{font-size:29px;letter-spacing:-.03em}
 .gatePanel .primary{margin-top:3px}
 .gateTrust{margin:10px 0 0;text-align:center;color:#aaa29d;font-size:11px;line-height:1.45}
+.gateLegal{margin:7px auto 0;max-width:520px;text-align:center;color:#8f8782;font-size:9px;line-height:1.45}
+.gateLegal a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 body.gate-open{overflow:hidden}
 @keyframes gateFade{from{opacity:0}to{opacity:1}}
 @keyframes gateIn{from{opacity:0;transform:translateY(16px) scale(.975)}to{opacity:1;transform:translateY(0) scale(1)}}
@@ -886,6 +889,7 @@ body.gate-open{overflow:hidden}
     <div class="gatePrice"><span id="gatePriceLabel"></span><strong>~US$1</strong></div>
     <button id="gateUnlockBtn" class="primary" onclick="unlockDeepRead()"></button>
     <p id="gateTrust" class="gateTrust"></p>
+    <p id="gateLegal" class="gateLegal"></p>
   </div>
 </div>
 
@@ -1118,6 +1122,7 @@ function gateCopy(){
     price:"PRECIO DE LANZAMIENTO",
     unlock:"Revelar mi Read completo →",
     trust:"Pago único · Acceso inmediato · Checkout seguro con Stripe",
+    legal:`Al continuar, aceptas los <a href="/terms/" target="_blank" rel="noopener">Términos</a> y reconoces el <a href="/privacy/" target="_blank" rel="noopener">Aviso de Privacidad</a> y la <a href="/refunds/" target="_blank" rel="noopener">Política de Reembolsos</a>.`,
     teaserKicker:"TU READ ESTÁ LISTO",
     teaserTitle:"Hay un patrón que sobresalió en tus respuestas.",
     teaserText:"Tu lectura completa muestra qué señal das sin darte cuenta y qué suelen interpretar mal los demás.",
@@ -1136,6 +1141,7 @@ function gateCopy(){
     price:"LAUNCH PRICE",
     unlock:"Reveal my full Read →",
     trust:"One-time payment · Instant access · Secure Stripe checkout",
+    legal:`By continuing, you agree to the <a href="/terms/" target="_blank" rel="noopener">Terms</a> and acknowledge the <a href="/privacy/" target="_blank" rel="noopener">Privacy Notice</a> and <a href="/refunds/" target="_blank" rel="noopener">Refund Policy</a>.`,
     teaserKicker:"YOUR READ IS READY",
     teaserTitle:"One pattern stood out in your answers.",
     teaserText:"Your full Read shows the signal you may be giving without realizing it — and what people tend to get wrong.",
@@ -1151,6 +1157,7 @@ function updateGateCopy(){
   if($("gatePriceLabel"))$("gatePriceLabel").innerText=c.price;
   if($("gateUnlockBtn"))$("gateUnlockBtn").innerText=c.unlock;
   if($("gateTrust"))$("gateTrust").innerText=c.trust;
+  if($("gateLegal"))$("gateLegal").innerHTML=c.legal;
   if($("lockedTeaserKicker"))$("lockedTeaserKicker").innerText=c.teaserKicker;
   if($("lockedTeaserTitle"))$("lockedTeaserTitle").innerText=c.teaserTitle;
   if($("lockedTeaserText"))$("lockedTeaserText").innerText=c.teaserText;
@@ -1263,36 +1270,64 @@ function render(){
 }
 function applyWeights(w,m=1){Object.keys(w).forEach(k=>traits[k]+=w[k]*m)}
 function choose(w){
-  if(!quizStarted){quizStarted=true;gaEvent("quiz_start",{entry_type:analyticsEntryType()})}
+  if(!quizStarted){
+    quizStarted=true;
+    clearPendingDeepRead();
+    clearVerifiedDeepReadAccess();
+    gaEvent("quiz_start",{entry_type:analyticsEntryType()});
+  }
   gaEvent("quiz_question_answer",{question_number:i+1,entry_type:analyticsEntryType()});
   historyAnswers.push({...w});applyWeights(w);i++;i<QUIZ[lang].length?render():finish()
 }
 function selectProfile(){if(traits.regulation>=3&&traits.directness<=0)return 0;if(traits.attachment>=2&&traits.directness<=0)return 1;if(traits.social>=3&&traits.regulation<=1)return 2;if(traits.attachment<=-3)return 3;if(traits.directness>=4)return 4;if(traits.regulation<=-2&&traits.social<=1)return 5;if(traits.social>=2&&traits.openness>=1)return 6;return 7}
 function finish(){
-  $("quiz").classList.add("hidden");$("result").classList.remove("hidden");
-  const resultCard=$("result").querySelector(".card");
-  if(resultCard){
-    resultCard.classList.remove("result-enter");
-    void resultCard.offsetWidth;
-    resultCard.classList.add("result-enter");
-  }
+  $("quiz").classList.add("hidden");
+
   const idx=selectProfile();
-  applyResult(idx,0,{...traits});
+  currentResult={idx,pct:0,traits:{...traits}};
   const entryType=analyticsEntryType();
+
   gaEvent("quiz_complete",{entry_type:entryType,profile_key:PROFILE_KEYS[idx]});
+
   if(activeChallenge){
+    // A Connection Read was already included in the sender's paid purchase.
+    // The recipient may see their individual result before comparing.
+    $("result").classList.remove("result-locked");
+    $("result").classList.remove("hidden");
+    applyResult(idx,0,{...traits});
+
+    const resultCard=$("result").querySelector(".card");
+    if(resultCard){
+      resultCard.classList.remove("result-enter");
+      void resultCard.offsetWidth;
+      resultCard.classList.add("result-enter");
+    }
+
     gaEvent("result_view",{entry_type:entryType,profile_key:PROFILE_KEYS[idx]});
     gaEvent("connection_test_complete",{relation:activeChallenge.rel,profile_key:PROFILE_KEYS[idx]});
     connectionRevealed=false;
     $("connectionDivider").classList.add("hidden");
     $("connectionAuto").classList.add("hidden");
     $("paywall").classList.add("hidden");
-    $("result").classList.remove("result-locked");
     showIncomingConnectionCTA();
   }else{
-    history.replaceState(null,"",getShareUrl());
+    // STRICT PAYWALL:
+    // Do not populate the full result at all until Stripe verifies payment.
+    // Even if CSS fails or the paywall is closed, the result content is not in the DOM.
+    $("result").classList.add("result-locked");
+    $("result").classList.remove("hidden");
+    $("report").classList.add("hidden");
+    $("connectionDivider").classList.add("hidden");
+    $("connectionAuto").classList.add("hidden");
+    if($("incomingConnectionCTA"))$("incomingConnectionCTA").classList.add("hidden");
+
+    // Keep the URL clean so an unpaid result/profile is not encoded in the address bar.
+    history.replaceState(null,"",base());
+
+    updateGateCopy();
     showResultGate();
   }
+
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function applyResult(idx,pct,tdata){currentResult={idx,pct:Math.min(99,pct),traits:tdata||currentResult.traits};const p=profile(idx);renderPerception(currentResult.idx);ensureScoreCaptions();$("label").innerText=$("shareLabel").innerText=p[0];$("tag").innerText=$("shareTag").innerText=p[1]}
@@ -1328,6 +1363,9 @@ function unlockDeepRead(){
 }
 
 function showDeepRead(fromCheckout=false){
+  // Full individual result is rendered only after verified payment
+  // (or for an already-paid incoming Connection Read flow).
+  applyResult(currentResult.idx,0,currentResult.traits);
   unlockResultUI();
   if($("paywall"))$("paywall").classList.add("hidden");
   const p=profile(currentResult.idx);$("report").classList.remove("hidden");$("report").classList.remove("deep-enter");void $("report").offsetWidth;$("report").classList.add("deep-enter");$("reportTitle").innerText=p[0];$("reportTag").innerText=p[1];
@@ -1340,6 +1378,7 @@ function showDeepRead(fromCheckout=false){
     $("unlockBtn").innerText=lang==="es"?"Pago verificado ✓":"Payment verified ✓";
     $("previewNote").innerText=lang==="es"?"Pago verificado por Stripe.":"Payment verified by Stripe.";
   }
+  history.replaceState(null,"",getShareUrl());
   $("report").scrollIntoView({behavior:"smooth"});
 }
 
@@ -1368,7 +1407,7 @@ function restorePendingResult(pending){
   $("gateOverlay").classList.add("hidden");
   document.body.classList.remove("gate-open");
   applyLanguage();
-  applyResult(currentResult.idx,0,currentResult.traits);
+  updateGateCopy();
   initChallengeBanner();
   initSharedResultBanner();
   updatePreview(relationshipMode);
@@ -1445,7 +1484,8 @@ async function restoreDeepReadAfterCheckout(){
     presentment_currency:verification.presentment_currency||null
   });
 
-  saveVerifiedDeepReadAccess(sessionId);
+  // Do not turn one purchase into a permanent bypass for future tests.
+  clearVerifiedDeepReadAccess();
   showDeepRead(true);
   clearPendingDeepRead();
   history.replaceState(null,"",base());
@@ -2048,6 +2088,7 @@ function renderConnection(c){
 
 function restartTest(){
   clearPendingDeepRead();
+  clearVerifiedDeepReadAccess();
   unlockResultUI();
   if($("paywall"))$("paywall").classList.remove("hidden");
   $("report").classList.add("hidden");
@@ -2070,7 +2111,9 @@ function restartTest(){
     if(await restoreDeepReadAfterCheckout())return;
   }
 
-  if(await restoreVerifiedDeepReadAccess())return;
+  // Never auto-unlock an old purchase on a fresh homepage visit.
+  // A new direct visit always starts a new, locked quiz.
+  clearVerifiedDeepReadAccess();
 
   const fromUrl=readChallengeFromUrl();
   sharedProfile=readSharedProfileFromUrl();
@@ -2106,6 +2149,17 @@ function restartTest(){
   <span> · </span>
   <a href="/first-impression-test/" style="color:inherit;">First impression test</a>
 </nav>
+
+
+<footer style="max-width:760px;margin:0 auto 18px;padding:8px 16px;text-align:center;font-size:10px;line-height:1.5;color:#8a817a;">
+  <a href="/privacy/" style="color:inherit;text-decoration:none;">Privacy</a>
+  <span> · </span>
+  <a href="/terms/" style="color:inherit;text-decoration:none;">Terms</a>
+  <span> · </span>
+  <a href="/refunds/" style="color:inherit;text-decoration:none;">Refunds</a>
+  <span> · </span>
+  <span>THE READ is for self-reflection and entertainment.</span>
+</footer>
 
 </body>
 </html>
