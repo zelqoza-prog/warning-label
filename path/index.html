@@ -1,0 +1,1165 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071522">
+<meta property="og:title" content="ZELQOZA — THE PATH">
+<meta property="og:description" content="Your life is already heading somewhere. See where.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zelqoza.com/path/">
+<meta name="twitter:card" content="summary">
+<title>ZELQOZA — THE PATH</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071522'/%3E%3Cpath d='M15 45c10-3 12-24 34-27' stroke='%235de2c4' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3Cpath d='M39 12l11 6-9 9' fill='none' stroke='%235de2c4' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<style>
+:root{
+  --bg:#071522;
+  --bg2:#0b1d2b;
+  --card:#0d2433;
+  --card2:#102a3b;
+  --text:#f4f8f7;
+  --muted:#9ab0b8;
+  --line:#1c3b4c;
+  --accent:#5de2c4;
+  --accent2:#8bf4dc;
+  --dark:#061018;
+  --warn:#ffd479;
+  --good:#7df0ae;
+  --shadow:0 22px 60px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 76% 0%,rgba(93,226,196,.13),transparent 30%),
+    radial-gradient(circle at 10% 40%,rgba(67,132,255,.09),transparent 33%),
+    linear-gradient(180deg,var(--bg),#06111a 72%);
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+.wrap{max-width:720px;margin:auto;padding:22px 17px 70px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-weight:950;letter-spacing:.11em;font-size:13px;color:#fff}
+.brand span{color:var(--accent)}
+.productPill{
+  display:inline-flex;align-items:center;gap:7px;margin-top:12px;
+  font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)
+}
+.productPill:before{content:"";width:18px;height:2px;background:var(--accent);border-radius:999px}
+.langs{display:flex;gap:6px}
+.langbtn{
+  width:auto;border:1px solid var(--line);background:#0b2130;color:#89a2ab;
+  padding:8px 11px;border-radius:10px;font-size:12px;font-weight:850
+}
+.langbtn.active{background:var(--accent);color:#052118;border-color:var(--accent)}
+.hero{padding:62px 0 30px}
+.eyebrow{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+h1{font-size:53px;line-height:.97;letter-spacing:-.05em;margin:12px 0 17px;max-width:650px}
+p{font-size:17px;line-height:1.52;color:var(--muted)}
+.hero p{max-width:580px}
+.primary,.secondary,.option,.backbtn,.sharebtn{
+  width:100%;border-radius:16px;border:1px solid transparent;padding:16px 17px;font-weight:900;font-size:16px
+}
+.primary{
+  background:linear-gradient(135deg,var(--accent),#66d4ff);
+  color:#04191a;box-shadow:0 11px 28px rgba(93,226,196,.16)
+}
+.primary:hover{filter:brightness(1.035)}
+.secondary{background:#0c2230;color:#fff;border-color:#224354}
+.mini{font-size:12px;line-height:1.45;color:#78909a}
+.hero .mini{text-align:center;margin-top:11px}
+.card,.section{
+  background:linear-gradient(180deg,rgba(16,42,59,.96),rgba(11,31,44,.96));
+  border:1px solid var(--line);border-radius:25px;padding:23px;box-shadow:var(--shadow)
+}
+.section{border-radius:19px;padding:19px;margin-top:12px;box-shadow:none}
+.hidden{display:none!important}
+.backbar{display:flex;margin:8px 0 11px}
+.backbtn{
+  width:auto;padding:9px 12px;background:#0d2230;color:#dce9ec;border-color:#214252;font-size:13px;border-radius:11px
+}
+.progress{height:5px;background:#102e40;border-radius:999px;overflow:hidden;margin:18px 0}
+.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#6dcaff);transition:width .25s ease}
+.qnum{font-size:11px;color:#78909a;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.question{font-size:26px;line-height:1.08;font-weight:950;letter-spacing:-.025em;margin:9px 0 17px}
+.option{
+  display:block;text-align:left;margin:9px 0;padding:15px 15px;
+  background:#0b1d2a;color:#f3f8f9;border-color:#1b3b4c;font-size:15px
+}
+.option:hover{border-color:var(--accent);background:#0d2734}
+.result{text-align:center}
+.pathMark{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid rgba(93,226,196,.45);
+  border-radius:999px;color:var(--accent);font-size:11px;font-weight:950;letter-spacing:.1em;text-transform:uppercase
+}
+.trajectory{
+  font-size:75px;line-height:.93;font-weight:950;letter-spacing:-.065em;margin:19px 0 4px;
+  background:linear-gradient(135deg,#fff,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent
+}
+.trajectoryLabel{font-size:29px;line-height:1;font-weight:950;letter-spacing:-.035em;margin:7px 0 11px}
+.tag{color:#cfe0e4;font-size:17px;line-height:1.48}
+.teaser{
+  margin-top:20px;padding:20px;border:1px solid #24495a;border-radius:19px;text-align:left;
+  background:radial-gradient(circle at 100% 0%,rgba(255,212,121,.09),transparent 36%),#091c28
+}
+.teaser .kicker{font-size:10px;font-weight:950;letter-spacing:.11em;color:var(--warn);text-transform:uppercase}
+.teaser h3{font-size:23px;line-height:1.08;margin:8px 0 8px}
+.teaser p{font-size:14px;margin:0;color:#bbccd0}
+.lockrow{
+  margin-top:13px;padding:13px 14px;border-radius:13px;background:#07151f;border:1px solid #1d3947;
+  display:flex;align-items:center;justify-content:space-between;gap:12px
+}
+.lockrow span{font-size:13px;color:#b8c9cd;font-weight:800;text-align:left}
+.blur{filter:blur(5px);user-select:none;color:var(--accent)}
+.paywall{
+  margin-top:16px;border-top:1px solid #18394a;padding-top:17px;text-align:left
+}
+.paywall h3{font-size:24px;margin:0 0 6px}
+.paywall p{font-size:14px;margin:0 0 13px}
+.paylist{display:grid;gap:8px;margin-bottom:14px}
+.payitem{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:#c8d7db}
+.payitem b{color:var(--accent)}
+.priceNote{text-align:center;margin-top:8px;font-size:11px;color:#6f8993}
+.report{text-align:left;margin-top:20px}
+.reportHero{
+  position:relative;overflow:hidden;padding:25px;border:1px solid #245064;border-radius:24px;
+  background:
+    radial-gradient(circle at 90% 0%,rgba(93,226,196,.18),transparent 38%),
+    linear-gradient(145deg,#0b2230,#0e3040)
+}
+.reportHero:after{
+  content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(93,226,196,.13);
+  border-radius:50%;right:-150px;top:-115px
+}
+.reportKicker{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:950;color:var(--accent)}
+.reportTitle{font-size:36px;font-weight:950;letter-spacing:-.04em;margin:8px 0 8px;line-height:1}
+.reportTag{font-size:15px;line-height:1.45;color:#d7e5e7;max-width:560px}
+.metricGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:17px}
+.metric{background:rgba(4,18,27,.6);border:1px solid #234454;border-radius:14px;padding:14px}
+.metric span{display:block;color:#7e9ca6;text-transform:uppercase;letter-spacing:.08em;font-size:9px;font-weight:900}
+.metric b{display:block;margin-top:5px;font-size:18px;line-height:1.2}
+.section h3{font-size:20px;margin:0 0 7px;line-height:1.08}
+.section p{font-size:14px;margin:0;color:#afc1c7}
+.areaRows{display:grid;gap:10px;margin-top:13px}
+.area{
+  background:#081a25;border:1px solid #193947;border-radius:15px;padding:13px
+}
+.areaTop{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.areaTop b{font-size:13px}.areaTop span{font-size:12px;font-weight:900}
+.track{height:7px;background:#153140;border-radius:999px;overflow:hidden;margin-top:8px}
+.fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),#6dcaff)}
+.area p{margin-top:7px!important;font-size:12px!important}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}
+.year{padding:12px 8px;border:1px solid #1d4151;border-radius:13px;background:#081b27;min-height:91px}
+.year span{font-size:10px;color:#78949e;display:block}
+.year b{font-size:12px;line-height:1.25;display:block;margin-top:7px}
+.changeBox{
+  margin-top:12px;padding:18px;border-radius:17px;background:rgba(93,226,196,.08);border:1px solid rgba(93,226,196,.28)
+}
+.changeBox .eyebrow{font-size:9px}.changeBox b{display:block;font-size:21px;line-height:1.16;margin-top:7px}
+.sharecard{
+  margin-top:18px;text-align:left;border-radius:21px;padding:22px;color:#041a1b;
+  background:linear-gradient(145deg,#b9ffeb,#75dbe9)
+}
+.sharecard .smalltop{font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;opacity:.65}
+.sharecard .shareScore{font-size:59px;line-height:.92;font-weight:950;letter-spacing:-.06em;margin-top:20px}
+.sharecard .shareLabel{font-size:25px;font-weight:950;margin-top:6px}
+.sharecard .shareRisk{font-size:13px;line-height:1.4;margin-top:11px;font-weight:700}
+.sharecard .brandline{font-size:10px;font-weight:950;letter-spacing:.12em;margin-top:24px}
+.sharemenu{display:none;margin-top:9px;padding:11px;background:#081a25;border:1px solid #1a3b4a;border-radius:16px}
+.sharemenu.show{display:block}
+.sharegrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.sharebtn{padding:12px;background:#0c2634;color:#fff;border-color:#214656;border-radius:12px;font-size:12px}
+.status{font-size:11px;color:var(--good);margin-top:8px;text-align:center;min-height:16px}
+.footer{padding:37px 0 5px;text-align:center}
+.footer a{font-size:10px;color:#718b94;text-decoration:none;margin:0 7px}
+.footer a:hover{color:#c4d5da}
+.footer .legal{font-size:9px;color:#536c76;margin-top:9px;line-height:1.5}
+
+.sharedInvite{
+  display:none;
+  margin:20px 0 4px;
+  padding:15px 16px;
+  border-radius:16px;
+  border:1px solid rgba(93,226,196,.32);
+  background:rgba(93,226,196,.07);
+}
+.sharedInvite.show{display:block}
+.sharedInvite .small{
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
+.sharedInvite .sharedMain{
+  margin-top:6px;
+  font-size:16px;
+  line-height:1.35;
+  color:#e8f4f5;
+  font-weight:850;
+}
+.sharedInvite .sharedMain b{color:#fff}
+.sharedInvite .sharedCTA{
+  margin-top:5px;
+  font-size:12px;
+  color:#9fb7be;
+}
+
+@media(max-width:600px){
+  .wrap{padding-left:14px;padding-right:14px}
+  .hero{padding-top:49px}
+  h1{font-size:43px}
+  .card{padding:19px}
+  .trajectory{font-size:67px}
+  .trajectoryLabel{font-size:27px}
+  .question{font-size:24px}
+  .metricGrid{grid-template-columns:1fr 1fr}
+  .timeline{grid-template-columns:1fr 1fr}
+}
+@media(max-width:380px){
+  h1{font-size:39px}
+  .trajectory{font-size:61px}
+}
+</style>
+
+<!-- Google Analytics 4 — ZELQOZA -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-47NGTFCD17"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-47NGTFCD17');
+</script>
+</head>
+
+<body>
+<div id="testBadge" style="position:fixed;right:10px;bottom:10px;z-index:9999;background:#ffd479;color:#071522;font-weight:950;font-size:10px;letter-spacing:.08em;padding:7px 9px;border-radius:9px;box-shadow:0 8px 24px rgba(0,0,0,.25)">TEST MODE · PAYWALL OFF</div>
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <div class="brand">ZELQOZA</div>
+      <div class="productPill">THE PATH</div>
+    </div>
+    <div class="langs">
+      <button id="enBtn" class="langbtn" onclick="setLanguage('en')">EN</button>
+      <button id="esBtn" class="langbtn" onclick="setLanguage('es')">ES</button>
+    </div>
+  </div>
+
+  <section id="quiz">
+    <div class="hero" style="padding-bottom:18px">
+      <div id="eyebrow" class="eyebrow"></div>
+      <h1 id="headline" style="margin-bottom:10px"></h1>
+      <p id="subhead" style="margin-bottom:0"></p>
+    </div>
+
+    <div id="sharedInvite" class="sharedInvite">
+      <div id="sharedSmall" class="small"></div>
+      <div id="sharedMain" class="sharedMain"></div>
+      <div id="sharedCTA" class="sharedCTA"></div>
+    </div>
+
+    <div class="backbar"><button id="quizBack" class="backbtn" onclick="goBack()"></button></div>
+    <div class="progress"><div id="bar" class="bar"></div></div>
+    <div class="card">
+      <div id="qnum" class="qnum"></div>
+      <div id="question" class="question"></div>
+      <div id="options"></div>
+    </div>
+  </section>
+
+  <section id="result" class="result hidden">
+    <div class="backbar"><button id="resultBack" class="backbtn" onclick="goBack()"></button></div>
+    <div class="card">
+      <div class="pathMark">ZELQOZA · THE PATH</div>
+      <div id="actualResultHeader" class="hidden">
+        <div id="trajectory" class="trajectory"></div>
+        <div id="trajectoryLabel" class="trajectoryLabel"></div>
+        <div id="resultTag" class="tag"></div>
+      </div>
+
+      <div class="teaser">
+        <div id="teaserKicker" class="kicker"></div>
+        <h3 id="teaserTitle"></h3>
+        <p id="teaserText"></p>
+
+        <div class="lockrow">
+          <span id="hiddenAreaLabel"></span>
+          <strong>🔒 <span class="blur">XXXXX</span></strong>
+        </div>
+
+        <div class="paywall" id="paywall">
+          <h3 id="payTitle"></h3>
+          <p id="payCopy"></p>
+          <div class="paylist">
+            <div class="payitem"><b>✓</b><span id="payA"></span></div>
+            <div class="payitem"><b>✓</b><span id="payB"></span></div>
+            <div class="payitem"><b>✓</b><span id="payC"></span></div>
+            <div class="payitem"><b>✓</b><span id="payD"></span></div>
+          </div>
+          <button id="unlockBtn" class="primary" onclick="unlockPath()"></button>
+          <div id="priceNote" class="priceNote"></div>
+        </div>
+      </div>
+
+      <div id="report" class="report hidden">
+        <div class="reportHero">
+          <div id="reportKicker" class="reportKicker"></div>
+          <div id="reportTitle" class="reportTitle"></div>
+          <div id="reportTag" class="reportTag"></div>
+
+          <div class="metricGrid">
+            <div class="metric"><span id="m1l"></span><b id="m1v"></b></div>
+            <div class="metric"><span id="m2l"></span><b id="m2v"></b></div>
+            <div class="metric"><span id="m3l"></span><b id="m3v"></b></div>
+            <div class="metric"><span id="m4l"></span><b id="m4v"></b></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3 id="areasTitle"></h3>
+          <p id="areasIntro"></p>
+          <div id="areaRows" class="areaRows"></div>
+        </div>
+
+        <div class="section">
+          <h3 id="blindTitle"></h3>
+          <p id="blindText"></p>
+        </div>
+
+        <div class="section">
+          <h3 id="timelineTitle"></h3>
+          <p id="timelineIntro"></p>
+          <div id="timeline" class="timeline"></div>
+        </div>
+
+        <div class="section">
+          <h3 id="changeTitle"></h3>
+          <p id="changeIntro"></p>
+          <div class="changeBox">
+            <div id="changeKicker" class="eyebrow"></div>
+            <b id="changeText"></b>
+          </div>
+        </div>
+
+        <div class="sharecard">
+          <div class="smalltop">MY ZELQOZA PATH</div>
+          <div id="shareScore" class="shareScore"></div>
+          <div id="shareLabel" class="shareLabel"></div>
+          <div id="shareRisk" class="shareRisk"></div>
+          <div class="brandline">ZELQOZA · THE PATH</div>
+        </div>
+
+        <button id="shareBtn" class="secondary" style="margin-top:10px" onclick="toggleShare()"></button>
+        <div id="shareMenu" class="sharemenu">
+          <div class="sharegrid">
+            <button id="copyBtn" class="sharebtn" onclick="copyResult()"></button>
+            <button id="waBtn" class="sharebtn" onclick="shareWhatsApp()"></button>
+            <button id="moreBtn" class="sharebtn" onclick="nativeShare()"></button>
+            <button id="againBtn" class="sharebtn" onclick="restartTest()"></button>
+          </div>
+          <div id="shareStatus" class="status"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <a id="termsLink" href="/terms.html"></a>
+    <a id="privacyLink" href="/privacy.html"></a>
+    <div id="footerLegal" class="legal"></div>
+  </footer>
+</div>
+
+<script>
+/*
+  ZELQOZA — THE PATH
+  Static GitHub Pages version.
+
+  IMPORTANT BEFORE LIVE LAUNCH:
+  Replace STRIPE_PATH_URL with the LIVE $1 / localized-price Stripe link
+  for The Path. The test URL below is intentionally inherited from the
+  prior Zelqoza checkout mechanics so the flow can be tested immediately.
+*/
+const GA_MEASUREMENT_ID="G-47NGTFCD17";
+const TESTING_MODE=true; // TEMPORARY: set false when reconnecting Stripe
+const STRIPE_PATH_URL="https://buy.stripe.com/test_9B64gz0wMgA62pD4mPds400";
+const PATH_STORAGE_KEY="zelqoza_pending_path_v1";
+const LANG_KEY="zelqoza_lang";
+
+const TXT={
+en:{
+  eyebrow:"THE PATH · 6 QUESTIONS",
+  headline:"Your life is already heading somewhere.",
+  subhead:"Answer honestly. See where your current choices are taking you if nothing changes.",
+  start:"See my path →",
+  disclaimer:"For self-reflection and entertainment — not a prediction, diagnosis, or financial advice.",
+  back:"← Back",
+  q:(n,t)=>`QUESTION ${n} OF ${t}`,
+  teaserKicker:"YOUR PATH IS READY",
+  lockedTitle:"Your answers revealed a clear pattern.",
+  lockedText:"Your complete Path shows where your current choices are taking you, what is creating the most drag, and the one change most likely to shift your direction.",
+  hiddenArea:"Your 3-year trajectory",
+  payTitle:"See your complete 3-year Path",
+  payCopy:"Find the part of your life creating drag, your strongest momentum, and the one change most likely to shift your direction.",
+  payA:"Your strongest and weakest life areas",
+  payB:"The pattern most likely to slow you down",
+  payC:"Your 2026 → 2029 trajectory",
+  payD:"The one change with the highest leverage",
+  unlock:"Unlock my Path — TEST MODE",
+  priceNote:"Testing mode: payment is temporarily disabled.",
+  reportKicker:"YOUR COMPLETE PATH",
+  areasTitle:"Where your momentum is actually going",
+  areasIntro:"Your answers point to four different forces. They are not all moving at the same speed.",
+  blindTitle:"The pattern that can quietly derail you",
+  timelineTitle:"If nothing important changes",
+  timelineIntro:"Not a prediction — a projection of the direction your current answers imply.",
+  changeTitle:"The highest-leverage change",
+  changeIntro:"If you changed only one thing, this is the move most likely to alter your trajectory.",
+  changeKicker:"YOUR NEXT MOVE",
+  m1:"Overall direction",m2:"Strongest area",m3:"Biggest drag",m4:"Decision style",
+  share:"Share my Path",copy:"🔗 Copy result",wa:"💬 WhatsApp",more:"↗ More",again:"↻ Again",
+  copied:"Result copied ✓",shared:"Shared ✓",
+  terms:"Terms",privacy:"Privacy",
+  legal:"© Zelqoza · Digital self-reflection experience.",
+  sharedSmall:"SHARED WITH YOU",
+  sharedMain:(score,label)=>`Someone shared their Path: ${score}% · ${label}`,
+  sharedCTA:"Now discover where yours is heading."
+},
+es:{
+  eyebrow:"THE PATH · 6 PREGUNTAS",
+  headline:"Tu vida ya va hacia algún lugar.",
+  subhead:"Responde con honestidad. Descubre hacia dónde te están llevando tus decisiones actuales si nada cambia.",
+  start:"Ver mi camino →",
+  disclaimer:"Para reflexión personal y entretenimiento — no es una predicción, diagnóstico ni consejo financiero.",
+  back:"← Regresar",
+  q:(n,t)=>`PREGUNTA ${n} DE ${t}`,
+  teaserKicker:"TU PATH ESTÁ LISTO",
+  lockedTitle:"Tus respuestas revelaron un patrón claro.",
+  lockedText:"Tu Path completo muestra hacia dónde te están llevando tus decisiones actuales, qué está generando el mayor freno y cuál es el cambio con más probabilidad de mover tu dirección.",
+  hiddenArea:"Tu trayectoria a 3 años",
+  payTitle:"Ve tu Path completo a 3 años",
+  payCopy:"Descubre qué parte de tu vida está generando fricción, dónde tienes mayor impulso y cuál es el cambio con más probabilidad de mover tu dirección.",
+  payA:"Tus áreas más fuerte y más débil",
+  payB:"El patrón que más puede frenarte",
+  payC:"Tu trayectoria 2026 → 2029",
+  payD:"El cambio con mayor impacto",
+  unlock:"Desbloquear mi Path — MODO PRUEBA",
+  priceNote:"Modo prueba: el pago está desactivado temporalmente.",
+  reportKicker:"TU PATH COMPLETO",
+  areasTitle:"Hacia dónde está yendo realmente tu impulso",
+  areasIntro:"Tus respuestas muestran cuatro fuerzas distintas. No todas están avanzando a la misma velocidad.",
+  blindTitle:"El patrón que puede desviarte sin darte cuenta",
+  timelineTitle:"Si nada importante cambia",
+  timelineIntro:"No es una predicción — es una proyección de la dirección que sugieren tus respuestas actuales.",
+  changeTitle:"El cambio con mayor impacto",
+  changeIntro:"Si cambiaras una sola cosa, éste sería el movimiento con mayor probabilidad de alterar tu trayectoria.",
+  changeKicker:"TU SIGUIENTE MOVIMIENTO",
+  m1:"Dirección general",m2:"Área más fuerte",m3:"Mayor freno",m4:"Estilo de decisión",
+  share:"Compartir mi Path",copy:"🔗 Copiar resultado",wa:"💬 WhatsApp",more:"↗ Más",again:"↻ Repetir",
+  copied:"Resultado copiado ✓",shared:"Compartido ✓",
+  terms:"Términos",privacy:"Privacidad",
+  legal:"© Zelqoza · Experiencia digital de reflexión personal.",
+  sharedSmall:"TE COMPARTIERON UN PATH",
+  sharedMain:(score,label)=>`Alguien te compartió su Path: ${score}% · ${label}`,
+  sharedCTA:"Ahora descubre hacia dónde va el tuyo."
+}};
+
+const QUIZ={
+en:[
+["Compared with one year ago, your life feels…",[
+  ["Clearly moving forward",{momentum:3,clarity:1,courage:1,stability:1}],
+  ["Better, but slower than I want",{momentum:1,clarity:1,courage:0,stability:1}],
+  ["Mostly the same",{momentum:0,clarity:0,courage:-1,stability:1}],
+  ["Like I'm moving backwards",{momentum:-2,clarity:-1,courage:-1,stability:-1}]
+]],
+["Which part of your life takes up the most mental space right now?",[
+  ["Money",{money:-1,career:1,clarity:0}],
+  ["Love / relationships",{love:-1,stability:0,clarity:0}],
+  ["Career / purpose",{career:-1,momentum:1,clarity:1}],
+  ["Freedom / lifestyle",{freedom:-1,courage:1,clarity:1}]
+]],
+["What is happening with the thing you want most?",[
+  ["I'm actively going after it",{momentum:3,courage:3,clarity:2}],
+  ["I'm getting there, slowly",{momentum:1,courage:1,clarity:1}],
+  ["I keep postponing it",{momentum:-1,courage:-2,clarity:1}],
+  ["I don't even know what I want anymore",{momentum:-1,courage:-1,clarity:-3}]
+]],
+["If nothing changed for 3 years, what would scare you most?",[
+  ["Wasting my potential",{career:-1,courage:1,clarity:2}],
+  ["Being with the wrong person",{love:-2,clarity:1,stability:-1}],
+  ["Still worrying about money",{money:-2,stability:-1,clarity:1}],
+  ["Realizing I played it too safe",{freedom:-2,courage:-1,clarity:2}]
+]],
+["When something in your life isn't working, you usually…",[
+  ["Change it quickly",{courage:3,momentum:2,stability:-1}],
+  ["Give it time and watch",{stability:2,clarity:1,momentum:0}],
+  ["Overthink it for a long time",{clarity:1,courage:-2,momentum:-1}],
+  ["Get used to it",{stability:1,courage:-3,momentum:-2}]
+]],
+["Be honest. Are you becoming the person you thought you would be?",[
+  ["Yes",{alignment:3,momentum:2,clarity:2,stability:1}],
+  ["Mostly",{alignment:1,momentum:1,clarity:1}],
+  ["Not really",{alignment:-2,momentum:-1,courage:-1}],
+  ["No",{alignment:-3,momentum:-2,clarity:-1,stability:-1}]
+]]
+],
+es:[
+["Comparado con hace un año, tu vida se siente…",[
+  ["Claramente avanzando",{momentum:3,clarity:1,courage:1,stability:1}],
+  ["Mejor, pero más lento de lo que quiero",{momentum:1,clarity:1,courage:0,stability:1}],
+  ["Casi igual",{momentum:0,clarity:0,courage:-1,stability:1}],
+  ["Como si estuviera retrocediendo",{momentum:-2,clarity:-1,courage:-1,stability:-1}]
+]],
+["¿Qué parte de tu vida ocupa más espacio en tu cabeza ahora?",[
+  ["Dinero",{money:-1,career:1,clarity:0}],
+  ["Amor / relaciones",{love:-1,stability:0,clarity:0}],
+  ["Carrera / propósito",{career:-1,momentum:1,clarity:1}],
+  ["Libertad / estilo de vida",{freedom:-1,courage:1,clarity:1}]
+]],
+["¿Qué está pasando con eso que más quieres?",[
+  ["Estoy yendo por ello activamente",{momentum:3,courage:3,clarity:2}],
+  ["Voy llegando, poco a poco",{momentum:1,courage:1,clarity:1}],
+  ["Lo sigo posponiendo",{momentum:-1,courage:-2,clarity:1}],
+  ["Ya ni sé exactamente qué quiero",{momentum:-1,courage:-1,clarity:-3}]
+]],
+["Si nada cambiara durante 3 años, ¿qué te daría más miedo?",[
+  ["Desperdiciar mi potencial",{career:-1,courage:1,clarity:2}],
+  ["Estar con la persona equivocada",{love:-2,clarity:1,stability:-1}],
+  ["Seguir preocupado/a por dinero",{money:-2,stability:-1,clarity:1}],
+  ["Darme cuenta de que jugué demasiado seguro",{freedom:-2,courage:-1,clarity:2}]
+]],
+["Cuando algo en tu vida no está funcionando, normalmente…",[
+  ["Lo cambio rápido",{courage:3,momentum:2,stability:-1}],
+  ["Le doy tiempo y observo",{stability:2,clarity:1,momentum:0}],
+  ["Lo sobrepienso mucho tiempo",{clarity:1,courage:-2,momentum:-1}],
+  ["Me termino acostumbrando",{stability:1,courage:-3,momentum:-2}]
+]],
+["Sé honesto/a. ¿Te estás convirtiendo en la persona que pensabas que serías?",[
+  ["Sí",{alignment:3,momentum:2,clarity:2,stability:1}],
+  ["En gran parte sí",{alignment:1,momentum:1,clarity:1}],
+  ["No realmente",{alignment:-2,momentum:-1,courage:-1}],
+  ["No",{alignment:-3,momentum:-2,clarity:-1,stability:-1}]
+]]
+]};
+
+const AREA_LABELS={
+en:{career:"Career / purpose",money:"Money",love:"Relationships",freedom:"Freedom / lifestyle"},
+es:{career:"Carrera / propósito",money:"Dinero",love:"Relaciones",freedom:"Libertad / estilo de vida"}
+};
+
+const DECISION_STYLE={
+en:{
+  fast:["Fast mover","You tend to act before stagnation gets comfortable."],
+  observer:["Measured","You prefer evidence before making a major move."],
+  thinker:["Over-processing","You often know more than you act on."],
+  adapter:["Accommodation","You can tolerate misalignment longer than you should."]
+},
+es:{
+  fast:["Rápido/a para actuar","Sueles moverte antes de que el estancamiento se vuelva cómodo."],
+  observer:["Medido/a","Prefieres tener evidencia antes de hacer un movimiento importante."],
+  thinker:["Sobreprocesas","Muchas veces sabes más de lo que terminas ejecutando."],
+  adapter:["Te adaptas de más","Puedes tolerar una desalineación más tiempo del que te conviene."]
+}};
+
+const COPY={
+en:{
+  rising:{
+    label:"UPWARD",
+    tag:"Your current behavior creates more forward motion than drag.",
+    teaser:"One part of your life is still moving in the opposite direction.",
+    report:"You are not waiting for life to happen. The bigger risk is letting one neglected area quietly become the price of your progress."
+  },
+  building:{
+    label:"BUILDING",
+    tag:"You are moving, but your progress depends heavily on a few decisions you keep revisiting.",
+    teaser:"Your trajectory is positive — but one unresolved area is absorbing more momentum than it looks.",
+    report:"You have enough momentum to change your position substantially. Your next level depends less on effort and more on removing one repeated hesitation."
+  },
+  drifting:{
+    label:"DRIFTING",
+    tag:"Your life is not collapsing. That is exactly why this pattern can be easy to ignore.",
+    teaser:"One area has become comfortable enough to stay — and expensive enough to slow everything else down.",
+    report:"The danger is not a dramatic failure. It is spending another year in a version of life you already know is too small."
+  },
+  reversal:{
+    label:"REVERSAL NEEDED",
+    tag:"Your answers show more drag than forward momentum right now.",
+    teaser:"The strongest signal is not where you are struggling — it is what you have started accepting.",
+    report:"Your current path is recoverable, but not through passive improvement. One deliberate decision matters more than ten small optimizations."
+  }
+},
+es:{
+  rising:{
+    label:"EN ASCENSO",
+    tag:"Tu comportamiento actual genera más avance que fricción.",
+    teaser:"Una parte de tu vida todavía está avanzando en dirección contraria.",
+    report:"No estás esperando a que la vida ocurra. El mayor riesgo es permitir que un área descuidada se convierta silenciosamente en el precio de tu avance."
+  },
+  building:{
+    label:"CONSTRUYENDO",
+    tag:"Estás avanzando, pero tu progreso depende mucho de unas cuantas decisiones que sigues revisitando.",
+    teaser:"Tu trayectoria es positiva — pero un tema no resuelto está absorbiendo más impulso del que parece.",
+    report:"Tienes suficiente impulso para cambiar mucho tu posición. Tu siguiente nivel depende menos de esforzarte más y más de eliminar una vacilación repetida."
+  },
+  drifting:{
+    label:"A LA DERIVA",
+    tag:"Tu vida no se está derrumbando. Justamente por eso este patrón puede ser tan fácil de ignorar.",
+    teaser:"Un área se volvió lo bastante cómoda para quedarse — y lo bastante costosa para frenar lo demás.",
+    report:"El peligro no es un fracaso dramático. Es pasar otro año dentro de una versión de tu vida que ya sabes que te queda chica."
+  },
+  reversal:{
+    label:"NECESITAS UN GIRO",
+    tag:"Tus respuestas muestran más fricción que impulso hacia adelante en este momento.",
+    teaser:"La señal más fuerte no es dónde estás batallando — sino lo que empezaste a aceptar.",
+    report:"Tu trayectoria se puede recuperar, pero no con mejoras pasivas. Una decisión deliberada vale más que diez optimizaciones pequeñas."
+  }
+}};
+
+const AREA_COPY={
+en:{
+  career:{
+    high:"You are creating options instead of waiting for certainty.",
+    mid:"There is movement here, but not yet enough commitment to create a clear break.",
+    low:"This area is consuming ambition without returning enough evidence of progress."
+  },
+  money:{
+    high:"Your financial direction feels increasingly controllable.",
+    mid:"You are not in crisis, but money still influences too many decisions.",
+    low:"Financial pressure is shaping choices beyond the financial part of your life."
+  },
+  love:{
+    high:"Your relationships are supporting rather than draining your direction.",
+    mid:"This area is stable enough, but not fully aligned with what you want.",
+    low:"Emotional uncertainty here is taking more mental bandwidth than it should."
+  },
+  freedom:{
+    high:"You are building a life with more choice, not just more obligations.",
+    mid:"You want more autonomy, but you are still negotiating with comfort.",
+    low:"Your current structure is limiting the life you imagine more than you admit."
+  }
+},
+es:{
+  career:{
+    high:"Estás creando opciones en lugar de esperar certeza.",
+    mid:"Aquí sí hay movimiento, pero todavía no suficiente compromiso para provocar un cambio claro.",
+    low:"Esta área está consumiendo ambición sin devolverte suficiente evidencia de avance."
+  },
+  money:{
+    high:"Tu dirección financiera se siente cada vez más controlable.",
+    mid:"No estás en crisis, pero el dinero todavía influye en demasiadas decisiones.",
+    low:"La presión financiera está moldeando decisiones que van mucho más allá del dinero."
+  },
+  love:{
+    high:"Tus relaciones están apoyando tu dirección en vez de drenarla.",
+    mid:"Esta área está suficientemente estable, pero no completamente alineada con lo que quieres.",
+    low:"La incertidumbre emocional aquí está ocupando más espacio mental del que debería."
+  },
+  freedom:{
+    high:"Estás construyendo una vida con más opciones, no solamente con más obligaciones.",
+    mid:"Quieres más autonomía, pero todavía estás negociando con la comodidad.",
+    low:"Tu estructura actual limita más de lo que admites la vida que imaginas."
+  }
+}};
+
+const BLIND_COPY={
+en:{
+  hesitation:"You may call it 'thinking it through,' but your answers suggest that delay is becoming a decision of its own.",
+  comfort:"You are unusually good at adapting. The downside: you can normalize situations you would never have intentionally chosen.",
+  speed:"You move fast. That creates momentum, but it can also turn every discomfort into something to escape instead of understand.",
+  fog:"The biggest issue is not motivation. It is lack of a clear target — effort gets scattered when the destination stays blurry.",
+  pressure:"You are carrying one area so heavily that it is beginning to dictate choices in the others."
+},
+es:{
+  hesitation:"Puedes llamarlo 'pensarlo bien', pero tus respuestas sugieren que retrasar ya se está convirtiendo en una decisión por sí misma.",
+  comfort:"Eres muy bueno/a adaptándote. El problema: puedes normalizar situaciones que jamás habrías elegido conscientemente.",
+  speed:"Te mueves rápido. Eso genera impulso, pero también puede convertir cualquier incomodidad en algo de lo que escapar en vez de entender.",
+  fog:"El problema principal no es la motivación. Es no tener un objetivo suficientemente claro — el esfuerzo se dispersa cuando el destino sigue borroso.",
+  pressure:"Estás cargando un área con tanta fuerza que ya empieza a dictar decisiones en las demás."
+}};
+
+const CHANGE_COPY={
+en:{
+  decide:"Stop postponing the decision you have already made mentally.",
+  define:"Define what 'better' actually means before spending more energy trying to reach it.",
+  remove:"Remove one obligation that keeps protecting the version of your life you say you want to leave.",
+  protect:"Protect the area that is working instead of sacrificing it to fix everything else.",
+  confront:"Have the conversation or make the move that would create new information.",
+  money:"Turn financial uncertainty into a number, a deadline, and a concrete next action.",
+  love:"Stop evaluating the relationship only by whether it is bad enough to leave.",
+  career:"Choose a direction strongly enough that something else has to become a 'no'.",
+  freedom:"Stop waiting for permission to redesign the part of your life you already know feels too small."
+},
+es:{
+  decide:"Deja de posponer la decisión que mentalmente ya tomaste.",
+  define:"Define qué significa realmente 'mejor' antes de gastar más energía intentando llegar ahí.",
+  remove:"Elimina una obligación que sigue protegiendo la versión de tu vida que dices querer dejar.",
+  protect:"Protege el área que sí está funcionando en vez de sacrificarla para arreglar todo lo demás.",
+  confront:"Ten la conversación o haz el movimiento que te daría información nueva.",
+  money:"Convierte la incertidumbre financiera en un número, una fecha y una siguiente acción concreta.",
+  love:"Deja de evaluar la relación solamente por si está lo suficientemente mal como para irte.",
+  career:"Elige una dirección con suficiente fuerza como para que otra cosa tenga que convertirse en un 'no'.",
+  freedom:"Deja de esperar permiso para rediseñar esa parte de tu vida que ya sabes que te queda chica."
+}};
+
+let lang=((localStorage.getItem(LANG_KEY)||navigator.language||"en").toLowerCase().startsWith("es"))?"es":"en";
+let i=0;
+let scores=freshScores();
+let historyAnswers=[];
+let current=null;
+let lastDecisionStyle="observer";
+
+function freshScores(){
+  return {
+    momentum:0,clarity:0,courage:0,stability:0,alignment:0,
+    career:0,money:0,love:0,freedom:0
+  };
+}
+
+function $(id){return document.getElementById(id)}
+function t(k){return TXT[lang][k]??TXT.en[k]??k}
+function gaEvent(name,params={}){
+  try{
+    if(typeof window.gtag==="function"){
+      window.gtag("event",name,Object.assign({product:"the_path",language:lang},params));
+    }
+  }catch(e){}
+}
+
+function setLanguage(l){
+  lang=l;
+  localStorage.setItem(LANG_KEY,l);
+  gaEvent("language_change",{selected_language:l});
+  applyLanguage();
+  if(!$("quiz").classList.contains("hidden"))render();
+  if(!$("result").classList.contains("hidden")&&current){
+    const isUnlocked=!$("report").classList.contains("hidden");
+    applyResult(current,isUnlocked);
+  }
+}
+function applyLanguage(){
+  document.documentElement.lang=lang;
+  $("enBtn").classList.toggle("active",lang==="en");
+  $("esBtn").classList.toggle("active",lang==="es");
+  $("eyebrow").innerText=t("eyebrow");
+  $("headline").innerText=t("headline");
+  $("subhead").innerText=t("subhead");
+  $("quizBack").innerText=t("back");
+  $("resultBack").innerText=t("back");
+  $("teaserKicker").innerText=t("teaserKicker");
+  $("hiddenAreaLabel").innerText=t("hiddenArea");
+  $("payTitle").innerText=t("payTitle");
+  $("payCopy").innerText=t("payCopy");
+  $("payA").innerText=t("payA");$("payB").innerText=t("payB");$("payC").innerText=t("payC");$("payD").innerText=t("payD");
+  $("unlockBtn").innerText=t("unlock");
+  $("priceNote").innerText=t("priceNote");
+  $("reportKicker").innerText=t("reportKicker");
+  $("areasTitle").innerText=t("areasTitle");
+  $("areasIntro").innerText=t("areasIntro");
+  $("blindTitle").innerText=t("blindTitle");
+  $("timelineTitle").innerText=t("timelineTitle");
+  $("timelineIntro").innerText=t("timelineIntro");
+  $("changeTitle").innerText=t("changeTitle");
+  $("changeIntro").innerText=t("changeIntro");
+  $("changeKicker").innerText=t("changeKicker");
+  $("m1l").innerText=t("m1");$("m2l").innerText=t("m2");$("m3l").innerText=t("m3");$("m4l").innerText=t("m4");
+  $("shareBtn").innerText=t("share");$("copyBtn").innerText=t("copy");$("waBtn").innerText=t("wa");$("moreBtn").innerText=t("more");$("againBtn").innerText=t("again");
+  $("termsLink").innerText=t("terms");$("privacyLink").innerText=t("privacy");$("footerLegal").innerText=t("legal");
+  renderSharedInvite();
+}
+
+
+function sharedParams(){
+  const params=new URLSearchParams(window.location.search);
+  const s=parseInt(params.get("s")||"",10);
+  const k=params.get("k")||"";
+  const validKeys=["rising","building","drifting","reversal"];
+  if(!Number.isFinite(s) || s<0 || s>100 || !validKeys.includes(k)) return null;
+  return {score:s,key:k};
+}
+
+function renderSharedInvite(){
+  const data=sharedParams();
+  if(!data){
+    $("sharedInvite")?.classList.remove("show");
+    return;
+  }
+  const copy=COPY[lang]?.[data.key];
+  if(!copy){
+    $("sharedInvite")?.classList.remove("show");
+    return;
+  }
+  $("sharedSmall").innerText=t("sharedSmall");
+  $("sharedMain").innerText=t("sharedMain")(data.score,copy.label);
+  $("sharedCTA").innerText=t("sharedCTA");
+  $("sharedInvite").classList.add("show");
+}
+
+function render(){
+  const q=QUIZ[lang][i];
+  $("bar").style.width=((i/QUIZ[lang].length)*100)+"%";
+  $("qnum").innerText=t("q")(i+1,QUIZ[lang].length);
+  $("question").innerText=q[0];
+  $("options").innerHTML="";
+  q[1].forEach(([text,w],idx)=>{
+    const b=document.createElement("button");
+    b.className="option";
+    b.innerText=text;
+    b.onclick=()=>choose(w,idx);
+    $("options").appendChild(b);
+  });
+}
+
+function applyWeights(w,m=1){
+  Object.keys(w).forEach(k=>{
+    if(scores[k]===undefined)scores[k]=0;
+    scores[k]+=w[k]*m;
+  });
+}
+
+function choose(w,idx){
+  gaEvent("path_question_answer",{question_number:i+1,option_number:idx+1});
+  historyAnswers.push({...w});
+  if(i===4){
+    lastDecisionStyle=idx===0?"fast":idx===1?"observer":idx===2?"thinker":"adapter";
+  }
+  applyWeights(w);
+  i++;
+  if(i<QUIZ[lang].length)render(); else finish();
+}
+
+function goBack(){
+  if(!$("result").classList.contains("hidden")){
+    $("result").classList.add("hidden");
+    $("report").classList.add("hidden");
+    $("paywall").classList.remove("hidden");
+    if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);
+    i=QUIZ[lang].length-1;
+    $("quiz").classList.remove("hidden");
+    render();
+    window.scrollTo({top:0,behavior:"smooth"});
+    return;
+  }
+  if(i===0){
+    window.scrollTo({top:0,behavior:"smooth"});
+    return;
+  }
+  if(historyAnswers.length)applyWeights(historyAnswers.pop(),-1);
+  i--;
+  render();
+}
+
+function clamp(n,min,max){return Math.max(min,Math.min(max,n))}
+function pctFromScore(v,min=-5,max=8){
+  return Math.round(clamp(((v-min)/(max-min))*100,8,94));
+}
+
+function overallScore(){
+  const raw=scores.momentum*1.25+scores.courage*.8+scores.clarity*.75+scores.alignment*1.1+scores.stability*.35;
+  return Math.round(clamp(56+raw*2.15,18,91));
+}
+
+function trajectoryKey(p){
+  if(p>=74)return "rising";
+  if(p>=59)return "building";
+  if(p>=43)return "drifting";
+  return "reversal";
+}
+
+function areaScores(){
+  const common=scores.momentum*.45+scores.alignment*.35+scores.clarity*.25;
+  return {
+    career:clamp(Math.round(61+common*3.1+scores.career*8+scores.courage*1.8),19,93),
+    money:clamp(Math.round(59+common*2.7+scores.money*8+scores.stability*2.1),18,92),
+    love:clamp(Math.round(62+common*2.3+scores.love*8+scores.stability*2.2),18,94),
+    freedom:clamp(Math.round(60+common*2.9+scores.freedom*8+scores.courage*2.5),17,95)
+  };
+}
+
+function blindKey(areas){
+  const arr=Object.entries(areas).sort((a,b)=>a[1]-b[1]);
+  if(scores.clarity<=-2)return "fog";
+  if(lastDecisionStyle==="thinker")return "hesitation";
+  if(lastDecisionStyle==="adapter")return "comfort";
+  if(lastDecisionStyle==="fast"&&scores.stability<=0)return "speed";
+  if(arr[0][1]<=42)return "pressure";
+  return scores.courage<0?"hesitation":"comfort";
+}
+
+function changeKey(areas){
+  const weakest=Object.entries(areas).sort((a,b)=>a[1]-b[1])[0][0];
+  if(scores.clarity<=-2)return "define";
+  if(scores.courage<=-3)return "decide";
+  if(scores.momentum<=-2)return "confront";
+  if(areas[weakest]<=46)return weakest;
+  if(scores.stability<=-1)return "protect";
+  return "remove";
+}
+
+function buildCurrent(){
+  const pct=overallScore();
+  const key=trajectoryKey(pct);
+  const areas=areaScores();
+  const sorted=Object.entries(areas).sort((a,b)=>b[1]-a[1]);
+  const strongest=sorted[0][0];
+  const weakest=sorted[sorted.length-1][0];
+  const blind=blindKey(areas);
+  const change=changeKey(areas);
+  return {pct,key,areas,strongest,weakest,blind,change,decision:lastDecisionStyle};
+}
+
+function finish(){
+  current=buildCurrent();
+  $("quiz").classList.add("hidden");
+  $("result").classList.remove("hidden");
+  applyResult(current,false);
+  savePending();
+  gaEvent("path_complete",{trajectory:current.key,score:current.pct,weakest_area:current.weakest});
+  gaEvent("path_teaser_view",{trajectory:current.key});
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function applyResult(r,unlocked){
+  const c=COPY[lang][r.key];
+
+  if(!unlocked){
+    // IMPORTANT: no real result is shown before payment.
+    $("actualResultHeader").classList.add("hidden");
+    document.querySelector(".teaser")?.classList.remove("hidden");
+    $("trajectory").innerText="";
+    $("trajectoryLabel").innerText="";
+    $("resultTag").innerText="";
+    $("teaserTitle").innerText=t("lockedTitle");
+    $("teaserText").innerText=t("lockedText");
+    $("paywall").classList.remove("hidden");
+    $("report").classList.add("hidden");
+    return;
+  }
+
+  // Full result is rendered only after the checkout-return flow.
+  $("actualResultHeader").classList.remove("hidden");
+  document.querySelector(".teaser")?.classList.add("hidden");
+  $("trajectory").innerText=r.pct+"%";
+  $("trajectoryLabel").innerText=c.label;
+  $("resultTag").innerText=c.tag;
+  $("teaserTitle").innerText=c.teaser;
+  $("teaserText").innerText=lang==="es"
+    ?"Esta es el área que más está afectando tu dirección actual y el patrón detrás de ella."
+    :"This is the area affecting your current direction most, and the pattern behind it.";
+
+  renderReport(r);
+}
+
+function savePending(){
+  try{
+    localStorage.setItem(PATH_STORAGE_KEY,JSON.stringify({
+      current,
+      scores,
+      lang,
+      decision:lastDecisionStyle,
+      ts:Date.now()
+    }));
+  }catch(e){}
+}
+
+function loadPending(){
+  try{
+    const raw=localStorage.getItem(PATH_STORAGE_KEY);
+    if(!raw)return null;
+    const d=JSON.parse(raw);
+    if(!d||!d.current||Date.now()-(d.ts||0)>2*60*60*1000)return null;
+    return d;
+  }catch(e){return null}
+}
+
+function unlockPath(){
+  if(!current)return;
+
+  if(TESTING_MODE){
+    gaEvent("path_test_unlock",{trajectory:current.key,score:current.pct});
+    applyResult(current,true);
+    window.scrollTo({top:0,behavior:"smooth"});
+    return;
+  }
+
+  savePending();
+  gaEvent("path_checkout_click",{trajectory:current.key,score:current.pct});
+  window.location.href=STRIPE_PATH_URL;
+}
+
+function renderReport(r){
+  $("paywall").classList.add("hidden");
+  $("report").classList.remove("hidden");
+  const c=COPY[lang][r.key];
+  const areaLabels=AREA_LABELS[lang];
+  const sorted=Object.entries(r.areas).sort((a,b)=>b[1]-a[1]);
+  const decision=DECISION_STYLE[lang][r.decision]||DECISION_STYLE[lang].observer;
+
+  $("reportTitle").innerText=`${r.pct}% · ${c.label}`;
+  $("reportTag").innerText=c.report;
+  $("m1v").innerText=c.label;
+  $("m2v").innerText=areaLabels[r.strongest];
+  $("m3v").innerText=areaLabels[r.weakest];
+  $("m4v").innerText=decision[0];
+
+  $("areaRows").innerHTML="";
+  sorted.forEach(([key,val])=>{
+    const level=val>=68?"high":val>=48?"mid":"low";
+    const row=document.createElement("div");
+    row.className="area";
+    row.innerHTML=`
+      <div class="areaTop"><b>${areaLabels[key]}</b><span>${val}%</span></div>
+      <div class="track"><div class="fill" style="width:${val}%"></div></div>
+      <p>${AREA_COPY[lang][key][level]}</p>`;
+    $("areaRows").appendChild(row);
+  });
+
+  $("blindText").innerText=BLIND_COPY[lang][r.blind];
+
+  const years=lang==="es"
+    ? [
+      ["2026","La dirección se vuelve visible"],
+      ["2027",r.pct>=59?"Las decisiones empiezan a acumularse":"La fricción empieza a costar más"],
+      ["2028",r.pct>=74?"Más opciones y menos reacción":"Punto de decisión"],
+      ["2029",r.pct>=59?"Una nueva normalidad":"Lo tolerado se vuelve estructura"]
+    ]
+    : [
+      ["2026","Your direction becomes visible"],
+      ["2027",r.pct>=59?"Decisions begin to compound":"Drag becomes more expensive"],
+      ["2028",r.pct>=74?"More options, less reaction":"Decision point"],
+      ["2029",r.pct>=59?"A new normal":"What you tolerate becomes structure"]
+    ];
+  $("timeline").innerHTML="";
+  years.forEach(([y,txt])=>{
+    const d=document.createElement("div");
+    d.className="year";
+    d.innerHTML=`<span>${y}</span><b>${txt}</b>`;
+    $("timeline").appendChild(d);
+  });
+
+  $("changeText").innerText=CHANGE_COPY[lang][r.change];
+  $("shareScore").innerText=r.pct+"% ↑";
+  $("shareLabel").innerText=c.label;
+  $("shareRisk").innerText=(lang==="es"?"Mayor freno: ":"Biggest drag: ")+areaLabels[r.weakest];
+
+  gaEvent("path_full_result_view",{trajectory:r.key,score:r.pct,weakest_area:r.weakest});
+}
+
+function shareUrlFromShared(data){
+  const u=new URL("https://zelqoza.com/path/");
+  u.searchParams.set("s",data.score);
+  u.searchParams.set("k",data.key);
+  return u.pathname+u.search;
+}
+
+function shareUrl(){
+  if(!current)return "https://zelqoza.com/path/";
+  const u=new URL("https://zelqoza.com/path/");
+  u.searchParams.set("s",current.pct);
+  u.searchParams.set("k",current.key);
+  return u.toString();
+}
+
+function shareText(){
+  if(!current)return "";
+  const label=COPY[lang][current.key].label;
+  return lang==="es"
+    ? `Mi Zelqoza Path: ${current.pct}% · ${label}. ¿Hacia dónde va el tuyo?`
+    : `My Zelqoza Path: ${current.pct}% · ${label}. Where is yours heading?`;
+}
+
+function toggleShare(){
+  $("shareMenu").classList.toggle("show");
+}
+async function copyResult(){
+  const text=shareText()+" "+shareUrl();
+  try{await navigator.clipboard.writeText(text);$("shareStatus").innerText=t("copied");}
+  catch(e){$("shareStatus").innerText=text;}
+  gaEvent("path_share",{method:"copy"});
+}
+function shareWhatsApp(){
+  const url="https://wa.me/?text="+encodeURIComponent(shareText()+" "+shareUrl());
+  window.open(url,"_blank","noopener");
+  gaEvent("path_share",{method:"whatsapp"});
+}
+async function nativeShare(){
+  if(navigator.share){
+    try{
+      await navigator.share({title:"Zelqoza — The Path",text:shareText(),url:shareUrl()});
+      $("shareStatus").innerText=t("shared");
+      gaEvent("path_share",{method:"native"});
+      return;
+    }catch(e){}
+  }
+  copyResult();
+}
+
+function restartTest(){
+  i=0;scores=freshScores();historyAnswers=[];current=null;lastDecisionStyle="observer";
+  try{localStorage.removeItem(PATH_STORAGE_KEY)}catch(e){}
+  $("result").classList.add("hidden");$("report").classList.add("hidden");$("paywall").classList.remove("hidden");$("actualResultHeader").classList.add("hidden");document.querySelector(".teaser")?.classList.remove("hidden");
+  $("shareMenu").classList.remove("show");$("quiz").classList.remove("hidden");
+  $("bar").style.width="0%";
+  const shared=sharedParams();
+  const keepUrl=shared ? shareUrlFromShared(shared) : window.location.pathname;
+  history.replaceState(null,"",keepUrl);
+  renderSharedInvite();
+  render();
+  window.scrollTo({top:0,behavior:"smooth"});
+  gaEvent("path_restart");
+}
+
+/*
+  Checkout-return handling:
+  Configure the Stripe success redirect for The Path to:
+  https://zelqoza.com/path/?checkout=success
+
+  The full result requires BOTH the success query and a recent locally-saved
+  pending Path. This prevents the normal page from revealing the result before
+  checkout, while keeping the site static.
+*/
+function handleCheckoutReturn(){
+  const params=new URLSearchParams(window.location.search);
+  if(params.get("checkout")!=="success")return false;
+
+  const pending=loadPending();
+  if(!pending)return false;
+
+  lang=pending.lang==="es"?"es":"en";
+  scores=pending.scores||freshScores();
+  lastDecisionStyle=pending.decision||"observer";
+  current=pending.current;
+
+  $("quiz").classList.add("hidden");
+  $("result").classList.remove("hidden");
+  applyLanguage();
+  applyResult(current,true);
+  gaEvent("path_checkout_return",{payment_verified:false,trajectory:current.key,score:current.pct});
+
+  params.delete("checkout");
+  const clean=window.location.pathname+(params.toString()?("?"+params.toString()):"");
+  history.replaceState(null,"",clean);
+  window.scrollTo({top:0});
+  return true;
+}
+
+applyLanguage();
+if(!handleCheckoutReturn()){
+  renderSharedInvite();
+  render();
+  const shared=sharedParams();
+  gaEvent("path_landing_view",{shared_result:!!shared});
+  gaEvent("path_start",{shared_result:!!shared});
+  if(shared)gaEvent("path_shared_link_open",{shared_score:shared.score,shared_trajectory:shared.key});
+}
+</script>
+</body>
+</html>
