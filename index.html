@@ -867,7 +867,7 @@ body.gate-open{overflow:hidden}
         </div>
       </div>
 
-      <button id="againBtn" class="secondary" style="margin-top:18px" onclick="restartTest()"></button>
+      <button id="againBtn" type="button" class="secondary" style="margin-top:18px" onclick="restartTest()"></button>
     </div>
   </section>
 </div>
@@ -2087,20 +2087,25 @@ function renderConnection(c){
 }
 
 function restartTest(){
+  // RETAKE FIX: fully clear the previous paid/result state, then reload
+  // THE READ from a clean URL. This is more reliable than trying to
+  // rebuild every quiz element in-place after a completed purchase.
+  try{
+    gaEvent("test_restart",{
+      from_profile_key:currentResult&&PROFILE_KEYS[currentResult.idx]
+        ?PROFILE_KEYS[currentResult.idx]
+        :"unknown"
+    });
+  }catch(e){}
+
   clearPendingDeepRead();
   clearVerifiedDeepReadAccess();
-  unlockResultUI();
-  if($("paywall"))$("paywall").classList.remove("hidden");
-  $("report").classList.add("hidden");
-  gaEvent("test_restart",{from_profile_key:currentResult&&PROFILE_KEYS[currentResult.idx]?PROFILE_KEYS[currentResult.idx]:"unknown"});
-  i=0;quizStarted=false;
-  traits={openness:0,directness:0,attachment:0,regulation:0,social:0};
-  historyAnswers=[];currentResult={pct:0,idx:0,traits:null};connectionRevealed=false;
   clearActiveChallenge();
-  $("result").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");
-  history.replaceState(null,"",base());
-  openQuizInstant();
-  window.scrollTo({top:0,behavior:"smooth"});
+
+  try{sessionStorage.removeItem("zelqoza_active_challenge")}catch(e){}
+
+  // Preserve language preference, but remove result/payment/challenge state.
+  window.location.assign(base());
 }
 
 (async function init(){
