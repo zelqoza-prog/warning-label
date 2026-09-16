@@ -637,6 +637,97 @@ body.gate-open{overflow:hidden}
   .gateItem{font-size:13px}
 }
 
+
+/* v51 — conversion-first funnel
+   Goal: the first question is visible immediately, with no landing copy pushing it below the fold. */
+#quizIntro{display:none!important}
+#quiz{padding-top:8px}
+.quizMicro{
+  margin:7px 0 3px;
+  text-align:center;
+  color:#8a817a;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.035em;
+}
+#quiz .backbar{margin:0 0 3px}
+#quizBack.first-question{display:none!important}
+#quiz .progress{margin:7px 0 10px;height:4px}
+#quiz .card{margin-top:8px;padding:22px}
+#quiz .qnum{
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+#quiz .question{
+  margin:7px 0 16px;
+  font-size:26px;
+  line-height:1.08;
+  letter-spacing:-.025em;
+}
+#quiz .option{
+  min-height:58px;
+  display:flex;
+  align-items:center;
+  margin:8px 0;
+  padding:14px 15px;
+  font-size:16px;
+  line-height:1.28;
+  font-weight:750;
+  transition:transform .10s ease,border-color .10s ease,background .10s ease,opacity .10s ease;
+}
+#quiz .option:active{transform:scale(.985)}
+#quiz .option.selected{
+  border-color:var(--accent)!important;
+  background:#fff5f1!important;
+  box-shadow:0 0 0 2px rgba(232,107,95,.10);
+}
+#quiz .option.answer-dim{opacity:.46}
+.gatePrice strong{white-space:nowrap}
+
+@media(max-width:600px){
+  .wrap{padding-top:11px}
+  .topbar{min-height:42px;padding:3px 0 0}
+  #quiz{padding-top:2px}
+  .quizMicro{margin:4px 0 1px;font-size:10px}
+  #quiz .progress{margin:5px 0 8px}
+  #quiz .card{padding:18px 16px;border-radius:20px}
+  #quiz .question{font-size:23px;margin-bottom:13px}
+  #quiz .option{min-height:54px;margin:7px 0;padding:13px 14px;font-size:15.5px}
+}
+
+/* Questionnaire only: quiet, familiar form layout. The result keeps Zelqoza's design. */
+body:has(#quiz:not(.hidden)){background:#f4f7fb}
+body:has(#quiz:not(.hidden)) .topbar{display:none}
+#quiz:not(.hidden){position:fixed;inset:0;z-index:40;overflow-y:auto;background:#f4f7fb;color:#111827;padding:0 20px calc(115px + env(safe-area-inset-bottom))}
+#quiz .quizNav{position:relative;display:flex;align-items:center;justify-content:space-between;max-width:480px;height:54px;margin:auto}
+#quiz .quizBrand{font:700 11px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.08em;color:#56616d}
+#quiz .backbtn,#quiz .quizLang{width:42px;height:42px;margin:0;padding:0;background:transparent;border:0;box-shadow:none;color:#1d2935;border-radius:6px}
+#quiz .backbtn{font:300 34px/38px Arial,sans-serif;text-align:left}
+#quiz #quizBack.first-question{visibility:hidden!important;display:block!important;pointer-events:none}
+#quiz .quizLang{width:60px;font:600 11px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#quiz #quizIntro,#quiz #quizMicro{display:none!important}
+#quiz #challengeBanner,#quiz #sharedResultBanner{max-width:480px;margin:12px auto}
+#quiz .card{width:100%;max-width:480px;margin:clamp(40px,8vh,90px) auto 0;padding:22px 16px 20px;border:1px solid #e2e7ee;border-radius:5px;background:#fff;box-shadow:0 2px 8px rgba(24,39,58,.05)}
+#quiz .qnum{font:400 12px/1.3 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:0;text-transform:none;color:#697686}
+#quiz .question{font:700 17px/1.35 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:0;margin:6px 0 12px;color:#111827}
+#quiz .option{display:flex;justify-content:space-between;align-items:center;min-height:47px;width:100%;margin:0 0 16px;padding:10px 9px 10px 10px;background:#fff;color:#0b1118;border:1px solid #c9d3e1;border-radius:4px;box-shadow:none;font:400 16px/1.35 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;transition:none;animation:none;text-align:left}
+#quiz .option:last-child{margin-bottom:0}
+#quiz .option::after{content:"";flex:none;width:19px;height:19px;margin-left:10px;border:2px solid #111820;border-radius:50%;background:#fff}
+#quiz .option.selected{background:#fff!important;border-color:#176caf!important;box-shadow:0 0 0 1px #176caf!important}
+#quiz .option.selected::after{border-color:#176caf;background:#176caf;box-shadow:inset 0 0 0 4px #fff}
+#quiz .option.answer-dim{opacity:1}
+#quiz .option:active{transform:none}
+#quiz .quizFooter{position:fixed;bottom:0;left:0;right:0;z-index:41;padding:10px max(20px,calc((100vw - 480px)/2)) calc(20px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e9edf1}
+#quiz .progress{height:3px;margin:0 0 7px;border-radius:0;background:#e6ebf1}
+#quiz .bar{background:#087e69;border-radius:0}
+#quiz #quizContinue{width:100%;min-height:40px;padding:8px 16px;border-radius:4px;background:#1673b7;color:#fff;box-shadow:none;font:700 14px/1.3 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#quiz #quizContinue:disabled{opacity:.52;cursor:default}
+#quiz .option:focus-visible,#quiz button:focus-visible{outline:2px solid #1673b7;outline-offset:2px}
+@media(max-width:600px){#quiz:not(.hidden){padding-left:20px;padding-right:20px}#quiz .card{margin-top:51px;padding:22px 16px;border-radius:4px}#quiz .question{font-size:16px}#quiz .option{font-size:16px}}
+@media(max-height:560px){#quiz .card{margin-top:15px}}
+
 </style>
 
 <!-- Google Analytics 4 — THE READ by Zelqoza -->
@@ -669,6 +760,7 @@ body.gate-open{overflow:hidden}
   <section id="quiz" class="hidden">
     <div id="sharedResultBanner" class="sharedResultBanner hidden"></div>
     <div id="challengeBanner" class="challengeBanner hidden"></div>
+    <div id="quizMicro" class="quizMicro"></div>
 
     <div id="quizIntro" class="quizIntro">
       <div id="eyebrow" class="eyebrow"></div>
@@ -677,12 +769,19 @@ body.gate-open{overflow:hidden}
       <p id="disclaimer" class="mini"></p>
     </div>
 
-    <div class="backbar"><button id="quizBack" class="backbtn" onclick="goBack()"></button></div>
-    <div class="progress"><div id="bar" class="bar"></div></div>
+    <div class="quizNav">
+      <button id="quizBack" class="backbtn" type="button" onclick="goBack()" aria-label="Previous question">‹</button>
+      <span class="quizBrand">ZELQOZA</span>
+      <button class="quizLang" type="button" onclick="setLanguage(lang==='es'?'en':'es')" aria-label="Change language">EN / ES</button>
+    </div>
     <div class="card">
       <div id="qnum" class="qnum"></div>
       <div id="question" class="question"></div>
       <div id="options"></div>
+    </div>
+    <div class="quizFooter">
+      <div class="progress" role="progressbar" aria-label="Quiz progress"><div id="bar" class="bar"></div></div>
+      <button id="quizContinue" type="button" disabled onclick="continueQuiz()">Continue</button>
     </div>
   </section>
 
@@ -804,8 +903,8 @@ body.gate-open{overflow:hidden}
           <div id="connectionIncluded" class="offerIncluded"></div>
           <div class="priceLine">
             <span id="launchPriceLabel" class="launchLabel"></span>
-            <span class="oldPrice">~US$3.99</span>
-            <strong class="launchPrice">~US$1</strong>
+            <span id="inlineOldPrice" class="oldPrice">~US$3.99</span>
+            <strong id="inlinePriceValue" class="launchPrice">~US$1</strong>
           </div>
           <div id="localCurrencyNote" class="localCurrencyNote"></div>
         </div>
@@ -867,7 +966,7 @@ body.gate-open{overflow:hidden}
         </div>
       </div>
 
-      <button id="againBtn" type="button" class="secondary" style="margin-top:18px" onclick="restartTest()"></button>
+      <button id="againBtn" class="secondary" style="margin-top:18px" onclick="restartTest()"></button>
     </div>
   </section>
 </div>
@@ -886,7 +985,7 @@ body.gate-open{overflow:hidden}
       <div class="gateItem"><span class="gateLock">↔</span><span id="gateItem4"></span></div>
     </div>
 
-    <div class="gatePrice"><span id="gatePriceLabel"></span><strong>~US$1</strong></div>
+    <div class="gatePrice"><span id="gatePriceLabel"></span><strong id="gatePriceValue">~US$1</strong></div>
     <button id="gateUnlockBtn" class="primary" onclick="unlockDeepRead()"></button>
     <p id="gateTrust" class="gateTrust"></p>
     <p id="gateLegal" class="gateLegal"></p>
@@ -938,75 +1037,75 @@ connectionKicker:"SU LECTURA DE CONEXIÓN",quickGoodLabel:"LO MEJOR",quickWatchL
 
 const QUIZ={
 en:[
-["Someone you care about feels distant. What do you do?",[
+["Someone important feels distant. You…",[
 ["Give them space",{attachment:-2,directness:-1,regulation:1}],
-["Ask if something changed",{attachment:1,directness:2,regulation:1}],
-["Act normal, but notice every detail",{attachment:2,directness:-1,regulation:-1}],
+["Ask what changed",{attachment:1,directness:2,regulation:1}],
+["Act normal, but notice everything",{attachment:2,directness:-1,regulation:-1}],
 ["Pull back too",{attachment:1,directness:-2,regulation:-1}]
 ]],
-["Someone cancels on you at the last minute. Your first reaction is…",[
-["No big deal.",{attachment:-1,regulation:2}],
+["Someone cancels last minute. Your first thought?",[
+["No big deal",{attachment:-1,regulation:2}],
 ["Okay… what happened?",{openness:2,regulation:1}],
-["I’m annoyed, but I probably won’t say it.",{attachment:1,directness:-2,regulation:-1}],
-["I won’t forget that.",{attachment:2,openness:1,directness:-1}]
+["I’m annoyed, but I won’t say it",{attachment:1,directness:-2,regulation:-1}],
+["I won’t forget it",{attachment:2,openness:1,directness:-1}]
 ]],
-["You’ve had a terrible day. What sounds best?",[
-["Being alone for a while",{social:-2,attachment:-1,regulation:1}],
-["Talking to someone about it",{social:2,attachment:2}],
-["Distracting myself and moving on",{regulation:2,attachment:-1}],
-["Someone noticing without me having to say it",{attachment:2,directness:-2}]
+["You had a terrible day. What sounds best?",[
+["Be alone for a while",{social:-2,attachment:-1,regulation:1}],
+["Talk to someone",{social:2,attachment:2}],
+["Distract myself and move on",{regulation:2,attachment:-1}],
+["Someone notices without me saying it",{attachment:2,directness:-2}]
 ]],
-["When someone really matters to you, you tend to…",[
-["Want to talk to them all the time",{attachment:2,social:1}],
+["When someone really matters to you, you…",[
+["Want to talk all the time",{attachment:2,social:1}],
 ["Act pretty much the same",{regulation:2,attachment:-1}],
 ["Notice every little change",{attachment:2,openness:1,regulation:-1}],
-["Still need a lot of my own space",{attachment:-2,social:-1,regulation:1}]
+["Still need a lot of space",{attachment:-2,social:-1,regulation:1}]
 ]],
-["You walk into a room where you barely know anyone. What do you do?",[
+["You enter a room where you know almost nobody. You…",[
 ["Talk to almost anyone",{social:2,openness:1}],
 ["Find one person I click with",{social:0,attachment:1}],
 ["Observe first, then warm up",{social:-1,openness:1,regulation:1}],
-["Wish I could leave",{social:-2}]
+["Would rather leave",{social:-2}]
 ]],
-["Someone who knows you really well probably knows that…",[
+["Someone who knows you well probably knows…",[
 ["I need more space than it seems",{attachment:-2,social:-1}],
-["I notice small changes quickly",{attachment:2,openness:1}],
+["I notice small changes fast",{attachment:2,openness:1}],
 ["I feel more than I show",{attachment:2,directness:-2,regulation:1}],
-["I use humor when things get too serious",{social:2,regulation:-1,directness:-1}]
+["I joke when things get too serious",{social:2,regulation:-1,directness:-1}]
 ]]
 ],
 es:[
-["Alguien que te importa está distante. ¿Qué haces?",[
+["Alguien importante se pone distante. Tú…",[
 ["Le doy espacio",{attachment:-2,directness:-1,regulation:1}],
-["Le pregunto si algo cambió",{attachment:1,directness:2,regulation:1}],
-["Actúo normal, pero noto cada detalle",{attachment:2,directness:-1,regulation:-1}],
+["Pregunto qué cambió",{attachment:1,directness:2,regulation:1}],
+["Actúo normal, pero noto todo",{attachment:2,directness:-1,regulation:-1}],
 ["También me alejo",{attachment:1,directness:-2,regulation:-1}]
 ]],
-["Alguien te cancela a última hora. Lo primero que piensas es…",[
-["No pasa nada.",{attachment:-1,regulation:2}],
+["Te cancelan a última hora. Lo primero que piensas…",[
+["No pasa nada",{attachment:-1,regulation:2}],
 ["Ok… ¿qué pasó?",{openness:2,regulation:1}],
-["Sí me molestó, pero probablemente no diga nada.",{attachment:1,directness:-2,regulation:-1}],
-["Eso no se me olvida.",{attachment:2,openness:1,directness:-1}]
+["Me molesta, pero no digo nada",{attachment:1,directness:-2,regulation:-1}],
+["Eso no se me olvida",{attachment:2,openness:1,directness:-1}]
 ]],
 ["Tuviste un día horrible. ¿Qué prefieres?",[
 ["Estar solo/a un rato",{social:-2,attachment:-1,regulation:1}],
 ["Contárselo a alguien",{social:2,attachment:2}],
 ["Distraerme y seguir",{regulation:2,attachment:-1}],
-["Que alguien se dé cuenta sin que tenga que decirlo",{attachment:2,directness:-2}]
+["Que alguien lo note sin que yo diga nada",{attachment:2,directness:-2}]
 ]],
 ["Cuando alguien te importa mucho, tú…",[
-["Quiero hablar con esa persona todo el tiempo",{attachment:2,social:1}],
+["Quiero hablar todo el tiempo",{attachment:2,social:1}],
 ["Actúo prácticamente igual",{regulation:2,attachment:-1}],
-["Noto cualquier pequeño cambio",{attachment:2,openness:1,regulation:-1}],
-["Sigo necesitando bastante mi espacio",{attachment:-2,social:-1,regulation:1}]
+["Noto cualquier cambio",{attachment:2,openness:1,regulation:-1}],
+["Sigo necesitando mucho mi espacio",{attachment:-2,social:-1,regulation:1}]
 ]],
-["Llegas a un lugar donde casi no conoces a nadie. ¿Qué haces?",[
+["Llegas a un lugar donde casi no conoces a nadie. Tú…",[
 ["Hablo con casi cualquiera",{social:2,openness:1}],
 ["Busco a una persona con quien conecte",{social:0,attachment:1}],
-["Primero observo y luego entro en confianza",{social:-1,openness:1,regulation:1}],
+["Primero observo, luego entro en confianza",{social:-1,openness:1,regulation:1}],
 ["Preferiría irme",{social:-2}]
 ]],
-["Alguien que te conoce muy bien probablemente sabe que…",[
+["Alguien que te conoce bien sabe que…",[
 ["Necesito más espacio de lo que parece",{attachment:-2,social:-1}],
 ["Noto pequeños cambios enseguida",{attachment:2,openness:1}],
 ["Siento más de lo que demuestro",{attachment:2,directness:-2,regulation:1}],
@@ -1027,6 +1126,7 @@ const PROFILES=[
 
 let lang=((localStorage.getItem("zelqoza_lang")||navigator.language||"en").toLowerCase().startsWith("es"))?"es":"en";
 let i=0,traits={openness:0,directness:0,attachment:0,regulation:0,social:0},historyAnswers=[],quizStarted=false;
+let answerLocked=false,lastTrackedQuestion=0,quizOpenedAt=0;
 let currentResult={pct:0,idx:0,traits:null},relationshipMode="friend",activeChallenge=null,sharedProfile=null,connectionRevealed=false;
 const $=id=>document.getElementById(id), tx=k=>TXT[lang][k]||TXT.en[k]||k, profile=idx=>PROFILES[idx][lang]||PROFILES[idx].en;
 
@@ -1043,6 +1143,46 @@ function gaEvent(name,params={}){
       window.gtag("event",name,Object.assign({language:lang},params));
     }
   }catch(e){}
+}
+
+function likelyMexico(){
+  try{
+    const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";
+    return tz==="America/Mexico_City" ||
+      tz==="America/Monterrey" ||
+      tz==="America/Merida" ||
+      tz==="America/Chihuahua" ||
+      tz==="America/Mazatlan" ||
+      tz==="America/Tijuana" ||
+      tz==="America/Hermosillo" ||
+      tz.includes("Mexico");
+  }catch(e){return false}
+}
+function currentOffer(){
+  const mx=likelyMexico();
+  if(mx){
+    return{
+      price:"$20 MXN",
+      old:"$79 MXN",
+      cta:lang==="es"?"Ver mi lectura completa — $20 MXN →":"Reveal my full Read — MX$20 →",
+      note:lang==="es"?"Pago único · Sin suscripción":"One-time payment · No subscription"
+    };
+  }
+  return{
+    price:"~US$1",
+    old:"~US$3.99",
+    cta:lang==="es"?"Ver mi lectura completa — ~US$1 →":"Reveal my full Read — ~US$1 →",
+    note:lang==="es"?"Pago único · Sin suscripción":"One-time payment · No subscription"
+  };
+}
+function updateOfferPrice(){
+  const o=currentOffer();
+  if($("gatePriceValue"))$("gatePriceValue").innerText=o.price;
+  if($("inlinePriceValue"))$("inlinePriceValue").innerText=o.price;
+  if($("inlineOldPrice"))$("inlineOldPrice").innerText=o.old;
+  if($("gateUnlockBtn"))$("gateUnlockBtn").innerText=o.cta;
+  if($("unlockBtn") && !$("unlockBtn").disabled)$("unlockBtn").innerText=o.cta;
+  if($("localCurrencyNote"))$("localCurrencyNote").innerText=o.note;
 }
 
 
@@ -1110,41 +1250,41 @@ function clearVerifiedDeepReadAccess(){
 
 function gateCopy(){
   if(lang==="es")return{
-    complete:"6 DE 6 · TU LECTURA ESTÁ LISTA",
-    title:"Tu Read está listo.",
-    lead:"Encontramos el patrón detrás de cómo los demás pueden percibirte. Tu resultado completo está bloqueado hasta que decidas revelarlo.",
+    complete:"6 DE 6 · LISTO",
+    title:"Tu lectura está lista.",
+    lead:"Tus respuestas formaron un patrón claro. Mira qué señal estás dando y qué suelen malinterpretar de ti.",
     items:[
-      "Lo que los demás tienden a malinterpretar de ti",
-      "Qué cambia cuando alguien realmente te importa",
-      "El patrón que más influye en tus relaciones",
-      "Incluye 1 Connection Read con otra persona"
+      "Lo que pueden malinterpretar de ti",
+      "Tu patrón más fuerte",
+      "Qué cambia cuando alguien te importa",
+      "1 Connection Read incluido"
     ],
-    price:"PRECIO DE LANZAMIENTO",
-    unlock:"Revelar mi Read completo →",
-    trust:"Pago único · Acceso inmediato · Checkout seguro con Stripe",
+    price:"PAGO ÚNICO",
+    unlock:"Ver mi lectura completa →",
+    trust:"Acceso inmediato · Sin suscripción · Checkout seguro con Stripe",
     legal:`Al continuar, aceptas los <a href="/terms.html" target="_blank" rel="noopener">Términos</a> y reconoces el <a href="/privacy.html" target="_blank" rel="noopener">Aviso de Privacidad</a> y la <a href="/refunds.html" target="_blank" rel="noopener">Política de Reembolsos</a>.`,
-    teaserKicker:"TU READ ESTÁ LISTO",
-    teaserTitle:"Hay un patrón que sobresalió en tus respuestas.",
-    teaserText:"Tu lectura completa muestra qué señal das sin darte cuenta y qué suelen interpretar mal los demás.",
-    teaserRows:["Lo que suelen malinterpretar","Tu patrón más fuerte","Qué cambia cuando te importa alguien"]
+    teaserKicker:"TU LECTURA ESTÁ LISTA",
+    teaserTitle:"Tus respuestas formaron un patrón claro.",
+    teaserText:"Desbloquéala para ver qué señal estás dando y qué suelen interpretar mal los demás.",
+    teaserRows:["Lo que pueden malinterpretar","Tu patrón más fuerte","Qué cambia cuando te importa alguien"]
   };
   return{
-    complete:"6 OF 6 · YOUR READ IS READY",
+    complete:"6 OF 6 · DONE",
     title:"Your Read is ready.",
-    lead:"We found the pattern behind how people may experience you. Your full result stays locked until you choose to reveal it.",
+    lead:"Your answers formed a clear pattern. See the signal you may be giving — and what people tend to misread.",
     items:[
-      "What people tend to misread about you",
-      "What changes when you actually care",
-      "The pattern shaping your relationships",
-      "Includes 1 Connection Read with someone you know"
+      "What people may misread about you",
+      "Your strongest pattern",
+      "What changes when you care",
+      "1 Connection Read included"
     ],
-    price:"LAUNCH PRICE",
+    price:"ONE-TIME PAYMENT",
     unlock:"Reveal my full Read →",
-    trust:"One-time payment · Instant access · Secure Stripe checkout",
+    trust:"Instant access · No subscription · Secure Stripe checkout",
     legal:`By continuing, you agree to the <a href="/terms.html" target="_blank" rel="noopener">Terms</a> and acknowledge the <a href="/privacy.html" target="_blank" rel="noopener">Privacy Notice</a> and <a href="/refunds.html" target="_blank" rel="noopener">Refund Policy</a>.`,
     teaserKicker:"YOUR READ IS READY",
-    teaserTitle:"One pattern stood out in your answers.",
-    teaserText:"Your full Read shows the signal you may be giving without realizing it — and what people tend to get wrong.",
+    teaserTitle:"Your answers formed a clear pattern.",
+    teaserText:"Unlock it to see the signal you may be giving — and what people tend to get wrong.",
     teaserRows:["What they may misread","Your strongest pattern","What changes when you care"]
   };
 }
@@ -1162,6 +1302,7 @@ function updateGateCopy(){
   if($("lockedTeaserTitle"))$("lockedTeaserTitle").innerText=c.teaserTitle;
   if($("lockedTeaserText"))$("lockedTeaserText").innerText=c.teaserText;
   c.teaserRows.forEach((v,n)=>{const el=$("lockedRow"+(n+1));if(el)el.innerText=v});
+  updateOfferPrice();
 }
 function showResultGate(){
   if(activeChallenge)return;
@@ -1186,7 +1327,10 @@ function unlockResultUI(){
 function openQuizInstant(){
   $("start").classList.add("hidden");
   $("quiz").classList.remove("hidden");
+  quizOpenedAt=Date.now();
+  lastTrackedQuestion=0;
   render();
+  requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:"auto"}));
 }
 
 function setLanguage(l){lang=l;localStorage.setItem("zelqoza_lang",l);gaEvent("language_change",{selected_language:l});applyLanguage();refreshDynamic();updateGateCopy()}
@@ -1197,9 +1341,13 @@ document.querySelectorAll(".read-badge-text").forEach(el=>{
   el.innerText=lang==="es" ? "TU LECTURA" : "YOUR READ";
 });
 $("enBtn").classList.toggle("active",lang==="en");$("esBtn").classList.toggle("active",lang==="es");
+  if($("quizMicro"))$("quizMicro").innerText=lang==="es"
+    ?"6 toques · ~20 s · responde por instinto"
+    :"6 taps · ~20 sec · go with your first instinct";
   const map={eyebrow:"eyebrow",headline:"headline",subhead:"subhead",startBtn:"start",disclaimer:"disclaimer",quizBack:"back",resultBack:"back",seeMine:"seeMine",shareBtn:"shareResult",copyResultBtn:"copyResult",whatsappBtn:"whatsapp",facebookBtn:"facebook",moreBtn:"more",deepTitle:"deepTitle",deepCopy:"deepCopy",connectionIncluded:"connectionIncluded",launchPriceLabel:"launchPrice",localCurrencyNote:"localCurrencyNote",misreadLabel:"misread",patternLabel:"pattern",moveLabel:"move",unlockBtn:"unlock",previewNote:"preview",m1:"m1",m2:"m2",m3:"m3",m4:"m4",underTitle:"under",frictionTitle:"friction",movesTitle:"moves",connectionTitle:"connection",connectionIntro:"connectionIntro",openConnectionBtn:"openConnection",whatPerson:"whatPerson",createLinkBtn:"createLink",copyLinkBtn:"copyLink",shareLinkBtn:"shareLink",connectionKicker:"connectionKicker",quickGoodLabel:"quickGoodLabel",quickWatchLabel:"quickWatchLabel",connectionDetailsToggle:"showDetails",themText:"them",youText:"you",whyTitle:"why",whereTitle:"where",youDoTitle:"youDo",theyDoTitle:"theyDo",ruleTitle:"rule",againBtn:"again"};
   Object.entries(map).forEach(([id,k])=>{const el=$(id);if(el)el.innerText=tx(k)});
   updateGateCopy();
+  updateOfferPrice();
   document.querySelectorAll("[data-rel]").forEach(b=>b.innerText=tx(b.dataset.rel));
 }
 function refreshDynamic(){
@@ -1253,31 +1401,92 @@ function revealIncomingConnection(){
 function begin(){quizStarted=false;openQuizInstant()}
 function render(){
   const q=QUIZ[lang][i];
+
+  // The ad click lands on the actual question, not another landing section.
+  $("quizIntro").classList.add("hidden");
   $("bar").style.width=(i/QUIZ[lang].length*100)+"%";
   $("qnum").innerText=tx("q")(i+1,QUIZ[lang].length);
   $("question").innerText=q[0];
-  $("quizIntro").classList.toggle("hidden",i>0);
   $("quizBack").classList.toggle("first-question",i===0);
   $("options").innerHTML="";
-  q[1].forEach(([text,w],idx)=>{
+  selectedQuizAnswer=null;
+  $("quizContinue").disabled=true;
+  $("quizContinue").innerText=lang==="es"?"Continuar":"Continue";
+  $("quizContinue").setAttribute("aria-label",lang==="es"?"Continuar a la siguiente pregunta":"Continue to the next question");
+  $("quiz").scrollTop=0;
+
+  if(lastTrackedQuestion!==i+1){
+    lastTrackedQuestion=i+1;
+    gaEvent("quiz_question_view",{
+      question_number:i+1,
+      entry_type:analyticsEntryType()
+    });
+  }
+
+  q[1].forEach(([answerText,w],idx)=>{
     const b=document.createElement("button");
     b.className="option option-enter";
-    b.style.animationDelay=(idx*55)+"ms";
-    b.innerText=text;
-    b.onclick=()=>choose(w);
+    b.style.animationDelay=(idx*38)+"ms";
+    b.innerText=answerText;
+    b.onclick=()=>selectQuizAnswer(w,b);
     $("options").appendChild(b);
   });
 }
 function applyWeights(w,m=1){Object.keys(w).forEach(k=>traits[k]+=w[k]*m)}
-function choose(w){
+let selectedQuizAnswer=null;
+function selectQuizAnswer(w,btn){
+  if(answerLocked)return;
+  selectedQuizAnswer={w,btn};
+  document.querySelectorAll("#options .option").forEach(el=>{
+    el.classList.toggle("selected",el===btn);
+    el.setAttribute("aria-pressed",String(el===btn));
+  });
+  $("quizContinue").disabled=false;
+}
+function continueQuiz(){
+  if(!selectedQuizAnswer || answerLocked)return;
+  choose(selectedQuizAnswer.w,selectedQuizAnswer.btn);
+}
+function choose(w,btn){
+  if(answerLocked)return;
+  answerLocked=true;
+
+  if(btn){
+    btn.classList.add("selected");
+    document.querySelectorAll("#options .option").forEach(el=>{
+      el.disabled=true;
+      if(el!==btn)el.classList.add("answer-dim");
+    });
+  }
+
   if(!quizStarted){
     quizStarted=true;
     clearPendingDeepRead();
     clearVerifiedDeepReadAccess();
-    gaEvent("quiz_start",{entry_type:analyticsEntryType()});
+    gaEvent("quiz_start",{
+      entry_type:analyticsEntryType(),
+      first_answer_delay_ms:quizOpenedAt?Math.max(0,Date.now()-quizOpenedAt):0
+    });
   }
-  gaEvent("quiz_question_answer",{question_number:i+1,entry_type:analyticsEntryType()});
-  historyAnswers.push({...w});applyWeights(w);i++;i<QUIZ[lang].length?render():finish()
+
+  gaEvent("quiz_question_answer",{
+    question_number:i+1,
+    entry_type:analyticsEntryType()
+  });
+
+  setTimeout(()=>{
+    historyAnswers.push({...w});
+    applyWeights(w);
+    i++;
+    answerLocked=false;
+
+    if(i<QUIZ[lang].length){
+      render();
+      requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:"auto"}));
+    }else{
+      finish();
+    }
+  },85);
 }
 function selectProfile(){if(traits.regulation>=3&&traits.directness<=0)return 0;if(traits.attachment>=2&&traits.directness<=0)return 1;if(traits.social>=3&&traits.regulation<=1)return 2;if(traits.attachment<=-3)return 3;if(traits.directness>=4)return 4;if(traits.regulation<=-2&&traits.social<=1)return 5;if(traits.social>=2&&traits.openness>=1)return 6;return 7}
 function finish(){
@@ -2087,25 +2296,23 @@ function renderConnection(c){
 }
 
 function restartTest(){
-  // RETAKE FIX: fully clear the previous paid/result state, then reload
-  // THE READ from a clean URL. This is more reliable than trying to
-  // rebuild every quiz element in-place after a completed purchase.
-  try{
-    gaEvent("test_restart",{
-      from_profile_key:currentResult&&PROFILE_KEYS[currentResult.idx]
-        ?PROFILE_KEYS[currentResult.idx]
-        :"unknown"
-    });
-  }catch(e){}
-
   clearPendingDeepRead();
   clearVerifiedDeepReadAccess();
+  answerLocked=false;
+  lastTrackedQuestion=0;
+  quizOpenedAt=Date.now();
+  unlockResultUI();
+  if($("paywall"))$("paywall").classList.remove("hidden");
+  $("report").classList.add("hidden");
+  gaEvent("test_restart",{from_profile_key:currentResult&&PROFILE_KEYS[currentResult.idx]?PROFILE_KEYS[currentResult.idx]:"unknown"});
+  i=0;quizStarted=false;
+  traits={openness:0,directness:0,attachment:0,regulation:0,social:0};
+  historyAnswers=[];currentResult={pct:0,idx:0,traits:null};connectionRevealed=false;
   clearActiveChallenge();
-
-  try{sessionStorage.removeItem("zelqoza_active_challenge")}catch(e){}
-
-  // Preserve language preference, but remove result/payment/challenge state.
-  window.location.assign(base());
+  $("result").classList.add("hidden");$("report").classList.add("hidden");$("connectionAuto").classList.add("hidden");
+  history.replaceState(null,"",base());
+  openQuizInstant();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 (async function init(){
