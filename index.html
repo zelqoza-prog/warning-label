@@ -560,69 +560,67 @@ body::after{right:-280px;top:48vh;background:#a18de2;animation-delay:-7s}
 .gateOverlay{
   position:fixed;inset:0;z-index:9999;
   display:flex;align-items:center;justify-content:center;
-  padding:18px;
-  background:rgba(18,15,13,.72);
-  backdrop-filter:blur(15px);
-  -webkit-backdrop-filter:blur(15px);
+  padding:20px;
+  background:#f4f7fb;
   animation:gateFade .28s ease both;
 }
 .gatePanel{
   position:relative;
-  width:min(100%,520px);
-  max-height:calc(100vh - 36px);
+  width:min(100%,480px);
+  max-height:calc(100dvh - 40px);
   overflow:auto;
-  padding:30px 24px 24px;
-  border-radius:28px;
-  border:1px solid rgba(255,255,255,.11);
-  color:#fff;
-  background:
-    radial-gradient(circle at 85% 0%,rgba(232,107,95,.28),transparent 34%),
-    linear-gradient(155deg,#171412 0%,#24201d 100%);
-  box-shadow:0 36px 100px rgba(0,0,0,.38);
+  padding:22px 16px 20px;
+  border-radius:5px;
+  border:1px solid #e2e7ee;
+  color:#111827;
+  background:#fff;
+  box-shadow:0 2px 8px rgba(24,39,58,.05);
   animation:gateIn .34s cubic-bezier(.2,.75,.2,1) both;
 }
 .gateClose{
-  position:absolute;right:14px;top:14px;
-  width:42px;height:42px;padding:0;border-radius:50%;
-  background:rgba(255,255,255,.09);color:#fff;
-  border:1px solid rgba(255,255,255,.12);
-  font-size:24px;font-weight:500;line-height:1;
+  position:absolute;right:16px;top:16px;
+  width:38px;height:38px;padding:0;border-radius:4px;
+  background:#fff;color:#1d2935;
+  border:1px solid #c9d3e1;
+  font-size:23px;font-weight:400;line-height:1;
   box-shadow:none;
 }
-.gateClose:hover{background:rgba(255,255,255,.15)}
+.gateClose:hover{background:#f4f7fb}
 .gateComplete{
   display:inline-flex;align-items:center;gap:7px;
-  padding:7px 10px;border-radius:999px;
-  background:rgba(232,107,95,.13);border:1px solid rgba(232,107,95,.36);
-  color:#ffaaa2;font-size:11px;font-weight:900;letter-spacing:.09em;text-transform:uppercase
+  color:#56616d;font:700 11px/1.4 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:.05em;text-transform:uppercase
 }
 .gatePanel h2{
-  max-width:430px;margin:18px 0 10px;
-  font-size:38px;line-height:.98;letter-spacing:-.045em
+  max-width:390px;margin:12px 36px 10px 0;
+  color:#111827;font:700 24px/1.2 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:-.025em
 }
-.gateLead{margin:0;color:#ddd5cf;font-size:16px;line-height:1.5}
+.gateLead{margin:0;color:#56616d;font:400 15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .gateList{display:grid;gap:9px;margin:20px 0}
 .gateItem{
   display:flex;align-items:center;gap:11px;
-  padding:13px 14px;border-radius:14px;
-  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);
-  color:#f7f2ee;font-size:14px;font-weight:750
+  padding:11px 12px;border-radius:4px;
+  background:#fff;border:1px solid #c9d3e1;
+  color:#111827;font:600 14px/1.4 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
 .gateLock{
-  flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+  flex:0 0 auto;width:26px;height:26px;border-radius:4px;
   display:flex;align-items:center;justify-content:center;
-  background:rgba(232,107,95,.15);color:#ff9a91;font-size:13px
+  background:#eff6fb;color:#1673b7;font-size:13px
 }
 .gatePrice{
   display:flex;align-items:baseline;justify-content:space-between;gap:14px;
-  margin:17px 0 12px;padding-top:15px;border-top:1px solid rgba(255,255,255,.10)
+  margin:17px 0 12px;padding-top:15px;border-top:1px solid #e2e7ee
 }
-.gatePrice span{color:#bcb4ae;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
-.gatePrice strong{font-size:29px;letter-spacing:-.03em}
-.gatePanel .primary{margin-top:3px}
-.gateTrust{margin:10px 0 0;text-align:center;color:#aaa29d;font-size:11px;line-height:1.45}
-.gateLegal{margin:7px auto 0;max-width:520px;text-align:center;color:#8f8782;font-size:9px;line-height:1.45}
-.gateLegal a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.gatePrice span{color:#697686;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.gatePrice strong{color:#111827;font-size:27px;letter-spacing:-.03em}
+.gatePanel .primary{min-height:46px;margin-top:3px;padding:10px 16px;border-radius:4px;background:#1673b7;color:#fff;box-shadow:none;font:700 15px/1.3 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.gatePanel .primary:hover{background:#105d97}
+.gatePanel button:focus-visible,.gatePanel a:focus-visible{outline:2px solid #1673b7;outline-offset:2px}
+.gateTrust{margin:11px 0 0;text-align:center;color:#56616d;font-size:12px;line-height:1.45}
+.gateLegal{margin:9px auto 0;max-width:480px;text-align:center;color:#697686;font-size:11px;line-height:1.45}
+.gateLegal a{color:#176caf;text-decoration:underline;text-underline-offset:2px}
 body.gate-open{overflow:hidden}
 @keyframes gateFade{from{opacity:0}to{opacity:1}}
 @keyframes gateIn{from{opacity:0;transform:translateY(16px) scale(.975)}to{opacity:1;transform:translateY(0) scale(1)}}
@@ -631,9 +629,9 @@ body.gate-open{overflow:hidden}
   .quizIntro{padding:30px 0 0}
   .quizIntro h1{font-size:31px}
   .quizIntro p{font-size:14px}
-  .gateOverlay{padding:10px;align-items:flex-end}
-  .gatePanel{width:100%;max-height:92vh;border-radius:26px 26px 20px 20px;padding:28px 19px 20px}
-  .gatePanel h2{font-size:34px;padding-right:32px}
+  .gateOverlay{padding:20px;align-items:center}
+  .gatePanel{width:100%;max-height:calc(100dvh - 40px);border-radius:4px;padding:22px 16px 20px}
+  .gatePanel h2{font-size:22px;padding-right:32px}
   .gateItem{font-size:13px}
 }
 
